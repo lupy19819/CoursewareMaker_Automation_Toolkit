@@ -1347,7 +1347,7 @@
                     "value": "用 6、9、8、2 这四张数字卡片摆出一个最大的四位数（卡片不能旋转），这个数和它的近似数分别是（ ）。",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 44,
+                    "fontSize": 80,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -2100,6 +2100,139 @@
           "index": 7,
           "name": "AloneClickChoice",
           "version": "0.11.1"
+        },
+        {
+          "component_data": {
+            "id": "gamenext_component_uuid_f04f26ea-844d-47e7-9957-476cac65fe87",
+            "edit_description": "",
+            "component_id": "",
+            "name": "【可修改】配图-3年级-1.png",
+            "zIndex": 0,
+            "base": "MSprite",
+            "components": {
+              "tools": {},
+              "source": {
+                "MSprite": 1
+              },
+              "lockState": {
+                "state": false,
+                "componentId": "",
+                "componentName": "",
+                "componentState": ""
+              },
+              "judgeRules": {
+                "forbidIfCorrect": false,
+                "inAnswerPool": true
+              },
+              "webEditorCustomInfo": {
+                "chain": "",
+                "isAnswerComponent": false,
+                "isJudgeComponent": false
+              }
+            },
+            "edit": {
+              "lock": true,
+              "curState": "default",
+              "baseNotChange": false
+            },
+            "custom": [],
+            "state_group": [],
+            "states": [
+              {
+                "groupKey": "",
+                "state": "default",
+                "label": "默认",
+                "notDelete": false,
+                "transform": {
+                  "x": 0,
+                  "y": 115,
+                  "w": 980,
+                  "h": 209,
+                  "scaleX": 1,
+                  "scaleY": 1,
+                  "rot": 0,
+                  "editRot": false,
+                  "anchorX": 0.5,
+                  "anchorY": 0.5
+                },
+                "source": {
+                  "MLabel": {
+                    "value": "",
+                    "color": "#000000",
+                    "fontFamily": "FZCuYuan-M03S",
+                    "fontSize": 32,
+                    "isBold": false,
+                    "isItalic": false,
+                    "isUnderline": false,
+                    "alignType": "center",
+                    "interval": [
+                      0,
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "closeable": true
+                  },
+                  "MSprite": {
+                    "key": "",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/640a9fe31d60c9034292d4cb6b87c03d.png"
+                  }
+                },
+                "jump": {
+                  "canEdit": true,
+                  "opened": 0,
+                  "type": "",
+                  "to": "",
+                  "duration": 0
+                },
+                "active": {
+                  "canEdit": true,
+                  "switch": false,
+                  "value": "show"
+                }
+              }
+            ],
+            "event": {
+              "eventMap": [
+                {
+                  "label": "点击",
+                  "name": "click",
+                  "sys": false
+                }
+              ],
+              "dispatchFunList": [
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "显示",
+                  "name": "onShow"
+                },
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "隐藏",
+                  "name": "onHide"
+                },
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "旋转",
+                  "name": "onRotated"
+                }
+              ],
+              "value": []
+            }
+          },
+          "component_id": "BaseComponent",
+          "component_name": "节点",
+          "component_url": "",
+          "index": 8,
+          "name": "BaseComponent",
+          "version": "0.0.0"
         }
       ]
     },
@@ -3263,7 +3396,7 @@
                     "value": "下面计算正确的是（ ）。",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 44,
+                    "fontSize": 80,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -5414,7 +5547,7 @@
                     "value": "小明收集的邮票数是小红的 5 倍。下面可以表示两人邮票数量关系的是图（ ）。",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 44,
+                    "fontSize": 80,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -7330,7 +7463,7 @@
                     "value": "将图形沿虚线折成一个小立方体。根据原题图，选择其中一个面应是（ ）。",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 44,
+                    "fontSize": 80,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -8318,6 +8451,139 @@
           "index": 8,
           "name": "AloneClickChoice",
           "version": "0.11.1"
+        },
+        {
+          "component_data": {
+            "id": "gamenext_component_uuid_94e0fe98-7681-4728-b65c-a0437c0a9574",
+            "edit_description": "",
+            "component_id": "",
+            "name": "【可修改】配图-3年级-4.png",
+            "zIndex": 0,
+            "base": "MSprite",
+            "components": {
+              "tools": {},
+              "source": {
+                "MSprite": 1
+              },
+              "lockState": {
+                "state": false,
+                "componentId": "",
+                "componentName": "",
+                "componentState": ""
+              },
+              "judgeRules": {
+                "forbidIfCorrect": false,
+                "inAnswerPool": true
+              },
+              "webEditorCustomInfo": {
+                "chain": "",
+                "isAnswerComponent": false,
+                "isJudgeComponent": false
+              }
+            },
+            "edit": {
+              "lock": true,
+              "curState": "default",
+              "baseNotChange": false
+            },
+            "custom": [],
+            "state_group": [],
+            "states": [
+              {
+                "groupKey": "",
+                "state": "default",
+                "label": "默认",
+                "notDelete": false,
+                "transform": {
+                  "x": 0,
+                  "y": 70,
+                  "w": 1450,
+                  "h": 519,
+                  "scaleX": 1,
+                  "scaleY": 1,
+                  "rot": 0,
+                  "editRot": false,
+                  "anchorX": 0.5,
+                  "anchorY": 0.5
+                },
+                "source": {
+                  "MLabel": {
+                    "value": "",
+                    "color": "#000000",
+                    "fontFamily": "FZCuYuan-M03S",
+                    "fontSize": 32,
+                    "isBold": false,
+                    "isItalic": false,
+                    "isUnderline": false,
+                    "alignType": "center",
+                    "interval": [
+                      0,
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "closeable": true
+                  },
+                  "MSprite": {
+                    "key": "",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/a92efb607fc548778ea9c8d1c10cc02a.png"
+                  }
+                },
+                "jump": {
+                  "canEdit": true,
+                  "opened": 0,
+                  "type": "",
+                  "to": "",
+                  "duration": 0
+                },
+                "active": {
+                  "canEdit": true,
+                  "switch": false,
+                  "value": "show"
+                }
+              }
+            ],
+            "event": {
+              "eventMap": [
+                {
+                  "label": "点击",
+                  "name": "click",
+                  "sys": false
+                }
+              ],
+              "dispatchFunList": [
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "显示",
+                  "name": "onShow"
+                },
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "隐藏",
+                  "name": "onHide"
+                },
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "旋转",
+                  "name": "onRotated"
+                }
+              ],
+              "value": []
+            }
+          },
+          "component_id": "BaseComponent",
+          "component_name": "节点",
+          "component_url": "",
+          "index": 9,
+          "name": "BaseComponent",
+          "version": "0.0.0"
         }
       ]
     },
@@ -9481,7 +9747,7 @@
                     "value": "奥奥步行街长300米，在街的一边每隔20米挂一个红灯笼（两端都挂），一共挂了（ ）个红灯笼。",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 44,
+                    "fontSize": 80,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -11611,7 +11877,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png"
                   }
                 },
                 "jump": {
@@ -11671,7 +11937,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
                       "enable": false,
@@ -11720,7 +11986,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png"
                   }
                 },
                 "jump": {
@@ -11762,7 +12028,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -11822,7 +12088,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
                       "enable": false,
@@ -11871,7 +12137,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
                   }
                 },
                 "jump": {
@@ -11913,7 +12179,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
                   }
                 },
                 "jump": {
@@ -12031,7 +12297,7 @@
                     "value": "（1）263 + 358 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -12192,7 +12458,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -12260,7 +12526,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -12328,7 +12594,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -12396,7 +12662,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -12545,7 +12811,7 @@
                     "value": "（2）62 + 535 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -12706,7 +12972,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -12774,7 +13040,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -12842,7 +13108,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -12910,7 +13176,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -13059,7 +13325,7 @@
                     "value": "（3）338 - 168 + 207 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -13220,7 +13486,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -13288,7 +13554,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -13356,7 +13622,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -13424,7 +13690,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -13573,7 +13839,7 @@
                     "value": "大数计算",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 44,
+                    "fontSize": 80,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -15019,7 +15285,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png"
                   }
                 },
                 "jump": {
@@ -15079,7 +15345,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
                       "enable": false,
@@ -15128,7 +15394,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png"
                   }
                 },
                 "jump": {
@@ -15170,7 +15436,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -15230,7 +15496,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
                       "enable": false,
@@ -15279,7 +15545,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
                   }
                 },
                 "jump": {
@@ -15321,7 +15587,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
                   }
                 },
                 "jump": {
@@ -15439,7 +15705,7 @@
                     "value": "6 × 4 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 42,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -15600,7 +15866,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -15668,7 +15934,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -15736,7 +16002,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -15804,7 +16070,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -15953,7 +16219,7 @@
                     "value": "8 × 9 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 42,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -16114,7 +16380,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -16182,7 +16448,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -16250,7 +16516,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -16318,7 +16584,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -16467,7 +16733,7 @@
                     "value": "30 × 7 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 42,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -16628,7 +16894,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -16696,7 +16962,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -16764,7 +17030,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -16832,7 +17098,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -16981,7 +17247,7 @@
                     "value": "20 ÷ 2 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 42,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -17142,7 +17408,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -17210,7 +17476,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -17278,7 +17544,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -17346,7 +17612,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -17495,7 +17761,7 @@
                     "value": "24 ÷ 8 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 42,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -17656,7 +17922,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -17724,7 +17990,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -17792,7 +18058,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -17860,7 +18126,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -18009,7 +18275,7 @@
                     "value": "18 ÷ 9 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 42,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -18170,7 +18436,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -18238,7 +18504,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -18306,7 +18572,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -18374,7 +18640,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -18523,7 +18789,7 @@
                     "value": "乘法计算",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 44,
+                    "fontSize": 80,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -19969,7 +20235,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png"
                   }
                 },
                 "jump": {
@@ -20029,7 +20295,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
                       "enable": false,
@@ -20078,7 +20344,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png"
                   }
                 },
                 "jump": {
@@ -20120,7 +20386,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -20180,7 +20446,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
                       "enable": false,
@@ -20229,7 +20495,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
                   }
                 },
                 "jump": {
@@ -20271,7 +20537,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
                   }
                 },
                 "jump": {
@@ -20389,7 +20655,7 @@
                     "value": "（1）198 × 5 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -20550,7 +20816,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -20618,7 +20884,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -20686,7 +20952,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -20754,7 +21020,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -20903,7 +21169,7 @@
                     "value": "（2）104 × 6 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -21064,7 +21330,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -21132,7 +21398,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -21200,7 +21466,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -21268,7 +21534,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -21417,7 +21683,7 @@
                     "value": "列竖式计算",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 44,
+                    "fontSize": 80,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -22380,7 +22646,7 @@
                     "value": "在方框里填上合适的数，使竖式成立",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 80,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -22863,7 +23129,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png"
                   }
                 },
                 "jump": {
@@ -22923,7 +23189,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
                       "enable": false,
@@ -22972,7 +23238,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png"
                   }
                 },
                 "jump": {
@@ -23014,7 +23280,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -23074,7 +23340,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
                       "enable": false,
@@ -23123,7 +23389,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
                   }
                 },
                 "jump": {
@@ -23165,7 +23431,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
                   }
                 },
                 "jump": {
@@ -23314,7 +23580,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -23382,7 +23648,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -23450,7 +23716,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -23518,7 +23784,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -23698,7 +23964,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -23766,7 +24032,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -23834,7 +24100,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -23902,7 +24168,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -24082,7 +24348,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -24150,7 +24416,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -24218,7 +24484,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -24286,7 +24552,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -24466,7 +24732,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -24534,7 +24800,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -24602,7 +24868,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -24670,7 +24936,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -24819,7 +25085,7 @@
                     "value": "2",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 160,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -24949,7 +25215,7 @@
                     "value": "×",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 118,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -25079,7 +25345,7 @@
                     "value": "7",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 160,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -25209,7 +25475,7 @@
                     "value": "─────────",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 54,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -25339,7 +25605,7 @@
                     "value": "0",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 160,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -25469,7 +25735,7 @@
                     "value": "1",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 160,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -26915,7 +27181,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png"
                   }
                 },
                 "jump": {
@@ -26975,7 +27241,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
                       "enable": false,
@@ -27024,7 +27290,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png"
                   }
                 },
                 "jump": {
@@ -27066,7 +27332,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -27126,7 +27392,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
                       "enable": false,
@@ -27175,7 +27441,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
                   }
                 },
                 "jump": {
@@ -27217,7 +27483,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
                   }
                 },
                 "jump": {
@@ -27335,7 +27601,7 @@
                     "value": "正方形图号 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -27496,7 +27762,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -27564,7 +27830,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -27632,7 +27898,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -27700,7 +27966,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -27849,7 +28115,7 @@
                     "value": "三角形图号 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -28010,7 +28276,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -28078,7 +28344,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -28146,7 +28412,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -28214,7 +28480,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -28363,7 +28629,7 @@
                     "value": "圆形图号 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -28524,7 +28790,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -28592,7 +28858,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -28660,7 +28926,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -28728,7 +28994,7 @@
                       0
                     ],
                     "isManualAlive": true,
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
@@ -28877,7 +29143,7 @@
                     "value": "根据图形特点填空：图（ ）是正方形，图（ ）是三角形，图（ ）是圆。",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 44,
+                    "fontSize": 80,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -30228,7 +30494,7 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
@@ -30323,7 +30589,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png"
                   }
                 },
                 "jump": {
@@ -30379,11 +30645,11 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
                       "enable": false,
@@ -30432,7 +30698,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png"
                   }
                 },
                 "jump": {
@@ -30474,7 +30740,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -30530,11 +30796,11 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
                       "enable": false,
@@ -30583,7 +30849,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
                   }
                 },
                 "jump": {
@@ -30625,7 +30891,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
                   }
                 },
                 "jump": {
@@ -30743,7 +31009,7 @@
                     "value": "▲ 最大 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -30755,7 +31021,7 @@
                       0,
                       0
                     ],
-                    "fontColor": "#9EFAFF"
+                    "fontColor": "#FFFFFF"
                   }
                 },
                 "jump": {
@@ -31257,7 +31523,7 @@
                     "value": "○ 最大 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -31269,7 +31535,7 @@
                       0,
                       0
                     ],
-                    "fontColor": "#9EFAFF"
+                    "fontColor": "#FFFFFF"
                   }
                 },
                 "jump": {
@@ -31771,7 +32037,7 @@
                     "value": "○ ÷ 6 = 3 …… ▲，▲ 最大是多少？○ 最大是多少？",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 44,
+                    "fontSize": 60,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -31838,6 +32104,139 @@
           "component_name": "节点",
           "component_url": "",
           "index": 9,
+          "name": "BaseComponent",
+          "version": "0.0.0"
+        },
+        {
+          "component_data": {
+            "id": "gamenext_component_uuid_88c8ad22-dd95-48de-a37e-bb4a46368922",
+            "edit_description": "",
+            "component_id": "",
+            "name": "【可修改】配图-3年级-11.png",
+            "zIndex": 0,
+            "base": "MSprite",
+            "components": {
+              "tools": {},
+              "source": {
+                "MSprite": 1
+              },
+              "lockState": {
+                "state": false,
+                "componentId": "",
+                "componentName": "",
+                "componentState": ""
+              },
+              "judgeRules": {
+                "forbidIfCorrect": false,
+                "inAnswerPool": true
+              },
+              "webEditorCustomInfo": {
+                "chain": "",
+                "isAnswerComponent": false,
+                "isJudgeComponent": false
+              }
+            },
+            "edit": {
+              "lock": true,
+              "curState": "default",
+              "baseNotChange": false
+            },
+            "custom": [],
+            "state_group": [],
+            "states": [
+              {
+                "groupKey": "",
+                "state": "default",
+                "label": "默认",
+                "notDelete": false,
+                "transform": {
+                  "x": 0,
+                  "y": 20,
+                  "w": 1040,
+                  "h": 148,
+                  "scaleX": 1,
+                  "scaleY": 1,
+                  "rot": 0,
+                  "editRot": false,
+                  "anchorX": 0.5,
+                  "anchorY": 0.5
+                },
+                "source": {
+                  "MLabel": {
+                    "value": "",
+                    "color": "#000000",
+                    "fontFamily": "FZCuYuan-M03S",
+                    "fontSize": 32,
+                    "isBold": false,
+                    "isItalic": false,
+                    "isUnderline": false,
+                    "alignType": "center",
+                    "interval": [
+                      0,
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "closeable": true
+                  },
+                  "MSprite": {
+                    "key": "",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/266c56b9187edcf312a6d6c2932e3050.png"
+                  }
+                },
+                "jump": {
+                  "canEdit": true,
+                  "opened": 0,
+                  "type": "",
+                  "to": "",
+                  "duration": 0
+                },
+                "active": {
+                  "canEdit": true,
+                  "switch": false,
+                  "value": "show"
+                }
+              }
+            ],
+            "event": {
+              "eventMap": [
+                {
+                  "label": "点击",
+                  "name": "click",
+                  "sys": false
+                }
+              ],
+              "dispatchFunList": [
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "显示",
+                  "name": "onShow"
+                },
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "隐藏",
+                  "name": "onHide"
+                },
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "旋转",
+                  "name": "onRotated"
+                }
+              ],
+              "value": []
+            }
+          },
+          "component_id": "BaseComponent",
+          "component_name": "节点",
+          "component_url": "",
+          "index": 10,
           "name": "BaseComponent",
           "version": "0.0.0"
         }
@@ -33122,7 +33521,7 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
@@ -33217,7 +33616,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png"
                   }
                 },
                 "jump": {
@@ -33273,11 +33672,11 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
                       "enable": false,
@@ -33326,7 +33725,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png"
                   }
                 },
                 "jump": {
@@ -33368,7 +33767,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -33424,11 +33823,11 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
                       "enable": false,
@@ -33477,7 +33876,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
                   }
                 },
                 "jump": {
@@ -33519,7 +33918,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
                   }
                 },
                 "jump": {
@@ -33637,7 +34036,7 @@
                     "value": "长方形菜园用 60 米篱笆正好围起来，宽是 10 米，长是　　　　米？",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -33649,7 +34048,7 @@
                       0,
                       0
                     ],
-                    "fontColor": "#9EFAFF"
+                    "fontColor": "#FFFFFF"
                   }
                 },
                 "jump": {
@@ -34090,6 +34489,139 @@
           "index": 6,
           "name": "QuestionForBlank",
           "version": "0.14.9"
+        },
+        {
+          "component_data": {
+            "id": "gamenext_component_uuid_fc754253-18f6-468e-bd5b-f80d3a59e035",
+            "edit_description": "",
+            "component_id": "",
+            "name": "【可修改】配图-3年级-12.png",
+            "zIndex": 0,
+            "base": "MSprite",
+            "components": {
+              "tools": {},
+              "source": {
+                "MSprite": 1
+              },
+              "lockState": {
+                "state": false,
+                "componentId": "",
+                "componentName": "",
+                "componentState": ""
+              },
+              "judgeRules": {
+                "forbidIfCorrect": false,
+                "inAnswerPool": true
+              },
+              "webEditorCustomInfo": {
+                "chain": "",
+                "isAnswerComponent": false,
+                "isJudgeComponent": false
+              }
+            },
+            "edit": {
+              "lock": true,
+              "curState": "default",
+              "baseNotChange": false
+            },
+            "custom": [],
+            "state_group": [],
+            "states": [
+              {
+                "groupKey": "",
+                "state": "default",
+                "label": "默认",
+                "notDelete": false,
+                "transform": {
+                  "x": 0,
+                  "y": 25,
+                  "w": 494,
+                  "h": 330,
+                  "scaleX": 1,
+                  "scaleY": 1,
+                  "rot": 0,
+                  "editRot": false,
+                  "anchorX": 0.5,
+                  "anchorY": 0.5
+                },
+                "source": {
+                  "MLabel": {
+                    "value": "",
+                    "color": "#000000",
+                    "fontFamily": "FZCuYuan-M03S",
+                    "fontSize": 32,
+                    "isBold": false,
+                    "isItalic": false,
+                    "isUnderline": false,
+                    "alignType": "center",
+                    "interval": [
+                      0,
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "closeable": true
+                  },
+                  "MSprite": {
+                    "key": "",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b43790caabcaa078898b1bd914d9fc09.png"
+                  }
+                },
+                "jump": {
+                  "canEdit": true,
+                  "opened": 0,
+                  "type": "",
+                  "to": "",
+                  "duration": 0
+                },
+                "active": {
+                  "canEdit": true,
+                  "switch": false,
+                  "value": "show"
+                }
+              }
+            ],
+            "event": {
+              "eventMap": [
+                {
+                  "label": "点击",
+                  "name": "click",
+                  "sys": false
+                }
+              ],
+              "dispatchFunList": [
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "显示",
+                  "name": "onShow"
+                },
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "隐藏",
+                  "name": "onHide"
+                },
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "旋转",
+                  "name": "onRotated"
+                }
+              ],
+              "value": []
+            }
+          },
+          "component_id": "BaseComponent",
+          "component_name": "节点",
+          "component_url": "",
+          "index": 7,
+          "name": "BaseComponent",
+          "version": "0.0.0"
         }
       ]
     },
@@ -35372,7 +35904,7 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
@@ -35467,7 +35999,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png"
                   }
                 },
                 "jump": {
@@ -35523,11 +36055,11 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
                       "enable": false,
@@ -35576,7 +36108,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png"
                   }
                 },
                 "jump": {
@@ -35618,7 +36150,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -35674,11 +36206,11 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
                       "enable": false,
@@ -35727,7 +36259,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
                   }
                 },
                 "jump": {
@@ -35769,7 +36301,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
                   }
                 },
                 "jump": {
@@ -35887,7 +36419,7 @@
                     "value": "用水 65 吨，应缴水费 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -35899,7 +36431,7 @@
                       0,
                       0
                     ],
-                    "fontColor": "#9EFAFF"
+                    "fontColor": "#FFFFFF"
                   }
                 },
                 "jump": {
@@ -36401,7 +36933,7 @@
                     "value": "水费 105 元，可能用水 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -36413,7 +36945,7 @@
                       0,
                       0
                     ],
-                    "fontColor": "#9EFAFF"
+                    "fontColor": "#FFFFFF"
                   }
                 },
                 "jump": {
@@ -36915,7 +37447,7 @@
                     "value": "分段计费：1-30 吨每吨 2 元，31-60 吨每吨 3 元，61 吨及以上每吨 4 元。",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 44,
+                    "fontSize": 60,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -38266,7 +38798,7 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
@@ -38361,7 +38893,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png"
                   }
                 },
                 "jump": {
@@ -38417,11 +38949,11 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
                       "enable": false,
@@ -38470,7 +39002,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png"
                   }
                 },
                 "jump": {
@@ -38512,7 +39044,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -38568,11 +39100,11 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
                       "enable": false,
@@ -38621,7 +39153,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
                   }
                 },
                 "jump": {
@@ -38663,7 +39195,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
                   }
                 },
                 "jump": {
@@ -38781,7 +39313,7 @@
                     "value": "1 只猴子 1 天吃 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -38793,7 +39325,7 @@
                       0,
                       0
                     ],
-                    "fontColor": "#9EFAFF"
+                    "fontColor": "#FFFFFF"
                   }
                 },
                 "jump": {
@@ -39295,7 +39827,7 @@
                     "value": "5 只猴子 7 天吃 =",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -39307,7 +39839,7 @@
                       0,
                       0
                     ],
-                    "fontColor": "#9EFAFF"
+                    "fontColor": "#FFFFFF"
                   }
                 },
                 "jump": {
@@ -39809,7 +40341,7 @@
                     "value": "8 只猴子 3 天吃了 72 个桃子，每只猴子每天吃的数量相同。",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 44,
+                    "fontSize": 60,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -41160,7 +41692,7 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
@@ -41255,7 +41787,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png"
                   }
                 },
                 "jump": {
@@ -41311,11 +41843,11 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
                       "enable": false,
@@ -41364,7 +41896,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png"
                   }
                 },
                 "jump": {
@@ -41406,7 +41938,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -41462,11 +41994,11 @@
                       0,
                       0
                     ],
-                    "fontColor": "#FFFFFF"
+                    "fontColor": "#9EFAFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
                       "enable": false,
@@ -41515,7 +42047,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
                   }
                 },
                 "jump": {
@@ -41557,7 +42089,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
                   }
                 },
                 "jump": {
@@ -41675,7 +42207,7 @@
                     "value": "第一天喝了总量的一半多 6 瓶，第二天喝了剩下的一半，\n这时还剩 6 瓶，原来一共买了　　　　瓶果汁？",
                     "color": "#b85304",
                     "fontFamily": "FZCuYuan-M03S",
-                    "fontSize": 50,
+                    "fontSize": 75,
                     "isBold": false,
                     "isItalic": false,
                     "isUnderline": false,
@@ -41687,7 +42219,7 @@
                       0,
                       0
                     ],
-                    "fontColor": "#9EFAFF"
+                    "fontColor": "#FFFFFF"
                   }
                 },
                 "jump": {
@@ -42128,6 +42660,139 @@
           "index": 6,
           "name": "QuestionForBlank",
           "version": "0.14.9"
+        },
+        {
+          "component_data": {
+            "id": "gamenext_component_uuid_5918d297-c717-4fea-ab6c-b56e369be43c",
+            "edit_description": "",
+            "component_id": "",
+            "name": "【可修改】配图-3年级-15.png",
+            "zIndex": 0,
+            "base": "MSprite",
+            "components": {
+              "tools": {},
+              "source": {
+                "MSprite": 1
+              },
+              "lockState": {
+                "state": false,
+                "componentId": "",
+                "componentName": "",
+                "componentState": ""
+              },
+              "judgeRules": {
+                "forbidIfCorrect": false,
+                "inAnswerPool": true
+              },
+              "webEditorCustomInfo": {
+                "chain": "",
+                "isAnswerComponent": false,
+                "isJudgeComponent": false
+              }
+            },
+            "edit": {
+              "lock": true,
+              "curState": "default",
+              "baseNotChange": false
+            },
+            "custom": [],
+            "state_group": [],
+            "states": [
+              {
+                "groupKey": "",
+                "state": "default",
+                "label": "默认",
+                "notDelete": false,
+                "transform": {
+                  "x": 140,
+                  "y": -90,
+                  "w": 900,
+                  "h": 190,
+                  "scaleX": 1,
+                  "scaleY": 1,
+                  "rot": 0,
+                  "editRot": false,
+                  "anchorX": 0.5,
+                  "anchorY": 0.5
+                },
+                "source": {
+                  "MLabel": {
+                    "value": "",
+                    "color": "#000000",
+                    "fontFamily": "FZCuYuan-M03S",
+                    "fontSize": 32,
+                    "isBold": false,
+                    "isItalic": false,
+                    "isUnderline": false,
+                    "alignType": "center",
+                    "interval": [
+                      0,
+                      0,
+                      0,
+                      0,
+                      0
+                    ],
+                    "closeable": true
+                  },
+                  "MSprite": {
+                    "key": "",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/d4b065aacbdc0c0e6db820134a985d11.png"
+                  }
+                },
+                "jump": {
+                  "canEdit": true,
+                  "opened": 0,
+                  "type": "",
+                  "to": "",
+                  "duration": 0
+                },
+                "active": {
+                  "canEdit": true,
+                  "switch": false,
+                  "value": "show"
+                }
+              }
+            ],
+            "event": {
+              "eventMap": [
+                {
+                  "label": "点击",
+                  "name": "click",
+                  "sys": false
+                }
+              ],
+              "dispatchFunList": [
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "显示",
+                  "name": "onShow"
+                },
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "隐藏",
+                  "name": "onHide"
+                },
+                {
+                  "allowEventName": [
+                    "all"
+                  ],
+                  "label": "旋转",
+                  "name": "onRotated"
+                }
+              ],
+              "value": []
+            }
+          },
+          "component_id": "BaseComponent",
+          "component_name": "节点",
+          "component_url": "",
+          "index": 7,
+          "name": "BaseComponent",
+          "version": "0.0.0"
         }
       ]
     }
