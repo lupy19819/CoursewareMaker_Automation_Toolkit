@@ -141,7 +141,10 @@ python standard_question_toolkit/scripts/generate_grade3_config.py
 ```json
 {
   "type": "inline_fill",
-  "stem": "田田共有    种搭配方案。",
+  "stem": "搭配方案问题",
+  "conditions": ["上衣3种，裙子2种，鞋子2种。"],
+  "answerPrefix": "田田共有",
+  "answerSuffix": "种搭配方案。",
   "answer": "12",
   "image": null
 }
@@ -299,7 +302,7 @@ python standard_question_toolkit/scripts/split_xinyi_games.py
 - [ ] 已按整关内容模型检查：题干/条件/作答句/算式/图表/输入框/选项/键盘/提交
 - [ ] 已按认知区、关系区、操作区做整体布局
 - [ ] 短题干居中，长题干左对齐
-- [ ] 行内挖空使用足够全角空格占位，输入框跟随实际换行位置
+- [ ] 行内填空/拖拽使用前文 + 输入框/放置区 + 后文三段结构，后文接在框右边缘
 - [ ] 有配图/表格题：题干、配图、答案区、操作区整体不冲突
 - [ ] 算式行：文本和输入框作为一组居中
 - [ ] 同类选择按钮九宫格一致

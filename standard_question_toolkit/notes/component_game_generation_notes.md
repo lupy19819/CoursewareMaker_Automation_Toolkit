@@ -28,8 +28,10 @@
 - If text will wrap in its text box, left-align it and increase text-box height. If it fits on one line, keep it centered.
 - For formula rows, size the text component width to the formula length instead of using one fixed wide text box for every row.
 - When resizing formula or short fill-label text components, recalculate both the text component `x` and its matching blank component `x` so the whole row pair is centered as one group: `group_width = text_width + gap + blank_width`, text first, then gap, then blank.
-- For inline fill questions, split long problems into condition line(s) plus one answer sentence.
-- For inline fill questions, replace the answer phrase with 6 full-width spaces and compute the blank position from the actual wrapped line containing the placeholder.
+- For inline fill questions, split long problems into condition line(s) plus `answer_prefix + QuestionForBlank + answer_suffix`.
+- Do not use full-width-space placeholders for inline blanks. Device-dependent wrapping can shift the text while the blank stays fixed.
+- Place `answer_suffix` from the right edge of the blank: `suffix_x = blank_x + blank_width / 2 + gap + suffix_width / 2`.
+- For inline drag/drop sentences, use the same structure with `LDragPlace` as the target box.
 - For image/table questions, allocate the image/table in the relation zone before finalizing stem size and answer blank position.
 - For choice questions, place options in the operation zone. If a standard choice button has user-edited `MSprite.nineGrid`, propagate only the nine-grid metadata to same-resource choice buttons.
 - Prefer integer score allocation for generated multi-level configs; distribute points as evenly as possible while keeping the total exactly 100.

@@ -12,7 +12,9 @@
 | --- | --- | --- |
 | `stem` | 主要题干/任务说明 | `【可修改】文本-题干` |
 | `condition` | 背景条件、已知信息 | 应用题条件句 |
-| `answer_sentence` | 直接包含挖空的作答句 | 带全角空格占位的文本 |
+| `answer_prefix` | 填空框/放置区前的文本 | 独立文本组件 |
+| `answer_target` | 行内填空框或拖拽放置区 | `QuestionForBlank` 或 `LDragPlace` |
+| `answer_suffix` | 填空框/放置区后的文本 | 独立文本组件 |
 | `formula_row` | 算式行 | 文本 + `QuestionForBlank` |
 | `vertical_grid` | 竖式结构 | 数字文本、符号、横线、输入框 |
 | `image_or_table` | 配图、表格、图示 | 非背景 `BaseComponent/MSprite` |
@@ -26,7 +28,7 @@
 
 - `choice_only`：题干 + 选项 + 提交。
 - `formula_fill`：题干 + 算式行 + 输入框 + 键盘。
-- `inline_fill`：条件句 + 作答句 + 行内输入框 + 键盘。
+- `inline_fill`：条件句 + 前文文本 + 行内输入框 + 后文文本 + 键盘。
 - `image_fill`：题干/条件 + 配图/表格 + 答案区 + 键盘。
 - `vertical_fill`：题干 + 竖式网格 + 键盘。
 - `drag`：题干/条件 + 放置区 + 拖拽物 + 提交。
@@ -52,7 +54,7 @@
 | `stem` 短题干 | `60` | 居中 |
 | `stem` 长题干 | `50` | 左对齐 |
 | `condition` | `50` | 单行居中，换行左对齐 |
-| `answer_sentence` | `54` | 单行居中，换行左对齐 |
+| `answer_prefix` / `answer_suffix` | `54` | 单行左到右拼接，必要时整组换行 |
 | `formula_row` | `50` | 算式文本右对齐 |
 | `choice_option` | `38` | 居中 |
 
@@ -62,28 +64,49 @@
 - 如果在文本框内会换行，改为左对齐并增加文本框高度。
 - 短文本不要因为同关其他文本很长而被左对齐。
 
-## 4. 行内挖空规则
+## 4. 行内填空/拖拽锚定规则
 
-内嵌填空不是“把输入框放在句子旁边”，而是把输入框当成句内对象。
+不要再使用“文本中留全角空格 + 输入框覆盖占位”的方式。不同设备分辨率、字体渲染和缩放会改变前文换行，导致文字和输入框/放置区错位。
 
-1. 把应用题拆成若干 `condition` 和一个 `answer_sentence`。
-2. 在 `answer_sentence` 中用全角空格保留输入框位置。
-3. 默认使用 `6` 个全角空格作为占位。
-4. 根据实际文本框宽度和换行结果计算输入框位置。
-5. 如果占位落到第 2 行，输入框的 `y` 必须跟着换到第 2 行。
-6. 普通输入框保持 `218 x 131`，`scaleX = 1`，`scaleY = 1`。
-
-位置计算：
+新的稳定结构是：
 
 ```text
-line_width = 当前渲染行视觉宽度
-prefix_width = 当前行占位前文本宽度
-placeholder_width = 6 个全角空格视觉宽度
-blank_x = label_x - line_width / 2 + prefix_width + placeholder_width / 2
-blank_y = label_y - wrapped_line_index * line_gap - optical_offset
+answer_prefix text  +  answer_target box  +  answer_suffix text
 ```
 
-`optical_offset` 可取约 `8px`，用于让输入框视觉上贴合文字行。
+规则：
+
+1. 把应用题拆成若干 `condition`，再把作答句拆成 `answer_prefix`、`answer_target`、`answer_suffix`。
+2. `answer_prefix` 是输入框/放置区前的文本。
+3. `answer_target` 是 `QuestionForBlank` 或 `LDragPlace`。
+4. `answer_suffix` 是输入框/放置区后的文本。
+5. `answer_suffix` 的起点必须由 `answer_target` 的右边缘计算，不依赖空格占位。
+6. 普通输入框保持 `218 x 131`，`scaleX = 1`，`scaleY = 1`。
+7. 放置区保持模板原始尺寸和状态，不拉伸，除非用户指定新尺寸。
+
+单行拼接计算：
+
+```text
+prefix_width = visual_width(answer_prefix)
+target_width = target.w
+suffix_width = visual_width(answer_suffix)
+gap = 16..28
+group_width = prefix_width + gap + target_width + gap + suffix_width
+
+prefix_x = group_center_x - group_width / 2 + prefix_width / 2
+target_x = group_center_x - group_width / 2 + prefix_width + gap + target_width / 2
+suffix_x = group_center_x - group_width / 2 + prefix_width + gap + target_width + gap + suffix_width / 2
+```
+
+换行规则：
+
+- 如果 `group_width` 超过可用宽度，优先把 `condition` 再拆短。
+- 如果必须换行，不让一个文本组件自动包住目标框；改成两行结构：
+  - 第一行：`condition` 或较长的前文。
+  - 第二行：较短的 `answer_prefix + answer_target + answer_suffix` 组合。
+- `answer_suffix` 永远跟随 `answer_target` 的右边缘，不用空格占位。
+
+拖拽题同理：如果放置区嵌在句中，使用 `answer_prefix + LDragPlace + answer_suffix` 的三段结构，后文接在放置区右侧。
 
 ## 5. 配图/表格整体布局
 
@@ -146,7 +169,8 @@ h = 140
 - 同类选择按钮九宫格一致。
 - 不出现可见的重复题型说明。
 - 长文本换行时左对齐，短文本保持居中。
-- 行内挖空不会和左右文字重叠。
-- 挖空如果换行，输入框跟随占位所在行。
+- 行内填空/拖拽不使用空格占位。
+- `answer_suffix` 是否由输入框/放置区右边缘计算。
+- 如果作答句需要换行，是否拆成多行组件，而不是让单个文本组件自动换行包住目标框。
 - 有配图/表格时按整关布局判断，而不是只看题干。
 - 算式行和输入框作为整体居中。

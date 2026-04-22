@@ -106,6 +106,27 @@ def formula_component_width(value, font_size):
     return max(220, min(820, round(visual_width(value, font_size) + 90)))
 
 
+def inline_target_group(prefix, suffix, target_width=ORDINARY_BLANK_SIZE[0], font_size=54, gap=22, center_x=0):
+    """Return x positions for prefix text, target box, and suffix text.
+
+    New inline fill/drop layouts should use separate text components around the
+    target instead of full-width-space placeholders. This avoids device-specific
+    text wrapping shifting the prefix while the target box stays fixed.
+    """
+    prefix_w = visual_width(prefix, font_size)
+    suffix_w = visual_width(suffix, font_size)
+    group_w = prefix_w + gap + target_width + gap + suffix_w
+    left = center_x - group_w / 2
+    return {
+        "prefix_x": left + prefix_w / 2,
+        "target_x": left + prefix_w + gap + target_width / 2,
+        "suffix_x": left + prefix_w + gap + target_width + gap + suffix_w / 2,
+        "prefix_w": prefix_w,
+        "suffix_w": suffix_w,
+        "group_w": group_w,
+    }
+
+
 def is_formula_label(value):
     return any(operator in value for operator in "+-×÷=")
 
@@ -224,6 +245,10 @@ def make_fill(
     inline_text_w=1600,
     inline_text_h=110,
 ):
+    # Legacy note: inline_blank_x/inline_blank_y were used by older examples
+    # that relied on blank-space placeholders in one text component. New inline
+    # fill/drop layouts should create answer_prefix + target + answer_suffix
+    # components and compute positions with inline_target_group().
     level = fresh_ids(copy.deepcopy(template))
     components = level["components"]
     text_components = [
