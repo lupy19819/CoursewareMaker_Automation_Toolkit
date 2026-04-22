@@ -11,7 +11,8 @@
       "stem": "长方形长16厘米，宽4厘米，面积是（  ）平方厘米。",
       "options": ["64", "40", "20", "60"],
       "answerIndex": 0,
-      "image": null
+      "image": null,
+      "layout": "diagnostic_visual_choice"
     },
     {
       "type": "fill",
@@ -20,7 +21,8 @@
         {"label": "4.47 + 2.38 + 4.53 + 4.62 =", "answer": "16"},
         {"label": "4.1 + 1.3 + 1.7 - 1.1 =", "answer": "6"}
       ],
-      "image": null
+      "image": null,
+      "layout": "diagnostic_compute_fill"
     },
     {
       "type": "inline_fill",
@@ -29,7 +31,8 @@
       "answerPrefix": "田田共有",
       "answerSuffix": "种搭配方案。",
       "answer": "12",
-      "image": null
+      "image": null,
+      "layout": "inline_fill"
     },
     {
       "type": "vertical_fill",
@@ -64,6 +67,7 @@
 ## 字段说明
 
 - `skin`：可选 `沙滩皮肤`、`图纸皮肤`、`紫色星空皮肤`。
+  - 小中诊断资源可选 `诊断紫色皮肤`、`诊断黄色皮肤`、`诊断蓝色皮肤`。
 - `type`：
   - `choice`
   - `fill`
@@ -77,5 +81,11 @@
 - `conditions`：可选。应用题中的背景条件；生成时按 `condition` 文本角色布局。
 - `answerPrefix`：可选。行内填空框或拖拽放置区前的文本。
 - `answerSuffix`：可选。行内填空框或拖拽放置区后的文本；生成时从输入框/放置区右边缘起排，不依赖空格占位。
-- `layout`：可选。可填 `choice_only`、`formula_fill`、`inline_fill`、`image_fill`、`vertical_fill`、`drag`；不填时由内容块自动推断。
+- `layout`：可选。可填 `choice_only`、`formula_fill`、`inline_fill`、`image_fill`、`vertical_fill`、`drag`、`diagnostic_visual_choice`、`diagnostic_compute_fill`、`diagnostic_image_reasoning`；不填时由内容块自动推断。
 - `imageRole`：可选。可填 `supporting` 或 `primary_reasoning`；配图是主要推理对象时应给关系区更多空间。
+
+## 小中诊断布局选择
+
+- `diagnostic_visual_choice`：有 3/4 个选项、不需要数字键盘，题目依赖图形、排列、规律或视觉比较。
+- `diagnostic_compute_fill`：无主配图，核心是横式、竖式、多行算式、简便计算，答案通过数字键盘输入。
+- `diagnostic_image_reasoning`：有主配图/表格/统计图/几何图/路线图，或长应用题条件需要和图示一起推理。

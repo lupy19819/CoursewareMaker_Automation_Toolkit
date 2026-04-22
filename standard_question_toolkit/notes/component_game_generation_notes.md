@@ -21,6 +21,7 @@
 - Before setting coordinates, build a whole-level content model. Classify visible blocks as `stem`, `condition`, `answer_sentence`, `formula_row`, `vertical_grid`, `image_or_table`, `choice_option`, `blank`, `keyboard`, `submit`, or `utility`.
 - Use `docs/layout_generation_method.md` as the source of truth for layout generation.
 - Use the three-zone model: recognition zone for stem/conditions, relation zone for image/table/formula/answer sentence, operation zone for choices/keyboards/confirm.
+- For 小中诊断 resources, choose one of the three diagnostic archetypes before falling back to generic layouts: `diagnostic_visual_choice` for visual choice/rule questions, `diagnostic_compute_fill` for short computation fill questions, and `diagnostic_image_reasoning` for long text plus primary image/table reasoning.
 - Do not solve layout by moving only the stem text. Consider the whole level: supporting image/table, formulas, blanks, options, keyboard, submit, and utilities.
 - Do not include question numbers in user-facing stem text or option/fill text; the level-number component handles numbering.
 - Do not prepend option labels such as `A.`/`B.`/`C.`/`D.` when the option already has its own visible text content; only keep option letters when they are the actual user-facing option content, such as diagram labels with no other text.

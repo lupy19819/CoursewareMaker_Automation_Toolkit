@@ -15,6 +15,7 @@
 - ✅ 填空题 (`QuestionForBlank`)
 - ✅ 拖拽题 (`MDraggbale` + `LDragPlace`)
 - ✅ 竖式/算式填空题（网格布局）
+- ✅ 小中诊断三套布局：视觉选择、计算填空、图文推理
 - ✅ 单关拆分（多关→单关）
 - ✅ 皮肤复用（沙滩/图纸/紫色星空）
 
@@ -301,6 +302,7 @@ python standard_question_toolkit/scripts/split_xinyi_games.py
 ### 布局检查
 - [ ] 已按整关内容模型检查：题干/条件/作答句/算式/图表/输入框/选项/键盘/提交
 - [ ] 已按认知区、关系区、操作区做整体布局
+- [ ] 小中诊断题已按 `diagnostic_visual_choice` / `diagnostic_compute_fill` / `diagnostic_image_reasoning` 三套之一选版
 - [ ] 短题干居中，长题干左对齐
 - [ ] 行内填空/拖拽使用前文 + 输入框/放置区 + 后文三段结构，后文接在框右边缘
 - [ ] 有配图/表格题：题干、配图、答案区、操作区整体不冲突
