@@ -11,9 +11,10 @@ from unicodedata import east_asian_width
 # build the whole-level content model first, then place recognition/relation/
 # operation blocks. Do not tune only the stem text or only by question type.
 
-BASE = Path("D:/codexProject/generated_configs/grade4_summer_diagnostic_q1_q2_q4_q5_config_center_stem.json")
-VERT = Path("D:/codexProject/generated_configs/vertical_multiplication_text_grid_fill_config.json")
-OUT = Path("D:/codexProject/generated_configs/grade4_summer_diagnostic_full_config.json")
+ROOT = Path(__file__).resolve().parents[1]
+BASE = ROOT / "templates/base_choice_fill_template.json"
+VERT = ROOT / "templates/vertical_multiplication_template.json"
+OUT = ROOT.parent / "generated_configs/grade4_summer_diagnostic_full_config.json"
 
 CHOICE_ID = "3b9b8ec3-f7d3-11ee-b9ef-8e2f78cd4bcd"
 BLANK_ID = "0b26ef14-f7e0-11ee-b9ef-8e2f78cd4bcd"
@@ -34,28 +35,24 @@ KEEP_NAMES = {
 
 IMAGES = {
     "q6": {
-        "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-15/d43f5ef87ff390b6ea046af7e173932b.png",
-        "width": 613,
-        "height": 447,
-        "id": 74252,
+        "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/06de12ce99ed5831e46c28e71d19e1b1.png",
+        "width": 853,
+        "height": 508,
     },
     "q7": {
-        "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-15/12818d1b2e4ccd6184181cbd7cc25124.png",
-        "width": 330,
-        "height": 246,
-        "id": 74253,
+        "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/749c5bd71ff56795a6358ae2899a294d.png",
+        "width": 730,
+        "height": 525,
     },
     "q12": {
-        "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-15/4ffebd21da2a0faf0e08051446f25e99.png",
-        "width": 316,
-        "height": 291,
-        "id": 74254,
+        "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/31a4c2253a199924a4672dac2b5dd597.png",
+        "width": 557,
+        "height": 475,
     },
     "q14": {
-        "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-15/3fc07f12518e18bd425985aab3f91e0a.png",
-        "width": 379,
-        "height": 193,
-        "id": 74255,
+        "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1fbad71e5bf4a6a618cd3c3c765df887.png",
+        "width": 919,
+        "height": 521,
     },
 }
 

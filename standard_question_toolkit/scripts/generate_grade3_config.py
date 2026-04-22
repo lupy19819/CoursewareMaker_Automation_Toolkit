@@ -11,9 +11,10 @@ from unicodedata import east_asian_width
 # build the whole-level content model first, then place recognition/relation/
 # operation blocks. Do not tune only the stem text or only by question type.
 
-BASE = Path("D:/codexProject/generated_configs/grade4_summer_diagnostic_q1_q2_q4_q5_config_center_stem.json")
-VERT = Path("D:/codexProject/generated_configs/vertical_multiplication_text_grid_fill_config.json")
-OUT = Path("D:/codexProject/generated_configs/grade3_summer_diagnostic_full_config.json")
+ROOT = Path(__file__).resolve().parents[1]
+BASE = ROOT / "templates/base_choice_fill_template.json"
+VERT = ROOT / "templates/vertical_multiplication_template.json"
+OUT = ROOT.parent / "generated_configs/grade3_summer_diagnostic_full_config.json"
 
 CHOICE_ID = "3b9b8ec3-f7d3-11ee-b9ef-8e2f78cd4bcd"
 BLANK_ID = "0b26ef14-f7e0-11ee-b9ef-8e2f78cd4bcd"
