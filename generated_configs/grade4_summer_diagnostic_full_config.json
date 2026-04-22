@@ -722,7 +722,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -1089,7 +1090,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fc9fbc3b0b55dc4437b75e7a2da0705c.png"
                   }
                 },
                 "jump": {
@@ -1357,7 +1358,8 @@
                       0,
                       0,
                       20
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -1499,11 +1501,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/52785d1449f4016388da0a333f1ca00c.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7c040c641121266c3c82f3435ffb6793.png"
                   }
                 },
                 "jump": {
@@ -1559,11 +1562,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/0fc8f9c9e9b1baf1756a82265ab33a93.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7fee2e4075d41cfc456c5e8ca8370f6a.png"
                   }
                 },
                 "jump": {
@@ -1725,11 +1729,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/52785d1449f4016388da0a333f1ca00c.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7c040c641121266c3c82f3435ffb6793.png"
                   }
                 },
                 "jump": {
@@ -1785,11 +1790,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/0fc8f9c9e9b1baf1756a82265ab33a93.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7fee2e4075d41cfc456c5e8ca8370f6a.png"
                   }
                 },
                 "jump": {
@@ -1951,11 +1957,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/52785d1449f4016388da0a333f1ca00c.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7c040c641121266c3c82f3435ffb6793.png"
                   }
                 },
                 "jump": {
@@ -2011,11 +2018,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/0fc8f9c9e9b1baf1756a82265ab33a93.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7fee2e4075d41cfc456c5e8ca8370f6a.png"
                   }
                 },
                 "jump": {
@@ -2177,11 +2185,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/52785d1449f4016388da0a333f1ca00c.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7c040c641121266c3c82f3435ffb6793.png"
                   }
                 },
                 "jump": {
@@ -2237,14 +2246,15 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/0fc8f9c9e9b1baf1756a82265ab33a93.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7fee2e4075d41cfc456c5e8ca8370f6a.png",
                     "nineGrid": {
                       "bottom": 9.589032152766443,
-                      "enable": true,
+                      "enable": false,
                       "left": 16.42732919254658,
                       "right": 8.496894409937887,
                       "top": 12.409335727109516
@@ -2863,7 +2873,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -3230,7 +3241,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fc9fbc3b0b55dc4437b75e7a2da0705c.png"
                   }
                 },
                 "jump": {
@@ -3498,7 +3509,8 @@
                       0,
                       0,
                       20
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -3640,11 +3652,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/52785d1449f4016388da0a333f1ca00c.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7c040c641121266c3c82f3435ffb6793.png"
                   }
                 },
                 "jump": {
@@ -3700,11 +3713,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/0fc8f9c9e9b1baf1756a82265ab33a93.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7fee2e4075d41cfc456c5e8ca8370f6a.png"
                   }
                 },
                 "jump": {
@@ -3866,11 +3880,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/52785d1449f4016388da0a333f1ca00c.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7c040c641121266c3c82f3435ffb6793.png"
                   }
                 },
                 "jump": {
@@ -3926,11 +3941,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/0fc8f9c9e9b1baf1756a82265ab33a93.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7fee2e4075d41cfc456c5e8ca8370f6a.png"
                   }
                 },
                 "jump": {
@@ -4092,11 +4108,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/52785d1449f4016388da0a333f1ca00c.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7c040c641121266c3c82f3435ffb6793.png"
                   }
                 },
                 "jump": {
@@ -4152,11 +4169,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/0fc8f9c9e9b1baf1756a82265ab33a93.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7fee2e4075d41cfc456c5e8ca8370f6a.png"
                   }
                 },
                 "jump": {
@@ -4318,11 +4336,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/52785d1449f4016388da0a333f1ca00c.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7c040c641121266c3c82f3435ffb6793.png"
                   }
                 },
                 "jump": {
@@ -4378,14 +4397,15 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/0fc8f9c9e9b1baf1756a82265ab33a93.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7fee2e4075d41cfc456c5e8ca8370f6a.png",
                     "nineGrid": {
                       "bottom": 9.589032152766443,
-                      "enable": true,
+                      "enable": false,
                       "left": 16.42732919254658,
                       "right": 8.496894409937887,
                       "top": 12.409335727109516
@@ -5004,7 +5024,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -5371,7 +5392,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fc9fbc3b0b55dc4437b75e7a2da0705c.png"
                   }
                 },
                 "jump": {
@@ -5639,7 +5660,8 @@
                       0,
                       0,
                       20
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -5781,11 +5803,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/52785d1449f4016388da0a333f1ca00c.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7c040c641121266c3c82f3435ffb6793.png"
                   }
                 },
                 "jump": {
@@ -5841,11 +5864,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/0fc8f9c9e9b1baf1756a82265ab33a93.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7fee2e4075d41cfc456c5e8ca8370f6a.png"
                   }
                 },
                 "jump": {
@@ -6007,11 +6031,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/52785d1449f4016388da0a333f1ca00c.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7c040c641121266c3c82f3435ffb6793.png"
                   }
                 },
                 "jump": {
@@ -6067,11 +6092,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/0fc8f9c9e9b1baf1756a82265ab33a93.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7fee2e4075d41cfc456c5e8ca8370f6a.png"
                   }
                 },
                 "jump": {
@@ -6233,11 +6259,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/52785d1449f4016388da0a333f1ca00c.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7c040c641121266c3c82f3435ffb6793.png"
                   }
                 },
                 "jump": {
@@ -6293,11 +6320,12 @@
                       0,
                       0
                     ],
-                    "closeable": true
+                    "closeable": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/0fc8f9c9e9b1baf1756a82265ab33a93.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7fee2e4075d41cfc456c5e8ca8370f6a.png"
                   }
                 },
                 "jump": {
@@ -6912,7 +6940,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -7279,7 +7308,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fc9fbc3b0b55dc4437b75e7a2da0705c.png"
                   }
                 },
                 "jump": {
@@ -7654,14 +7683,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/bc5b1d5790c7e68153b0d2f9d428e168.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ac6ac4d5f97522010cc4ecc368f61c9.png",
                     "nineGrid": {
                       "bottom": 35.74658385093167,
-                      "enable": true,
+                      "enable": false,
                       "left": 38.69813664596271,
                       "right": 27.547826086956512,
                       "top": 39.35403726708076
@@ -7707,7 +7737,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/0c3f4ecd74a4c10d639fb332b458212a.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/34b27e6ea0066dd2cab8f743fc2c747f.png"
                   }
                 },
                 "jump": {
@@ -7749,7 +7779,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/8289055a7c3c9361407d6b1f42c6a058.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/3ffee83b3bd6a7264518c3e2a5e9c82c.png"
                   }
                 },
                 "jump": {
@@ -7804,14 +7834,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/371e7a1a8ad7fb8771b0f7c66350be3d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/697c5c3ecc541947af71a1518e616105.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
-                      "enable": true,
+                      "enable": false,
                       "left": 37.05838509316771,
                       "right": 29.843478260869567,
                       "top": 33.122981366459626
@@ -7857,7 +7888,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/794f5f414e014de2ead9a1536a2bdc44.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/d1ca24dd88c958757a1ca5e5326a9de9.png"
                   }
                 },
                 "jump": {
@@ -7899,7 +7930,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/531ca85156153c4693605a334dd275e0.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c0f0a0ca8ef4b8f127500cc4338356fa.png"
                   }
                 },
                 "jump": {
@@ -7954,14 +7985,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/2ffa69204308a254d3f855eb6365c84b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ac6ac4d5f97522010cc4ecc368f61c9.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.6583850931677,
                       "right": 23.366459627329185,
                       "top": 24.548854631897427
@@ -8007,7 +8039,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/748be25c0d71159938aeb541a8691fbb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/34b27e6ea0066dd2cab8f743fc2c747f.png"
                   }
                 },
                 "jump": {
@@ -8049,7 +8081,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/09509718385066484a0bb9ea392e6e2b.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/3ffee83b3bd6a7264518c3e2a5e9c82c.png"
                   }
                 },
                 "jump": {
@@ -8178,7 +8210,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -8326,14 +8359,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/776bee00986b7376945aff055595195f.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -8393,14 +8427,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/6dc3dd9d05cce9aa16d12e86e969a799.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -8460,14 +8495,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/bbfec0d914b0dbfe76a7b1b152ee3388.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -8527,14 +8563,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e2a67f9e6c73b7e1c381f3227fe3d7fc.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -8687,7 +8724,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -8835,14 +8873,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/776bee00986b7376945aff055595195f.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -8902,14 +8941,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/6dc3dd9d05cce9aa16d12e86e969a799.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -8969,14 +9009,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/bbfec0d914b0dbfe76a7b1b152ee3388.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -9036,14 +9077,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e2a67f9e6c73b7e1c381f3227fe3d7fc.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -9196,7 +9238,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -9344,14 +9387,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/776bee00986b7376945aff055595195f.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -9411,14 +9455,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/6dc3dd9d05cce9aa16d12e86e969a799.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -9478,14 +9523,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/bbfec0d914b0dbfe76a7b1b152ee3388.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -9545,14 +9591,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e2a67f9e6c73b7e1c381f3227fe3d7fc.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -9705,7 +9752,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -10300,7 +10348,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -10667,7 +10716,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fc9fbc3b0b55dc4437b75e7a2da0705c.png"
                   }
                 },
                 "jump": {
@@ -11042,14 +11091,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/bc5b1d5790c7e68153b0d2f9d428e168.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ac6ac4d5f97522010cc4ecc368f61c9.png",
                     "nineGrid": {
                       "bottom": 35.74658385093167,
-                      "enable": true,
+                      "enable": false,
                       "left": 38.69813664596271,
                       "right": 27.547826086956512,
                       "top": 39.35403726708076
@@ -11095,7 +11145,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/0c3f4ecd74a4c10d639fb332b458212a.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/34b27e6ea0066dd2cab8f743fc2c747f.png"
                   }
                 },
                 "jump": {
@@ -11137,7 +11187,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/8289055a7c3c9361407d6b1f42c6a058.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/3ffee83b3bd6a7264518c3e2a5e9c82c.png"
                   }
                 },
                 "jump": {
@@ -11192,14 +11242,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/371e7a1a8ad7fb8771b0f7c66350be3d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/697c5c3ecc541947af71a1518e616105.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
-                      "enable": true,
+                      "enable": false,
                       "left": 37.05838509316771,
                       "right": 29.843478260869567,
                       "top": 33.122981366459626
@@ -11245,7 +11296,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/794f5f414e014de2ead9a1536a2bdc44.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/d1ca24dd88c958757a1ca5e5326a9de9.png"
                   }
                 },
                 "jump": {
@@ -11287,7 +11338,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/531ca85156153c4693605a334dd275e0.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c0f0a0ca8ef4b8f127500cc4338356fa.png"
                   }
                 },
                 "jump": {
@@ -11342,14 +11393,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/2ffa69204308a254d3f855eb6365c84b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ac6ac4d5f97522010cc4ecc368f61c9.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.6583850931677,
                       "right": 23.366459627329185,
                       "top": 24.548854631897427
@@ -11395,7 +11447,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/748be25c0d71159938aeb541a8691fbb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/34b27e6ea0066dd2cab8f743fc2c747f.png"
                   }
                 },
                 "jump": {
@@ -11437,7 +11489,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/09509718385066484a0bb9ea392e6e2b.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/3ffee83b3bd6a7264518c3e2a5e9c82c.png"
                   }
                 },
                 "jump": {
@@ -11566,7 +11618,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -11714,14 +11767,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/776bee00986b7376945aff055595195f.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -11781,14 +11835,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/6dc3dd9d05cce9aa16d12e86e969a799.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -11848,14 +11903,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/bbfec0d914b0dbfe76a7b1b152ee3388.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -11915,14 +11971,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e2a67f9e6c73b7e1c381f3227fe3d7fc.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -12075,7 +12132,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -12223,14 +12281,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/776bee00986b7376945aff055595195f.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -12290,14 +12349,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/6dc3dd9d05cce9aa16d12e86e969a799.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -12357,14 +12417,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/bbfec0d914b0dbfe76a7b1b152ee3388.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -12424,14 +12485,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e2a67f9e6c73b7e1c381f3227fe3d7fc.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -12584,7 +12646,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -12732,14 +12795,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/776bee00986b7376945aff055595195f.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -12799,14 +12863,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/6dc3dd9d05cce9aa16d12e86e969a799.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -12866,14 +12931,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/bbfec0d914b0dbfe76a7b1b152ee3388.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -12933,14 +12999,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e2a67f9e6c73b7e1c381f3227fe3d7fc.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -13093,7 +13160,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#EADFFF"
                   }
                 },
                 "jump": {
@@ -13688,7 +13756,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -14055,7 +14124,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e91dcb1074e2690921f195bc88a07346.png"
                   }
                 },
                 "jump": {
@@ -14430,14 +14499,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/bc5b1d5790c7e68153b0d2f9d428e168.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
                     "nineGrid": {
                       "bottom": 35.74658385093167,
-                      "enable": true,
+                      "enable": false,
                       "left": 38.69813664596271,
                       "right": 27.547826086956512,
                       "top": 39.35403726708076
@@ -14483,7 +14553,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/0c3f4ecd74a4c10d639fb332b458212a.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
                   }
                 },
                 "jump": {
@@ -14525,7 +14595,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/8289055a7c3c9361407d6b1f42c6a058.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -14580,14 +14650,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/371e7a1a8ad7fb8771b0f7c66350be3d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
-                      "enable": true,
+                      "enable": false,
                       "left": 37.05838509316771,
                       "right": 29.843478260869567,
                       "top": 33.122981366459626
@@ -14633,7 +14704,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/794f5f414e014de2ead9a1536a2bdc44.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
                   }
                 },
                 "jump": {
@@ -14675,7 +14746,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/531ca85156153c4693605a334dd275e0.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
                   }
                 },
                 "jump": {
@@ -14730,14 +14801,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/2ffa69204308a254d3f855eb6365c84b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.6583850931677,
                       "right": 23.366459627329185,
                       "top": 24.548854631897427
@@ -14783,7 +14855,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/748be25c0d71159938aeb541a8691fbb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
                   }
                 },
                 "jump": {
@@ -14825,7 +14897,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/09509718385066484a0bb9ea392e6e2b.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -14954,7 +15026,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -15102,14 +15175,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/52103843c58078ab5440e4671e218299.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -15169,14 +15243,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/674a213d6a38de357469b7c8917dc34a.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -15236,14 +15311,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c3641f61a1e36dc71d693bc544b41505.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -15303,14 +15379,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7cc7ae37d75ffb43baa1817f66adafa8.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -15463,7 +15540,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -15611,14 +15689,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/52103843c58078ab5440e4671e218299.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -15678,14 +15757,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/674a213d6a38de357469b7c8917dc34a.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -15745,14 +15825,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c3641f61a1e36dc71d693bc544b41505.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -15812,14 +15893,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7cc7ae37d75ffb43baa1817f66adafa8.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -15972,7 +16054,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -16120,14 +16203,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/52103843c58078ab5440e4671e218299.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -16187,14 +16271,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/674a213d6a38de357469b7c8917dc34a.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -16254,14 +16339,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c3641f61a1e36dc71d693bc544b41505.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -16321,14 +16407,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7cc7ae37d75ffb43baa1817f66adafa8.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -16481,7 +16568,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -16629,14 +16717,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/52103843c58078ab5440e4671e218299.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -16696,14 +16785,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/674a213d6a38de357469b7c8917dc34a.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -16763,14 +16853,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c3641f61a1e36dc71d693bc544b41505.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -16830,14 +16921,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7cc7ae37d75ffb43baa1817f66adafa8.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -16990,7 +17082,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#000000"
                   }
                 },
                 "jump": {
@@ -17718,7 +17811,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -18085,7 +18179,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e91dcb1074e2690921f195bc88a07346.png"
                   }
                 },
                 "jump": {
@@ -18460,14 +18554,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/bc5b1d5790c7e68153b0d2f9d428e168.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
                     "nineGrid": {
                       "bottom": 35.74658385093167,
-                      "enable": true,
+                      "enable": false,
                       "left": 38.69813664596271,
                       "right": 27.547826086956512,
                       "top": 39.35403726708076
@@ -18513,7 +18608,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/0c3f4ecd74a4c10d639fb332b458212a.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
                   }
                 },
                 "jump": {
@@ -18555,7 +18650,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/8289055a7c3c9361407d6b1f42c6a058.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -18610,14 +18705,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/371e7a1a8ad7fb8771b0f7c66350be3d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
-                      "enable": true,
+                      "enable": false,
                       "left": 37.05838509316771,
                       "right": 29.843478260869567,
                       "top": 33.122981366459626
@@ -18663,7 +18759,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/794f5f414e014de2ead9a1536a2bdc44.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
                   }
                 },
                 "jump": {
@@ -18705,7 +18801,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/531ca85156153c4693605a334dd275e0.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
                   }
                 },
                 "jump": {
@@ -18760,14 +18856,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/2ffa69204308a254d3f855eb6365c84b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.6583850931677,
                       "right": 23.366459627329185,
                       "top": 24.548854631897427
@@ -18813,7 +18910,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/748be25c0d71159938aeb541a8691fbb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
                   }
                 },
                 "jump": {
@@ -18855,7 +18952,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/09509718385066484a0bb9ea392e6e2b.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -18984,7 +19081,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -19132,14 +19230,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/52103843c58078ab5440e4671e218299.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -19199,14 +19298,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/674a213d6a38de357469b7c8917dc34a.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -19266,14 +19366,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c3641f61a1e36dc71d693bc544b41505.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -19333,14 +19434,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7cc7ae37d75ffb43baa1817f66adafa8.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -19493,7 +19595,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#000000"
                   }
                 },
                 "jump": {
@@ -20221,7 +20324,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -20588,7 +20692,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e91dcb1074e2690921f195bc88a07346.png"
                   }
                 },
                 "jump": {
@@ -20963,14 +21067,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/bc5b1d5790c7e68153b0d2f9d428e168.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
                     "nineGrid": {
                       "bottom": 35.74658385093167,
-                      "enable": true,
+                      "enable": false,
                       "left": 38.69813664596271,
                       "right": 27.547826086956512,
                       "top": 39.35403726708076
@@ -21016,7 +21121,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/0c3f4ecd74a4c10d639fb332b458212a.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
                   }
                 },
                 "jump": {
@@ -21058,7 +21163,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/8289055a7c3c9361407d6b1f42c6a058.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -21113,14 +21218,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/371e7a1a8ad7fb8771b0f7c66350be3d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
-                      "enable": true,
+                      "enable": false,
                       "left": 37.05838509316771,
                       "right": 29.843478260869567,
                       "top": 33.122981366459626
@@ -21166,7 +21272,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/794f5f414e014de2ead9a1536a2bdc44.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
                   }
                 },
                 "jump": {
@@ -21208,7 +21314,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/531ca85156153c4693605a334dd275e0.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
                   }
                 },
                 "jump": {
@@ -21263,14 +21369,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/2ffa69204308a254d3f855eb6365c84b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.6583850931677,
                       "right": 23.366459627329185,
                       "top": 24.548854631897427
@@ -21316,7 +21423,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/748be25c0d71159938aeb541a8691fbb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
                   }
                 },
                 "jump": {
@@ -21358,7 +21465,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/09509718385066484a0bb9ea392e6e2b.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -21487,7 +21594,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -21635,14 +21743,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/52103843c58078ab5440e4671e218299.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -21702,14 +21811,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/674a213d6a38de357469b7c8917dc34a.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -21769,14 +21879,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c3641f61a1e36dc71d693bc544b41505.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -21836,14 +21947,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7cc7ae37d75ffb43baa1817f66adafa8.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -21996,7 +22108,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -22144,14 +22257,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/52103843c58078ab5440e4671e218299.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -22211,14 +22325,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/674a213d6a38de357469b7c8917dc34a.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -22278,14 +22393,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c3641f61a1e36dc71d693bc544b41505.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -22345,14 +22461,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7cc7ae37d75ffb43baa1817f66adafa8.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -22505,7 +22622,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#000000"
                   }
                 },
                 "jump": {
@@ -23100,7 +23218,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -23467,7 +23586,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e91dcb1074e2690921f195bc88a07346.png"
                   }
                 },
                 "jump": {
@@ -23842,14 +23961,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/bc5b1d5790c7e68153b0d2f9d428e168.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
                     "nineGrid": {
                       "bottom": 35.74658385093167,
-                      "enable": true,
+                      "enable": false,
                       "left": 38.69813664596271,
                       "right": 27.547826086956512,
                       "top": 39.35403726708076
@@ -23895,7 +24015,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/0c3f4ecd74a4c10d639fb332b458212a.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
                   }
                 },
                 "jump": {
@@ -23937,7 +24057,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/8289055a7c3c9361407d6b1f42c6a058.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -23992,14 +24112,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/371e7a1a8ad7fb8771b0f7c66350be3d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
-                      "enable": true,
+                      "enable": false,
                       "left": 37.05838509316771,
                       "right": 29.843478260869567,
                       "top": 33.122981366459626
@@ -24045,7 +24166,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/794f5f414e014de2ead9a1536a2bdc44.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
                   }
                 },
                 "jump": {
@@ -24087,7 +24208,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/531ca85156153c4693605a334dd275e0.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
                   }
                 },
                 "jump": {
@@ -24142,14 +24263,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/2ffa69204308a254d3f855eb6365c84b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.6583850931677,
                       "right": 23.366459627329185,
                       "top": 24.548854631897427
@@ -24195,7 +24317,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/748be25c0d71159938aeb541a8691fbb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
                   }
                 },
                 "jump": {
@@ -24237,7 +24359,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/09509718385066484a0bb9ea392e6e2b.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -24366,7 +24488,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -24514,14 +24637,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/52103843c58078ab5440e4671e218299.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -24581,14 +24705,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/674a213d6a38de357469b7c8917dc34a.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -24648,14 +24773,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c3641f61a1e36dc71d693bc544b41505.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -24715,14 +24841,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7cc7ae37d75ffb43baa1817f66adafa8.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -25341,7 +25468,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -25708,7 +25836,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e91dcb1074e2690921f195bc88a07346.png"
                   }
                 },
                 "jump": {
@@ -26083,14 +26211,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/bc5b1d5790c7e68153b0d2f9d428e168.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
                     "nineGrid": {
                       "bottom": 35.74658385093167,
-                      "enable": true,
+                      "enable": false,
                       "left": 38.69813664596271,
                       "right": 27.547826086956512,
                       "top": 39.35403726708076
@@ -26136,7 +26265,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/0c3f4ecd74a4c10d639fb332b458212a.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
                   }
                 },
                 "jump": {
@@ -26178,7 +26307,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/8289055a7c3c9361407d6b1f42c6a058.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -26233,14 +26362,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/371e7a1a8ad7fb8771b0f7c66350be3d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
-                      "enable": true,
+                      "enable": false,
                       "left": 37.05838509316771,
                       "right": 29.843478260869567,
                       "top": 33.122981366459626
@@ -26286,7 +26416,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/794f5f414e014de2ead9a1536a2bdc44.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png"
                   }
                 },
                 "jump": {
@@ -26328,7 +26458,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/531ca85156153c4693605a334dd275e0.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
                   }
                 },
                 "jump": {
@@ -26383,14 +26513,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/2ffa69204308a254d3f855eb6365c84b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.6583850931677,
                       "right": 23.366459627329185,
                       "top": 24.548854631897427
@@ -26436,7 +26567,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/748be25c0d71159938aeb541a8691fbb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png"
                   }
                 },
                 "jump": {
@@ -26478,7 +26609,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/09509718385066484a0bb9ea392e6e2b.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png"
                   }
                 },
                 "jump": {
@@ -26607,7 +26738,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#8C3C0B"
                   }
                 },
                 "jump": {
@@ -26755,14 +26887,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/52103843c58078ab5440e4671e218299.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -26822,14 +26955,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/674a213d6a38de357469b7c8917dc34a.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -26889,14 +27023,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c3641f61a1e36dc71d693bc544b41505.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -26956,14 +27091,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7cc7ae37d75ffb43baa1817f66adafa8.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -27582,7 +27718,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#9EFAFF"
                   }
                 },
                 "jump": {
@@ -27949,7 +28086,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/291cc642d06465540b7a25d3c3c1ff68.png"
                   }
                 },
                 "jump": {
@@ -28324,14 +28461,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/bc5b1d5790c7e68153b0d2f9d428e168.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
                     "nineGrid": {
                       "bottom": 35.74658385093167,
-                      "enable": true,
+                      "enable": false,
                       "left": 38.69813664596271,
                       "right": 27.547826086956512,
                       "top": 39.35403726708076
@@ -28377,7 +28515,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/0c3f4ecd74a4c10d639fb332b458212a.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
                   }
                 },
                 "jump": {
@@ -28419,7 +28557,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/8289055a7c3c9361407d6b1f42c6a058.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -28474,14 +28612,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/371e7a1a8ad7fb8771b0f7c66350be3d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
-                      "enable": true,
+                      "enable": false,
                       "left": 37.05838509316771,
                       "right": 29.843478260869567,
                       "top": 33.122981366459626
@@ -28527,7 +28666,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/794f5f414e014de2ead9a1536a2bdc44.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
                   }
                 },
                 "jump": {
@@ -28569,7 +28708,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/531ca85156153c4693605a334dd275e0.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
                   }
                 },
                 "jump": {
@@ -28624,14 +28763,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/2ffa69204308a254d3f855eb6365c84b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.6583850931677,
                       "right": 23.366459627329185,
                       "top": 24.548854631897427
@@ -28677,7 +28817,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/748be25c0d71159938aeb541a8691fbb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
                   }
                 },
                 "jump": {
@@ -28719,7 +28859,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/09509718385066484a0bb9ea392e6e2b.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -28848,7 +28988,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#9EFAFF"
                   }
                 },
                 "jump": {
@@ -28996,14 +29137,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/405c3617f7e6ef27bec1783b1e24f00d.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -29063,14 +29205,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/38d281b2bc32f4ec45bd0e6fc2f01279.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -29130,14 +29273,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c6c05e0551b4f1738a03a290fdf68066.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -29197,14 +29341,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7f4f64fff427cc0d73b7acf3339f2ae5.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -29823,7 +29968,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#9EFAFF"
                   }
                 },
                 "jump": {
@@ -30190,7 +30336,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/291cc642d06465540b7a25d3c3c1ff68.png"
                   }
                 },
                 "jump": {
@@ -30565,14 +30711,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/bc5b1d5790c7e68153b0d2f9d428e168.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
                     "nineGrid": {
                       "bottom": 35.74658385093167,
-                      "enable": true,
+                      "enable": false,
                       "left": 38.69813664596271,
                       "right": 27.547826086956512,
                       "top": 39.35403726708076
@@ -30618,7 +30765,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/0c3f4ecd74a4c10d639fb332b458212a.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
                   }
                 },
                 "jump": {
@@ -30660,7 +30807,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/8289055a7c3c9361407d6b1f42c6a058.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -30715,14 +30862,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/371e7a1a8ad7fb8771b0f7c66350be3d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
-                      "enable": true,
+                      "enable": false,
                       "left": 37.05838509316771,
                       "right": 29.843478260869567,
                       "top": 33.122981366459626
@@ -30768,7 +30916,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/794f5f414e014de2ead9a1536a2bdc44.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
                   }
                 },
                 "jump": {
@@ -30810,7 +30958,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/531ca85156153c4693605a334dd275e0.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
                   }
                 },
                 "jump": {
@@ -30865,14 +31013,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/2ffa69204308a254d3f855eb6365c84b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.6583850931677,
                       "right": 23.366459627329185,
                       "top": 24.548854631897427
@@ -30918,7 +31067,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/748be25c0d71159938aeb541a8691fbb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
                   }
                 },
                 "jump": {
@@ -30960,7 +31109,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/09509718385066484a0bb9ea392e6e2b.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -31089,7 +31238,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#9EFAFF"
                   }
                 },
                 "jump": {
@@ -31237,14 +31387,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/405c3617f7e6ef27bec1783b1e24f00d.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -31304,14 +31455,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/38d281b2bc32f4ec45bd0e6fc2f01279.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -31371,14 +31523,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c6c05e0551b4f1738a03a290fdf68066.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -31438,14 +31591,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7f4f64fff427cc0d73b7acf3339f2ae5.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -31598,7 +31752,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#9EFAFF"
                   }
                 },
                 "jump": {
@@ -32326,7 +32481,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#9EFAFF"
                   }
                 },
                 "jump": {
@@ -32693,7 +32849,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/291cc642d06465540b7a25d3c3c1ff68.png"
                   }
                 },
                 "jump": {
@@ -33068,14 +33224,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/bc5b1d5790c7e68153b0d2f9d428e168.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
                     "nineGrid": {
                       "bottom": 35.74658385093167,
-                      "enable": true,
+                      "enable": false,
                       "left": 38.69813664596271,
                       "right": 27.547826086956512,
                       "top": 39.35403726708076
@@ -33121,7 +33278,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/0c3f4ecd74a4c10d639fb332b458212a.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
                   }
                 },
                 "jump": {
@@ -33163,7 +33320,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/8289055a7c3c9361407d6b1f42c6a058.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -33218,14 +33375,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/371e7a1a8ad7fb8771b0f7c66350be3d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
-                      "enable": true,
+                      "enable": false,
                       "left": 37.05838509316771,
                       "right": 29.843478260869567,
                       "top": 33.122981366459626
@@ -33271,7 +33429,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/794f5f414e014de2ead9a1536a2bdc44.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
                   }
                 },
                 "jump": {
@@ -33313,7 +33471,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/531ca85156153c4693605a334dd275e0.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
                   }
                 },
                 "jump": {
@@ -33368,14 +33526,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/2ffa69204308a254d3f855eb6365c84b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.6583850931677,
                       "right": 23.366459627329185,
                       "top": 24.548854631897427
@@ -33421,7 +33580,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/748be25c0d71159938aeb541a8691fbb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
                   }
                 },
                 "jump": {
@@ -33463,7 +33622,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/09509718385066484a0bb9ea392e6e2b.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -33592,7 +33751,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#9EFAFF"
                   }
                 },
                 "jump": {
@@ -33740,14 +33900,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/405c3617f7e6ef27bec1783b1e24f00d.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -33807,14 +33968,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/38d281b2bc32f4ec45bd0e6fc2f01279.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -33874,14 +34036,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c6c05e0551b4f1738a03a290fdf68066.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -33941,14 +34104,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7f4f64fff427cc0d73b7acf3339f2ae5.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -34567,7 +34731,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#9EFAFF"
                   }
                 },
                 "jump": {
@@ -34934,7 +35099,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/291cc642d06465540b7a25d3c3c1ff68.png"
                   }
                 },
                 "jump": {
@@ -35309,14 +35474,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/bc5b1d5790c7e68153b0d2f9d428e168.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
                     "nineGrid": {
                       "bottom": 35.74658385093167,
-                      "enable": true,
+                      "enable": false,
                       "left": 38.69813664596271,
                       "right": 27.547826086956512,
                       "top": 39.35403726708076
@@ -35362,7 +35528,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/0c3f4ecd74a4c10d639fb332b458212a.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
                   }
                 },
                 "jump": {
@@ -35404,7 +35570,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/8289055a7c3c9361407d6b1f42c6a058.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -35459,14 +35625,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/371e7a1a8ad7fb8771b0f7c66350be3d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
-                      "enable": true,
+                      "enable": false,
                       "left": 37.05838509316771,
                       "right": 29.843478260869567,
                       "top": 33.122981366459626
@@ -35512,7 +35679,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/794f5f414e014de2ead9a1536a2bdc44.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
                   }
                 },
                 "jump": {
@@ -35554,7 +35721,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/531ca85156153c4693605a334dd275e0.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
                   }
                 },
                 "jump": {
@@ -35609,14 +35776,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/2ffa69204308a254d3f855eb6365c84b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.6583850931677,
                       "right": 23.366459627329185,
                       "top": 24.548854631897427
@@ -35662,7 +35830,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/748be25c0d71159938aeb541a8691fbb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
                   }
                 },
                 "jump": {
@@ -35704,7 +35872,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/09509718385066484a0bb9ea392e6e2b.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -35833,7 +36001,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#9EFAFF"
                   }
                 },
                 "jump": {
@@ -35981,14 +36150,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/405c3617f7e6ef27bec1783b1e24f00d.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -36048,14 +36218,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/38d281b2bc32f4ec45bd0e6fc2f01279.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -36115,14 +36286,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c6c05e0551b4f1738a03a290fdf68066.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -36182,14 +36354,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7f4f64fff427cc0d73b7acf3339f2ae5.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
@@ -36342,7 +36515,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#9EFAFF"
                   }
                 },
                 "jump": {
@@ -37070,7 +37244,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#9EFAFF"
                   }
                 },
                 "jump": {
@@ -37437,7 +37612,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/291cc642d06465540b7a25d3c3c1ff68.png"
                   }
                 },
                 "jump": {
@@ -37812,14 +37987,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/bc5b1d5790c7e68153b0d2f9d428e168.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
                     "nineGrid": {
                       "bottom": 35.74658385093167,
-                      "enable": true,
+                      "enable": false,
                       "left": 38.69813664596271,
                       "right": 27.547826086956512,
                       "top": 39.35403726708076
@@ -37865,7 +38041,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/0c3f4ecd74a4c10d639fb332b458212a.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
                   }
                 },
                 "jump": {
@@ -37907,7 +38083,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/8289055a7c3c9361407d6b1f42c6a058.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -37962,14 +38138,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/371e7a1a8ad7fb8771b0f7c66350be3d.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png",
                     "nineGrid": {
                       "bottom": 29.843478260869567,
-                      "enable": true,
+                      "enable": false,
                       "left": 37.05838509316771,
                       "right": 29.843478260869567,
                       "top": 33.122981366459626
@@ -38015,7 +38192,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/794f5f414e014de2ead9a1536a2bdc44.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png"
                   }
                 },
                 "jump": {
@@ -38057,7 +38234,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/531ca85156153c4693605a334dd275e0.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
                   }
                 },
                 "jump": {
@@ -38112,14 +38289,15 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/2ffa69204308a254d3f855eb6365c84b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
                     "nineGrid": {
                       "bottom": 24.07676127359171,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.6583850931677,
                       "right": 23.366459627329185,
                       "top": 24.548854631897427
@@ -38165,7 +38343,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/748be25c0d71159938aeb541a8691fbb.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png"
                   }
                 },
                 "jump": {
@@ -38207,7 +38385,7 @@
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/09509718385066484a0bb9ea392e6e2b.png"
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png"
                   }
                 },
                 "jump": {
@@ -38336,7 +38514,8 @@
                       0,
                       0,
                       0
-                    ]
+                    ],
+                    "fontColor": "#9EFAFF"
                   }
                 },
                 "jump": {
@@ -38484,14 +38663,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/405c3617f7e6ef27bec1783b1e24f00d.png",
                     "nineGrid": {
                       "bottom": 15.802606429192016,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 14.757763975155282,
                       "top": 19.617028670721105
@@ -38551,14 +38731,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/38d281b2bc32f4ec45bd0e6fc2f01279.png",
                     "nineGrid": {
                       "bottom": 19.37375770893882,
-                      "enable": true,
+                      "enable": false,
                       "left": 22.285714285714292,
                       "right": 20.000000000000007,
                       "top": 22.79265612816332
@@ -38618,14 +38799,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c6c05e0551b4f1738a03a290fdf68066.png",
                     "nineGrid": {
                       "bottom": 18.234124902530656,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.571428571428577,
                       "right": 18.28571428571429,
                       "top": 21.653023321755153
@@ -38685,14 +38867,15 @@
                       0,
                       0
                     ],
-                    "isManualAlive": true
+                    "isManualAlive": true,
+                    "fontColor": "#FFFFFF"
                   },
                   "MSprite": {
                     "key": "",
-                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png",
+                    "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7f4f64fff427cc0d73b7acf3339f2ae5.png",
                     "nineGrid": {
                       "bottom": 17.512055638804267,
-                      "enable": true,
+                      "enable": false,
                       "left": 20.223602484472053,
                       "right": 18.186335403726716,
                       "top": 21.896294283537436
