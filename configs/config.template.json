@@ -1,0 +1,217 @@
+{
+  "description": "CoursewareMaker 自动化配置模板",
+  "version": "1.0.0",
+  "updated": "2026-04-16",
+
+  "chrome": {
+    "description": "Chrome 调试配置",
+    "debugPort": 9222,
+    "userDataDir": {
+      "windows": "C:\\temp\\chrome-debug-profile",
+      "macos": "/tmp/chrome-debug-profile",
+      "linux": "/tmp/chrome-debug-profile"
+    },
+    "executable": {
+      "windows": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "macos": "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+      "linux": "google-chrome"
+    }
+  },
+
+  "coursewaremaker": {
+    "description": "CoursewareMaker 平台配置",
+    "baseUrl": "https://sszt-gateway.speiyou.com",
+    "webUrl": "https://coursewaremaker.speiyou.com",
+    "tokenKey": "GAMEMAKER_TOKEN",
+    "tokenLocation": "localStorage",
+    "endpoints": {
+      "createGame": "/beibo/game/config/game",
+      "saveGame": "/beibo/game/config/game",
+      "lockGame": "/beibo/game/config/lock",
+      "unlockGame": "/beibo/game/config/unlock",
+      "publishGame": "/beibo/game/config/gamePublish",
+      "updateDesc": "/beibo/game/config/gameDesc",
+      "buildQueue": "/beibo/game/config/build_queue",
+      "searchShareLink": "/beibo/game/config/searchPreviewUrl",
+      "createShareLink": "/beibo/game/config/createPreviewUrl",
+      "resourceList": "/beibo/game/config/resource/list"
+    }
+  },
+
+  "yach": {
+    "description": "知音楼 API 配置（用于题目获取）",
+    "configFile": ".yach-config.json",
+    "apiBaseUrl": "https://yach.openclaw.cn/api",
+    "accessToken": "your-access-token-here",
+    "note": "需要在 .yach-config.json 中配置实际的 accessToken"
+  },
+
+  "gameTemplates": {
+    "description": "常用游戏模板ID",
+    "dragAndDrop": "70a3010b-0b7a-11ef-b3a3-fa7902489df6",
+    "note": "其他模板ID可从CoursewareMaker模板库获取"
+  },
+
+  "publishDefaults": {
+    "description": "发布游戏的默认参数",
+    "year": 2026,
+    "terms": {
+      "spring": "1",
+      "summer": "2",
+      "autumn": "3",
+      "winter": "4"
+    },
+    "grades": {
+      "grade1": "1",
+      "grade2": "2",
+      "grade3": "3",
+      "grade4": "4",
+      "grade5": "5",
+      "grade6": "6",
+      "xiaoBan": "7",
+      "zhongBan": "8",
+      "daBan": "9",
+      "common": "10"
+    },
+    "grades_display": {
+      "小班": "7", "中班": "8", "大班": "9",
+      "一年级": "1", "二年级": "2", "三年级": "3",
+      "四年级": "4", "五年级": "5", "六年级": "6",
+      "通用": "10"
+    },
+    "subjects": {
+      "math": "1",
+      "chinese": "2",
+      "english": "3",
+      "science": "4",
+      "coding": "5",
+      "humanities": "6",
+      "common": "7"
+    },
+    "subjects_display": {
+      "数学": "1", "语文": "2", "英语": "3",
+      "科学": "4", "编程": "5", "人文": "6", "通用": "7"
+    },
+    "courses": {
+      "lesson1": "1", "lesson2": "2", "lesson3": "3",
+      "lesson4": "4", "lesson5": "5", "lesson6": "6",
+      "lesson7": "7", "lesson8": "8", "lesson9": "9",
+      "lesson10": "10", "lesson11": "11", "lesson12": "12",
+      "common": "31"
+    },
+    "unlock_method": "POST",
+    "defaults": {
+      "term_id": "2",
+      "subject_id": "31",
+      "cnum_id": "31",
+      "is_diagnose": 0
+    }
+  },
+
+  "paths": {
+    "description": "项目路径配置",
+    "projectRoot": "D:/codexProject",
+    "generatedConfigs": "D:/codexProject/generated_configs",
+    "dataSource": "D:/codexProject",
+    "logs": "D:/codexProject/chrome_monitoring_logs",
+    "results": "D:/codexProject",
+    "latestGameId": "D:/codexProject/latest_game_id.txt",
+    "latestResources": "D:/codexProject/latest_resources.json"
+  },
+
+  "batch": {
+    "description": "批量操作配置",
+    "delayBetweenRequests": 2000,
+    "maxRetries": 3,
+    "timeout": 30000,
+    "examples": {
+      "xinyi": {
+        "gameNamePrefix": "2026新一思维全能力诊断",
+        "templateId": "70a3010b-0b7a-11ef-b3a3-fa7902489df6",
+        "configDir": "D:/codexProject/generated_configs/xinyi_split_12_games",
+        "grade": "1",
+        "startIndex": 1,
+        "endIndex": 12
+      },
+      "xiner": {
+        "gameNamePrefix": "2026新二思维全能力诊断",
+        "templateId": "70a3010b-0b7a-11ef-b3a3-fa7902489df6",
+        "configDir": "D:/codexProject/generated_configs/xiner_split_12_games",
+        "grade": "2",
+        "startIndex": 1,
+        "endIndex": 12
+      }
+    }
+  },
+
+  "shareLink": {
+    "description": "分享链接配置",
+    "validDays": 7,
+    "basePreviewUrl": "https://coursewaremaker.speiyou.com/#/share-preview"
+  },
+
+  "logging": {
+    "description": "日志配置",
+    "enabled": true,
+    "level": "info",
+    "saveToFile": true,
+    "logDir": "D:/codexProject/chrome_monitoring_logs"
+  },
+
+  "monitoring": {
+    "description": "监控配置",
+    "enabled": true,
+    "captureNetwork": true,
+    "captureConsole": true,
+    "captureStorage": true,
+    "filters": {
+      "urlPatterns": [
+        "beibo/game",
+        "coursewaremaker.speiyou.com"
+      ],
+      "keywords": [
+        "game_id",
+        "publish",
+        "share",
+        "preview"
+      ]
+    }
+  },
+
+  "excel": {
+    "description": "Excel题目表配置",
+    "requiredColumns": [
+      "题干",
+      "答案",
+      "选项1",
+      "选项2"
+    ],
+    "optionalColumns": [
+      "选项3",
+      "选项4",
+      "题干音频",
+      "选项音频",
+      "题干图片"
+    ],
+    "encoding": "utf-8"
+  },
+
+  "resources": {
+    "description": "资源库配置",
+    "syncOnStartup": false,
+    "cacheEnabled": true,
+    "cacheTTL": 86400,
+    "types": [
+      "音频",
+      "图片",
+      "视频"
+    ],
+    "duplicateStrategy": "latest"
+  },
+
+  "notes": {
+    "usage": "复制此文件为 config.json 并根据实际环境修改配置",
+    "security": "不要将包含真实Token的配置文件提交到版本控制",
+    "documentation": "详细说明请查看 COURSEWAREMAKER_AUTOMATION_GUIDE.md"
+  }
+}

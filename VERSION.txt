@@ -1,0 +1,19 @@
+CoursewareMaker Automation Toolkit
+Version: 2.1
+Release Date: 2026-04-21
+Packed By: Claude Code (claude-sonnet-4.6)
+
+Changelog:
+v2.1 (2026-04-21)
+  - 修正工作流顺序：新建游戏→上传资源→确认资源信息→生成配置
+  - 新增运动PK游戏专用创建流程（赛跑/游泳/赛车）
+  - 新增画板组件资源替换流程
+  - 修正发布参数：英语=3, 数学=1, 小班=7, unlock必须POST
+  - 新增 monitors/ 目录（4个监听脚本）
+  - 新增批量处理脚本（batch_create/publish/share）
+  - 新增知音楼文档读取脚本
+  - 新增 templates/detail_jsons/（游泳/跑酷/赛车/怪兽骨架）
+  - 整合 standard_question_toolkit（标准化题型工具集）
+
+v1.1.0 (2026-04-16)
+  - 初始版本：贪吃小怪兽+运动PK+素材上传+发布+分享链接

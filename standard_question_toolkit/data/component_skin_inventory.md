@@ -1,0 +1,155 @@
+# 组件化游戏皮肤素材清单
+
+分组规则：按每关 `【勿动】背景图片` 的 `MSprite.value` 区分皮肤。
+
+## 沙滩皮肤 / a0d71ef21cdf
+
+- 使用关卡：范例1 第1关
+- 背景图：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/a0d71ef21cdf41f8f0bf0ec0de2fc53a.png
+- 输入框默认图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/f1b56a3c91221e3a7eb52ae5fd656ffa.png
+    - 来源：范例1 第1关 / 【可修改】输入框1 / default / 默认; 范例1 第1关 / 【可修改】输入框2 / default / 默认; 范例1 第1关 / 【可修改】输入框3 / default / 默认; 范例1 第1关 / 【可修改】输入框4 / default / 默认
+- 输入框选中/输入中图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/175b99cebad07a1436f43569efb2454d.png
+    - 来源：范例1 第1关 / 【可修改】输入框1 / answering / 输入中; 范例1 第1关 / 【可修改】输入框1 / correct / 当前组件正确; 范例1 第1关 / 【可修改】输入框1 / wrong / 当前组件错误; 范例1 第1关 / 【可修改】输入框2 / answering / 输入中; 范例1 第1关 / 【可修改】输入框2 / correct / 当前组件正确; 范例1 第1关 / 【可修改】输入框2 / wrong / 当前组件错误
+- 放置区默认图：
+  - 未在该背景皮肤下发现
+- 放置区响应图：
+  - 未在该背景皮肤下发现
+- 拖拽选项默认图：
+  - 未在该背景皮肤下发现
+- 拖拽选项拖拽中图：
+  - 未在该背景皮肤下发现
+- 拖拽选项放置态图：
+  - 未在该背景皮肤下发现
+- 题干文本背景图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b14d99d9a624a13b896c10a22063d5d2.png
+    - 来源：范例1 第1关 / 【可修改】文本-题干文本 / default / {'x': -1.26, 'y': 473.59, 'w': 940.1, 'h': 123, 'scaleX': 1, 'scaleY': 1}
+- 文字色号：
+  - `#000000`：范例1 第1关 / 【题型说明】填空题 / default; 范例1 第1关 / 【勿动】背景图片 / default; 范例1 第1关 / 【可修改】图片-竖式 / default; 范例1 第1关 / 【可修改】输入框1 / default; 范例1 第1关 / 【可修改】输入框2 / default; 范例1 第1关 / 【可修改】输入框3 / default; 范例1 第1关 / 【可修改】输入框4 / default
+  - `#ffffff`：范例1 第1关 / 【可修改】文本-题干文本 / default; 范例1 第1关 / 【勿动】简易数字键盘 / number-button-pressed
+  - `#b15f2b`：范例1 第1关 / 【勿动】简易数字键盘 / number-button-normal
+  - `#bcbcbc`：范例1 第1关 / 【勿动】简易数字键盘 / number-button-disabled
+  - `#a84e13`：范例1 第1关 / 【可修改】输入框1 / answering; 范例1 第1关 / 【可修改】输入框1 / correct; 范例1 第1关 / 【可修改】输入框1 / wrong; 范例1 第1关 / 【可修改】输入框2 / answering; 范例1 第1关 / 【可修改】输入框2 / correct; 范例1 第1关 / 【可修改】输入框2 / wrong; 范例1 第1关 / 【可修改】输入框3 / answering; 范例1 第1关 / 【可修改】输入框3 / correct
+
+## 图纸皮肤 / df49c4739e95
+
+- 使用关卡：范例1 第2关, 范例1 第3关, 范例1 第4关, 范例1 第5关, 范例1 第6关, 范例1 第7关, 范例1 第8关, 范例1 第9关, 范例1 第10关, 范例1 第11关, 范例1 第12关, 范例2 第1关, 范例2 第2关, 范例2 第3关, 范例2 第4关, 范例2 第5关, 范例2 第6关, 范例2 第7关, 范例2 第8关
+- 背景图：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/df49c4739e9585b6868b67b80896f866.png
+- 输入框默认图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/b655a0561f4cfc4e7c5c4722133deef1.png
+    - 来源：范例1 第2关 / 【可修改】输入框1 / default / 默认; 范例1 第3关 / 【可修改】输入框1 / default / 默认; 范例1 第4关 / 【可修改】输入框1 / default / 默认; 范例1 第5关 / 【可修改】输入框1 / default / 默认; 范例1 第6关 / 【可修改】输入框1 / default / 默认; 范例1 第7关 / 【可修改】输入框1 / default / 默认
+- 输入框选中/输入中图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-01/afe75a35370d2fe355d2e8f6d185dc7b.png
+    - 来源：范例1 第2关 / 【可修改】输入框1 / answering / 输入中; 范例1 第2关 / 【可修改】输入框1 / correct / 当前组件正确; 范例1 第2关 / 【可修改】输入框1 / wrong / 当前组件错误; 范例1 第3关 / 【可修改】输入框1 / answering / 输入中; 范例1 第3关 / 【可修改】输入框1 / correct / 当前组件正确; 范例1 第3关 / 【可修改】输入框1 / wrong / 当前组件错误
+- 放置区默认图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-02/9084140b45997bf8f67b9ccb23868b5e.png
+    - 来源：范例1 第8关 / 【可修改】拖拽放置区5 / default / 默认; 范例1 第8关 / 【可修改】拖拽放置区4 / default / 默认; 范例1 第8关 / 【可修改】拖拽放置区3 / default / 默认; 范例1 第8关 / 【可修改】拖拽放置区2 / default / 默认; 范例1 第8关 / 【可修改】拖拽放置区1 / default / 默认
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/cf5c37387ce8ef26b473e5ac7d67354a.png
+    - 来源：范例2 第3关 / 【可修改】拖拽放置区2 / default / 默认; 范例2 第3关 / 【可修改】拖拽放置区1 / default / 默认; 范例2 第8关 / 【可修改】拖拽放置区1 / default / 默认; 范例2 第8关 / 【可修改】拖拽放置区2 / default / 默认
+- 放置区响应图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-02/9084140b45997bf8f67b9ccb23868b5e.png
+    - 来源：范例1 第8关 / 【可修改】拖拽放置区5 / adsorb / 可吸附; 范例1 第8关 / 【可修改】拖拽放置区4 / adsorb / 可吸附; 范例1 第8关 / 【可修改】拖拽放置区3 / adsorb / 可吸附; 范例1 第8关 / 【可修改】拖拽放置区2 / adsorb / 可吸附; 范例1 第8关 / 【可修改】拖拽放置区1 / adsorb / 可吸附
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-02/64ef2660f860f3bf6bf303af9fcee408.png
+    - 来源：范例1 第8关 / 【可修改】拖拽放置区5 / adsorbed / 被吸附; 范例1 第8关 / 【可修改】拖拽放置区4 / adsorbed / 被吸附; 范例1 第8关 / 【可修改】拖拽放置区3 / adsorbed / 被吸附; 范例1 第8关 / 【可修改】拖拽放置区2 / adsorbed / 被吸附; 范例1 第8关 / 【可修改】拖拽放置区1 / adsorbed / 被吸附
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/07a8f5036ff102592ebc296083eb4a8e.png
+    - 来源：范例2 第3关 / 【可修改】拖拽放置区2 / adsorbed / 被吸附; 范例2 第3关 / 【可修改】拖拽放置区1 / adsorbed / 被吸附; 范例2 第8关 / 【可修改】拖拽放置区1 / adsorbed / 被吸附; 范例2 第8关 / 【可修改】拖拽放置区2 / adsorbed / 被吸附
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/c99bd982d346134da78007cefd916cdd.png
+    - 来源：范例2 第3关 / 【可修改】拖拽放置区2 / placed / 放置; 范例2 第3关 / 【可修改】拖拽放置区1 / placed / 放置; 范例2 第8关 / 【可修改】拖拽放置区1 / placed / 放置; 范例2 第8关 / 【可修改】拖拽放置区2 / placed / 放置
+- 拖拽选项默认图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-02/dacda65a8834827581b30e0ba5665d3d.png
+    - 来源：范例1 第8关 / 【可修改】拖拽选项5 / default / 默认; 范例1 第8关 / 【可修改】拖拽选项4 / default / 默认; 范例1 第8关 / 【可修改】拖拽选项3 / default / 默认; 范例1 第8关 / 【可修改】拖拽选项2 / default / 默认; 范例1 第8关 / 【可修改】拖拽选项1 / default / 默认
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/92cf80f6d04a9598cf09f89c31214c35.png
+    - 来源：范例2 第3关 / 【可修改】拖拽物品4 / default / 默认; 范例2 第3关 / 【可修改】拖拽物品3 / default / 默认; 范例2 第3关 / 【可修改】拖拽物品2 / default / 默认; 范例2 第3关 / 【可修改】拖拽物品1 / default / 默认; 范例2 第8关 / 【可修改】拖拽物品1 / default / 默认; 范例2 第8关 / 【可修改】拖拽物品2 / default / 默认
+- 拖拽选项拖拽中图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-08/92cf80f6d04a9598cf09f89c31214c35.png
+    - 来源：范例2 第3关 / 【可修改】拖拽物品4 / dragging / 拖拽中; 范例2 第3关 / 【可修改】拖拽物品3 / dragging / 拖拽中; 范例2 第3关 / 【可修改】拖拽物品2 / dragging / 拖拽中; 范例2 第3关 / 【可修改】拖拽物品1 / dragging / 拖拽中; 范例2 第8关 / 【可修改】拖拽物品1 / dragging / 拖拽中; 范例2 第8关 / 【可修改】拖拽物品2 / dragging / 拖拽中
+- 拖拽选项放置态图：
+  - 未在该背景皮肤下发现
+- 题干文本背景图：
+  - 未在该背景皮肤下发现
+- 文字色号：
+  - `#000000`：范例1 第2关 / 【题型说明】填空题 / default; 范例1 第2关 / 【勿动】背景图片 / default; 范例1 第2关 / 【可修改】图片-方块 / default; 范例1 第2关 / 【可修改】输入框1 / default; 范例1 第3关 / 【题型说明】填空题 / default; 范例1 第3关 / 【勿动】背景图片 / default; 范例1 第3关 / 【可修改】图片-圆柱 / default; 范例1 第3关 / 【可修改】输入框1 / default
+  - `#b85304`：范例1 第2关 / 【可修改】文本-题干 / default; 范例1 第3关 / 【可修改】文本-题干 / default; 范例1 第4关 / 【可修改】文本-题干 / default; 范例1 第5关 / 【可修改】文本-题干 / default; 范例1 第6关 / 【可修改】文本-题干 / default; 范例1 第7关 / 【可修改】文本-题干 / default; 范例1 第8关 / 【可修改】文本-题干 / default; 范例1 第8关 / 【可修改】拖拽选项5 / default
+  - `#ffffff`：范例1 第2关 / 【可修改】输入框1 / answering; 范例1 第2关 / 【可修改】输入框1 / correct; 范例1 第2关 / 【可修改】输入框1 / wrong; 范例1 第2关 / 【勿动】简易数字键盘 / number-button-pressed; 范例1 第3关 / 【可修改】输入框1 / answering; 范例1 第3关 / 【可修改】输入框1 / correct; 范例1 第3关 / 【可修改】输入框1 / wrong; 范例1 第3关 / 【勿动】简易数字键盘 / number-button-pressed
+  - `#b15f2b`：范例1 第2关 / 【勿动】简易数字键盘 / number-button-normal; 范例1 第3关 / 【勿动】简易数字键盘 / number-button-normal; 范例1 第4关 / 【勿动】简易数字键盘 / number-button-normal; 范例1 第5关 / 【勿动】简易数字键盘 / number-button-normal; 范例1 第6关 / 【勿动】简易数字键盘 / number-button-normal; 范例1 第7关 / 【勿动】简易数字键盘 / number-button-normal; 范例1 第9关 / 【勿动】简易数字键盘 / number-button-normal; 范例1 第10关 / 【勿动】简易数字键盘 / number-button-normal
+  - `#bcbcbc`：范例1 第2关 / 【勿动】简易数字键盘 / number-button-disabled; 范例1 第3关 / 【勿动】简易数字键盘 / number-button-disabled; 范例1 第4关 / 【勿动】简易数字键盘 / number-button-disabled; 范例1 第5关 / 【勿动】简易数字键盘 / number-button-disabled; 范例1 第6关 / 【勿动】简易数字键盘 / number-button-disabled; 范例1 第7关 / 【勿动】简易数字键盘 / number-button-disabled; 范例1 第9关 / 【勿动】简易数字键盘 / number-button-disabled; 范例1 第10关 / 【勿动】简易数字键盘 / number-button-disabled
+  - `#914cff`：范例2 第1关 / 【勿动】简易数字键盘 / number-button-normal; 范例2 第2关 / 【勿动】简易数字键盘 / number-button-normal
+
+## 紫色星空皮肤 / edb8ccb1e5ae
+
+- 使用关卡：范例2 第9关, 范例2 第10关, 范例2 第11关, 范例2 第12关
+- 背景图：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-03-18/edb8ccb1e5ae115e390888570f84c525.png
+- 输入框默认图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/6711747ce34df37bb594011e634dab50.png
+    - 来源：范例2 第10关 / 【可修改】输入框1 / default / 默认; 范例2 第10关 / 【可修改】输入框1_38 / default / 默认
+- 输入框选中/输入中图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/08d25317c7abac45e067d264e15f22b7.png
+    - 来源：范例2 第10关 / 【可修改】输入框1 / answering / 输入中; 范例2 第10关 / 【可修改】输入框1 / correct / 当前组件正确; 范例2 第10关 / 【可修改】输入框1 / wrong / 当前组件错误; 范例2 第10关 / 【可修改】输入框1_38 / answering / 输入中; 范例2 第10关 / 【可修改】输入框1_38 / correct / 当前组件正确; 范例2 第10关 / 【可修改】输入框1_38 / wrong / 当前组件错误
+- 放置区默认图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/43e575a7031726b6f16abb63fb1f884a.png
+    - 来源：范例2 第9关 / 【可修改】拖拽放置区1 / default / 默认; 范例2 第12关 / 【可修改】拖拽放置区1 / default / 默认; 范例2 第12关 / 【可修改】拖拽放置区2 / default / 默认; 范例2 第12关 / 【可修改】拖拽放置区3 / default / 默认; 范例2 第12关 / 【可修改】拖拽放置区4 / default / 默认; 范例2 第12关 / 【可修改】拖拽放置区5 / default / 默认
+- 放置区响应图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/c4ebf40c44d13c2ff64c5d731cf953d3.png
+    - 来源：范例2 第9关 / 【可修改】拖拽放置区1 / adsorbed / 被吸附; 范例2 第12关 / 【可修改】拖拽放置区1 / adsorbed / 被吸附; 范例2 第12关 / 【可修改】拖拽放置区2 / adsorbed / 被吸附; 范例2 第12关 / 【可修改】拖拽放置区3 / adsorbed / 被吸附; 范例2 第12关 / 【可修改】拖拽放置区4 / adsorbed / 被吸附; 范例2 第12关 / 【可修改】拖拽放置区5 / adsorbed / 被吸附
+- 拖拽选项默认图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/2af0bdfccf51e39d6ec38388a1fca772.png
+    - 来源：范例2 第9关 / 【可修改】拖拽物品1 / default / 默认
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/a0177fb5a5bf58a7c8934cb80b87d2f0.png
+    - 来源：范例2 第9关 / 【可修改】拖拽物品2 / default / 默认
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/12f083b810cf91928aca7fa1643a85fc.png
+    - 来源：范例2 第9关 / 【可修改】拖拽物品3 / default / 默认
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/a36bff9499f2d4a6b9e58420bd0082b5.png
+    - 来源：范例2 第9关 / 【可修改】拖拽物品4 / default / 默认
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/978c559fb5b9b21849e94d9e563fa615.png
+    - 来源：范例2 第12关 / 【可修改】拖拽物品1 / default / 默认
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/cfd20867c9cc248815555654612a6d9f.png
+    - 来源：范例2 第12关 / 【可修改】拖拽物品2 / default / 默认
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/3b6ee53d88685995ea0f6ca46814db37.png
+    - 来源：范例2 第12关 / 【可修改】拖拽物品3 / default / 默认
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/afae05a45e0926daa855534cf16b16f7.png
+    - 来源：范例2 第12关 / 【可修改】拖拽物品4 / default / 默认
+- 拖拽选项拖拽中图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/eae7fe492a81cd83309ac967aa880af7.png
+    - 来源：范例2 第9关 / 【可修改】拖拽物品1 / dragging / 拖拽中
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/d49b16ee8998230d33c19a76d8dceed3.png
+    - 来源：范例2 第9关 / 【可修改】拖拽物品2 / dragging / 拖拽中
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/4a099f94293827fede1d64a8adae302c.png
+    - 来源：范例2 第9关 / 【可修改】拖拽物品3 / dragging / 拖拽中
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/885094499e92e15f8a4534cc94fa7227.png
+    - 来源：范例2 第9关 / 【可修改】拖拽物品4 / dragging / 拖拽中
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/902ff7ea18e0b616128fa15ddc58778c.png
+    - 来源：范例2 第12关 / 【可修改】拖拽物品1 / dragging / 拖拽中
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/e61ccfa903f13773089c7e6e74fb63d5.png
+    - 来源：范例2 第12关 / 【可修改】拖拽物品2 / dragging / 拖拽中
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/1b3c4eacd8ed9d7dce284b1cb7c3a729.png
+    - 来源：范例2 第12关 / 【可修改】拖拽物品3 / dragging / 拖拽中
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/3bcdaac260c48c899037205521ccb224.png
+    - 来源：范例2 第12关 / 【可修改】拖拽物品4 / dragging / 拖拽中
+- 拖拽选项放置态图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/eae7fe492a81cd83309ac967aa880af7.png
+    - 来源：范例2 第9关 / 【可修改】拖拽物品1 / placed / 放置
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/d49b16ee8998230d33c19a76d8dceed3.png
+    - 来源：范例2 第9关 / 【可修改】拖拽物品2 / placed / 放置
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/4a099f94293827fede1d64a8adae302c.png
+    - 来源：范例2 第9关 / 【可修改】拖拽物品3 / placed / 放置
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/885094499e92e15f8a4534cc94fa7227.png
+    - 来源：范例2 第9关 / 【可修改】拖拽物品4 / placed / 放置
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/902ff7ea18e0b616128fa15ddc58778c.png
+    - 来源：范例2 第12关 / 【可修改】拖拽物品1 / placed / 放置
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/e61ccfa903f13773089c7e6e74fb63d5.png
+    - 来源：范例2 第12关 / 【可修改】拖拽物品2 / placed / 放置
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/1b3c4eacd8ed9d7dce284b1cb7c3a729.png
+    - 来源：范例2 第12关 / 【可修改】拖拽物品3 / placed / 放置
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/3bcdaac260c48c899037205521ccb224.png
+    - 来源：范例2 第12关 / 【可修改】拖拽物品4 / placed / 放置
+- 题干文本背景图：
+  - https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-14/39f2ea8a522ab6b0aae4b50fa86834d1.png
+    - 来源：范例2 第9关 / 【可修改】文本-题干 / default / {'x': -28.97, 'y': 419.33, 'w': 1151.61, 'h': 123, 'scaleX': 1, 'scaleY': 1}; 范例2 第10关 / 【可修改】文本-题干 / default / {'x': -33.38, 'y': 348.64, 'w': 1552.69, 'h': 123, 'scaleX': 1, 'scaleY': 1}; 范例2 第11关 / 【可修改】文本-题干 / default / {'x': 0, 'y': 362.51, 'w': 841.46, 'h': 123, 'scaleX': 1, 'scaleY': 1}; 范例2 第12关 / 【可修改】文本-题干 / default / {'x': -61.43, 'y': 422.58, 'w': 1310.34, 'h': 131.4, 'scaleX': 1, 'scaleY': 1}
+- 文字色号：
+  - `#000000`：范例2 第9关 / 【题型说明】拖拽题 / default; 范例2 第9关 / 【勿动】背景图片 / default; 范例2 第9关 / 【可修改】图片1 / default; 范例2 第10关 / 【题型说明】填空题 / default; 范例2 第10关 / 【勿动】背景图片 / default; 范例2 第10关 / 【可修改】图片1 / default; 范例2 第10关 / 【可修改】图片2 / default; 范例2 第10关 / 【可修改】输入框1 / default
+  - `#b85304`：范例2 第9关 / 【可修改】拖拽物品1 / default; 范例2 第9关 / 【可修改】拖拽物品1 / placed; 范例2 第9关 / 【可修改】拖拽物品1 / dragging; 范例2 第9关 / 【可修改】拖拽物品2 / default; 范例2 第9关 / 【可修改】拖拽物品2 / placed; 范例2 第9关 / 【可修改】拖拽物品2 / dragging; 范例2 第9关 / 【可修改】拖拽物品3 / default; 范例2 第9关 / 【可修改】拖拽物品3 / placed
+  - `#ffffff`：范例2 第9关 / 【可修改】文本-题干 / default; 范例2 第10关 / 【勿动】简易数字键盘 / number-button-pressed; 范例2 第10关 / 【勿动】简易数字键盘 / number-button-disabled; 范例2 第10关 / 【可修改】文本-题干 / default; 范例2 第11关 / 【可修改】点击选择4 / choice; 范例2 第11关 / 【可修改】点击选择3 / choice; 范例2 第11关 / 【可修改】点击选择2 / choice; 范例2 第11关 / 【可修改】点击选择1 / choice
+  - `#914cff`：范例2 第10关 / 【勿动】简易数字键盘 / number-button-normal
+  - `#8840f5`：范例2 第10关 / 【可修改】输入框1 / answering; 范例2 第10关 / 【可修改】输入框1 / correct; 范例2 第10关 / 【可修改】输入框1 / wrong; 范例2 第10关 / 【可修改】输入框1_38 / answering; 范例2 第10关 / 【可修改】输入框1_38 / correct; 范例2 第10关 / 【可修改】输入框1_38 / wrong
+  - `#8841f5`：范例2 第10关 / 【可修改】文本-辅助文字1 / default; 范例2 第10关 / 【可修改】文本-辅助文字1_39 / default
