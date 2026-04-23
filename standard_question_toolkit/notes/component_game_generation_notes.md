@@ -5,6 +5,8 @@
 - Decide the game purpose before generating levels. Use `diagnostic` for assessment/diagnosis and `practice` for non-diagnostic learning practice.
 - Current reference configs are diagnostic by default: keep countdown, keep draft/scratchpad tools, allow unified correct/wrong feedback sounds, allow the level to switch after one wrong answer, and allow choice options, drag items, drop zones, and fill blanks to have no distinct correct/wrong visual states or to reuse the same resources.
 - For non-diagnostic practice configs, remove countdown and draft/scratchpad tools, use distinct correct and wrong feedback sounds, disable wrong-answer level switching so the learner must answer correctly before progressing, and provide visibly distinct correct/wrong states for choice options, drag items/drop zones, and fill blanks.
+- Practice configs must play a fireworks celebration after the whole level is correct. Use an `MSpine` fireworks component with a hidden `default` state and a visible `passSuccess` state that plays the Spine animation and success audio.
+- `passSuccess` / `闯关成功` is a component state hook that listens to global pass judgment. Do not add manual click/submit events to trigger the fireworks unless the template explicitly requires it.
 - If a matched template only contains diagnostic-style resources, do not treat it as final for practice mode. Add or replace the missing correct/wrong state assets and interaction rules before exporting.
 
 ## Source Text Fidelity
