@@ -17,8 +17,9 @@
 4. `notes/component_game_generation_notes.md`
 5. `data/component_skin_inventory.md`
 6. `data/skin_resource_table.tsv`
-7. `data/success_effect_assets.tsv`
-8. `data/skin_text_color_usage.tsv`
+7. `data/skin_component_state_assets.tsv`
+8. `data/success_effect_assets.tsv`
+9. `data/skin_text_color_usage.tsv`
 
 ## 核心文件
 
@@ -30,6 +31,8 @@
   - 标准题整关布局生成方法；生成坐标前必须先建立内容模型。
 - `data/component_skin_inventory.json`
   - 机器可读皮肤清单，按背景图分组。
+- `data/skin_component_state_assets.tsv`
+  - 三套皮肤按组件状态展开的完整资源表，覆盖背景、选择题按钮/反馈标记、填空框、数字键盘、拖拽物、放置框。
 - `data/success_effect_assets.tsv`
   - 非诊断模式闯关成功撒花动效资源，包含 `default` 和 `passSuccess` 状态动作、Spine 包、成功音效。
 - `scripts/extract_component_skins.py`

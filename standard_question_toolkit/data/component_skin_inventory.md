@@ -7,6 +7,8 @@
 > - **题型资产**：同一题型内所有关卡共用的按钮外观图（如选择题按钮），换题型时替换，换皮肤时不动。
 > - **题目配图**：各关独有、内容不同的配图/拖拽素材，每关单独填写，两者均不替换。
 
+完整的“皮肤 x 组件 x 状态”展开表见：`skin_component_state_assets.tsv`。
+
 ---
 
 ## 全局通用资产（所有关卡共用，皮肤/题型切换时均不替换）
@@ -61,6 +63,17 @@
 
 - 点击选择按钮 default（未选中）：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7c040c641121266c3c82f3435ffb6793.png
 - 点击选择按钮 choice（选中态）：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7fee2e4075d41cfc456c5e8ca8370f6a.png
+- 选择题按钮其他变体：`aa`、`aa1`
+- 正确反馈标记：`xx-dui1`、`xx-dui2`
+- 错误反馈标记：`xx-cuo1`、`xx-cuo2`
+
+### 填空题/键盘/拖拽题资产（可用于同皮肤其他题型）
+
+- 填空框状态：`default`、`answering`、`correct`、`wrong`
+- 数字键盘状态：数字/删除/确认的 `normal` 与 `pressed`；`disabled` 见跨皮肤共用章节
+- 拖拽物 `MDraggbale`：`default` / `dragging` / `placed` 共用 `拖拽题/选项.png`
+- 放置框 `LDragPlace`：`default` / `adsorb` 使用 `xuxian1.png`，`adsorbed` / `placed` 使用 `xuxian2.png`
+- 具体 URL 见 `skin_component_state_assets.tsv`
 
 ### 文字色号
 
@@ -81,7 +94,9 @@
 
 **输入框（【可修改】输入框X，仅 Q6–Q9 有）：**
 - default 态：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/52103843c58078ab5440e4671e218299.png
-- answering / correct / wrong 态（共用同一张）：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/674a213d6a38de357469b7c8917dc34a.png
+- answering 态：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/674a213d6a38de357469b7c8917dc34a.png
+- correct 态：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c3641f61a1e36dc71d693bc544b41505.png
+- wrong 态：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7cc7ae37d75ffb43baa1817f66adafa8.png
 
 **数字键盘专属态（【勿动】简易数字键盘，仅 Q6–Q9 有，2026-04-13）：**
 - number-button-normal：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/bc5b1d5790c7e68153b0d2f9d428e168.png
@@ -91,6 +106,17 @@
 - delete-button-pressed：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/794f5f414e014de2ead9a1536a2bdc44.png
 - confirm-button-pressed：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/531ca85156153c4693605a334dd275e0.png
 - disabled 三态：见「数字键盘跨皮肤共用」章节
+
+**拖拽题资产（Q10 / 可复用到黄色拖拽题）：**
+- 拖拽物 `default` / `dragging` / `placed`：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dafc60f4ca960667071004011acbf26e.png
+- 放置框 `default` / `adsorb`：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/95a90263bb3603ceff4973734e5e197c.png
+- 放置框 `adsorbed` / `placed`：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f80da77c1cb9ee47188efb12edde7a3.png
+
+**选择题资产（可用于黄色选择题）：**
+- 按钮变体：`b`、`b1`、`b2`、`b3`
+- 正确反馈标记：`xx-dui1`、`xx-dui2`
+- 错误反馈标记：`xx-cuo1`、`xx-cuo2`
+- 具体 URL 见 `skin_component_state_assets.tsv`
 
 ### 文字色号
 
@@ -113,7 +139,9 @@
 
 **输入框（【可修改】输入框X）：**
 - default 态：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/405c3617f7e6ef27bec1783b1e24f00d.png
-- answering / correct / wrong 态（共用同一张）：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/38d281b2bc32f4ec45bd0e6fc2f01279.png
+- answering 态：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/38d281b2bc32f4ec45bd0e6fc2f01279.png
+- correct 态：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c6c05e0551b4f1738a03a290fdf68066.png
+- wrong 态：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7f4f64fff427cc0d73b7acf3339f2ae5.png
 
 **数字键盘专属态（【勿动】简易数字键盘，2026-04-22）：**
 - number-button-normal：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png
@@ -123,6 +151,17 @@
 - delete-button-pressed：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png
 - confirm-button-pressed：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png
 - disabled 三态：见「数字键盘跨皮肤共用」章节
+
+**拖拽题资产（可用于蓝色拖拽题）：**
+- 拖拽物 `default` / `dragging` / `placed`：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd11124c012e3f2548e72091d42c2d9c.png
+- 放置框 `default` / `adsorb`：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8eb0689d5bdd85e4a2acfa14bfe79526.png
+- 放置框 `adsorbed` / `placed`：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/ff655b52512bbbe5c1edd1e93a726d2c.png
+
+**选择题资产（可用于蓝色选择题）：**
+- 按钮变体：`c`、`c1`、`c2`、`c3`
+- 正确反馈标记：`xx-dui1`、`xx-dui2`
+- 错误反馈标记：`xx-cuo1`、`xx-cuo2`
+- 具体 URL 见 `skin_component_state_assets.tsv`
 
 ### 文字色号
 

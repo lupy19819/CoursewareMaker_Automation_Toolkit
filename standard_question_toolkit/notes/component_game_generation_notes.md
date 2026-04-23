@@ -33,6 +33,7 @@
 - Treat a sprite as nine-grid enabled only when `nineGrid.enable = true`.
 - When replacing an enabled nine-grid sprite URL, preserve its `left`, `right`, `top`, and `bottom` values unless the replacement asset has different stretch borders.
 - Current templates use nine-grid most often for blank input box states, simple numeric keyboard button states, selected choice button states, and some framed title/stem background sprites.
+- Use `data/skin_component_state_assets.tsv` when applying the three diagnostic skins. It expands every skin by component state: background, choice button variants and correct/wrong feedback marks, fill-box default/answering/correct/wrong, keyboard normal/pressed/disabled, drag item default/dragging/placed, and drop-zone default/adsorb/adsorbed/placed.
 
 ## Layout Rules
 

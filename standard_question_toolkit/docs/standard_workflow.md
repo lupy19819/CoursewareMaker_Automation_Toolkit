@@ -128,7 +128,10 @@
 
 - `data/component_skin_inventory.json`
 - `data/skin_resource_table.tsv`
+- `data/skin_component_state_assets.tsv`
 - `data/skin_text_color_usage.tsv`
+
+三套皮肤都必须按组件状态取资源：背景图、选择题按钮/正确错误反馈标记、填空框 `default/answering/correct/wrong`、数字键盘各态、拖拽物 `default/dragging/placed`、放置框 `default/adsorb/adsorbed/placed`。不要只按当前题实际用到的组件保存局部资源。
 
 ## 6. 分值规则
 
