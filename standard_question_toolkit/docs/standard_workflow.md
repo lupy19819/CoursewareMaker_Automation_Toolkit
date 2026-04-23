@@ -47,6 +47,7 @@
 - 关闭“错误后跳关”，必须答对后才能切换关卡。
 - 选择题选项、拖拽题选项、填空题填空框必须有可区分的正确/错误状态资源。
 - 整关全部正确后必须播放撒花动效。使用 `passSuccess` / `闯关成功` 状态承接全局判定成功：撒花组件默认隐藏，`passSuccess` 状态显示并播放 Spine 动画和成功音效。
+- 撒花资源和每个状态下播放的动作见 `data/component_skin_inventory.json` 的 `global_assets.success_fireworks`，或 `data/success_effect_assets.tsv`。
 - 如果模板只提供诊断状态，不能直接复用为最终状态；需要补齐或替换正确/错误状态资源。
 
 ## 3. 题型归类

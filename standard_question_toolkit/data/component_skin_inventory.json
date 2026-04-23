@@ -1,6 +1,7 @@
 {
   "source_files": [
-    "参考文件：3套皮肤15关选择题+填空题+拖拽题组合（2026-04-22版本）"
+    "参考文件：3套皮肤15关选择题+填空题+拖拽题组合（2026-04-22版本）",
+    "参考文件：科思参考.rtf（非诊断模式 passSuccess 撒花动效）"
   ],
   "grouping_rule": "按【勿动】背景图片的 MSprite.value 分组",
   "asset_categories": {
@@ -20,7 +21,62 @@
       "click": "https://courseware-maker-test-1252161091.cos.ap-beijing.myqcloud.com/assets/image/123498/2024-04-12/a83c81138bd05ad689cd66110cf81a27/submit_click.png",
       "disable": "https://courseware-maker-test-1252161091.cos.ap-beijing.myqcloud.com/assets/image/123498/2024-04-12/56fdcf55e42828720c9f1071da957046/submit_disable.png"
     },
-    "level_component": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0025307/2025-06-23/e6eacbc91f79ba847869378d408b0f03.png"
+    "level_component": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0025307/2025-06-23/e6eacbc91f79ba847869378d408b0f03.png",
+    "success_fireworks": {
+      "usage": "非诊断 practice 模式整关全部正确后的闯关成功反馈",
+      "component": {
+        "component_id": "BaseComponent",
+        "base": "MSpine",
+        "name": "撒花",
+        "zIndex": 7,
+        "isAnswerComponent": false,
+        "isJudgeComponent": false
+      },
+      "trigger": {
+        "state": "passSuccess",
+        "label": "闯关成功",
+        "note": "passSuccess 是组件监听全局判定成功的状态钩子，不需要手动绑定提交按钮或选项事件。"
+      },
+      "transform": {
+        "x": 0,
+        "y": 0,
+        "w": 4196.01,
+        "h": 1909.72,
+        "scaleX": 1,
+        "scaleY": 1,
+        "rot": 0,
+        "anchorX": 0.5,
+        "anchorY": 0.5
+      },
+      "spine": {
+        "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2024-05-11/b25d6953490ba8456de8fe5af7877574.zip",
+        "spineId": 2722,
+        "opacity": false,
+        "playTime": 1,
+        "waitAudioLoop": false,
+        "timeScale": 1
+      },
+      "audio": {
+        "success": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/296026/2024-05-08/812b96218b5e8a3a4117ad391d6ea311.mp3",
+        "audioType": "play_effect_1",
+        "loop": false,
+        "loopNum": 1
+      },
+      "states": {
+        "default": {
+          "label": "默认",
+          "active": "hide",
+          "spineAnimation": "",
+          "audio": ""
+        },
+        "passSuccess": {
+          "label": "闯关成功",
+          "active": "show",
+          "spineAnimation": "animation",
+          "audio": "success"
+        }
+      }
+    }
   },
   "shared_assets": {
     "keyboard_disabled_states": {
@@ -35,7 +91,9 @@
       "skin_key": "fc9fbc3b",
       "skin_name": "紫色界面",
       "question_range": "Q1–Q5",
-      "question_types": ["选择题"],
+      "question_types": [
+        "选择题"
+      ],
       "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fc9fbc3b0b55dc4437b75e7a2da0705c.png",
       "skin_assets": {
         "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fc9fbc3b0b55dc4437b75e7a2da0705c.png"
@@ -56,7 +114,10 @@
       "skin_key": "e91dcb10",
       "skin_name": "黄色界面",
       "question_range": "Q6–Q10",
-      "question_types": ["填空/计算题（Q6–Q9，带数字键盘）", "拖拽题（Q10）"],
+      "question_types": [
+        "填空/计算题（Q6–Q9，带数字键盘）",
+        "拖拽题（Q10）"
+      ],
       "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e91dcb1074e2690921f195bc88a07346.png",
       "skin_assets": {
         "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e91dcb1074e2690921f195bc88a07346.png",
@@ -86,7 +147,9 @@
       "skin_key": "291cc642",
       "skin_name": "蓝色界面",
       "question_range": "Q11–Q15",
-      "question_types": ["填空/计算题（带数字键盘）"],
+      "question_types": [
+        "填空/计算题（带数字键盘）"
+      ],
       "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/291cc642d06465540b7a25d3c3c1ff68.png",
       "skin_assets": {
         "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/291cc642d06465540b7a25d3c3c1ff68.png",

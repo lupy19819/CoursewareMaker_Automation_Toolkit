@@ -268,6 +268,7 @@ python standard_question_toolkit/scripts/generate_grade4_config.py
    - 诊断模式：保留倒计时和草稿；正确/错误反馈音效可统一；答错一次后允许切关；选项/拖拽物/填空框正确错误状态可相同
    - 非诊断练习模式：去掉倒计时和草稿；区分正确/错误反馈音效；关闭错误后跳关，必须答对后才能切关；选项/拖拽物/填空框正确错误状态必须可区分；整关正确后播放撒花动效
    - 撒花动效使用 `MSpine` 组件的 `passSuccess` / `闯关成功` 状态监听全局判定成功，默认隐藏，成功后显示并播放动画和成功音效
+   - 撒花资源和状态动作读取 `standard_question_toolkit/data/success_effect_assets.tsv` 或 `component_skin_inventory.json > global_assets.success_fireworks`
    - 选择合适的模板（base_choice_fill、vertical_multiplication 或拖拽题模板/参考关）
    - 模板只作为组件骨架，不能直接继承原坐标
    - 按当前题内容重新计算题干、配图、输入框、选项、拖拽物、放置区、键盘位置

@@ -14,6 +14,7 @@
 - `data/component_skin_inventory.json`：皮肤资源机器可读清单。
 - `data/component_skin_inventory.md`：皮肤资源人工阅读版。
 - `data/skin_resource_table.tsv`：皮肤资源表，可粘贴进表格。
+- `data/success_effect_assets.tsv`：非诊断模式闯关成功动效资源表。
 - `data/skin_text_color_usage.tsv`：文字色号用途表，可粘贴进表格。
 
 ## 脚本

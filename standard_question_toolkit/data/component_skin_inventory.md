@@ -19,6 +19,23 @@
 - 提交按钮 disable：https://courseware-maker-test-1252161091.cos.ap-beijing.myqcloud.com/assets/image/123498/2024-04-12/56fdcf55e42828720c9f1071da957046/submit_disable.png
 - 【勿动】关卡组件图：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0025307/2025-06-23/e6eacbc91f79ba847869378d408b0f03.png
 
+### 非诊断模式闯关成功撒花动效
+
+用于 `practice` 非诊断练习模式。整关全部正确后，组件进入 `passSuccess` / `闯关成功` 状态并播放撒花动效。`passSuccess` 是组件监听全局判定成功的状态钩子，不需要手动绑定提交按钮或选项事件。
+
+- 组件类型：`BaseComponent` / `MSpine`
+- 组件名称：`撒花`
+- 推荐层级：`zIndex = 7`
+- 推荐位置尺寸：`x = 0`，`y = 0`，`w = 4196.01`，`h = 1909.72`，`scaleX = 1`，`scaleY = 1`
+- Spine 资源：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2024-05-11/b25d6953490ba8456de8fe5af7877574.zip
+- `spineId`：`2722`
+- 成功音效：https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/296026/2024-05-08/812b96218b5e8a3a4117ad391d6ea311.mp3
+
+| 状态 | 标签 | 显隐 | Spine 动作 | 音效 |
+| --- | --- | --- | --- | --- |
+| `default` | 默认 | `hide` | 空字符串，不播放 | 无 |
+| `passSuccess` | 闯关成功 | `show` | `animation` | 成功音效 |
+
 ---
 
 ## 数字键盘 — 跨皮肤共用（disabled 三态）

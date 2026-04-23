@@ -1,0 +1,3 @@
+用途	组件名称	组件类型	触发状态	状态标签	显隐	Spine资源URL	spineId	Spine动作	音效URL	推荐transform	说明
+非诊断整关正确撒花	撒花	BaseComponent/MSpine	default	默认	hide	https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2024-05-11/b25d6953490ba8456de8fe5af7877574.zip	2722			x=0;y=0;w=4196.01;h=1909.72;scaleX=1;scaleY=1	默认隐藏，不播放动作
+非诊断整关正确撒花	撒花	BaseComponent/MSpine	passSuccess	闯关成功	show	https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2024-05-11/b25d6953490ba8456de8fe5af7877574.zip	2722	animation	https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/296026/2024-05-08/812b96218b5e8a3a4117ad391d6ea311.mp3	x=0;y=0;w=4196.01;h=1909.72;scaleX=1;scaleY=1	passSuccess 监听全局判定成功，不手动绑按钮事件

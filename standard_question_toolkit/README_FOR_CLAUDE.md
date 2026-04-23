@@ -17,7 +17,8 @@
 4. `notes/component_game_generation_notes.md`
 5. `data/component_skin_inventory.md`
 6. `data/skin_resource_table.tsv`
-7. `data/skin_text_color_usage.tsv`
+7. `data/success_effect_assets.tsv`
+8. `data/skin_text_color_usage.tsv`
 
 ## 核心文件
 
@@ -29,6 +30,8 @@
   - 标准题整关布局生成方法；生成坐标前必须先建立内容模型。
 - `data/component_skin_inventory.json`
   - 机器可读皮肤清单，按背景图分组。
+- `data/success_effect_assets.tsv`
+  - 非诊断模式闯关成功撒花动效资源，包含 `default` 和 `passSuccess` 状态动作、Spine 包、成功音效。
 - `scripts/extract_component_skins.py`
   - 从范例配置重新提取皮肤素材。
 - `scripts/generate_grade3_config.py`
@@ -50,6 +53,8 @@
 - `practice` 非诊断练习模式：去掉倒计时和草稿；区分正确/错误反馈音效；关闭错误后跳关，必须答对后才能切换关卡；选择题选项、拖拽题选项、填空题填空框必须有可区分的正确/错误状态资源；整关全部正确后播放撒花动效。
 
 非诊断模式的撒花动效使用 `passSuccess` / `闯关成功` 状态：组件默认隐藏，`passSuccess` 显示并播放 Spine 动画和成功音效。`passSuccess` 是组件监听全局判定成功的状态钩子，不需要给提交按钮或选项额外写触发事件。
+
+撒花动效资源以 `data/component_skin_inventory.json` 的 `global_assets.success_fireworks` 为准；人工查看可读 `data/component_skin_inventory.md` 或 `data/success_effect_assets.tsv`。
 
 匹配到原配置或模板后，只复用可运行组件骨架、状态结构、答案判定和必需字段；当前题的坐标、字号、对齐、配图、输入框、拖拽物、放置区、选项和键盘位置必须按内容模型重新计算。
 
