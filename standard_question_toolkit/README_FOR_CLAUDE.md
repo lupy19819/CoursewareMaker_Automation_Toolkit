@@ -32,9 +32,9 @@
 - `scripts/extract_component_skins.py`
   - 从范例配置重新提取皮肤素材。
 - `scripts/generate_grade3_config.py`
-  - 已实现的整套题生成脚本，可参考普通填空、算式填空、内嵌填空、两列布局。
+  - 已实现的整套题生成脚本，可参考普通填空、算式填空、内嵌填空、两列布局；这些坐标只适用于对应题集，新增题必须按布局方法重排。
 - `scripts/generate_grade4_config.py`
-  - 已实现的整套题生成脚本，可参考配图题、选择题音效、皮肤/模板复用。
+  - 已实现的整套题生成脚本，可参考配图题、选择题音效、皮肤/模板复用；新增拖拽题需要补充 `MDraggbale + LDragPlace` 实例生成路径。
 - `scripts/split_xiner_games.py`
   - 把 12 关游戏拆为 12 个单关游戏。
 - `scripts/split_xinyi_games.py`
@@ -43,6 +43,8 @@
 ## 生成配置的最低要求
 
 用户给题目后，Claude 应先整理成结构化题目清单，再复制模板中的完整根结构，只替换 `game` 关卡数组和必要的 `common.global_config.score_config`。
+
+匹配到原配置或模板后，只复用可运行组件骨架、状态结构、答案判定和必需字段；当前题的坐标、字号、对齐、配图、输入框、拖拽物、放置区、选项和键盘位置必须按内容模型重新计算。
 
 生成完必须校验：
 
@@ -53,6 +55,10 @@
 - 选择题为手动判定：`levelData.judge.autoJudge = 0`，`judgeRule = 0`。
 - 填空题每关内所有输入框 `numberUnit` 一致，取本题最大答案长度。
 - 填空框尺寸不变形：普通输入框 `218 x 131`，`scaleX = 1`，`scaleY = 1`。
+- 拖拽题使用 `MDraggbale` + `LDragPlace`，不能用选择题或填空题假替代。
+- 拖拽题先排放置区，再排拖拽物；保留拖拽物和放置区的 answer/judge 信息。
+- 拖拽题必须校验 `dragItems.answerKey` 和 `dropZones.accept` 的绑定关系。
+- 行内拖拽使用 `answer_prefix + LDragPlace + answer_suffix`，不使用空格占位。
 - 竖式题右对齐，已知数字、符号、横线均为文本组件，空位才使用输入框。
 - 布局必须先建立整关内容模型，不能只按题型或只调题干。
 - 文本按角色处理：短题干居中，长题干左对齐，条件句/答案句/算式行/选项各用自己的字号和对齐规则。

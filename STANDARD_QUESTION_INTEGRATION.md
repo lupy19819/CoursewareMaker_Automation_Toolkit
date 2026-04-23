@@ -179,16 +179,24 @@ python standard_question_toolkit/scripts/generate_grade3_config.py
 {
   "type": "drag",
   "stem": "把正确答案拖到对应位置。",
+  "conditions": ["观察下面的关系图。"],
   "dragItems": [
-    {"text": "A", "answerKey": "a"},
-    {"text": "B", "answerKey": "b"}
+    {"text": "12", "answerKey": "a"},
+    {"text": "16", "answerKey": "b"}
   ],
   "dropZones": [
-    {"text": "", "accept": "a"},
-    {"text": "", "accept": "b"}
-  ]
+    {"label": "第一个空", "accept": "a"},
+    {"label": "第二个空", "accept": "b"}
+  ],
+  "layout": "drag"
 }
 ```
+
+**生成要求**：
+- 先排 `LDragPlace`，再排 `MDraggbale`。
+- 行内拖拽使用 `answerPrefix + LDragPlace + answerSuffix`，不使用空格占位。
+- 拖拽项和放置区必须保留 answer/judge 信息。
+- 皮肤需要覆盖拖拽物默认/拖拽中/已放置，以及放置区默认/可吸附/已放置。
 
 ---
 
@@ -253,9 +261,11 @@ python standard_question_toolkit/scripts/generate_grade4_config.py
    ```
 
 3. **使用模板生成配置**
-   - 选择合适的模板（base_choice_fill 或 vertical_multiplication）
+   - 选择合适的模板（base_choice_fill、vertical_multiplication 或拖拽题模板/参考关）
+   - 模板只作为组件骨架，不能直接继承原坐标
+   - 按当前题内容重新计算题干、配图、输入框、选项、拖拽物、放置区、键盘位置
    - 根据题目类型替换关卡数组
-   - 应用皮肤资源
+   - 应用皮肤资源和各状态资源
 
 4. **校验配置**
    - JSON可解析
@@ -298,9 +308,13 @@ python standard_question_toolkit/scripts/split_xinyi_games.py
 - [ ] **填空题**：输入框尺寸不变形（`scaleX = 1`, `scaleY = 1`）
 - [ ] **竖式题**：右对齐，已知数用文本，未知数用输入框
 - [ ] **拖拽题**：保留 answer/judge 信息
+- [ ] **拖拽题**：使用 `MDraggbale` + `LDragPlace`，不是选择题/填空题替代
+- [ ] **拖拽题**：每个拖拽物 `answerKey` 与放置区 `accept` 绑定正确
+- [ ] **拖拽题**：拖拽物默认/拖拽中/已放置，放置区默认/可吸附/已放置状态资源正确
 
 ### 布局检查
 - [ ] 已按整关内容模型检查：题干/条件/作答句/算式/图表/输入框/选项/键盘/提交
+- [ ] 原配置/模板只复用组件骨架和交互字段，坐标按当前题内容重新排版
 - [ ] 已按认知区、关系区、操作区做整体布局
 - [ ] 小中诊断题已按 `diagnostic_visual_choice` / `diagnostic_compute_fill` / `diagnostic_image_reasoning` 三套之一选版
 - [ ] 短题干居中，长题干左对齐

@@ -19,10 +19,17 @@
 ## 脚本
 
 - `scripts/extract_component_skins.py`：从范例配置提取皮肤资源。
-- `scripts/generate_grade3_config.py`：三年级诊断题生成示例。
-- `scripts/generate_grade4_config.py`：四年级诊断题生成示例。
+- `scripts/generate_grade3_config.py`：三年级诊断题生成示例，包含普通填空、算式填空、内嵌填空和两列布局示例。
+- `scripts/generate_grade4_config.py`：四年级诊断题生成示例，包含配图题、选择题音效、皮肤/模板复用示例。
 - `scripts/split_xiner_games.py`：新二多关拆单关示例。
 - `scripts/split_xinyi_games.py`：新一多关拆单关示例。
+
+## 布局生成入口
+
+- 模型/人工生成配置时，入口是 `README_FOR_CLAUDE.md`、`docs/standard_workflow.md`、`docs/layout_generation_method.md` 和 `docs/question_input_template.md`。
+- 脚本示例只能复用组件骨架、状态结构、答案判定和必要字段；不能把历史题目的坐标当作新题的最终坐标。
+- 新增选择、填空、配图、竖式、内嵌填空、内嵌拖拽、普通拖拽题时，都先建立整关内容模型，再按认知区、关系区、操作区重新排版。
+- 拖拽题必须有独立生成路径：`MDraggbale` 拖拽物 + `LDragPlace` 放置区，并校验 `answerKey/accept` 绑定与各状态皮肤。
 
 ## 模板
 

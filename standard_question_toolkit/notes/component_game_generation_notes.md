@@ -18,6 +18,7 @@
 
 ## Layout Rules
 
+- Treat matched configs/templates as runnable component skeletons only. Reuse component types, state arrays, answer/judge metadata, and required root fields; recalculate coordinates, text sizes, alignments, image scale, blanks, choices, drag items, drop zones, and operation controls from the current level content.
 - Before setting coordinates, build a whole-level content model. Classify visible blocks as `stem`, `condition`, `answer_sentence`, `formula_row`, `vertical_grid`, `image_or_table`, `choice_option`, `blank`, `keyboard`, `submit`, or `utility`.
 - Use `docs/layout_generation_method.md` as the source of truth for layout generation.
 - Use the three-zone model: recognition zone for stem/conditions, relation zone for image/table/formula/answer sentence, operation zone for choices/keyboards/confirm.
@@ -36,6 +37,17 @@
 - For image/table questions, allocate the image/table in the relation zone before finalizing stem size and answer blank position.
 - For choice questions, place options in the operation zone. If a standard choice button has user-edited `MSprite.nineGrid`, propagate only the nine-grid metadata to same-resource choice buttons.
 - Prefer integer score allocation for generated multi-level configs; distribute points as evenly as possible while keeping the total exactly 100.
+
+## Drag Question Generation
+
+- Drag questions must use `MDraggbale` plus `LDragPlace`; do not replace them with choice or fill components.
+- Preserve `webEditorCustomInfo` answer/judge flags and component tool answer fields when cloning drag items and drop zones.
+- Generate or implement equivalent helpers: `make_drag`, `clone_drag_item`, `clone_drop_zone`, and `apply_drag_skin`.
+- Place drop zones first in the relation zone, then place draggable items in the operation zone or lower relation zone.
+- For inline drag sentences, split into `answer_prefix + LDragPlace + answer_suffix`; never use whitespace placeholders.
+- Validate that every draggable item has a unique `answerKey` and every drop zone has a matching `accept`.
+- Apply skin states consistently: draggable default/dragging/placed and drop-zone default/adsorb/adsorbed/placed.
+- Keep drag items and drop zones at resource-native proportions unless the user explicitly gives new dimensions.
 
 ## Fill Question Consistency
 

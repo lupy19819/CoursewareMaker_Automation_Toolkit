@@ -47,18 +47,33 @@
     },
     {
       "type": "drag",
-      "stem": "把正确答案拖到对应位置。",
-      "conditions": ["观察下面的关系。"],
-      "answerPrefix": "正确答案是",
-      "answerSuffix": "。",
+      "stem": "把合适的数拖到对应位置。",
+      "conditions": ["观察下面的数量关系。"],
+      "image": null,
       "dragItems": [
-        {"text": "A", "answerKey": "a"},
-        {"text": "B", "answerKey": "b"}
+        {"text": "12", "answerKey": "a"},
+        {"text": "16", "answerKey": "b"}
       ],
       "dropZones": [
-        {"text": "", "accept": "a"},
-        {"text": "", "accept": "b"}
-      ]
+        {"label": "第一个空", "accept": "a"},
+        {"label": "第二个空", "accept": "b"}
+      ],
+      "layout": "drag"
+    },
+    {
+      "type": "inline_drag",
+      "stem": "把正确结果拖入句子。",
+      "conditions": ["先根据图示完成推理。"],
+      "answerPrefix": "所以答案是",
+      "answerSuffix": "个。",
+      "dragItems": [
+        {"text": "24", "answerKey": "a"},
+        {"text": "36", "answerKey": "b"}
+      ],
+      "dropZones": [
+        {"accept": "a"}
+      ],
+      "layout": "drag"
     }
   ]
 }
@@ -74,6 +89,7 @@
   - `inline_fill`
   - `vertical_fill`
   - `drag`
+  - `inline_drag`
 - `stem`：用户可见题干，不写题号。
 - `options`：选择题选项，不自动加 A/B/C/D，除非选项本身就是 A/B/C/D。
 - `rows`：多行填空、算式填空使用。
@@ -81,8 +97,17 @@
 - `conditions`：可选。应用题中的背景条件；生成时按 `condition` 文本角色布局。
 - `answerPrefix`：可选。行内填空框或拖拽放置区前的文本。
 - `answerSuffix`：可选。行内填空框或拖拽放置区后的文本；生成时从输入框/放置区右边缘起排，不依赖空格占位。
+- `dragItems`：拖拽题必填。每个拖拽物至少包含 `text` 或 `image`，以及唯一 `answerKey`。
+- `dropZones`：拖拽题必填。每个放置区至少包含 `accept`；可选 `label`、`answerPrefix`、`answerSuffix`、`imageAnchor`。
 - `layout`：可选。可填 `choice_only`、`formula_fill`、`inline_fill`、`image_fill`、`vertical_fill`、`drag`、`diagnostic_visual_choice`、`diagnostic_compute_fill`、`diagnostic_image_reasoning`；不填时由内容块自动推断。
 - `imageRole`：可选。可填 `supporting` 或 `primary_reasoning`；配图是主要推理对象时应给关系区更多空间。
+
+## 拖拽题输入要求
+
+- 普通拖拽：`dragItems.length` 通常等于或大于 `dropZones.length`，每个 `dropZones.accept` 必须能在 `dragItems.answerKey` 中找到。
+- 行内拖拽：使用 `answerPrefix + LDragPlace + answerSuffix`，不要在文本中留空格占位。
+- 图文拖拽：如果放置区依附配图，给 `imageRole = "primary_reasoning"`，并在 `dropZones` 中描述靠近哪个图示关系。
+- 生成配置时必须保留 `MDraggbale` 和 `LDragPlace` 的 answer/judge 信息，不能只生成静态图片。
 
 ## 小中诊断布局选择
 
