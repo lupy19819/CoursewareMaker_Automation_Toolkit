@@ -7,6 +7,14 @@
 - For non-diagnostic practice configs, remove countdown and draft/scratchpad tools, use distinct correct and wrong feedback sounds, disable wrong-answer level switching so the learner must answer correctly before progressing, and provide visibly distinct correct/wrong states for choice options, drag items/drop zones, and fill blanks.
 - If a matched template only contains diagnostic-style resources, do not treat it as final for practice mode. Add or replace the missing correct/wrong state assets and interaction rules before exporting.
 
+## Source Text Fidelity
+
+- When input comes from a PDF or image, transcribe the original problem text before choosing layout or generating config.
+- User-visible text must remain faithful to the source: stems, conditions, option labels, formula row labels, answer prefixes, and answer suffixes must not be summarized, simplified, polished, or rewritten.
+- Layout splitting is allowed, but content rewriting is not. Inline blanks/drop targets may split one source sentence into prefix + target + suffix components while preserving the original words.
+- Remove standalone question numbers when the level-number component handles numbering, but keep any number that is part of the problem meaning.
+- If OCR/visual reading is uncertain, mark the text for review instead of inferring a cleaner sentence from the answer.
+
 ## Choice Questions
 
 - Use `AloneClickChoice` (`component_id`: `3b9b8ec3-f7d3-11ee-b9ef-8e2f78cd4bcd`) for choice options.

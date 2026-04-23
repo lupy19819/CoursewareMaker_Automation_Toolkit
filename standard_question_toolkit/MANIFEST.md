@@ -28,6 +28,7 @@
 
 - 模型/人工生成配置时，入口是 `README_FOR_CLAUDE.md`、`docs/standard_workflow.md`、`docs/layout_generation_method.md` 和 `docs/question_input_template.md`。
 - 生成前必须先确认使用目的 `purpose`：`diagnostic` 诊断模式或 `practice` 非诊断练习模式；它决定倒计时、草稿、反馈音效、错误后切关和正确/错误状态资源策略。
+- PDF/图片输入必须先做原题转写；生成配置时只能拆分和布局原题文本，不能概括、简化、润色或改写老师给的题目。
 - 脚本示例只能复用组件骨架、状态结构、答案判定和必要字段；不能把历史题目的坐标当作新题的最终坐标。
 - 新增选择、填空、配图、竖式、内嵌填空、内嵌拖拽、普通拖拽题时，都先建立整关内容模型，再按认知区、关系区、操作区重新排版。
 - 拖拽题必须有独立生成路径：`MDraggbale` 拖拽物 + `LDragPlace` 放置区，并校验 `answerKey/accept` 绑定与各状态皮肤。

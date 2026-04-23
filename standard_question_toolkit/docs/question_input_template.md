@@ -94,17 +94,25 @@
   - `vertical_fill`
   - `drag`
   - `inline_drag`
-- `stem`：用户可见题干，不写题号。
-- `options`：选择题选项，不自动加 A/B/C/D，除非选项本身就是 A/B/C/D。
-- `rows`：多行填空、算式填空使用。
+- `stem`：用户可见题干，不写题号。来自 PDF/图片时必须按原题转写，不得概括、简化、润色或改写。
+- `options`：选择题选项，不自动加 A/B/C/D，除非选项本身就是 A/B/C/D。选项文字必须忠实保留原题表达。
+- `rows`：多行填空、算式填空使用。`label` 必须保留原题中的算式或文字标签。
 - `image`：可填资源 URL、资源 id 或本地图片路径。生成最终配置时必须转成可访问 URL。
-- `conditions`：可选。应用题中的背景条件；生成时按 `condition` 文本角色布局。
-- `answerPrefix`：可选。行内填空框或拖拽放置区前的文本。
-- `answerSuffix`：可选。行内填空框或拖拽放置区后的文本；生成时从输入框/放置区右边缘起排，不依赖空格占位。
+- `conditions`：可选。应用题中的背景条件；生成时按 `condition` 文本角色布局。不能为了缩短而删减原题条件。
+- `answerPrefix`：可选。行内填空框或拖拽放置区前的文本。只能由原题句子拆分得到。
+- `answerSuffix`：可选。行内填空框或拖拽放置区后的文本；生成时从输入框/放置区右边缘起排，不依赖空格占位。只能由原题句子拆分得到。
 - `dragItems`：拖拽题必填。每个拖拽物至少包含 `text` 或 `image`，以及唯一 `answerKey`。
 - `dropZones`：拖拽题必填。每个放置区至少包含 `accept`；可选 `label`、`answerPrefix`、`answerSuffix`、`imageAnchor`。
 - `layout`：可选。可填 `choice_only`、`formula_fill`、`inline_fill`、`image_fill`、`vertical_fill`、`drag`、`diagnostic_visual_choice`、`diagnostic_compute_fill`、`diagnostic_image_reasoning`；不填时由内容块自动推断。
 - `imageRole`：可选。可填 `supporting` 或 `primary_reasoning`；配图是主要推理对象时应给关系区更多空间。
+
+## PDF/图片题目转写要求
+
+- 先提取并保存每题原文，再判断题型和布局。
+- 用户可见文本必须按原题写入配置，不能改成“搭配方案问题”“大数计算”等自拟标题，除非原 PDF 本身就是这样的标题。
+- 布局拆分只改变组件边界，不改变文字内容。例如行内填空可以拆成 `answerPrefix + QuestionForBlank + answerSuffix`，但前后文本必须来自原句。
+- 可以去掉独立题号，因为关卡组件负责显示题号；如果题号是题意的一部分则保留。
+- OCR/视觉识别不确定时，在结构化题目中标记 `needsReview: true` 或保留待确认说明，不要根据答案反推并改写题干。
 
 ## 拖拽题输入要求
 

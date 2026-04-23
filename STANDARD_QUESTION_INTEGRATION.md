@@ -251,6 +251,8 @@ python standard_question_toolkit/scripts/generate_grade4_config.py
    # 参考模板
    cat standard_question_toolkit/docs/question_input_template.md
    ```
+   - 如果输入是 PDF 或图片，先逐题转写原题文本，再整理结构化格式
+   - 题干、条件、选项、算式标签、作答句必须忠实保留原题，不得概括、简化、润色或改写
 
 2. **给AI提供完整上下文**
    ```
@@ -304,6 +306,7 @@ python standard_question_toolkit/scripts/split_xinyi_games.py
 - [ ] `game` 数组长度正确
 - [ ] 每关有唯一的 `id`
 - [ ] 所有资源URL有效
+- [ ] PDF/图片输入已逐题转写原文，用户可见题目文字没有被简化或改写
 - [ ] 已明确 `purpose`：诊断模式或非诊断练习模式
 - [ ] 诊断模式：倒计时、草稿、统一反馈音效、错误后切关策略符合诊断要求
 - [ ] 非诊断练习模式：无倒计时、无草稿，正确/错误音效区分，错误后不跳关，必须答对后切关
@@ -330,7 +333,7 @@ python standard_question_toolkit/scripts/split_xinyi_games.py
 - [ ] 有配图/表格题：题干、配图、答案区、操作区整体不冲突
 - [ ] 算式行：文本和输入框作为一组居中
 - [ ] 同类选择按钮九宫格一致
-- [ ] 题干不包含题号
+- [ ] 题干不包含独立题号，但保留原题完整表达
 - [ ] 选项不额外添加A/B/C/D
 
 ### 分值检查
