@@ -15,14 +15,79 @@
 2. `docs/layout_generation_method.md`
 3. `docs/question_input_template.md`
 4. `notes/component_game_generation_notes.md`
-5. `data/component_skin_inventory.md`
-6. `data/skin_resource_table.tsv`
-7. `data/skin_component_state_assets.tsv`
-8. `data/success_effect_assets.tsv`
-9. `data/skin_text_color_usage.tsv`
+5. **`data/layout_constants.json`** ← 布局规范 + 皮肤-关卡映射的机器可读摘要，生成前必读
+6. `data/component_skin_inventory.json` ← 完整皮肤资源 URL
+7. `data/component_skin_inventory.md`
+8. `data/skin_component_state_assets.tsv`
+9. `data/success_effect_assets.tsv`
+10. `data/skin_text_color_usage.tsv`
+
+## 任务类型
+
+### 生成新配置
+
+按推荐读取顺序阅读文档，从模板生成配置，生成后运行 `validate_config.js`。
+
+### 修改已有配置使其合规（必须遵循此流程）
+
+```
+1. 读取 data/layout_constants.json + data/component_skin_inventory.json
+2. 获取游戏现有 JSON（CDP 或 API）
+3. 运行 validate_config.js <game_id> → 生成差异清单
+4. 按差异清单逐项修改（不允许跳过差异清单直接动手）
+5. 再次运行 validate_config.js，确认 0 错误
+6. 调用 save_game_config_via_cdp.js 导入保存
+```
+
+**关键约束**：皮肤归属由关卡编号决定，与题型无关：
+
+| 关卡 | 皮肤 | background hash |
+|------|------|----------------|
+| Q1–Q5 | 紫色 | `fc9fbc3b` |
+| Q6–Q10 | 黄色 | `e91dcb10` |
+| Q11–Q15 | 蓝色 | `291cc642` |
+
+`disabled` 键盘三态跨皮肤共用（2026-04-13 资源），换皮肤时**不替换**。
+
+---
+
+## 组件字段说明（必读，脚本读错会导致修改静默失效）
+
+组件的显示名称**不在顶层 `component_name`**，该字段对大多数组件显示的是 `"节点"`，无法用于识别。**真实名称在 `component_data.name`**。所有脚本（生成/校验/修复）查找、匹配组件时必须读 `component_data.name`。
+
+---
+
+## 图层顺序规则（必须遵守）
+
+每关所有组件的 `zIndex` 必须严格按以下层级设置，**生成时即正确，不依赖后期修复**：
+
+| 图层 | zIndex | 组件类型 |
+|------|--------|---------|
+| 最底层 | `0` | `【题型说明】` |
+| 背景层 | `1` | `【勿动】背景图片` |
+| 配图层 | `3` | `【可修改】配图`、`【可修改】图表` |
+| 文本层 | `4` | `【可修改】文本-题干`、`【可修改】文本-条件`、所有其他文本 |
+| 交互层 | `5+` | 输入框、键盘、选项按钮、拖拽物、放置区、提交按钮 |
+
+> `【勿动】` 组件（背景图、撒花动效、键盘）的 zIndex 不得修改。
+
+**生成文本组件时必须显式写入 `zIndex: 4`，不能依赖模板默认值继承。**
+
+---
+
+## 组件命名规则
+
+- 同一游戏内所有关卡的所有组件，`component_data.name` 不得重复。
+- 命名格式建议：`【可修改】文本-题干-L{关卡号}`，如 `【可修改】文本-题干-L1`。
+- 生成脚本必须在生成阶段保证唯一性，不能依赖后期检查发现重复。
+
+---
 
 ## 核心文件
 
+- `data/layout_constants.json`
+  - **布局规范 + 皮肤-关卡映射的机器可读摘要**，生成/修改前必须读取。
+  - `validate_config.js` 和生成脚本从这里读取常量，只需在此维护一份。
 - `templates/base_choice_fill_template.json`
   - 选择题、普通填空题的基础组件模板。
 - `templates/vertical_multiplication_template.json`
@@ -85,6 +150,12 @@
 - 有配图/表格题必须整体考虑题干、图示、答案区和操作区。
 - 不在题干文本里写独立题号；但题干、条件、选项、算式标签和作答句必须保留原题表达。
 - 分值使用整数且合计 100。
+- 所有文本组件 `zIndex = 4`；交互组件 `zIndex >= 5`；背景图 `zIndex = 1`；题型说明 `zIndex = 0`。
+- 同一游戏内所有关卡的所有组件 `component_data.name` 不得重复，生成时即保证唯一。
+- 算式类文本（如 `4+□=`、`_÷3=`）必须设 `alignType: right`，文本框右边缘精确对齐输入框左边缘（gap ≤ 8px），避免重叠。
+- `文本–填空框–文本` 同行结构中，字号和行间距必须一致；若文本内容换行会破坏一致性，则按行手动拆分为独立文本组件，每组件只放一行内容。
+- 文本内容不得出现 `（1）（2）（3）` 等独立序号前缀；原题序号用于区分条件时，改为拆成独立文本组件，而非在同一文本组件内用序号区分。
+- 每关内容必须独立按题目重新排版，不能只做模板坐标套用；同类题的坐标基准相同，但文本宽度、行数、配图位置必须按当前关内容单独计算。
 
 ## 皮肤名称
 

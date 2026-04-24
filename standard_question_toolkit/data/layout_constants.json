@@ -1,0 +1,84 @@
+{
+  "_updated": "2026-04-23",
+  "_source": [
+    "docs/layout_generation_method.md §7 (选择题和九宫格)",
+    "docs/layout_generation_method.md §8 (提交、重置、键盘)",
+    "data/component_skin_inventory.json (皮肤-关卡映射、disabled 共用资源)"
+  ],
+  "_note": "本文件是布局规范和皮肤规范的机器可读摘要。validate_config.js 和生成脚本统一从这里读取常量，规范值只在此处维护一份。",
+
+  "canvas": {
+    "w": 2048,
+    "h": 1152,
+    "origin": "center",
+    "_note": "坐标系以画布中心为 (0,0)"
+  },
+
+  "choice_3_options": {
+    "_note": "3选项布局：x 为各选项中心坐标",
+    "y": -464,
+    "h": 132,
+    "w": 474,
+    "x": [-548, -38, 472]
+  },
+
+  "choice_4_options": {
+    "_note": "4选项布局：x 为各选项中心坐标",
+    "y": -464,
+    "h": 132,
+    "w": 264,
+    "x": [-526, -176, 174, 524]
+  },
+
+  "keyboard": {
+    "y": -464,
+    "_note": "数字键盘固定在操作区，y 中心坐标"
+  },
+
+  "submit": {
+    "x": 818,
+    "y": -464,
+    "w": 140,
+    "h": 140,
+    "_note": "确认/提交按钮固定在右下作答路径"
+  },
+
+  "fill_blank": {
+    "w": 218,
+    "h": 131,
+    "scaleX": 1,
+    "scaleY": 1,
+    "_note": "普通输入框标准尺寸，不允许拉伸变形"
+  },
+
+  "skin_level_mapping": [
+    {
+      "skin_name": "紫色界面",
+      "skin_key": "fc9fbc3b",
+      "level_range": [1, 5],
+      "background_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fc9fbc3b0b55dc4437b75e7a2da0705c.png",
+      "_note": "Q1–Q5 使用紫色皮肤，题型为选择题"
+    },
+    {
+      "skin_name": "黄色界面",
+      "skin_key": "e91dcb10",
+      "level_range": [6, 10],
+      "background_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e91dcb1074e2690921f195bc88a07346.png",
+      "_note": "Q6–Q10 使用黄色皮肤，Q6–Q9 填空/计算，Q10 拖拽"
+    },
+    {
+      "skin_name": "蓝色界面",
+      "skin_key": "291cc642",
+      "level_range": [11, 15],
+      "background_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/291cc642d06465540b7a25d3c3c1ff68.png",
+      "_note": "Q11–Q15 使用蓝色皮肤，填空/计算题"
+    }
+  ],
+
+  "keyboard_disabled_shared": {
+    "_note": "黄色界面和蓝色界面的 disabled 三态跨皮肤共用（2026-04-13），换皮肤时不替换",
+    "number_button_disabled": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/2ffa69204308a254d3f855eb6365c84b.png",
+    "delete_button_disabled": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/748be25c0d71159938aeb541a8691fbb.png",
+    "confirm_button_disabled": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-13/09509718385066484a0bb9ea392e6e2b.png"
+  }
+}

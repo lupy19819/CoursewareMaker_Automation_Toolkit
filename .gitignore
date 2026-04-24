@@ -5,3 +5,19 @@ __pycache__/
 *.log
 .env
 .env.*
+
+# 认证 token（敏感，禁止提交）
+beibotoken
+
+# 临时游戏数据文件
+game_*.json
+latest_game_id.txt
+
+# 临时分析/修复脚本
+check_layout_overlap.js
+fix_all_issues.js
+fix_layout_cf53.js
+analyze_*.js
+fix_v*.js
+patch_*.js
+recreate_game.js

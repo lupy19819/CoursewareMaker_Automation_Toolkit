@@ -1,8 +1,8 @@
 # 标准化题型工具集成指南
 
-> **版本**: 1.1.0  
-> **更新时间**: 2026-04-16  
-> **新增内容**: 标准化选择题、填空题、拖拽题生成工具
+> **版本**: 1.3.0  
+> **更新时间**: 2026-04-24  
+> **新增内容**: 图层顺序强制规则、组件命名唯一性、算式右对齐、文本-填空一致性、序号处理、validate_config.js 字段路径修正
 
 ---
 
@@ -36,6 +36,7 @@ CoursewareMaker_Automation_Toolkit/
     │   └── claude_prompt.md          # Claude提示词
     │
     ├── data/                         # 数据
+    │   ├── layout_constants.json          # 布局常量 + 皮肤-关卡映射（机器可读，校验脚本读取）← 新增！
     │   ├── component_skin_inventory.json  # 皮肤资源清单（机器可读）
     │   ├── component_skin_inventory.md    # 皮肤资源清单（人类可读）
     │   ├── skin_resource_table.tsv        # 皮肤资源表
@@ -68,6 +69,36 @@ CoursewareMaker_Automation_Toolkit/
 6. 生成分享链接
 7. 发布游戏
 ```
+
+### 任务类型：修改已有配置使其符合最新规范
+
+当需要把存量游戏更新到最新皮肤/布局规范时，使用此专用流程，**不要复用"生成配置"流程**。
+
+```
+Step 1. 读取规范（必须先于任何改动）
+        node -e "读取 layout_constants.json + component_skin_inventory.json"
+        重点确认：skin_level_mapping、choice 坐标、keyboard.y、disabled 共用 URL
+
+Step 2. 获取游戏现有 JSON（通过 CDP 或 API）
+        fetch https://sszt-gateway.speiyou.com/beibo/game/config/game?game_id=<ID>
+
+Step 3. 生成差异报告（先列再改）
+        node scripts/validate_config.js <game_id>
+        — 输出每关的不合规项，与操作者确认后再进行下一步
+
+Step 4. 应用修改
+        按差异报告逐项修改，每类问题改完后立即重验该类
+
+Step 5. 再次运行校验脚本确认 0 错误
+        node scripts/validate_config.js <game_id>
+
+Step 6. 导入并保存
+        node scripts/save_game_config_via_cdp.js <game_id> <patched_config.json>
+```
+
+> **关键原则：先列差异再动手，改完立刻再验。不允许跳过 Step 3 和 Step 5。**
+
+---
 
 ### 增强的"步骤3: 生成游戏配置"
 
@@ -301,7 +332,22 @@ python standard_question_toolkit/scripts/split_xinyi_games.py
 
 ## ✅ 配置校验清单
 
-生成配置后必须检查：
+生成或修改配置后，**先运行自动校验脚本**，再执行人工清单：
+
+```bash
+# 自动校验（覆盖：皮肤 hash、选项坐标、键盘 y、disabled 共用 URL、填空框尺寸、z层级、命名唯一性）
+node scripts/validate_config.js <game_id>
+# 或指定本地文件
+node scripts/validate_config.js --file generated_config.json
+```
+
+> **脚本字段路径**（修改或新增脚本时必须遵守，路径写错会导致修改静默失效）：
+> - 组件真实名称：`component_data.name`（`component_name` 对大多数组件显示 `"节点"`，不可用于识别）
+> - 组件 layout（位置/尺寸）：`component_data.states[0].transform`
+> - 组件图片/资源 URL：`component_data.states[0].source.MSprite.value`
+> - 组件 zIndex：`component_data.zIndex`
+
+校验通过后，再做下列人工检查：
 
 ### 基础检查
 - [ ] JSON格式可解析
@@ -335,9 +381,26 @@ python standard_question_toolkit/scripts/split_xinyi_games.py
 - [ ] 行内填空/拖拽使用前文 + 输入框/放置区 + 后文三段结构，后文接在框右边缘
 - [ ] 有配图/表格题：题干、配图、答案区、操作区整体不冲突
 - [ ] 算式行：文本和输入框作为一组居中
+- [ ] 算式类文本 `alignType: right`，文本框右边缘对齐输入框左边缘（gap ≤ 8px）
 - [ ] 同类选择按钮九宫格一致
 - [ ] 题干不包含独立题号，但保留原题完整表达
 - [ ] 选项不额外添加A/B/C/D
+- [ ] 文本内容无 `（1）（2）（3）` 序号前缀，多条件已拆为独立文本组件
+- [ ] 同行 `文本–填空框–文本` 字号和行间距一致；换行情况下已按行手动拆分为独立文本组件
+- [ ] 每关坐标独立按本关内容计算，非模板直接套用
+- [ ] 配图与题干、填空框、键盘无 bounding box 重叠
+
+### 图层检查
+
+- [ ] `【题型说明】` `zIndex = 0`（最低）
+- [ ] `【勿动】背景图片` `zIndex = 1`
+- [ ] 配图 `zIndex = 3`
+- [ ] 所有 `文本-*` 组件 `zIndex = 4`
+- [ ] 输入框、键盘、选项、拖拽物等交互组件 `zIndex ≥ 5`
+
+### 组件命名检查
+
+- [ ] 同一游戏内所有关卡所有组件 `component_data.name` 无重复
 
 ### 分值检查
 - [ ] 每关分值为整数
@@ -459,23 +522,30 @@ node scripts/batch_publish_all_games.js
 # Step 0: 准备题目（结构化格式）
 # 参考 question_input_template.md
 
-# Step 1: 生成配置（使用标准化工具）
+# Step 1: 读取规范常量（必须在生成前完成）
+# 阅读 standard_question_toolkit/data/layout_constants.json
+# 确认皮肤-关卡映射、选项坐标、键盘 y 等规范值
+
+# Step 2: 生成配置（使用标准化工具）
 python standard_question_toolkit/scripts/generate_grade4_config.py
 
-# Step 2: 校验配置
-python -m json.tool generated_config.json > /dev/null && echo "JSON valid"
+# Step 3: 自动合规校验（必须通过，0 错误后再进行下一步）
+node scripts/validate_config.js --file generated_config.json
 
-# Step 3: 创建游戏
+# Step 4: 创建游戏
 node scripts/create_game_auto.js "四年级数学诊断" "模板ID" ""
 
-# Step 4: 导入配置
+# Step 5: 导入配置
 GAME_ID=$(cat latest_game_id.txt)
 node scripts/save_game_config_via_cdp.js "$GAME_ID" "generated_config.json"
 
-# Step 5: 生成分享链接
+# Step 6: 导入后再验一次（确认写入内容一致）
+node scripts/validate_config.js "$GAME_ID"
+
+# Step 7: 生成分享链接
 node scripts/generate_share_link.js "$GAME_ID"
 
-# Step 6: 发布游戏
+# Step 8: 发布游戏
 node scripts/publish_game_auto.js "$GAME_ID" 2026 "2" "3"  # 三年级
 ```
 
@@ -504,6 +574,23 @@ node scripts/publish_game_auto.js "$GAME_ID" 2026 "2" "3"  # 三年级
 
 ## 🆕 版本更新
 
+### v1.3.0 (2026-04-24)
+- ✅ 新增图层顺序强制规则：题型说明=z0 / 背景=z1 / 配图=z3 / 文本=z4 / 交互=z5+
+- ✅ 新增组件命名唯一性要求：`component_data.name` 全游戏无重复，生成时保证
+- ✅ 新增算式文本右对齐规则：`alignType: right`，右边缘对齐输入框左边缘
+- ✅ 新增文本–填空–文本一致性规则：同行字号/行距一致，换行时按行拆分
+- ✅ 新增序号处理规则：文本内不出现 `（1）（2）（3）`，条件拆为独立组件
+- ✅ 新增每关独立排版要求：配图/文本宽度/行数按本关内容单独计算
+- ✅ 修正 `validate_config.js` 字段路径备注，防止脚本静默失效（`component_data.name` / `states[0].transform` / `states[0].source.MSprite.value`）
+- ✅ 校验清单新增图层检查和命名唯一性检查
+
+### v1.2.0 (2026-04-23)
+- ✅ 新增 `layout_constants.json`：布局规范 + 皮肤-关卡映射的机器可读单一来源
+- ✅ 新增 `scripts/validate_config.js`：自动合规校验（皮肤 hash、选项坐标、键盘 y、disabled URL、填空框尺寸）
+- ✅ 新增"修改已有配置"任务类型的标准流程（先列差异、再改、再验）
+- ✅ 在集成流程和校验清单中加入校验步骤（生成前 + 导入后）
+- ✅ 修复 standard_workflow.md 皮肤选择章节，明确三皮肤关卡强制映射
+
 ### v1.1.0 (2026-04-16)
 - ✅ 集成标准化题型生成工具
 - ✅ 新增选择题、填空题、拖拽题支持
@@ -513,5 +600,5 @@ node scripts/publish_game_auto.js "$GAME_ID" 2026 "2" "3"  # 三年级
 
 ---
 
-**最后更新**: 2026-04-16  
-**版本**: 1.1.0
+**最后更新**: 2026-04-24  
+**版本**: 1.3.0
