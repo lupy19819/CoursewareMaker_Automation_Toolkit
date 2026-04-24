@@ -341,6 +341,23 @@ node scripts/validate_config.js <game_id>
 node scripts/validate_config.js --file generated_config.json
 ```
 
+### 工作流基准校验
+
+标准题型的流程路由和校验基准集中保存在：
+
+```text
+standard_question_toolkit/data/courseware_workflow_rules.json
+```
+
+`validation_baselines` 中保存了每种标准玩法题型、每套皮肤的正确 `expected_config`，用于生成配置之后的自动校验。当前覆盖：
+
+- 运动 PK：赛跑/游泳/赛车三套皮肤，按具体 baseline JSON 和 `custom_game` 结构校验
+- 选择题 × 紫/黄/蓝皮肤
+- 填空/计算题 × 紫/黄/蓝皮肤
+- 拖拽题 × 紫/黄/蓝皮肤
+
+修改皮肤、组件状态资源或题型结构时，必须先更新该工作流文件，再更新生成脚本和校验逻辑。不要用游戏 ID 或模板 ID 作为玩法路由标准；平台创建所需 ID 只属于创建参数，不属于校验基准。
+
 > **脚本字段路径**（修改或新增脚本时必须遵守，路径写错会导致修改静默失效）：
 > - 组件真实名称：`component_data.name`（`component_name` 对大多数组件显示 `"节点"`，不可用于识别）
 > - 组件 layout（位置/尺寸）：`component_data.states[0].transform`
@@ -377,7 +394,8 @@ node scripts/validate_config.js --file generated_config.json
 - [ ] 原配置/模板只复用组件骨架和交互字段，坐标按当前题内容重新排版
 - [ ] 已按认知区、关系区、操作区做整体布局
 - [ ] 小中诊断题已按 `diagnostic_visual_choice` / `diagnostic_compute_fill` / `diagnostic_image_reasoning` 三套之一选版
-- [ ] 短题干居中，长题干左对齐
+- [ ] 题干 label 遵循 `question_text_labels`：未超最大字数时 1 个居中 label；超出时拆成 2 个同宽、左对齐的独立 label
+- [ ] `MLabel.value` 中没有用 `\n` 做题干换行
 - [ ] 行内填空/拖拽使用前文 + 输入框/放置区 + 后文三段结构，后文接在框右边缘
 - [ ] 有配图/表格题：题干、配图、答案区、操作区整体不冲突
 - [ ] 算式行：文本和输入框作为一组居中

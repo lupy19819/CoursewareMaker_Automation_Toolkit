@@ -178,29 +178,54 @@ Headers:
 
 ## ⚠️ 创建流程路由规则
 
-**接到任务先判断游戏类型，两套流程不可混用！**
+**接到任务先判断配置数据结构和 baseline JSON，两套流程不可混用。模板 ID 只用于平台创建参数，不作为路由标准。**
 
 ```
 游戏名称/类型包含以下关键词？
     ├─ "赛跑" / "游泳" / "赛车" / "运动PK"
     │       ↓
     │   → 使用【运动PK专用流程】
-    │     模板ID: 47995925-fb37-11ef-8c1b-ce918f8037e8
+    │     数据结构: custom_game
+    │     基准JSON: run_detail.json / swim_detail.json / racecar_detail.json
     │
     └─ 其他所有类型（贪吃小怪兽、标准题型、画板游戏等）
             ↓
         → 使用【通用组件化流程】
-          模板ID: 70a3010b-0b7a-11ef-b3a3-fa7902489df6
+          数据结构: game
+          基准JSON: 标准题/怪兽/画板对应具体 JSON
 ```
 
-| 游戏类型 | 模板ID | 备注 |
-|---------|--------|------|
-| **运动PK赛（赛跑/游泳/赛车）** | `47995925-fb37-11ef-8c1b-ce918f8037e8` | 专属模板，用错会导致游戏无法运行 |
-| **通用组件化游戏** | `70a3010b-0b7a-11ef-b3a3-fa7902489df6` | 贪吃小怪兽、标准题型等 |
+| 游戏类型 | 路由标准 | 备注 |
+|---------|----------|------|
+| **运动PK赛（赛跑/游泳/赛车）** | `custom_game` + `templates/detail_jsons/{run,swim,racecar}_detail.json` | 赛跑/游泳/赛车必须拆成三套皮肤 baseline |
+| **通用组件化游戏** | `game` + 对应玩法具体 JSON | 贪吃小怪兽、标准题型、画板类等 |
 
 ---
 
 ## 完整工作流总览
+
+### 机器可读工作流与校验基准
+
+完整流程路由和生成后校验基准统一保存在：
+
+```text
+standard_question_toolkit/data/courseware_workflow_rules.json
+```
+
+该文件是自动化流程的最高优先级工作流文件，包含：
+
+- `workflow.route_first`：先按具体 baseline JSON 和根数据结构判断运动 PK / 通用组件化，避免混用结构。
+- `workflow.stages`：素材、生成、校验、创建、保存、分享/发布的顺序。
+- `validation_baselines`：正确 `expected_config`，覆盖运动 PK 的赛跑/游泳/赛车三套皮肤，以及标准题型的选择题、填空/计算题、拖拽题 × 紫/黄/蓝三套皮肤。
+- `template_baseline_paths`：运动 PK、贪吃小怪兽、标准题型的原始基准 JSON 路径。
+
+生成配置 JSON 后必须先执行：
+
+```bash
+node scripts/validate_config.js --file <config.json>
+```
+
+校验脚本会读取 `courseware_workflow_rules.json`。运动 PK 按 `custom_game` 结构和 run/swim/racecar baseline JSON 校验；组件化标准题按 `game` 结构逐关识别题型和皮肤，并校验背景、组件互斥关系、题干 label、输入框、键盘、选择按钮、拖拽物和放置框资源。
 
 ### ⚠️ 强制执行顺序（所有游戏类型均适用）
 
@@ -427,8 +452,9 @@ node D:/codexProject/batch_publish_all_games.js
 适用于：赛跑、游泳、赛车。
 
 **与通用流程的区别**：
-- Step 1 使用运动PK专属模板
-- Step 4 使用 `build_yundong_pk_config.py`（含皮肤自动识别）
+- 使用 `custom_game` 数据结构，不使用组件化 `game` 结构。
+- `build_yundong_pk_config.py` 按赛跑/游泳/赛车拆成三套皮肤 baseline，读取 `courseware_workflow_rules.json > yundong_pk_skins`。
+- 创建/保存时按运动 PK 数据结构处理，不按“单个/批量新游戏”区分流程。
 
 ---
 
@@ -442,7 +468,7 @@ node D:/codexProject/create_game_auto.js \
 ```
 
 **运动PK专属信息**：
-- 模板ID: `47995925-fb37-11ef-8c1b-ce918f8037e8`
+- 平台创建参数 template_id: `47995925-fb37-11ef-8c1b-ce918f8037e8`（仅用于创建接口，不作为玩法路由或校验标准）
 - 组件ID: `21dcca07-c1e6-11ef-895a-4eb2c30c826b`（运动PK赛 v0.1.0）
 - 编辑器入口: `customEditor?template_id=47995925-fb37-11ef-8c1b-ce918f8037e8`
 

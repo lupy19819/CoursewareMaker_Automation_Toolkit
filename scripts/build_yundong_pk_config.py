@@ -1,4 +1,5 @@
 import json
+import os
 import re
 import sys
 from copy import deepcopy
@@ -7,12 +8,11 @@ from pathlib import Path
 import openpyxl
 
 
-ROOT = Path(r"D:\codexProject")
+REPO_ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(os.environ.get("COURSEWARE_WORKDIR", r"D:\codexProject"))
 RESOURCE_JSON = ROOT / "latest_resources.json"
 QUESTION_XLSX = ROOT / "zhiyinlou_race_test_latest.xlsx"
-RUN_STABLE_DETAIL = ROOT / "8fbe9ab9-28fa-11f1-906b-da4a8224db76.detail.json"
-SWIM_ENV_DETAIL = ROOT / "1034b0ba-e534-11f0-9165-0e324dbd00ee.detail.json"
-RACECAR_ENV_DETAIL = Path(r"D:\迅雷下载\赛车玩法_测试配置_单行版.json")
+WORKFLOW_RULES_JSON = REPO_ROOT / "standard_question_toolkit" / "data" / "courseware_workflow_rules.json"
 
 
 def resolve_sheet_name(workbook: openpyxl.Workbook, sheet_name: str) -> str:
@@ -95,6 +95,25 @@ def load_template_from_game_detail(path: Path) -> tuple[dict, dict]:
     if "custom_game" in detail and "common" in detail:
         return {"game_name": path.stem, "configuration": None}, detail
     raise KeyError(f"Unsupported template format: {path}")
+
+
+def load_workflow_rules() -> dict:
+    return json.loads(WORKFLOW_RULES_JSON.read_text(encoding="utf-8"))
+
+
+def resolve_repo_path(path_value: str) -> Path:
+    path = Path(path_value)
+    if path.is_absolute():
+        return path
+    return REPO_ROOT / path
+
+
+def get_yundong_skin_baseline(subtype: str) -> Path:
+    rules = load_workflow_rules()
+    skin = rules.get("yundong_pk_skins", {}).get(subtype)
+    if not skin:
+        raise KeyError(f"Missing yundong skin baseline in workflow rules: {subtype}")
+    return resolve_repo_path(skin["baseline_json_path"])
 
 
 def infer_subtype(sheet_name: str) -> str:
@@ -215,15 +234,8 @@ def main() -> None:
     questions = load_questions(question_xlsx, sheet_name)
     target_result, _target_config = load_template_from_game_detail(game_detail_json)
     subtype = infer_subtype(sheet_name)
-    skeleton_result, config = load_template_from_game_detail(RUN_STABLE_DETAIL)
-    if subtype == "swim":
-        _env_result, env_config = load_template_from_game_detail(SWIM_ENV_DETAIL)
-        apply_environment_template(config, env_config)
-        apply_topic_style_template(config, env_config)
-    elif subtype == "racecar":
-        _env_result, env_config = load_template_from_game_detail(RACECAR_ENV_DETAIL)
-        apply_environment_template(config, env_config)
-        apply_topic_style_template(config, env_config)
+    skin_baseline = get_yundong_skin_baseline(subtype)
+    skeleton_result, config = load_template_from_game_detail(skin_baseline)
 
     resource_rows = load_resource_rows()
     resource_lookup = load_resource_lookup(resource_rows)
@@ -235,6 +247,7 @@ def main() -> None:
         "sheet_name": sheet_name,
         "game_name": target_result["game_name"],
         "subtype": subtype,
+        "skin_baseline": str(skin_baseline),
         "skeleton_source": skeleton_result["game_name"],
         "question_count": total_levels,
         "levels": [],

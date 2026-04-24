@@ -4,6 +4,8 @@ import uuid
 from pathlib import Path
 from unicodedata import east_asian_width
 
+from question_text_layout import get_question_label_specs
+
 # Layout note:
 # This script is an example generator with some fixed coordinates retained for
 # historical test sets. New generators should follow
@@ -198,6 +200,24 @@ def clone_component(component, name=None):
     return new_component
 
 
+def apply_question_text_labels(level, proto_text, value, profile, center_x, center_y, font_size=None, base_name=STEM_NAME):
+    specs = get_question_label_specs(value, profile, font_size=font_size, center_x=center_x, center_y=center_y)
+    labels = []
+    for index, spec in enumerate(specs):
+        text = proto_text if index == 0 else clone_component(proto_text)
+        suffix = "" if len(specs) == 1 else f"-行{index + 1}"
+        text["component_data"]["name"] = f"{base_name}{suffix}"
+        text["component_data"]["zIndex"] = 4
+        set_label(text, spec["text"], font_size=spec["font_size"], align=spec["align"])
+        set_transform(text, x=spec["x"], y=spec["y"], w=spec["w"], h=spec["h"])
+        labels.append(text)
+    if proto_text not in level["components"]:
+        level["components"].append(proto_text)
+    for text in labels[1:]:
+        level["components"].append(text)
+    return labels
+
+
 def make_choice(template, stem, options, correct_index, level_no, selected_audio=None):
     level = fresh_ids(copy.deepcopy(template))
     level["levelData"]["judge"] = {"autoJudge": 0, "judgeRule": 0}
@@ -214,8 +234,15 @@ def make_choice(template, stem, options, correct_index, level_no, selected_audio
     ]
     for component in level["components"]:
         if component.get("component_data", {}).get("name") == STEM_NAME:
-            set_label(component, stem, font_size=44, align="center")
-            set_transform(component, x=0, y=160, w=1600, h=280)
+            apply_question_text_labels(
+                level,
+                component,
+                stem,
+                "purple_choice_stem",
+                center_x=0,
+                center_y=175,
+                font_size=60,
+            )
     choices = [c for c in level["components"] if c.get("component_id") == CHOICE_ID]
     choices.sort(key=lambda c: c["component_data"]["states"][0]["transform"]["x"])
     while len(choices) > len(options):
@@ -332,9 +359,15 @@ def make_fill(
     if row_labels:
         # Add a centered stem header using the first text component's clone.
         header = clone_component(proto_text, "【可修改】文本-题干")
-        set_label(header, stem, font_size=44, align="center")
-        set_transform(header, x=0, y=330, w=1600, h=120)
-        level["components"].append(header)
+        apply_question_text_labels(
+            level,
+            header,
+            stem,
+            "yellow_title" if len(stem) <= 8 else "yellow_body",
+            center_x=0,
+            center_y=330,
+            font_size=44 if len(stem) <= 8 else 52,
+        )
 
     normalize_blank_level(level)
     for idx, component in enumerate(level["components"]):

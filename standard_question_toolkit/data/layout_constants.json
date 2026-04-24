@@ -51,6 +51,73 @@
     "_note": "普通输入框标准尺寸，不允许拉伸变形"
   },
 
+  "question_text_labels": {
+    "_note": "题干文本必须按行拆成独立 MLabel。单行不超 max_chars 时使用 1 个居中 label；超出时拆成 2 个 label，两个 label 同宽、整组居中，label 内部左对齐。内联图片、填空框、选项、拖拽放置框不计入文本 label。",
+    "max_text_w": 1800,
+    "safe_margin_x": 120,
+    "padding_x": 32,
+    "padding_y": 20,
+    "inline_object_char_penalty": 3,
+    "profiles": {
+      "purple_choice_stem": {
+        "max_chars": 24,
+        "font_size": 60,
+        "label_h": 88,
+        "line_gap": 86,
+        "min_label_w": 640,
+        "_note": "紫色选择题大题干"
+      },
+      "purple_choice_medium": {
+        "max_chars": 28,
+        "font_size": 52,
+        "label_h": 82,
+        "line_gap": 82,
+        "min_label_w": 640,
+        "_note": "紫色选择题中等题干或带图题干"
+      },
+      "yellow_title": {
+        "max_chars": 8,
+        "font_size": 80,
+        "label_h": 82,
+        "line_gap": 82,
+        "min_label_w": 320,
+        "_note": "黄色计算题短标题"
+      },
+      "yellow_body": {
+        "max_chars": 24,
+        "font_size": 75,
+        "label_h": 104,
+        "line_gap": 100,
+        "min_label_w": 640,
+        "_note": "黄色正文或图形题干"
+      },
+      "blue_body": {
+        "max_chars": 30,
+        "font_size": 60,
+        "label_h": 88,
+        "line_gap": 86,
+        "min_label_w": 760,
+        "_note": "蓝色应用题条件题干"
+      },
+      "blue_question": {
+        "max_chars": 22,
+        "font_size": 75,
+        "label_h": 104,
+        "line_gap": 100,
+        "min_label_w": 760,
+        "_note": "蓝色重点问句或填空句"
+      },
+      "default_stem": {
+        "max_chars": 28,
+        "font_size": 50,
+        "label_h": 86,
+        "line_gap": 84,
+        "min_label_w": 640,
+        "_note": "普通标准题题干兜底规则"
+      }
+    }
+  },
+
   "skin_level_mapping": [
     {
       "skin_name": "紫色界面",

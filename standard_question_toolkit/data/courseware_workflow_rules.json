@@ -1,0 +1,379 @@
+{
+  "version": "2026-04-24",
+  "purpose": "CoursewareMaker 自动化生成流程与生成后校验基准。生成配置后，validate_config.js 读取 validation_baselines 中的 expected_config 做结构、皮肤、组件资源和布局校验。",
+  "platform_creation_profiles": {
+    "_note": "仅用于平台创建接口参数，不作为玩法路由标准。玩法路由必须以 route_first[].baseline_json_path 和 data_shape 为准。",
+    "componentized": "70a3010b-0b7a-11ef-b3a3-fa7902489df6",
+    "yundong_pk": "47995925-fb37-11ef-8c1b-ce918f8037e8"
+  },
+  "workflow": {
+    "route_first": [
+      {
+        "when": "游戏名称或类型包含 赛跑、游泳、赛车、运动PK",
+        "gameplay_family": "yundong_pk",
+        "data_shape": "custom_game",
+        "baseline_json_path": "templates/detail_jsons/run_detail.json",
+        "skin_baseline_paths": {
+          "run": "templates/detail_jsons/run_detail.json",
+          "swim": "templates/detail_jsons/swim_detail.json",
+          "racecar": "templates/detail_jsons/racecar_detail.json"
+        },
+        "build_script": "scripts/build_yundong_pk_config.py"
+      },
+      {
+        "when": "其他组件化游戏：标准题型、贪吃小怪兽、画板类等",
+        "gameplay_family": "componentized",
+        "data_shape": "game",
+        "baseline_json_path": "standard_question_toolkit/templates/base_choice_fill_template.json",
+        "build_scripts": [
+          "standard_question_toolkit/scripts/generate_grade3_config.py",
+          "standard_question_toolkit/scripts/generate_grade4_config.py",
+          "scripts/build_sj6_monster_config.py"
+        ]
+      }
+    ],
+    "stages": [
+      "准备题目结构和素材清单",
+      "上传素材资源并确认 URL",
+      "按玩法路由生成配置 JSON",
+      "按本文件 validation_baselines 校验生成配置",
+      "按玩法路由的数据结构选择创建/保存路径：custom_game 走运动PK结构，game 走组件化结构",
+      "生成分享链接或发布游戏"
+    ],
+    "post_generation_gate": {
+      "command": "node scripts/validate_config.js --file <config.json>",
+      "must_pass_before_save": true
+    }
+  },
+  "component_ids": {
+    "choice": "3b9b8ec3-f7d3-11ee-b9ef-8e2f78cd4bcd",
+    "fill_blank": "0b26ef14-f7e0-11ee-b9ef-8e2f78cd4bcd",
+    "drag_item": "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd",
+    "drag_place": "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd"
+  },
+  "skins": {
+    "fc9fbc3b": {
+      "name": "紫色界面",
+      "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fc9fbc3b0b55dc4437b75e7a2da0705c.png",
+      "text_profile": "purple_choice_stem"
+    },
+    "e91dcb10": {
+      "name": "黄色界面",
+      "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e91dcb1074e2690921f195bc88a07346.png",
+      "text_profile": "yellow_body"
+    },
+    "291cc642": {
+      "name": "蓝色界面",
+      "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/291cc642d06465540b7a25d3c3c1ff68.png",
+      "text_profile": "blue_body"
+    }
+  },
+  "yundong_pk_skins": {
+    "run": {
+      "name": "赛跑皮肤",
+      "baseline_json_path": "templates/detail_jsons/run_detail.json",
+      "required_data_shape": "custom_game",
+      "scene_marker_path": "common.custom.additional_environment.scene.images.startBtnImg.image"
+    },
+    "swim": {
+      "name": "游泳皮肤",
+      "baseline_json_path": "templates/detail_jsons/swim_detail.json",
+      "required_data_shape": "custom_game",
+      "scene_marker_path": "common.custom.additional_environment.scene.images.startBtnImg.image"
+    },
+    "racecar": {
+      "name": "赛车皮肤",
+      "baseline_json_path": "templates/detail_jsons/racecar_detail.json",
+      "required_data_shape": "custom_game",
+      "scene_marker_path": "common.custom.additional_environment.scene.images.ArrowImg"
+    }
+  },
+  "gameplay_types": {
+    "standard_choice": {
+      "name": "标准选择题",
+      "required_component_ids": ["3b9b8ec3-f7d3-11ee-b9ef-8e2f78cd4bcd"],
+      "forbidden_component_ids": ["0b26ef14-f7e0-11ee-b9ef-8e2f78cd4bcd", "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd", "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd"],
+      "layout_refs": ["choice_3_options", "choice_4_options"],
+      "question_text_default_profile": "purple_choice_stem"
+    },
+    "standard_fill_compute": {
+      "name": "标准填空/计算题",
+      "required_component_ids": ["0b26ef14-f7e0-11ee-b9ef-8e2f78cd4bcd"],
+      "forbidden_component_ids": ["3b9b8ec3-f7d3-11ee-b9ef-8e2f78cd4bcd", "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd", "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd"],
+      "layout_refs": ["fill_blank", "keyboard"],
+      "question_text_default_profile": "yellow_body"
+    },
+    "standard_drag": {
+      "name": "标准拖拽题",
+      "required_component_ids": ["d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd", "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd"],
+      "forbidden_component_ids": ["3b9b8ec3-f7d3-11ee-b9ef-8e2f78cd4bcd", "0b26ef14-f7e0-11ee-b9ef-8e2f78cd4bcd"],
+      "layout_refs": ["submit"],
+      "question_text_default_profile": "yellow_body"
+    }
+  },
+  "shared_assets": {
+    "keyboard_disabled_states": {
+      "number_button_disabled": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/4fe2313bc3d44fc681937b4ed1e0c3cb.png",
+      "delete_button_disabled": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/0a23b63d9efb53a24a4d116190a77d0a.png",
+      "confirm_button_disabled": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/ce0f85578a6b3c6b81893dbe88062fef.png"
+    }
+  },
+  "validation_baselines": {
+    "yundong_pk__run": {
+      "gameplay_family": "yundong_pk",
+      "skin_key": "run",
+      "expected_config": {
+        "baseline_json_path": "templates/detail_jsons/run_detail.json",
+        "data_shape": "custom_game",
+        "root_keys": ["additional_custom_game", "common", "components", "custom_game"],
+        "level_array_key": "custom_game",
+        "required_paths": [
+          "common.custom.additional_environment",
+          "common.custom.additional_environment.scene",
+          "common.custom.additional_environment.character",
+          "custom_game[0].topics[0].title_res"
+        ]
+      }
+    },
+    "yundong_pk__swim": {
+      "gameplay_family": "yundong_pk",
+      "skin_key": "swim",
+      "expected_config": {
+        "baseline_json_path": "templates/detail_jsons/swim_detail.json",
+        "data_shape": "custom_game",
+        "root_keys": ["additional_custom_game", "common", "components", "custom_game"],
+        "level_array_key": "custom_game",
+        "required_paths": [
+          "common.custom.additional_environment",
+          "common.custom.additional_environment.scene",
+          "common.custom.additional_environment.character",
+          "custom_game[0].topics[0].title_res"
+        ]
+      }
+    },
+    "yundong_pk__racecar": {
+      "gameplay_family": "yundong_pk",
+      "skin_key": "racecar",
+      "expected_config": {
+        "baseline_json_path": "templates/detail_jsons/racecar_detail.json",
+        "data_shape": "custom_game",
+        "root_keys": ["additional_custom_game", "common", "components", "custom_game"],
+        "level_array_key": "custom_game",
+        "required_paths": [
+          "common.custom.additional_environment",
+          "common.custom.additional_environment.scene",
+          "common.custom.additional_environment.character",
+          "custom_game[0].topics[0].title_res"
+        ]
+      }
+    },
+    "standard_choice__fc9fbc3b": {
+      "gameplay_type": "standard_choice",
+      "skin_key": "fc9fbc3b",
+      "expected_config": {
+        "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fc9fbc3b0b55dc4437b75e7a2da0705c.png",
+        "question_text_profile": "purple_choice_stem",
+        "component_assets": {
+          "choice_button": {
+            "default": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7c040c641121266c3c82f3435ffb6793.png",
+            "choice": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7fee2e4075d41cfc456c5e8ca8370f6a.png",
+            "correct_feedback": {
+              "correct_1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/d6fc9acebab9d8b331c78911a1fe1067.png",
+              "correct_2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/184a2d28979fb0f2a4cbfaafbfbcc2cd.png"
+            },
+            "wrong_feedback": {
+              "wrong_1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b7bf8aeacba7de40410621df45c47aa8.png",
+              "wrong_2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/48d46d91f2610b21f0f0ca2b56c9566f.png"
+            }
+          }
+        }
+      }
+    },
+    "standard_choice__e91dcb10": {
+      "gameplay_type": "standard_choice",
+      "skin_key": "e91dcb10",
+      "expected_config": {
+        "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e91dcb1074e2690921f195bc88a07346.png",
+        "question_text_profile": "yellow_body",
+        "component_assets": {
+          "choice_button": {
+            "default": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/9a5071a983af8dac27dd3d9e60aecd21.png",
+            "choice": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2eaf202765251134377e119b314959e4.png",
+            "correct_feedback": {
+              "correct_1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/6f6bd133b14fd89bb2af6de64fb94d81.png",
+              "correct_2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7ad10d1c403adae3997d1955f6ad9e97.png"
+            },
+            "wrong_feedback": {
+              "wrong_1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/ec140265c9bb4a2910185746265b74ff.png",
+              "wrong_2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1bde273fb93683b50d083b69bf8194ef.png"
+            }
+          }
+        }
+      }
+    },
+    "standard_choice__291cc642": {
+      "gameplay_type": "standard_choice",
+      "skin_key": "291cc642",
+      "expected_config": {
+        "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/291cc642d06465540b7a25d3c3c1ff68.png",
+        "question_text_profile": "blue_body",
+        "component_assets": {
+          "choice_button": {
+            "default": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2832c12dc7f481b332cd905e8b15e8ae.png",
+            "choice": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/88bb6cdb7b1bcbdf05da26f9713f6c90.png",
+            "correct_feedback": {
+              "correct_1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/a4536b3b51e4db09e1720a26c02b35cf.png",
+              "correct_2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fe2f8022e268b22de49786df28e907b3.png"
+            },
+            "wrong_feedback": {
+              "wrong_1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/17432b2cfc8725d8036912131f929abd.png",
+              "wrong_2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/60bdec0f45018de84016133d798a1a63.png"
+            }
+          }
+        }
+      }
+    },
+    "standard_fill_compute__fc9fbc3b": {
+      "gameplay_type": "standard_fill_compute",
+      "skin_key": "fc9fbc3b",
+      "expected_config": {
+        "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fc9fbc3b0b55dc4437b75e7a2da0705c.png",
+        "question_text_profile": "purple_choice_medium",
+        "component_assets": {
+          "input_box": {
+            "default": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/776bee00986b7376945aff055595195f.png",
+            "answering": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/6dc3dd9d05cce9aa16d12e86e969a799.png",
+            "correct": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/bbfec0d914b0dbfe76a7b1b152ee3388.png",
+            "wrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e2a67f9e6c73b7e1c381f3227fe3d7fc.png"
+          },
+          "keyboard": {
+            "number_button_normal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ac6ac4d5f97522010cc4ecc368f61c9.png",
+            "delete_button_normal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/3ffee83b3bd6a7264518c3e2a5e9c82c.png",
+            "confirm_button_normal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/d1ca24dd88c958757a1ca5e5326a9de9.png",
+            "number_button_pressed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/34b27e6ea0066dd2cab8f743fc2c747f.png",
+            "delete_button_pressed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/697c5c3ecc541947af71a1518e616105.png",
+            "confirm_button_pressed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c0f0a0ca8ef4b8f127500cc4338356fa.png"
+          }
+        }
+      }
+    },
+    "standard_fill_compute__e91dcb10": {
+      "gameplay_type": "standard_fill_compute",
+      "skin_key": "e91dcb10",
+      "expected_config": {
+        "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e91dcb1074e2690921f195bc88a07346.png",
+        "question_text_profile": "yellow_body",
+        "component_assets": {
+          "input_box": {
+            "default": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/52103843c58078ab5440e4671e218299.png",
+            "answering": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/674a213d6a38de357469b7c8917dc34a.png",
+            "correct": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c3641f61a1e36dc71d693bc544b41505.png",
+            "wrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7cc7ae37d75ffb43baa1817f66adafa8.png"
+          },
+          "keyboard": {
+            "number_button_normal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd01db1ca052bbef7e8506c3f2000683.png",
+            "delete_button_normal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f6b558698b5775d1fd3e227997f9cd6.png",
+            "confirm_button_normal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dd82529a9d8bd622b2c8f1677b228a56.png",
+            "number_button_pressed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2ea4d19806d5d3a4eb71bb070b728b59.png",
+            "delete_button_pressed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/40d7183ea70a19e145ed423fb12bf9a0.png",
+            "confirm_button_pressed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/5c6e68be58abb30d5a0b8a833f9a01fb.png"
+          }
+        }
+      }
+    },
+    "standard_fill_compute__291cc642": {
+      "gameplay_type": "standard_fill_compute",
+      "skin_key": "291cc642",
+      "expected_config": {
+        "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/291cc642d06465540b7a25d3c3c1ff68.png",
+        "question_text_profile": "blue_body",
+        "component_assets": {
+          "input_box": {
+            "default": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/405c3617f7e6ef27bec1783b1e24f00d.png",
+            "answering": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/38d281b2bc32f4ec45bd0e6fc2f01279.png",
+            "correct": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/c6c05e0551b4f1738a03a290fdf68066.png",
+            "wrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/7f4f64fff427cc0d73b7acf3339f2ae5.png"
+          },
+          "keyboard": {
+            "number_button_normal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e5512d503b36022cdf4f24b926b0a7b8.png",
+            "delete_button_normal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/cc743b5b6ab63a8ac22714a7f92f8418.png",
+            "confirm_button_normal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/b65750d3655ed121cb690097fdd4c884.png",
+            "number_button_pressed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/f711f615f583064fc85c74c8e895e297.png",
+            "delete_button_pressed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8fcd2c1c0cfe50e0087ef47eb901722d.png",
+            "confirm_button_pressed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/70c2b00cdaab71cbf1d6af596d9a3fae.png"
+          }
+        }
+      }
+    },
+    "standard_drag__fc9fbc3b": {
+      "gameplay_type": "standard_drag",
+      "skin_key": "fc9fbc3b",
+      "expected_config": {
+        "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fc9fbc3b0b55dc4437b75e7a2da0705c.png",
+        "question_text_profile": "purple_choice_medium",
+        "component_assets": {
+          "drag_item": {
+            "default": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8b2fc9822b3e6792c91bba4c1b828626.png",
+            "dragging": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8b2fc9822b3e6792c91bba4c1b828626.png",
+            "placed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8b2fc9822b3e6792c91bba4c1b828626.png"
+          },
+          "drag_place": {
+            "default": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2aa01e7db9dea94e29aa0d299830b117.png",
+            "adsorb": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/2aa01e7db9dea94e29aa0d299830b117.png",
+            "adsorbed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/6ac500c4a363583e91abfc2de4fa6437.png",
+            "placed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/6ac500c4a363583e91abfc2de4fa6437.png"
+          }
+        }
+      }
+    },
+    "standard_drag__e91dcb10": {
+      "gameplay_type": "standard_drag",
+      "skin_key": "e91dcb10",
+      "expected_config": {
+        "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/e91dcb1074e2690921f195bc88a07346.png",
+        "question_text_profile": "yellow_body",
+        "component_assets": {
+          "drag_item": {
+            "default": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dafc60f4ca960667071004011acbf26e.png",
+            "dragging": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dafc60f4ca960667071004011acbf26e.png",
+            "placed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/dafc60f4ca960667071004011acbf26e.png"
+          },
+          "drag_place": {
+            "default": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/95a90263bb3603ceff4973734e5e197c.png",
+            "adsorb": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/95a90263bb3603ceff4973734e5e197c.png",
+            "adsorbed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f80da77c1cb9ee47188efb12edde7a3.png",
+            "placed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/1f80da77c1cb9ee47188efb12edde7a3.png"
+          }
+        }
+      }
+    },
+    "standard_drag__291cc642": {
+      "gameplay_type": "standard_drag",
+      "skin_key": "291cc642",
+      "expected_config": {
+        "background": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/291cc642d06465540b7a25d3c3c1ff68.png",
+        "question_text_profile": "blue_body",
+        "component_assets": {
+          "drag_item": {
+            "default": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd11124c012e3f2548e72091d42c2d9c.png",
+            "dragging": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd11124c012e3f2548e72091d42c2d9c.png",
+            "placed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/fd11124c012e3f2548e72091d42c2d9c.png"
+          },
+          "drag_place": {
+            "default": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8eb0689d5bdd85e4a2acfa14bfe79526.png",
+            "adsorb": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/8eb0689d5bdd85e4a2acfa14bfe79526.png",
+            "adsorbed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/ff655b52512bbbe5c1edd1e93a726d2c.png",
+            "placed": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-22/ff655b52512bbbe5c1edd1e93a726d2c.png"
+          }
+        }
+      }
+    }
+  },
+  "template_baseline_paths": {
+    "yundong_pk_run": "templates/detail_jsons/run_detail.json",
+    "yundong_pk_swim": "templates/detail_jsons/swim_detail.json",
+    "yundong_pk_racecar": "templates/detail_jsons/racecar_detail.json",
+    "monster": "templates/detail_jsons/monster_detail.json",
+    "standard_question": "standard_question_toolkit/templates/base_choice_fill_template.json"
+  }
+}

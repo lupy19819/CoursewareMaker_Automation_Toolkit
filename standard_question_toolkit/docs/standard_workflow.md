@@ -119,6 +119,8 @@
 - 题干不要写题号。
 - 选项本身已有文字时，不额外加 `A/B/C/D`。
 - 文本字号和对齐按角色统一：短题干 60 居中，长题干 50 左对齐，条件句 50，答案句 54，选项 38。
+- 题干文本按 `layout_constants.json > question_text_labels` 执行：未超过单行最大字数时只生成 1 个居中 label；超过后拆成 2 个独立 label，两个 label 同宽、整组居中、内部左对齐。
+- 不允许把题干换行写进同一个 `MLabel.value`；每一行题干必须是单独组件，组件名用 `-行1`、`-行2` 区分。
 - 算式题文本框宽度按算式长度计算，文本框和输入框作为一个整体居中。
 - 单文本填空题：不要用空格占位；拆成 `answer_prefix + QuestionForBlank + answer_suffix`，后文文本起点接在输入框右侧。
 - 长文本填空题：拆成条件句和作答组合；如果放不下，整体换行，不让单个文本组件自动换行包住输入框。
@@ -235,6 +237,14 @@ node scripts/validate_config.js <game_id>
 # 或本地文件
 node scripts/validate_config.js --file config.json
 ```
+
+自动校验现在以 `data/courseware_workflow_rules.json` 作为工作流基准文件：
+
+- `validation_baselines` 保存每种标准玩法题型、每套皮肤的正确 `expected_config`。
+- 选择题、填空/计算题、拖拽题分别与紫色、黄色、蓝色皮肤形成独立 baseline。
+- 运动 PK 不按模板 ID 路由，而按 `custom_game` 数据结构和 run / swim / racecar 具体 baseline JSON 校验。
+- 生成后的关卡会先识别组件类型，再按 `题型 + 皮肤` 找 baseline 校验背景图、组件互斥关系、交互组件资源、题干 label 规则和固定布局。
+- 修改皮肤资源、题型组件或 workflow 顺序时，先改 `courseware_workflow_rules.json`，再改生成脚本；不要把校验规则散落在多个脚本里。
 
 > **脚本字段路径备忘**（写脚本时必须使用正确路径，否则修改静默失效）：
 > - 组件真实名称：`component_data.name`（顶层 `component_name` 对大多数组件显示 `"节点"`，不可用）

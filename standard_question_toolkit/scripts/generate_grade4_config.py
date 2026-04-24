@@ -4,6 +4,8 @@ import uuid
 from pathlib import Path
 from unicodedata import east_asian_width
 
+from question_text_layout import get_question_label_specs
+
 # Layout note:
 # This script is an example generator with some fixed coordinates retained for
 # historical test sets. New generators should follow
@@ -179,6 +181,24 @@ def clone_component(component, name=None):
     return cloned
 
 
+def apply_question_text_labels(level, proto_text, value, profile, center_x, center_y, font_size=None, base_name=STEM_NAME):
+    specs = get_question_label_specs(value, profile, font_size=font_size, center_x=center_x, center_y=center_y)
+    labels = []
+    for index, spec in enumerate(specs):
+        text = proto_text if index == 0 else clone_component(proto_text)
+        suffix = "" if len(specs) == 1 else f"-行{index + 1}"
+        text["component_data"]["name"] = f"{base_name}{suffix}"
+        text["component_data"]["zIndex"] = 4
+        set_label(text, spec["text"], font_size=spec["font_size"], align=spec["align"])
+        set_transform(text, x=spec["x"], y=spec["y"], w=spec["w"], h=spec["h"])
+        labels.append(text)
+    if proto_text not in level["components"]:
+        level["components"].append(proto_text)
+    for text in labels[1:]:
+        level["components"].append(text)
+    return labels
+
+
 def blank_answer(component, answer):
     tool = component["component_data"]["components"]["tools"]["QuestionForBlank"]
     tool["anwserConfig"] = {"answerType": "number", "anwser": str(answer)}
@@ -255,8 +275,15 @@ def make_choice(template, stem, options, correct_index, selected_audio):
     level["levelData"]["judge"] = {"autoJudge": 0, "judgeRule": 0}
     for component in level["components"]:
         if component.get("component_data", {}).get("name") == STEM_NAME:
-            set_label(component, stem, font_size=44, align="center")
-            set_transform(component, x=0, y=140, w=1500, h=260)
+            apply_question_text_labels(
+                level,
+                component,
+                stem,
+                "purple_choice_stem",
+                center_x=0,
+                center_y=150,
+                font_size=60,
+            )
     choices = [c for c in level["components"] if c.get("component_id") == CHOICE_ID]
     choices.sort(key=lambda c: c["component_data"]["states"][0]["transform"]["x"])
     while len(choices) > len(options):
@@ -310,9 +337,15 @@ def make_fill(template, stem, answers, row_labels=None, header_y=330, rows_y=Non
 
     if row_labels:
         header = clone_component(proto_text, "【可修改】文本-题干")
-        set_label(header, stem, font_size=44, align="center")
-        set_transform(header, x=0, y=header_y, w=1550, h=130)
-        level["components"].append(header)
+        apply_question_text_labels(
+            level,
+            header,
+            stem,
+            "yellow_title" if len(stem) <= 8 else "yellow_body",
+            center_x=0,
+            center_y=header_y,
+            font_size=44 if len(stem) <= 8 else 52,
+        )
 
     for i, text in enumerate(text_components):
         value = row_labels[i] if row_labels else (stem if i == 0 else "")
@@ -361,8 +394,16 @@ def make_inline_fill(template, stem, answer, blank_x, blank_y, align="center", t
         if c.get("component_id") == BASE_ID and c.get("component_data", {}).get("base") == "MLabel"
     )
     blank = next(c for c in level["components"] if c.get("component_id") == BLANK_ID)
-    set_label(text, stem, font_size=44, align=align)
-    set_transform(text, x=0, y=135, w=text_w, h=text_h)
+    profile = "blue_body" if text_h >= 210 or align == "left" else "default_stem"
+    apply_question_text_labels(
+        level,
+        text,
+        stem,
+        profile,
+        center_x=0,
+        center_y=135,
+        font_size=44,
+    )
     set_transform(blank, x=blank_x, y=blank_y, w=ORDINARY_BLANK_SIZE[0], h=ORDINARY_BLANK_SIZE[1])
     normalize_blank_level(level)
     reindex(level)
