@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 
 
-ROOT = Path("/Users/tal/Downloads/CoursewareMaker_Automation_Toolkit")
+ROOT = Path(__file__).resolve().parent.parent
 BASE_CONFIG = ROOT / "generated_configs/grade4_summer_diagnostic_full_config.json"
 OUTPUT = ROOT / "generated_configs/codextest4_practice_config.json"
 sys.path.insert(0, str(ROOT / "standard_question_toolkit/scripts"))
