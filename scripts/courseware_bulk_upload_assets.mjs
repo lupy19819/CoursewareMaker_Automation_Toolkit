@@ -2,6 +2,11 @@
 import crypto from "node:crypto";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const UPLOAD_LOG = path.resolve(__dirname, "../output/upload_log.jsonl");
+const SHEET_URL = "https://yach-doc-shimo.zhiyinlou.com/sheets/47kgJmVE1gS1BOqV/Xwvzy";
 
 const BUCKET = "courseware-maker-1252161091";
 const REGION = "ap-beijing";
@@ -251,8 +256,38 @@ async function main() {
     };
   });
 
-  await createResources({ token, items: uploaded });
+  const result = await createResources({ token, items: uploaded });
   console.log(`Done. Registered ${uploaded.length} resource(s).`);
+
+  // ── 自动记录上传日志，供 sheet 同步使用 ──
+  const createdAt = new Date().toISOString();
+  // API 返回的 result 可能是数组（每条资源）或带 list 字段
+  const resultItems = Array.isArray(result.result)
+    ? result.result
+    : result.result?.list ?? [];
+
+  const logEntries = uploaded.map((item, i) => {
+    const apiItem = resultItems[i] || {};
+    return {
+      id: apiItem.id ?? null,
+      name: item.name,
+      category: item.category,
+      url: item.url,
+      desc: item.desc,
+      topic: item.topic,
+      tag: item.tag,
+      type: item.type,
+      creator: user.name || user.empNo,
+      updatedAt: apiItem.updatedAt ?? createdAt,
+      synced: false,           // 标记是否已同步到表格
+    };
+  });
+
+  await fs.mkdir(path.dirname(UPLOAD_LOG), { recursive: true });
+  const lines = logEntries.map((e) => JSON.stringify(e)).join("\n") + "\n";
+  await fs.appendFile(UPLOAD_LOG, lines, "utf8");
+  console.log(`[sheet-sync] ${logEntries.length} 条记录已写入 ${UPLOAD_LOG}`);
+  console.log(`[sheet-sync] SHEET_SYNC_NEEDED:${SHEET_URL}`);
 }
 
 main().catch((error) => {
