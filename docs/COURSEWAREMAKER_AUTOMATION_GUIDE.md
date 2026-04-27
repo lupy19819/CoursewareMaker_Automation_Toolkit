@@ -16,11 +16,12 @@
 6. [完整工作流总览](#完整工作流总览)
 7. [通用游戏完整流程](#通用游戏完整流程)
 8. [运动PK游戏完整流程（赛跑/游泳/赛车）](#运动pk游戏完整流程)
-9. [画板组件资源替换流程](#画板组件资源替换流程)
-10. [工具和脚本说明](#工具和脚本说明)
-11. [API参考](#api参考)
-12. [故障排除](#故障排除)
-13. [附录](#附录)
+9. [模板游戏专用流程（公路大冒险/贪吃小怪兽等）](#模板游戏专用流程)
+10. [画板组件资源替换流程](#画板组件资源替换流程)
+11. [工具和脚本说明](#工具和脚本说明)
+12. [API参考](#api参考)
+13. [故障排除](#故障排除)
+14. [附录](#附录)
 
 ---
 
@@ -33,10 +34,9 @@
 | 类别 | 具体类型 | 创建流程 |
 |------|---------|---------|
 | **运动PK类** | 赛跑、游泳、赛车 | 运动PK专用流程 |
-| **贪吃小怪兽** | — | 通用流程 |
-| **标准化题型** | 填空题、选择题、拖拽题 | 通用流程 |
-| **画板类游戏** | 含"画板-XX"组件的游戏 | 通用流程 + 资源替换 |
-| **其他组件化游戏** | — | 通用流程 |
+| **模板游戏类** | 贪吃小怪兽、公路大冒险（绿地/沙漠）等 | 模板游戏专用流程 |
+| **通用组件化** | 自动排版算术题（填空、选择、拖拽等） | 通用组件化流程 |
+| **画板类游戏** | 含"画板-XX"组件的游戏 | 通用组件化流程 + 资源替换 |
 
 ---
 
@@ -104,6 +104,8 @@ D:/codexProject/
 │
 ├── 配置生成脚本
 │   ├── build_yundong_pk_config.py             # 运动PK配置生成（含游泳/赛车/赛跑）
+│   ├── build_road_adventure_config.py        # ⚠️ TODO: 公路大冒险配置生成（待开发）
+│   ├── build_sj6_monster_config.py           # 贪吃小怪兽配置生成
 │   └── build_sj6_monster_config.py            # 贪吃小怪兽配置生成
 │
 ├── standard_question_toolkit/                 # 标准化题型工具集
@@ -188,17 +190,24 @@ Headers:
     │     数据结构: custom_game
     │     基准JSON: run_detail.json / swim_detail.json / racecar_detail.json
     │
-    └─ 其他所有类型（贪吃小怪兽、标准题型、画板游戏等）
+    ├─ "公路大冒险" / "贪吃小怪兽" / 其他有固定基准配置的模板游戏
+    │       ↓
+    │   → 使用【模板游戏专用流程】
+    │     数据结构: game（非 custom_game）
+    │     基准JSON: 对应游戏类型的基准配置（绿地/沙漠/怪兽版本等）
+    │
+    └─ 自动排版算术题（填空/选择/拖拽题等）
             ↓
         → 使用【通用组件化流程】
           数据结构: game
-          基准JSON: 标准题/怪兽/画板对应具体 JSON
+          基准JSON: 标准算术题对应具体 JSON
 ```
 
 | 游戏类型 | 路由标准 | 备注 |
 |---------|----------|------|
 | **运动PK赛（赛跑/游泳/赛车）** | `custom_game` + `templates/detail_jsons/{run,swim,racecar}_detail.json` | 赛跑/游泳/赛车必须拆成三套皮肤 baseline |
-| **通用组件化游戏** | `game` + 对应玩法具体 JSON | 贪吃小怪兽、标准题型、画板类等 |
+| **模板游戏（公路大冒险/贪吃小怪兽等）** | `game` + 对应游戏类型基准 JSON | ⚠️必须基于正确模板基准，禁止跨模板替换 |
+| **通用组件化（算术题）** | `game` + 标准题型具体 JSON | 专用于自动排版算术题（填空/选择/拖拽） |
 
 ---
 
@@ -231,12 +240,25 @@ node scripts/validate_config.js --file <config.json>
 
 ```
 Step 1: 新建游戏（获取 game_id）
+   ├─ 运动PK：template_id = 47995925-fb37-11ef-8c1b-ce918f8037e8
+   │           编辑器入口 customEditor?template_id=...
+   └─ 模板游戏 / 通用组件化：template_id = 70a3010b-0b7a-11ef-b3a3-fa7902489df6
    ↓
 Step 2: 上传素材资源到平台
    ↓
 Step 3: 获取已上传资源的 URL 等信息（必须确认获取成功后才能继续）
    ↓
 Step 4: 生成配置 JSON（使用 Step 3 获取的真实资源 URL）
+   ├─ 运动PK → build_yundong_pk_config.py
+   ├─ 模板游戏（公路大冒险）→ build_road_adventure_config.py（⚠️ TODO: 脚本待开发，当前手动替换）
+   ├─ 模板游戏（贪吃小怪兽）→ build_sj6_monster_config.py
+   └─ 通用组件化（算术题）→ 标准题型脚本
+   ↓
+   【Step 4 校验】（生成后必检，失败则回 Step 4 修正）
+   ├─ JSON 可解析
+   ├─ 每关结构完整（选项数量/唯一正确项/音效字段不为空）
+   ├─ 模板游戏额外：动效映射正确、纯文字题不换行
+   └─ node scripts/validate_config.js --file <config.json>
    ↓
 Step 5: 导入配置到游戏并保存
    ↓
@@ -529,6 +551,189 @@ python D:/codexProject/build_yundong_pk_config.py \
 
 ---
 
+
+## 模板游戏专用流程
+
+适用于：**贪吃小怪兽、公路大冒险**（绿地/沙漠）等有固定基准配置的模板型游戏。
+
+**与通用组件化流程的区别**：
+- 通用组件化专用于自动排版算术题；模板游戏是基于已有游戏配置做资源替换和内容更新。
+- 数据结构均为 `game[]`，但**必须基于对应游戏类型和背景的基准配置**，禁止跨模板替换。
+- 不同模板游戏有各自的关键字段规则（见下方各子类说明）。
+
+---
+
+### 子类：公路大冒险
+
+**特有规则**：
+- 选项组件为 `AloneClickChoice`，按三态规则（待机/正确/错误）替换图片，并更新 `anwserRadio`。
+- 正确反馈动效（小鹿开车）的 `animation` 值由正确选项 y 坐标决定，**名称与位置直觉相反，必须从基准配置实际验证**。
+- 支持音频题（题干为语音）与纯文字题混排。
+- 绿地用绿地基准，沙漠用沙漠基准，禁止跨背景替换。
+
+### 子类：贪吃小怪兽
+
+**特有规则**：
+- 基于贪吃小怪兽专属基准配置，参见 `build_sj6_monster_config.py`。
+- 具体字段规则参见 `monster-config-generator` skill 文档。
+
+---
+
+---
+
+### Step 1: 新建公路大冒险游戏
+
+```bash
+node scripts/create_game_auto.js "游戏名称" "70a3010b-0b7a-11ef-b3a3-fa7902489df6" ""
+```
+
+**公路大冒险专属信息**：
+- 平台创建参数 template_id: `70a3010b-0b7a-11ef-b3a3-fa7902489df6`（与通用组件化相同，仅用于创建接口）
+- 模板选择规则：
+
+| 背景类型 | 基准配置示例 |
+|---|---|
+| 绿地/普通公路 | 国际Level1公路大冒险春6 / 春15 |
+| 沙漠 | 带"沙漠"字样的公路大冒险原始配置 |
+
+- 创建后记录 `game_id`，后续替换配置时使用。
+
+---
+
+### Step 2: 上传素材资源
+
+```bash
+# 上传图片（选项三态图）
+node scripts/courseware_bulk_upload_assets.mjs "./图片目录"
+
+# 上传音频（音频题干）
+node scripts/courseware_bulk_upload_assets.mjs "./音频目录" --category audio --ext .mp3
+```
+
+**资源命名规范**（图片三态）：
+
+```
+{前缀}{题号}{选项字母}{状态}
+示例：26春L1公路15p1a待机 / 26春L1公路15p1b正确 / 26春L1公路15p1c错误
+```
+
+| 状态 | 含义 |
+|---|---|
+| `待机` | 默认/未选中 |
+| `正确` | 正确选项在全局正确时展示 |
+| `错误` | 错误选项在全局错误时展示 |
+
+---
+
+### Step 3: 获取资源信息（确认 URL）
+
+与通用流程完全相同，参见 [通用流程 Step 3](#step-3-获取资源信息确认-url)。
+
+**⚠️ 必须确认所有图片（三态×所有选项）和音频的 URL 都已获取后才能继续。**
+
+---
+
+### Step 4: 生成公路大冒险配置
+
+**4.1 从基准配置验证小鹿动效映射（必做，勿跳过）**
+
+```python
+import json
+with open('基准配置.json') as f:
+    cfg = json.load(f)
+for i, level in enumerate(cfg['game']):
+    for comp in level.get('components', []):
+        cdata = comp.get('component_data', {})
+        tools = cdata.get('components', {}).get('tools', {})
+        if '小鹿' in cdata.get('name', ''):
+            for st in cdata.get('states', []):
+                if st.get('label') == '全局正确':
+                    print(f"关{i+1} 小鹿动效:", st['source']['MSpine']['animation'])
+        if 'AloneClickChoice' in tools:
+            if tools['AloneClickChoice']['anwserConfig'].get('anwserRadio') == 1:
+                y = cdata.get('states', [{}])[0].get('transform', {}).get('y', 0)
+                print(f"关{i+1} 正确项 y={y}")
+```
+
+**⚠️ 动效映射规则**（从春15实际验证得出，名称与位置直觉相反）：
+
+| 正确选项 y 坐标 | 位置 | animation 值 |
+|---|---|---|
+| y < -200 | 顶部（a） | **`xia`** |
+| -200 ≤ y ≤ 100 | 中部（b） | `zhong` |
+| y > 100 | 底部（c） | **`shang`** |
+
+**4.2 选项图片三态配置规则**
+
+每个 `AloneClickChoice` 的 `states` 数组（共3项）：
+
+| index | label | 正确选项图 | 错误选项图 |
+|---|---|---|---|
+| 0 | 默认 | `{前缀}待机` | `{前缀}待机` |
+| 1 | 全局正确 | `{前缀}正确` | `{前缀}待机`（保持不变） |
+| 2 | 全局错误 | `{前缀}待机`（保持不变） | `{前缀}错误` |
+
+**4.3 正确项标记**
+
+`AloneClickChoice.anwserConfig.anwserRadio`：正确选项 = `1`，错误选项 = `2`
+
+**4.4 题干配置**
+
+- **音频题**：在 `语音按钮` 组件的 `播放语音` state 中设置 `MAudio.value` 为音频 URL。
+- **纯文字题**：在 `节点` 组件的 `默认` state 中设置 `MLabel.value` 为题干文本；字号需估算容器宽度确保单行不换行。
+
+> 📝 **TODO**: 开发 `scripts/build_road_adventure_config.py`，输入：题目关系表 + 资源导出表；输出：可直接导入的配置 JSON，自动完成三态图替换、anwserRadio 标记、小鹿动效映射、题干配置。参考 `build_sj6_monster_config.py` 实现模式。
+
+---
+
+### Step 5: 导入配置并保存
+
+```python
+import json, urllib.request
+TOKEN = "<beibotoken>"
+GAME_ID = "<game_id>"
+with open('road_adventure_config.json') as f:
+    config = json.load(f)
+data = {"game_id": GAME_ID, "game_name": "游戏名称", "configuration": config}
+req = urllib.request.Request(
+    'https://sszt-gateway.speiyou.com/beibo/game/config/game',
+    data=json.dumps(data, ensure_ascii=False).encode('utf-8'),
+    headers={'beibotoken': TOKEN, 'Content-Type': 'application/json'},
+    method='PUT'
+)
+with urllib.request.urlopen(req) as r:
+    print(json.loads(r.read()))
+```
+
+**校验清单（导入前必检）**：
+- [ ] JSON 可解析
+- [ ] 每关恰好 3 个 AloneClickChoice
+- [ ] 每关恰好 1 个 `anwserRadio=1`
+- [ ] 小鹿动效 animation 已通过基准配置验证
+- [ ] 所有选项 correct/wrong 反馈音效字段不为空
+- [ ] 纯文字题题干单行不换行
+
+---
+
+### Step 6~7: 发布、生成预览链接
+
+与通用流程完全相同，参见 [通用流程 Step 6~7](#step-6-生成预览分享链接)。
+
+**触发构建**（保存配置后必须执行）：
+
+```python
+req = urllib.request.Request(
+    'https://sszt-gateway.speiyou.com/beibo/game/config/build_queue',
+    data=json.dumps({"game_id": GAME_ID}).encode(),
+    headers={'beibotoken': TOKEN, 'Content-Type': 'application/json'},
+    method='POST'
+)
+with urllib.request.urlopen(req) as r:
+    print(json.loads(r.read()))
+```
+
+---
+
 ## 画板组件资源替换流程
 
 用于替换游戏中"画板-XX"组件里的图片/音频（不重新创建游戏，在原游戏基础上替换资源）。
@@ -687,6 +892,30 @@ nohup node D:/codexProject/monitor_create_yundongpk.js > monitor_yundong.log 2>&
 ```
 https://sszt-gateway.speiyou.com
 ```
+
+### 打开游戏的两种模式
+
+在 CoursewareMaker 编辑器中打开一个组件化游戏时，有两种模式：
+
+| 模式 | 说明 | 可写入？ |
+|------|------|---------|
+| **引用** | 只读方式打开，无法修改内容 | ❌ 不可写入 |
+| **修改** | 编辑原游戏，直接修改原始配置 | ✅ 可写入 |
+
+**⚠️ 自动化脚本注意**：`save_game_config_via_cdp.js` 写入配置前，必须确保游戏是以**修改**模式打开的。如果以引用模式打开，写入操作会静默失效或报错。
+
+#### 网络层识别特征（通过 CDP 可检测）
+
+| 特征 | 引用（只读） | 修改（可写） |
+|------|------------|------------|
+| 编辑器 URL 参数 | `?openType=1` | 无 `openType` 参数 |
+| `POST /beibo/game/config/lock` | ❌ 不出现 | ✅ 出现 |
+| `POST /beibo/game/config/unlock` | ✅ 出现（解除上次锁） | ❌ 不出现 |
+| `PUT /beibo/game/config/game` | ❌ 不出现 | ✅ 出现（写入配置） |
+
+**检测方法**：监听编辑器加载时的 URL，若包含 `openType=1` 则为引用模式，脚本应中止并提示用户重新以修改模式打开。
+
+---
 
 ### 完整 API 一览
 
@@ -866,3 +1095,6 @@ bash D:/codexProject/docs/check_environment.sh
 - v1.1 (2026-04-16): 新增素材批量上传，集成标准化题型工具集
 - v2.0 (2026-04-20): 新增运动PK专用创建流程；修正发布参数ID（英语=3，小班=7）；修正unlock为POST；新增brizoo网关说明；新增画板资源替换流程
 - v2.1 (2026-04-21): **修正工作流顺序**：改为"新建游戏→上传资源→获取资源信息→生成配置→导入→预览→发布"，整合所有流程，强制明确Step 3资源确认节点
+- v2.2 (2026-04-27): 新增**模板游戏专用流程**章节（含公路大冒险子类）；修正小鹿动效映射（a→xia / b→zhong / c→shang，与位置直觉相反）；明确通用组件化专用于算术题；更新路由规则、游戏类型表和目录
+
+> 📝 待办：后续可在 `save_game_config_via_cdp.js` 加前置检查，检测 Tab URL 是否含 `openType=1`，有则中止并提示用户以修改模式重新打开。
