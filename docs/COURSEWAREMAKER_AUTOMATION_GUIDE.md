@@ -947,6 +947,56 @@ POST https://sszt-gateway.speiyou.com/beibo/game/config/createPreviewUrl
 
 ---
 
+### 8. generate_spelling_config.py
+
+生成单词拼拼乐配置。输入题目数据（text/slots/items），输出内层 cfg（common/game/additional/components 结构）。
+
+**用法：**
+```bash
+python3 scripts/generate_spelling_config.py
+# 输出：output/spelling_test_config.json
+```
+
+**题目数据格式（在脚本顶部 QUESTIONS 列表修改）：**
+```python
+QUESTIONS = [
+  {
+    "text": "make a snowman",
+    "slots": ["m","a","k","e","n"],          # 可拖拽字母
+    "items": [                                 # 答题区元素顺序（左→右）
+      {"type":"slot"},{"type":"slot"},{"type":"slot"},{"type":"slot"},
+      {"type":"space"},{"type":"fixed","content":"a"},{"type":"space"},
+      {"type":"slot"},{"type":"slot"},{"type":"slot"},{"type":"slot"},{"type":"slot"},
+    ]
+  },
+  ...
+]
+```
+
+---
+
+### 9. upload_spelling_config.js
+
+通过 CDP 将单词拼拼乐配置上传到编辑器。自动扫描 9222/9223 端口，上传后验证 `double_encoded=false`。
+
+```bash
+node scripts/upload_spelling_config.js
+# 默认读取 output/spelling_test_config.json
+# 需要先启动 Chrome 远程调试（--remote-debugging-port=9222）并打开对应游戏
+```
+
+---
+
+### 10. fetch_spelling_configs.js
+
+从编辑器抓取已保存的单词拼拼乐配置（用于备份或对比校验）。
+
+```bash
+node scripts/fetch_spelling_configs.js
+```
+
+---
+
 ### 7. 监控脚本使用方式
 
 在学习新流程时，启动对应监控脚本记录操作：
