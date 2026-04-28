@@ -31,13 +31,7 @@ async function main() {
         throw new Error(`get detail failed: ${JSON.stringify(detail)}`);
       }
 
-      // 格式A：外层响应壳子 {code,result,msg} → unwrap；格式B：纯配置对象 → 直接传
-      let innerConfig = configObject;
-      if (configObject && typeof configObject.code === 'number' && configObject.result && configObject.result.configuration) {
-        innerConfig = JSON.parse(configObject.result.configuration);
-        console.warn("[save] 检测到外层API响应壳子，已自动 unwrap 取内层配置");
-      }
-      const payload = { ...detail.result, configuration: innerConfig };
+      const payload = { ...detail.result, configuration: configObject };
       const putRes = await fetch("https://sszt-gateway.speiyou.com/beibo/game/config/game", {
         method: "PUT",
         headers: {

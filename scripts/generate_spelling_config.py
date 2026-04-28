@@ -266,6 +266,16 @@ def make_space(x, idx_label):
 
 IMG_FIXED_TEXT_BG = "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-28/70428cf856e3acb0aebcd929d60c4c6b.png"
 
+# 固定文本背景图九宫格配置（同时用于 文本-XX 和 文本-fin）
+NINE_GRID_FIXED = {"enable": True, "top": 30.7522, "right": 22.8713, "bottom": 33.0302, "left": 32.0198}
+
+def sprite_with_nine(url, nine_grid=None):
+    """构造带九宫格配置的 MSprite source 项"""
+    s = {"key": "", "value": url}
+    if nine_grid:
+        s["nineGrid"] = nine_grid
+    return s
+
 def make_fixed_text(letter, x, idx_label):
     """固定文本（答题区中不可拖拽的字母，宽度按内容自适应）"""
     w = fixed_text_w(letter)
@@ -278,7 +288,7 @@ def make_fixed_text(letter, x, idx_label):
             "MLabel": {"value": letter, "color": "#BA7123", "fontFamily": "FZCuYuan-M03S",
                        "fontSize": 90, "isBold": False, "isItalic": False, "isUnderline": False,
                        "alignType": "center", "interval": [0, 40, 0, 0, 0], "closeable": True},
-            "MSprite": {"key": "", "value": IMG_FIXED_TEXT_BG}
+            "MSprite": sprite_with_nine(IMG_FIXED_TEXT_BG, NINE_GRID_FIXED)
         },
         "jump": {"canEdit": True, "opened": 0, "type": "", "to": "", "duration": 0},
         "active": {"canEdit": True, "switch": False, "value": "show"}
@@ -501,7 +511,10 @@ def make_fin():
             "component_name": "节点", "component_url": "", "index": 2, "name": "BaseComponent", "version": "0.0.0"}
 
 
-def make_text_fin(word_text, text_w=TEXT_W, uid_override=None):
+def make_text_fin(word_text, text_w=None, uid_override=None):
+    """文本-fin：宽度按内容自适应，背景图与固定文本相同（带九宫格）"""
+    if text_w is None:
+        text_w = fixed_text_w(word_text)
     """文本-fin（显示完整单词，含准备隐藏状态机，每关新UUID）"""
     my_id = uid_override or uid()
 
@@ -511,7 +524,7 @@ def make_text_fin(word_text, text_w=TEXT_W, uid_override=None):
             "MLabel": {"value": word_text, "color": "#BA7123", "fontFamily": "FZCuYuan-M03S",
                        "fontSize": 90, "isBold": False, "isItalic": False, "isUnderline": False,
                        "alignType": "center", "interval": [0, 40, 0, 0, 0], "closeable": True},
-            "MSprite": {"key": "", "value": IMG["text_bg"]}
+            "MSprite": sprite_with_nine(IMG_FIXED_TEXT_BG, NINE_GRID_FIXED)
         }
         if audio:
             src["MAudio"] = {"value": audio, "loop": False, "loopNum": 1, "audioType": "play_effect_1"}
@@ -784,11 +797,11 @@ def make_smoke():
 
 def make_horn(word_audio_url):
     """喇叭（固定UUID，MSpine，clickDown 播放单词音频，GAME_LEVEL_START后1s自动触发）"""
-    def horn_state(key, label, anim, audio="", jump_type="", jump_to="", jump_dur=0, wait_audio=False):
+    def horn_state(key, label, anim, audio=None, jump_type="", jump_to="", jump_dur=0, wait_audio=False):
         src = {"MSpine": {"value": SPINE_HORN, "spineId": SPINE_HORN_ID,
                           "opacity": False, "animation": anim,
                           "playTime": 1, "waitAudioLoop": wait_audio, "timeScale": 1}}
-        if audio:
+        if audio is not None:  # None=不加MAudio；""=加空MAudio占位
             src["MAudio"] = {"value": audio, "loop": False, "loopNum": 1,
                              "audioType": "play_audio" if wait_audio else "play_effect_1"}
         return {
@@ -809,6 +822,7 @@ def make_horn(word_audio_url):
         horn_state("clickDown", "点击按下", "lan-laba2", audio=word_audio_url,
                    jump_type="audioPlayFinish", jump_to="default", wait_audio=True),
         horn_state(K_HORN_AUTO, "自定义状态1", "lan-laba2_1",
+                   audio="",  # 空音频占位，与参考配置对齐
                    jump_type="countdown", jump_to="clickDown", jump_dur=1),
     ]
     cd["event"]["value"] = [make_event_trigger("GAME_LEVEL_START", "system", K_HORN_AUTO)]
@@ -874,9 +888,7 @@ def generate_level(q):
 
     comps.append(make_mask_bg())
     comps.append(make_fin())
-    comps.append(make_text_fin(q["text"], level_text_w))
-    comps.append(make_text_head_dynamic(text_head_x))
-    comps.append(make_text_tail_dynamic(text_tail_x))
+    comps.append(make_text_fin(q["text"]))
     comps.append(make_node37(q.get("word_image_url", "")))
     comps.append(make_level_num())
     comps.append(make_smoke())

@@ -7,7 +7,7 @@ const puppeteer = require('puppeteer-core');
 const fs = require('fs');
 
 // 配置
-const CHROME_DEBUG_PORT = 9222;
+const CHROME_DEBUG_PORT = 9223;
 const API_BASE = 'https://sszt-gateway.speiyou.com/beibo/game/config';
 const EDITOR_BASE = 'https://coursewaremaker.speiyou.com/#/editor';
 
@@ -178,7 +178,13 @@ async function main() {
         process.exit(1);
     }
 
-    const configuration = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    let configuration = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    // 如果是 {code, result, msg} 包装格式，提取内层配置
+    if (configuration && typeof configuration.code !== 'undefined' && configuration.result) {
+        const innerStr = configuration.result.configuration;
+        configuration = typeof innerStr === 'string' ? JSON.parse(innerStr) : innerStr;
+        console.log('✅ 已解包 {code,result,msg} 外壳，使用内层配置');
+    }
     console.log(`✅ 已加载配置文件: ${configPath}`);
 
     try {

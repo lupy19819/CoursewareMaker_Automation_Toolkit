@@ -1,0 +1,23 @@
+[
+  {
+    "name": "J7赛跑",
+    "game_id": "32992acd-3fbe-11f1-906b-da4a8224db76",
+    "success": true,
+    "missing": [],
+    "fixedPath": "/home/148139_wy/.openclaw/workspace/CoursewareMaker_Automation_Toolkit/output/j7_fixed.json"
+  },
+  {
+    "name": "J8游泳",
+    "game_id": "33e6a1b0-3fbe-11f1-906b-da4a8224db76",
+    "success": true,
+    "missing": [],
+    "fixedPath": "/home/148139_wy/.openclaw/workspace/CoursewareMaker_Automation_Toolkit/output/j8_fixed.json"
+  },
+  {
+    "name": "J9赛车",
+    "game_id": "c5e2b08a-3fc3-11f1-906b-da4a8224db76",
+    "success": true,
+    "missing": [],
+    "fixedPath": "/home/148139_wy/.openclaw/workspace/CoursewareMaker_Automation_Toolkit/output/j9_fixed.json"
+  }
+]

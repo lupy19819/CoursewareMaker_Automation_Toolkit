@@ -21,6 +21,15 @@
         "build_script": "scripts/build_yundong_pk_config.py"
       },
       {
+        "when": "游戏名称或类型包含 单词拼拼乐、spelling",
+        "gameplay_family": "spelling",
+        "data_shape": "game",
+        "baseline_json_path": "reference_configs/spelling_ref_new.json",
+        "build_script": "scripts/generate_spelling_config.py",
+        "upload_script": "scripts/upload_spelling_config.js",
+        "notes": "单词拼拼乐：slot/space/fixed 答题区 + 拖拽物品 + 文本-fin。生成脚本直接输出内层 cfg（common/game/additional/components），上传后 double_encoded 必须为 false。"
+      },
+      {
         "when": "其他组件化游戏：标准题型、贪吃小怪兽、画板类等",
         "gameplay_family": "componentized",
         "data_shape": "game",
@@ -91,24 +100,73 @@
   "gameplay_types": {
     "standard_choice": {
       "name": "标准选择题",
-      "required_component_ids": ["3b9b8ec3-f7d3-11ee-b9ef-8e2f78cd4bcd"],
-      "forbidden_component_ids": ["0b26ef14-f7e0-11ee-b9ef-8e2f78cd4bcd", "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd", "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd"],
-      "layout_refs": ["choice_3_options", "choice_4_options"],
+      "required_component_ids": [
+        "3b9b8ec3-f7d3-11ee-b9ef-8e2f78cd4bcd"
+      ],
+      "forbidden_component_ids": [
+        "0b26ef14-f7e0-11ee-b9ef-8e2f78cd4bcd",
+        "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd",
+        "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd"
+      ],
+      "layout_refs": [
+        "choice_3_options",
+        "choice_4_options"
+      ],
       "question_text_default_profile": "purple_choice_stem"
     },
     "standard_fill_compute": {
       "name": "标准填空/计算题",
-      "required_component_ids": ["0b26ef14-f7e0-11ee-b9ef-8e2f78cd4bcd"],
-      "forbidden_component_ids": ["3b9b8ec3-f7d3-11ee-b9ef-8e2f78cd4bcd", "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd", "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd"],
-      "layout_refs": ["fill_blank", "keyboard"],
+      "required_component_ids": [
+        "0b26ef14-f7e0-11ee-b9ef-8e2f78cd4bcd"
+      ],
+      "forbidden_component_ids": [
+        "3b9b8ec3-f7d3-11ee-b9ef-8e2f78cd4bcd",
+        "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd",
+        "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd"
+      ],
+      "layout_refs": [
+        "fill_blank",
+        "keyboard"
+      ],
       "question_text_default_profile": "yellow_body"
     },
     "standard_drag": {
       "name": "标准拖拽题",
-      "required_component_ids": ["d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd", "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd"],
-      "forbidden_component_ids": ["3b9b8ec3-f7d3-11ee-b9ef-8e2f78cd4bcd", "0b26ef14-f7e0-11ee-b9ef-8e2f78cd4bcd"],
-      "layout_refs": ["submit"],
+      "required_component_ids": [
+        "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd",
+        "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd"
+      ],
+      "forbidden_component_ids": [
+        "3b9b8ec3-f7d3-11ee-b9ef-8e2f78cd4bcd",
+        "0b26ef14-f7e0-11ee-b9ef-8e2f78cd4bcd"
+      ],
+      "layout_refs": [
+        "submit"
+      ],
       "question_text_default_profile": "yellow_body"
+    },
+    "spelling": {
+      "description": "单词拼拼乐：字母拖拽拼词游戏",
+      "data_shape": "game",
+      "key_components": [
+        "slot（放置区）",
+        "space（空格/固定文本）",
+        "fixed（固定字母）",
+        "drag_item（拖拽物品）",
+        "text_fin（答题区整体背景+词组文本）"
+      ],
+      "answer_zone_layout": "slot/space/fixed 横排，拖拽物品在上方",
+      "text_fin": "宽度按词组字数自适应，背景图+九宫格（与fixed_text背景图相同）",
+      "nine_grid_params": {
+        "enable": true,
+        "top": 30.7522,
+        "right": 22.8713,
+        "bottom": 33.0302,
+        "left": 32.0198
+      },
+      "item_x_offset": -150,
+      "build_script": "scripts/generate_spelling_config.py",
+      "upload_script": "scripts/upload_spelling_config.js"
     }
   },
   "shared_assets": {
@@ -125,7 +183,12 @@
       "expected_config": {
         "baseline_json_path": "templates/detail_jsons/run_detail.json",
         "data_shape": "custom_game",
-        "root_keys": ["additional_custom_game", "common", "components", "custom_game"],
+        "root_keys": [
+          "additional_custom_game",
+          "common",
+          "components",
+          "custom_game"
+        ],
         "level_array_key": "custom_game",
         "required_paths": [
           "common.custom.additional_environment",
@@ -141,7 +204,12 @@
       "expected_config": {
         "baseline_json_path": "templates/detail_jsons/swim_detail.json",
         "data_shape": "custom_game",
-        "root_keys": ["additional_custom_game", "common", "components", "custom_game"],
+        "root_keys": [
+          "additional_custom_game",
+          "common",
+          "components",
+          "custom_game"
+        ],
         "level_array_key": "custom_game",
         "required_paths": [
           "common.custom.additional_environment",
@@ -157,7 +225,12 @@
       "expected_config": {
         "baseline_json_path": "templates/detail_jsons/racecar_detail.json",
         "data_shape": "custom_game",
-        "root_keys": ["additional_custom_game", "common", "components", "custom_game"],
+        "root_keys": [
+          "additional_custom_game",
+          "common",
+          "components",
+          "custom_game"
+        ],
         "level_array_key": "custom_game",
         "required_paths": [
           "common.custom.additional_environment",
@@ -367,6 +440,19 @@
           }
         }
       }
+    },
+    "spelling": {
+      "description": "单词拼拼乐参考配置校验基准",
+      "baseline_path": "reference_configs/spelling_ref_new.json",
+      "check_rules": [
+        "每关必须包含至少1个 slot 放置区组件",
+        "slot zIndex 从 19 开始递减",
+        "text_fin MSprite nineGrid.enable == true",
+        "fixed_text MSprite nineGrid.enable == true",
+        "无 text_head / text_tail 组件",
+        "space 组件 active.switch=true, value=hide（默认隐藏）",
+        "drag_item 数量等于 slot 数量"
+      ]
     }
   },
   "template_baseline_paths": {
@@ -374,6 +460,7 @@
     "yundong_pk_swim": "templates/detail_jsons/swim_detail.json",
     "yundong_pk_racecar": "templates/detail_jsons/racecar_detail.json",
     "monster": "templates/detail_jsons/monster_detail.json",
-    "standard_question": "standard_question_toolkit/templates/base_choice_fill_template.json"
+    "standard_question": "standard_question_toolkit/templates/base_choice_fill_template.json",
+    "spelling": "reference_configs/spelling_ref_new.json"
   }
 }

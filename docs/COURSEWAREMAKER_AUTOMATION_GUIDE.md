@@ -17,7 +17,8 @@
 7. [通用游戏完整流程](#通用游戏完整流程)
 8. [运动PK游戏完整流程（赛跑/游泳/赛车）](#运动pk游戏完整流程)
 9. [模板游戏专用流程（公路大冒险/贪吃小怪兽等）](#模板游戏专用流程)
-10. [画板组件资源替换流程](#画板组件资源替换流程)
+10. [单词拼拼乐专用流程](#单词拼拼乐专用流程)
+11. [画板组件资源替换流程](#画板组件资源替换流程)
 11. [工具和脚本说明](#工具和脚本说明)
 12. [API参考](#api参考)
 13. [故障排除](#故障排除)
@@ -34,6 +35,7 @@
 | 类别 | 具体类型 | 创建流程 |
 |------|---------|---------|
 | **运动PK类** | 赛跑、游泳、赛车 | 运动PK专用流程 |
+| **单词拼拼乐** | 字母拖拽拼词游戏 | 单词拼拼乐专用流程 |
 | **模板游戏类** | 贪吃小怪兽、公路大冒险（绿地/沙漠）等 | 模板游戏专用流程 |
 | **通用组件化** | 自动排版算术题（填空、选择、拖拽等） | 通用组件化流程 |
 | **画板类游戏** | 含"画板-XX"组件的游戏 | 通用组件化流程 + 资源替换 |
@@ -190,6 +192,14 @@ Headers:
     │     数据结构: custom_game
     │     基准JSON: run_detail.json / swim_detail.json / racecar_detail.json
     │
+    ├─ "单词拼拼乐" / "spelling"
+    │       ↓
+    │   → 使用【单词拼拼乐专用流程】
+    │     数据结构: game
+    │     基准JSON: reference_configs/spelling_ref_new.json
+    │     生成脚本: scripts/generate_spelling_config.py
+    │     上传脚本: scripts/upload_spelling_config.js
+    │
     ├─ "公路大冒险" / "贪吃小怪兽" / 其他有固定基准配置的模板游戏
     │       ↓
     │   → 使用【模板游戏专用流程】
@@ -206,6 +216,7 @@ Headers:
 | 游戏类型 | 路由标准 | 备注 |
 |---------|----------|------|
 | **运动PK赛（赛跑/游泳/赛车）** | `custom_game` + `templates/detail_jsons/{run,swim,racecar}_detail.json` | 赛跑/游泳/赛车必须拆成三套皮肤 baseline |
+| **单词拼拼乐** | `game` + `reference_configs/spelling_ref_new.json` | slot/space/fixed答题区 + 拖拽物品；生成脚本输出内层cfg |
 | **模板游戏（公路大冒险/贪吃小怪兽等）** | `game` + 对应游戏类型基准 JSON | ⚠️必须基于正确模板基准，禁止跨模板替换 |
 | **通用组件化（算术题）** | `game` + 标准题型具体 JSON | 专用于自动排版算术题（填空/选择/拖拽） |
 
@@ -736,6 +747,70 @@ req = urllib.request.Request(
 )
 with urllib.request.urlopen(req) as r:
     print(json.loads(r.read()))
+```
+
+---
+
+## 单词拼拼乐专用流程
+
+### 游戏简介
+
+单词拼拼乐是一类字母拖拽拼词游戏，每关包含一个目标词组（如 "make a snowman"），玩家将字母块拖入答题区完成拼写。
+
+### 答题区组件类型
+
+| 类型 | 说明 |
+|------|------|
+| `slot` | 可放置字母的拖拽放置区，zIndex 从 19 开始递减 |
+| `space` | 英语空格（默认隐藏，active.switch=true, value=hide） |
+| `fixed` | 固定字母（不可拖拽，背景图+九宫格） |
+| `drag_item` | 可拖拽的字母块，数量 = slot 数量 |
+| `text_fin` | 答题区背景+词组文本，宽度按字数自适应，背景图+九宫格 |
+
+### 九宫格参数（固定文本 & text_fin 通用）
+
+```json
+{
+  "enable": true,
+  "top": 30.7522,
+  "right": 22.8713,
+  "bottom": 33.0302,
+  "left": 32.0198
+}
+```
+
+### 完整流程
+
+```
+Step 1: 准备题目数据
+  - 每关需要：text（词组）、slots（可拖拽字母列表）、items（答题区元素顺序）
+  - items 元素类型：{"type": "slot"} / {"type": "space"} / {"type": "fixed", "content": "a"}
+
+Step 2: 上传素材（图片 + 音频）并确认 CDN URL
+
+Step 3: 生成配置
+  cd CoursewareMaker_Automation_Toolkit
+  python3 scripts/generate_spelling_config.py
+
+Step 4: 校验（参考 reference_configs/spelling_ref_new.json）
+  - 检查每关 slot zIndex 从 19 递减
+  - 检查 text_fin / fixed_text 的 MSprite.nineGrid.enable == true
+  - 无 text_head / text_tail 组件
+  - space 组件 active.switch=true, value=hide
+  - drag_item 数量 == slot 数量
+
+Step 5: 上传
+  node scripts/upload_spelling_config.js
+  # 验证 double_encoded=false
+```
+
+### 关键常量
+
+```python
+IMG_FIXED_TEXT_BG = "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-04-28/70428cf856e3acb0aebcd929d60c4c6b.png"
+ITEM_X_OFFSET = -150   # 拖拽物品整体左移
+SLOT_W = 237           # 放置区宽度
+SLOT_H = 161           # 放置区高度
 ```
 
 ---

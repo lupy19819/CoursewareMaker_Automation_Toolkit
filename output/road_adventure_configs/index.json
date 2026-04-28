@@ -1,0 +1,186 @@
+[
+  {
+    "game_id": "b8cba2d5-211f-11f1-906b-da4a8224db76",
+    "game_name": "国际level1公路大冒险春15",
+    "template_id": "70a3010b-0b7a-11ef-b3a3-fa7902489df6",
+    "is_published": 1,
+    "create_time": "2026-03-16 18:05:55",
+    "update_time": "2026-03-16 18:30:11"
+  },
+  {
+    "game_id": "ee99883d-3202-11f0-a334-fa29dffefa84",
+    "game_name": "国际starter公路大冒险暑2",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2025-06-13 15:47:42",
+    "update_time": "2025-06-13 15:48:22"
+  },
+  {
+    "game_id": "0af1a340-3134-11f0-a334-fa29dffefa84",
+    "game_name": "国际starter公路大冒险暑8",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2025-06-05 13:43:45",
+    "update_time": "2025-06-05 13:44:22"
+  },
+  {
+    "game_id": "6930880d-306c-11f0-a334-fa29dffefa84",
+    "game_name": "国际starter公路大冒险暑5",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2025-05-30 14:47:59",
+    "update_time": "2025-05-30 14:53:50"
+  },
+  {
+    "game_id": "b4a8938e-3139-11f0-a334-fa29dffefa84",
+    "game_name": "国际level1公路大冒险暑8",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2025-05-30 10:24:57",
+    "update_time": "2025-05-30 11:01:38"
+  },
+  {
+    "game_id": "9248a803-3136-11f0-a334-fa29dffefa84",
+    "game_name": "国际level1公路大冒险暑4",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2025-05-30 10:14:34",
+    "update_time": "2025-05-30 10:24:51"
+  },
+  {
+    "game_id": "b52eab12-3097-11f0-a334-fa29dffefa84",
+    "game_name": "国际level1公路大冒险暑1",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2025-05-29 15:53:11",
+    "update_time": "2025-05-30 10:13:44"
+  },
+  {
+    "game_id": "81d22278-8b8e-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo公路大冒险STARTER1",
+    "template_id": "ad012498-2e29-11ef-add2-6afab1b130a4",
+    "is_published": 1,
+    "create_time": "2024-10-16 15:16:05",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "2b692a1a-8c6c-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo公路大冒险启蒙层1",
+    "template_id": "ad012498-2e29-11ef-add2-6afab1b130a4",
+    "is_published": 1,
+    "create_time": "2024-10-17 17:42:48",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "6626e713-8f7c-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo课公路大冒险level1层",
+    "template_id": "ad012498-2e29-11ef-add2-6afab1b130a4",
+    "is_published": 1,
+    "create_time": "2024-10-21 15:16:32",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "ecd0661d-94da-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo公路大冒险启蒙层第二版",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2024-10-28 11:15:47",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "277296b8-94df-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo公路大冒险STARTER第二版",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2024-10-28 11:46:03",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "b7185424-94f6-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo课公路大冒险level1层第二版",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2024-10-28 14:34:42",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "38e2930e-9a93-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo公路大冒险启蒙层第三版",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2024-11-04 17:57:37",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "953e8362-9be9-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo课公路大冒险level1层第三版",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2024-11-06 10:48:20",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "64841d85-9bea-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo公路大冒险STARTER第三版",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2024-11-06 10:54:08",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "d9f33097-a161-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo公路大冒险STARTER第四版",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2024-11-13 09:51:51",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "4e71eae6-a162-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo课公路大冒险level1层第四版",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2024-11-13 09:55:06",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "4fa40d20-a163-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo公路大冒险启蒙层第四版",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2024-11-13 10:02:18",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "aaeaab77-a22b-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo公路大冒险启蒙层第五版",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2024-11-14 09:56:30",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "2a30d81a-a231-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo课公路大冒险level1层第五版",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2024-11-14 10:35:51",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "e4e249ae-a235-11ef-a479-2265a9842974",
+    "game_name": "2024国际demo公路大冒险STARTER第五版",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2024-11-14 11:09:43",
+    "update_time": "2025-02-19 22:04:22"
+  },
+  {
+    "game_id": "a7ba1a91-ee65-11ef-80b2-be841f715e1c",
+    "game_name": "2024国际demo课公路大冒险level1层第六版",
+    "template_id": "",
+    "is_published": 1,
+    "create_time": "2025-02-19 10:03:04",
+    "update_time": "2025-02-19 22:04:22"
+  }
+]
