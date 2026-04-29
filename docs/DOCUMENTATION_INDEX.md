@@ -163,14 +163,18 @@ cp config.template.json config.json
 | 任务 | 参考文档 | 章节 |
 |------|---------|------|
 | **首次配置环境** | QUICK_START.md | 第一步：环境准备 |
+| **上传素材（图片/音频）** | 所有游戏类型 | `courseware_bulk_upload_assets.mjs` |
+| **同步上传记录到资源表** | 所有游戏类型 | `sync_uploads_to_sheet.py` |
 | **创建单个游戏** | QUICK_START.md | 场景A |
 | **批量创建游戏** | QUICK_START.md | 场景B |
-| **配置生成** | COURSEWAREMAKER_AUTOMATION_GUIDE.md | 步骤2：生成游戏配置 |
+| **贪吃小怪兽配置生成** | MONSTER_WORKFLOW.md | 完整流程 |
+| **单词拼拼乐配置生成** | SPELLING_WORKFLOW.md | 完整流程 |
+| **魔法拼拼乐配置生成** | MOFAPPL_WORKFLOW.md | 完整流程 |
+| **运动PK配置生成** | yundongpk_game_creation_workflow.md | 完整流程 |
 | **发布游戏** | COURSEWAREMAKER_AUTOMATION_GUIDE.md | 步骤6：发布游戏 |
 | **生成分享链接** | COURSEWAREMAKER_AUTOMATION_GUIDE.md | 步骤5：生成预览分享链接 |
 | **API调用** | COURSEWAREMAKER_AUTOMATION_GUIDE.md | API参考 |
 | **故障排除** | COURSEWAREMAKER_AUTOMATION_GUIDE.md | 故障排除 |
-| **扩展功能** | COURSEWAREMAKER_AUTOMATION_GUIDE.md | 附录E：扩展和自定义 |
 
 ---
 
