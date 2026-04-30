@@ -37,7 +37,9 @@ async function main() {
         innerConfig = JSON.parse(configObject.result.configuration);
         console.warn("[save] 检测到外层API响应壳子，已自动 unwrap 取内层配置");
       }
-      const payload = { ...detail.result, configuration: innerConfig };
+      // 排除 components（组件库模板，~32MB）等大字段，只保留写回所需的元数据 + configuration
+      const { components: _omitComponents, ...detailMeta } = detail.result;
+      const payload = { ...detailMeta, configuration: innerConfig };
       const putRes = await fetch("https://sszt-gateway.speiyou.com/beibo/game/config/game", {
         method: "PUT",
         headers: {
