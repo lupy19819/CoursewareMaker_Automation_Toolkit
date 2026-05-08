@@ -34,6 +34,16 @@
 
 ## 📚 详细文档
 
+### 🧭 [../WORKFLOW.md](../WORKFLOW.md) - 当前实测工作流
+**阅读时间**: 5分钟  
+**适合人群**: 需要确认最新可运行链路的用户、AI助手  
+**内容**:
+- 2026-05-08 运动PK新建 + 导入实测结果
+- `create_game_auto.js` 运动PK `game_type=2` 规则
+- `save_game_config_via_cdp.js` 使用 `PUT + credentials: include` 更新配置
+
+---
+
 ### 📘 [COURSEWAREMAKER_AUTOMATION_GUIDE.md](COURSEWAREMAKER_AUTOMATION_GUIDE.md) - 完整自动化指南
 **阅读时间**: 30分钟  
 **适合人群**: 需要深入了解的用户、AI助手  
@@ -118,13 +128,13 @@ cp config.template.json config.json
            ↓
 ┌─────────────────────┐
 │ 4. 创建游戏          │ → create_game_auto.js
-│   - 调用API创建      │   batch_create_games.js
+│   - 调用API创建      │   运动PK自动 game_type=2
 │   - 获取game_id     │
 └──────────┬──────────┘
            ↓
 ┌─────────────────────┐
 │ 5. 导入配置          │ → save_game_config_via_cdp.js
-│   - 通过CDP注入      │
+│   - PUT + credentials│
 │   - 保存配置         │
 └──────────┬──────────┘
            ↓

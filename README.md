@@ -155,8 +155,8 @@ node scripts/publish_game_auto.js "$GAME_ID" 2026 "2" "1"
 
 | 功能 | 脚本 | 说明 |
 |------|------|------|
-| **创建游戏** | `create_game_auto.js` | 使用API创建空游戏，获取game_id |
-| **导入配置** | `save_game_config_via_cdp.js` | 通过CDP将配置注入到游戏 |
+| **创建游戏** | `create_game_auto.js` | 使用API创建空游戏，获取game_id；运动PK自动使用 `game_type=2` |
+| **导入配置** | `save_game_config_via_cdp.js` | 通过CDP将配置写入游戏；使用 `PUT + credentials: include` 更新原 game_id |
 | **发布游戏** | `publish_game_auto.js` | 4步API流程发布游戏 |
 | **分享链接** | `generate_share_link.js` | 生成7天有效期的预览链接 |
 | **素材上传** | `courseware_bulk_upload_assets.mjs` | 批量上传PNG/音频到COS |
@@ -251,6 +251,7 @@ const CONFIG = {
 3. ✅ 保留所有操作结果JSON文件
 4. ✅ 定期备份游戏ID列表
 5. ✅ 素材上传后立即同步资源库
+6. ✅ 运动PK创建后确认 `game_type=2`，导入后比对线上配置和本地配置
 
 ### 注意事项
 
@@ -258,6 +259,7 @@ const CONFIG = {
 - ⚠️ 所有路径使用绝对路径
 - ⚠️ 批量操作有延迟（避免API限流）
 - ⚠️ 配置必须是JSON对象，不是字符串
+- ⚠️ 更新已有游戏配置使用 `PUT /beibo/game/config/game`，不要用 `POST` 另存
 
 ---
 

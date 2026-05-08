@@ -256,7 +256,7 @@ node scripts/validate_config.js --file <config.json>
    ↓
 Step 1: 新建游戏（获取 game_id）
    ├─ 运动PK：template_id = 47995925-fb37-11ef-8c1b-ce918f8037e8
-   │           编辑器入口 customEditor?template_id=...
+   │           game_type = 2，编辑器入口 customEditor?game_id=...
    └─ 模板游戏 / 通用组件化：template_id = 70a3010b-0b7a-11ef-b3a3-fa7902489df6
    ↓
 Step 2: 上传素材资源到平台
@@ -276,6 +276,9 @@ Step 4: 生成配置 JSON（使用 Step 3 获取的真实资源 URL）
    └─ node scripts/validate_config.js --file <config.json>
    ↓
 Step 5: 导入配置到游戏并保存
+   ├─ 更新已有游戏统一使用 PUT /beibo/game/config/game
+   ├─ fetch 必须带 credentials: "include"
+   └─ configuration 必须是对象，不是字符串；写回前排除 components 大字段
    ↓
 Step 6: 生成预览分享链接（测试确认）
    ↓
@@ -491,7 +494,7 @@ node D:/codexProject/batch_publish_all_games.js
 **与通用流程的区别**：
 - 使用 `custom_game` 数据结构，不使用组件化 `game` 结构。
 - `build_yundong_pk_config.py` 按赛跑/游泳/赛车拆成三套皮肤 baseline，读取 `courseware_workflow_rules.json > yundong_pk_skins`。
-- 创建/保存时按运动 PK 数据结构处理，不按“单个/批量新游戏”区分流程。
+- 新建时必须使用 `game_type: 2`，并打开 `customEditor`；导入保存使用 `PUT + credentials: include` 更新原 `game_id`。
 
 ---
 
@@ -506,8 +509,10 @@ node D:/codexProject/create_game_auto.js \
 
 **运动PK专属信息**：
 - 平台创建参数 template_id: `47995925-fb37-11ef-8c1b-ce918f8037e8`（仅用于创建接口，不作为玩法路由或校验标准）
+- `create_game_auto.js` 会识别该模板并使用 `game_type: 2`
 - 组件ID: `21dcca07-c1e6-11ef-895a-4eb2c30c826b`（运动PK赛 v0.1.0）
-- 编辑器入口: `customEditor?template_id=47995925-fb37-11ef-8c1b-ce918f8037e8`
+- 创建后编辑器入口: `customEditor?game_id=<game_id>`
+- 配置路径可传空字符串，先创建空壳 `{}`，后续用 `save_game_config_via_cdp.js` 导入完整配置
 
 ---
 
@@ -562,7 +567,23 @@ python D:/codexProject/build_yundong_pk_config.py \
 
 ### Step 5~7: 导入配置、预览、发布
 
-与通用流程完全相同，参见 [通用流程 Step 5~7](#step-5-导入配置并保存)。
+导入命令：
+
+```bash
+node D:/codexProject/save_game_config_via_cdp.js "$GAME_ID" "<SheetName>.config.json"
+```
+
+当前已验证的导入方式：
+
+- 先 `GET /beibo/game/config/game?game_id=<game_id>` 获取元数据。
+- 写回时排除 `components` 大字段。
+- 使用 `PUT /beibo/game/config/game` 更新原 `game_id`。
+- 所有 fetch 都必须带 `credentials: "include"`，否则可能 500。
+- `configuration` 必须是 JSON 对象，不得双重编码为字符串。
+
+导入后必须重新 GET 游戏详情并比对 `configuration`。2026-05-08 已用 `测试运动PK新建` 跑通：新建 `game_type=2`，导入 10 关赛跑配置后线上与本地配置 `exact_equal=true`。
+
+预览和发布参见 [通用流程 Step 6~7](#step-6-生成预览分享链接)。
 
 ---
 
@@ -878,13 +899,20 @@ node D:/codexProject/save_game_config_via_cdp.js \
 POST https://sszt-gateway.speiyou.com/beibo/game/config/game
 beibotoken: <TOKEN>
 
-{ "game_name": "游戏名称", "template_id": "模板ID" }
+{
+  "user": "用户名",
+  "game_type": 1 或 2,
+  "game_name": "游戏名称",
+  "template_id": "模板ID",
+  "configuration": { ... }
+}
 ```
 
-返回：
-```json
-{ "code": 0, "data": { "game_id": "xxx", "id": 12345, "version": "0.0" } }
-```
+脚本规则：
+
+- 普通组件化游戏：`game_type=1`，打开 `#/editor?game_id=...`
+- 运动PK模板 `47995925-fb37-11ef-8c1b-ce918f8037e8`：`game_type=2`，打开 `#/customEditor?game_id=...`
+- 第三个参数可传空字符串，创建空壳后再导入配置
 
 ---
 
@@ -895,12 +923,15 @@ beibotoken: <TOKEN>
 ```http
 PUT https://sszt-gateway.speiyou.com/beibo/game/config/game
 beibotoken: <TOKEN>
+credentials: include
 
 {
-  "game_id": "xxx",
-  "data": { ...配置对象，必须是对象不是字符串... }
+  "...": "GET /game 返回的元数据（排除 components 大字段）",
+  "configuration": { ...配置对象，必须是对象不是字符串... }
 }
 ```
+
+注意：`POST /game` 在部分已有 `game_id` 上会被平台当成新建/另存版本，可能返回“游戏名字重复”。更新已有游戏配置统一使用 `PUT + credentials: include`。
 
 ---
 
@@ -1188,6 +1219,7 @@ node D:/codexProject/publish_game_auto.js "$GAME_ID" 2026 "2" "1" "1" "6"
 
 ```bash
 # Step 1: 新建游戏（运动PK专属模板）
+# create_game_auto.js 会自动使用 game_type=2，并打开 customEditor
 node D:/codexProject/create_game_auto.js "国际小班游泳暑J6" "47995925-fb37-11ef-8c1b-ce918f8037e8" ""
 GAME_ID=$(cat D:/codexProject/latest_game_id.txt)
 
@@ -1202,6 +1234,7 @@ python D:/codexProject/sync_courseware_resources.py
 python D:/codexProject/build_yundong_pk_config.py "国际小班游泳暑J6" "swim_detail.json" "题目表.xlsx"
 
 # Step 5: 导入配置
+# save_game_config_via_cdp.js 使用 PUT + credentials: include 更新原 game_id
 node D:/codexProject/save_game_config_via_cdp.js "$GAME_ID" "国际小班游泳暑J6.config.json"
 
 # Step 6: 生成预览链接

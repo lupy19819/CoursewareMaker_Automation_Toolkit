@@ -1,7 +1,7 @@
 /**
  * 通过 CDP 保存游戏配置到 CoursewareMaker
  * 关键修复：fetch 必须带 credentials: 'include' 才能正确发送 cookies
- * 工作流：从游戏列表「修改」入口打开 → 保存会更新（不会创建新版本）
+ * 工作流：GET 现有游戏详情 → PUT 更新原 game_id 的 configuration
  */
 const fs = require("fs");
 const { chromium } = require("playwright");
@@ -55,18 +55,17 @@ async function main() {
       // 排除 components（组件库模板，~32MB）等大字段
       const { components: _omitComponents, ...detailMeta } = detail.result;
 
-      // 编辑器 save 使用 POST（不是 PUT），configuration 是对象（不是字符串）
-      // parent_id 指向当前 game_id 会创建新版本；从「修改」入口打开后 parent_id 是草稿版本
+      // 更新已有游戏使用 PUT。POST 在部分已有 game_id 上会被平台当成新建/另存版本，
+      // 可能返回“游戏名字重复，请从修改入口进入”。
       const payload = {
         ...detailMeta,
         configuration: innerConfig,
-        parent_id: detailMeta.parent_id || gameId, // 优先使用服务端返回的 parent_id
       };
 
       const saveRes = await fetch(
         "https://sszt-gateway.speiyou.com/beibo/game/config/game",
         {
-          method: "POST",
+          method: "PUT",
           credentials: "include", // 关键修复
           headers: {
             "Content-Type": "application/json;charset=UTF-8",

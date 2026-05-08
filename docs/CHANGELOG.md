@@ -2,6 +2,28 @@
 
 ---
 
+## [1.1.1] - 2026-05-08
+
+### 修复：运动PK新建与导入闭环
+
+- 修复 `create_game_auto.js`：运动PK模板自动使用 `game_type=2`。
+- 修复 `create_game_auto.js`：运动PK创建后打开 `#/customEditor?game_id=...`。
+- 修复 `create_game_auto.js`：允许第三个配置路径参数为空，支持“先建空壳、后导入配置”。
+- 修复 `create_game_auto.js`：读取 `GAMEMAKER_USER_INFO`，创建者写入 `姓名（拼音）`。
+- 修复 `save_game_config_via_cdp.js`：更新已有游戏配置使用 `PUT + credentials: include`，避免 `POST` 被平台识别为新建/另存版本。
+- 保留 `save_game_config_via_cdp.js` 的大字段处理：写回前排除 `components`。
+- 更新 `WORKFLOW.md`、`COURSEWAREMAKER_AUTOMATION_GUIDE.md`、`yundongpk_game_creation_workflow.md`、`README.md` 中所有运动PK相关说明。
+
+### 已验证
+
+- 新建游戏：`测试运动PK新建`
+- 新建 `game_id`：`0ada627b-4a89-11f1-a80e-6effa3ce9c89`
+- 新建元数据：`game_type=2`
+- 导入 10 关运动PK赛跑配置：`code=0, msg=success`
+- 线上配置与本地配置标准化比对：`exact_equal=true`
+
+---
+
 ## [1.1.0] - 2026-04-16
 
 ### 🎉 标准化题型工具集成

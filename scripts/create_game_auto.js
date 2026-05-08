@@ -10,6 +10,21 @@ const fs = require('fs');
 const CHROME_DEBUG_PORT = 9222;
 const API_BASE = 'https://sszt-gateway.speiyou.com/beibo/game/config';
 const EDITOR_BASE = 'https://coursewaremaker.speiyou.com/#/editor';
+const CUSTOM_EDITOR_BASE = 'https://coursewaremaker.speiyou.com/#/customEditor';
+const YUNDONG_PK_TEMPLATE_ID = '47995925-fb37-11ef-8c1b-ce918f8037e8';
+const YUNDONG_PK_COMPONENT_ID = '21dcca07-c1e6-11ef-895a-4eb2c30c826b';
+
+function isYundongPkConfig(configuration) {
+    return Boolean(
+        configuration &&
+        Array.isArray(configuration.custom_game) &&
+        configuration.common?.custom?.component?.component_id === YUNDONG_PK_COMPONENT_ID
+    );
+}
+
+function inferGameType(templateId, configuration) {
+    return templateId === YUNDONG_PK_TEMPLATE_ID || isYundongPkConfig(configuration) ? 2 : 1;
+}
 
 /**
  * 从Chrome localStorage获取token
@@ -57,10 +72,13 @@ async function getUserName() {
     }
 
     const userName = await page.evaluate(() => {
-        const userInfo = localStorage.getItem('USER_INFO');
+        const userInfo = localStorage.getItem('GAMEMAKER_USER_INFO') || localStorage.getItem('USER_INFO');
         if (userInfo) {
             try {
                 const parsed = JSON.parse(userInfo);
+                if (parsed.name && parsed.namePy) {
+                    return `${parsed.name}（${parsed.namePy}）`;
+                }
                 return parsed.name || '用户';
             } catch (e) {
                 return '用户';
@@ -75,9 +93,10 @@ async function getUserName() {
 /**
  * 创建游戏
  */
-async function createGame(gameName, templateId, configuration, token, userName) {
+async function createGame(gameName, templateId, configuration, token, userName, gameType) {
     console.log(`\n📝 创建游戏: ${gameName}`);
     console.log(`📋 模板ID: ${templateId}`);
+    console.log(`🎮 游戏类型: ${gameType}`);
     console.log(`👤 创建者: ${userName}`);
 
     const response = await fetch(`${API_BASE}/game`, {
@@ -90,7 +109,7 @@ async function createGame(gameName, templateId, configuration, token, userName) 
         },
         body: JSON.stringify({
             user: userName,
-            game_type: 1,
+            game_type: gameType,
             game_name: gameName,
             template_id: templateId,
             configuration: configuration
@@ -143,8 +162,9 @@ async function lockGame(gameId, token) {
 /**
  * 在浏览器中打开游戏编辑器
  */
-async function openGameEditor(gameId) {
-    const editorUrl = `${EDITOR_BASE}?game_id=${gameId}`;
+async function openGameEditor(gameId, gameType) {
+    const editorBase = gameType === 2 ? CUSTOM_EDITOR_BASE : EDITOR_BASE;
+    const editorUrl = `${editorBase}?game_id=${gameId}`;
 
     const browser = await puppeteer.connect({
         browserURL: `http://localhost:${CHROME_DEBUG_PORT}`,
@@ -167,25 +187,32 @@ async function main() {
     if (args.length < 3) {
         console.error('用法: node create_game_auto.js <游戏名称> <模板ID> <配置文件路径>');
         console.error('示例: node create_game_auto.js "我的游戏" "70a3010b-0b7a-11ef-b3a3-fa7902489df6" "./game_config.json"');
+        console.error('运动PK可先建壳再导入: node create_game_auto.js "赛跑游戏" "47995925-fb37-11ef-8c1b-ce918f8037e8" ""');
         process.exit(1);
     }
 
     const [gameName, templateId, configPath] = args;
 
-    // 读取配置文件
-    if (!fs.existsSync(configPath)) {
-        console.error(`❌ 配置文件不存在: ${configPath}`);
-        process.exit(1);
+    let configuration = {};
+    if (configPath) {
+        if (!fs.existsSync(configPath)) {
+            console.error(`❌ 配置文件不存在: ${configPath}`);
+            process.exit(1);
+        }
+
+        configuration = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+        // 如果是 {code, result, msg} 包装格式，提取内层配置
+        if (configuration && typeof configuration.code !== 'undefined' && configuration.result) {
+            const innerStr = configuration.result.configuration;
+            configuration = typeof innerStr === 'string' ? JSON.parse(innerStr) : innerStr;
+            console.log('✅ 已解包 {code,result,msg} 外壳，使用内层配置');
+        }
+        console.log(`✅ 已加载配置文件: ${configPath}`);
+    } else {
+        console.log('ℹ️ 未提供配置文件，将创建空壳游戏，后续需导入配置');
     }
 
-    let configuration = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-    // 如果是 {code, result, msg} 包装格式，提取内层配置
-    if (configuration && typeof configuration.code !== 'undefined' && configuration.result) {
-        const innerStr = configuration.result.configuration;
-        configuration = typeof innerStr === 'string' ? JSON.parse(innerStr) : innerStr;
-        console.log('✅ 已解包 {code,result,msg} 外壳，使用内层配置');
-    }
-    console.log(`✅ 已加载配置文件: ${configPath}`);
+    const gameType = inferGameType(templateId, configuration);
 
     try {
         // 1. 获取Token
@@ -195,13 +222,13 @@ async function main() {
         const userName = await getUserName();
 
         // 3. 创建游戏
-        const gameId = await createGame(gameName, templateId, configuration, token, userName);
+        const gameId = await createGame(gameName, templateId, configuration, token, userName, gameType);
 
         // 4. 锁定游戏
         await lockGame(gameId, token);
 
         // 5. 打开编辑器
-        await openGameEditor(gameId);
+        await openGameEditor(gameId, gameType);
 
         // 6. 输出结果
         console.log('\n' + '='.repeat(60));
@@ -209,7 +236,7 @@ async function main() {
         console.log('='.repeat(60));
         console.log(`游戏ID: ${gameId}`);
         console.log(`游戏名称: ${gameName}`);
-        console.log(`编辑器链接: ${EDITOR_BASE}?game_id=${gameId}`);
+        console.log(`编辑器链接: ${(gameType === 2 ? CUSTOM_EDITOR_BASE : EDITOR_BASE)}?game_id=${gameId}`);
         console.log('='.repeat(60));
 
         // 将游戏ID写入文件

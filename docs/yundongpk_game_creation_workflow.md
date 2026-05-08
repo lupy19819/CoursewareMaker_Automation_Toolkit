@@ -1,6 +1,7 @@
-# 运动PK游戏（赛跑/游泳/赛车）新建流程分析
+# 运动PK游戏（赛跑/游泳/赛车）新建与导入流程
 
 > 基于 2026-04-17 16:03-16:04 浏览器操作的完整网络日志分析
+> 2026-05-08 补充：`create_game_auto.js` 修复后已跑通“新建空壳 → PUT 导入配置 → 严格比对”。
 
 ## 捕获的关键信息
 
@@ -11,6 +12,33 @@
 - **组件 component_id**: `21dcca07-c1e6-11ef-895a-4eb2c30c826b` (运动PK赛)
 - **组件版本**: `0.1.0`
 - **游戏类型**: `game_type: 2` (定制游戏)
+
+## 当前已验证自动化流程
+
+```bash
+# 1. 创建运动PK空壳游戏
+node scripts/create_game_auto.js \
+  "测试运动PK新建" \
+  "47995925-fb37-11ef-8c1b-ce918f8037e8" \
+  ""
+
+GAME_ID=$(cat latest_game_id.txt)
+
+# 2. 校验配置
+python3 scripts/validate_yundong_pk_config.py "配置.json" 赛跑
+
+# 3. 导入配置并保存
+node scripts/save_game_config_via_cdp.js "$GAME_ID" "配置.json"
+```
+
+实测结果：
+
+- 新建 `game_id`: `0ada627b-4a89-11f1-a80e-6effa3ce9c89`
+- 新建元数据: `game_type=2`
+- 编辑器入口: `#/customEditor?game_id=0ada627b-4a89-11f1-a80e-6effa3ce9c89`
+- 导入接口: `PUT /beibo/game/config/game`
+- 导入结果: `code=0, msg=success`
+- 线上配置与本地配置标准化比对: `exact_equal=true`
 
 ---
 
@@ -177,20 +205,20 @@
 
 ## 与之前 create_game_auto.js 的差异
 
-| 对比项 | 之前的脚本 | 实际浏览器流程 |
+| 对比项 | 旧脚本问题 | 修复后脚本 / 实际浏览器流程 |
 |--------|-----------|---------------|
 | **创建API** | POST /beibo/game/config/game | 相同 ✅ |
-| **请求体** | 只传 game_name + template_id + game_type | 传了完整的 configuration 对象 |
-| **configuration来源** | 空（后续通过 save_game_config_via_cdp.js 注入） | 直接从模板获取默认配置 |
+| **game_type** | 硬编码 `1`，会把运动PK建成普通游戏 | 运动PK模板自动使用 `2` ✅ |
+| **编辑器入口** | `#/editor?game_id=...` | `#/customEditor?game_id=...` ✅ |
+| **配置路径** | 传 `""` 会报“配置文件不存在” | 允许空配置，先建壳再导入 ✅ |
+| **user 字段** | 只读 `USER_INFO`，实际为空时写成“用户” | 读取 `GAMEMAKER_USER_INFO` 并输出 `姓名（拼音）` ✅ |
+| **configuration来源** | 可为空壳 `{}`，后续通过 `save_game_config_via_cdp.js` 注入 | 浏览器完整流程会带默认配置；自动化已验证空壳 + 导入也可用 |
 | **锁定** | 创建后锁定 | 相同 ✅ |
-| **保存** | 通过CDP注入配置后保存 | 保存包含默认配置的完整对象 |
+| **保存** | 曾尝试 `POST`，可能被当成新建/另存版本 | 更新已有游戏使用 `PUT + credentials: include` ✅ |
 | **截图** | 无 | 上传截图到COS |
 
 ### 结论
-之前的 `create_game_auto.js` 创建的是**空壳游戏**（无configuration），需要后续通过 `save_game_config_via_cdp.js` 注入配置。
-浏览器的完整流程是**带默认配置创建**，可以直接在编辑器中编辑。
-
-两种方式都能工作，但完整流程更接近真实使用场景，创建出来的游戏可以直接在编辑器中打开编辑。
+修复后的 `create_game_auto.js` 可以创建运动PK空壳游戏，关键是 `game_type=2` 和 `customEditor` 入口正确。后续用 `save_game_config_via_cdp.js` 通过 `PUT` 导入完整 `custom_game` 配置，已验证可直接写入原 `game_id`。
 
 ---
 
@@ -204,7 +232,7 @@ node create_game_auto.js "游戏名" "47995925-fb37-11ef-8c1b-ce918f8037e8" ""
 node save_game_config_via_cdp.js "$GAME_ID" "config.json"
 ```
 
-### 方案B: 新建脚本（带默认配置创建 - 更完整）
+### 方案B: 新建脚本（带默认配置创建 - 可选）
 创建 `create_yundongpk_game.js`，在创建时直接传入完整的默认configuration，
 后续只需更新 custom_game 部分的题目数据即可。
 
