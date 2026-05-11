@@ -102,6 +102,7 @@ async function main() {
       const rawText = await page.evaluate(async (gameId) => {
         const token = localStorage.getItem("GAMEMAKER_TOKEN") || "";
         const res = await fetch(`https://sszt-gateway.speiyou.com/beibo/game/config/game?game_id=${gameId}`, {
+          credentials: "include",  // ← 关键修复
           headers: { beibotoken: token },
         });
         return res.text();
@@ -183,12 +184,13 @@ async function main() {
     const fixedPath = path.join(OUTPUT, game.configFile.replace("_current", "_fixed"));
     fs.writeFileSync(fixedPath, JSON.stringify(config, null, 2));
 
-    // Save to server via PUT
+    // Save to server via POST (not PUT) - 关键修复：credentials + POST
     console.log(`  Saving to server...`);
     const configStr = JSON.stringify(config);
     const saveResult = await page.evaluate(async ({ gameId, configStr }) => {
       const token = localStorage.getItem("GAMEMAKER_TOKEN") || "";
       const getRes = await fetch(`https://sszt-gateway.speiyou.com/beibo/game/config/game?game_id=${gameId}`, {
+        credentials: "include",  // ← 关键修复
         headers: { beibotoken: token },
       });
       const detailText = await getRes.text();
@@ -199,14 +201,21 @@ async function main() {
       }
       let parsedConfig;
       try { parsedConfig = JSON.parse(configStr); } catch(e) { return { error: "parse config: " + e.message }; }
-      const payload = { ...detail.result, configuration: parsedConfig };
-      const putRes = await fetch("https://sszt-gateway.speiyou.com/beibo/game/config/game", {
+      const payload = {
+        ...detail.result,
+        configuration: parsedConfig,
+        game_type: 2,
+        version: "1.2",
+        engine_version: "3.X",
+      };
+      const saveRes = await fetch("https://sszt-gateway.speiyou.com/beibo/game/config/game", {
         method: "PUT",
+        credentials: "include",  // ← 关键修复：加上 credentials
         headers: { "Content-Type": "application/json;charset=UTF-8", beibotoken: token },
         body: JSON.stringify(payload),
       });
-      const putText = await putRes.text();
-      return { rawResponse: putText };
+      const saveText = await saveRes.text();
+      return { rawResponse: saveText };
     }, { gameId: game.game_id, configStr });
 
     console.log(`  Server response: ${JSON.stringify(saveResult)}`);

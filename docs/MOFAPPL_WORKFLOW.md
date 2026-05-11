@@ -139,3 +139,11 @@ TEXT_BG_URL = 'https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/a
 - [ ] IP角色烟雾遮挡在数组中位于 文本-fin 之后、拖拽物品之前
 - [ ] 文本-xx 有 compLoadFinish=hide+3s 状态
 - [ ] 文本-fin 有 compLoadFinish=show+3s 状态
+
+
+---
+## ⚠️ 重要规则（2026-05-11）
+
+**句子和作答区排布必须按每题实际需求灵活处理，不能照搬结构模板！**
+- 每题槽位数量、组件顺序、排布方式根据题目数据动态确定
+- 模板仅作为组件类型和参数参考，不作为排布参考

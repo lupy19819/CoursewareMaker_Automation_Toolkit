@@ -47,7 +47,7 @@ if (!innerConfig.game || !Array.isArray(innerConfig.game)) {
 console.log(`[upload] 配置关卡数：${innerConfig.game.length}`);
 
 // ── 2. 找可用的调试 Chrome ──────────────────────────────────────────
-async function findChromeTab(ports = [9222, 9223]) {
+async function findChromeTab(ports = [9222, 9223, 18800]) {
   for (const port of ports) {
     try {
       const tabs = await httpGet(`http://127.0.0.1:${port}/json`);

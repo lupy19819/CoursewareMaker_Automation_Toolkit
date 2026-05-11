@@ -7,7 +7,7 @@ const puppeteer = require('puppeteer-core');
 const fs = require('fs');
 
 // 配置
-const CHROME_DEBUG_PORT = 9222;
+const CHROME_DEBUG_PORT = process.env.CHROME_PORT ? parseInt(process.env.CHROME_PORT) : 9222;
 const API_BASE = 'https://sszt-gateway.speiyou.com/beibo/game/config';
 const EDITOR_BASE = 'https://coursewaremaker.speiyou.com/#/editor';
 const CUSTOM_EDITOR_BASE = 'https://coursewaremaker.speiyou.com/#/customEditor';

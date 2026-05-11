@@ -136,7 +136,7 @@
   ],
   "game": [
     {
-      "id": "gamenext_level_uuid_ca0b3b6b-6601-440d-98fa-0b7380501de3",
+      "id": "gamenext_level_uuid_3858bcb3-8d49-4800-80b1-34ef0c00601c",
       "title": {
         "component_data": {},
         "component_id": "",
@@ -182,7 +182,7 @@
       "components": [
         {
           "component_data": {
-            "id": "gamenext_component_uuid_f75b73fb-a532-4499-a2c7-a127ac82534b",
+            "id": "gamenext_component_uuid_fb956308-ede1-44cb-9dda-49efeadd635b",
             "edit_description": "",
             "component_id": "",
             "name": "背景",
@@ -297,7 +297,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_77479949-a48e-474b-b89c-f6f5f9dc6304",
+            "id": "gamenext_component_uuid_1c3e7713-f1c6-48c3-89fe-fa34b3d12612",
             "edit_description": "",
             "component_id": "",
             "name": "题目配图",
@@ -373,8 +373,8 @@
                 "transform": {
                   "x": 91,
                   "y": 355,
-                  "w": 448,
-                  "h": 297,
+                  "w": 1716,
+                  "h": 1568,
                   "scaleX": 1,
                   "scaleY": 1,
                   "rot": 0,
@@ -412,7 +412,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_d757daad-c4dd-48dd-89f7-bdcfd2577942",
+            "id": "gamenext_component_uuid_9a90bda5-ea5a-4723-8a3a-033c4fb2c891",
             "edit_description": "",
             "component_id": "",
             "name": "关卡数组件",
@@ -614,7 +614,7 @@
               ],
               "value": []
             },
-            "id": "gamenext_component_uuid_ae358ddb-9fa7-4810-aaf6-85dd01528f8f",
+            "id": "gamenext_component_uuid_7a6d166e-9793-4693-bbc7-896bb9f2ec26",
             "name": "喇叭低层级",
             "state_group": [],
             "states": [
@@ -829,7 +829,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_7307b8a5-cc1f-4054-b947-5ed7401f2b18",
+            "id": "gamenext_component_uuid_a43b14e3-1bfa-41d9-b1af-a4dcba4fd639",
             "name": "小鹿开车",
             "state_group": [],
             "states": [
@@ -1202,7 +1202,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_5b41fd8f-a069-4031-b1a8-23d7bea126eb",
+            "id": "gamenext_component_uuid_a4b02547-ff79-40af-a46a-1081b425c26a",
             "name": "点击选择",
             "state_group": [],
             "states": [
@@ -1472,7 +1472,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_7c9c094d-dfaa-47ba-8694-76de09a2c025",
+            "id": "gamenext_component_uuid_c2b2ca2e-7239-457e-8c46-86fb82a361bf",
             "edit_description": "",
             "component_id": "",
             "name": "拖拽放置区1",
@@ -1704,7 +1704,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_eeb20784-b948-4aed-ad32-c80ff2e95ab4",
+            "id": "gamenext_component_uuid_f89eb1c8-24a8-46ce-98a5-35305d997736",
             "edit_description": "",
             "component_id": "",
             "name": "拖拽放置区2",
@@ -1936,7 +1936,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_4d3241df-47f6-4a99-a896-5d0eb06cac77",
+            "id": "gamenext_component_uuid_8f9b8ba6-258e-47a5-9941-c3ee42493f19",
             "edit_description": "",
             "component_id": "",
             "name": "桥墩space1",
@@ -2051,7 +2051,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_2f782cf3-20ed-4449-b0a3-94bd0c6ca0a8",
+            "id": "gamenext_component_uuid_270dc904-4831-4ccf-b574-4d2267df9b5b",
             "edit_description": "",
             "component_id": "",
             "name": "桥墩1",
@@ -2185,7 +2185,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_9ff80e24-6d78-4216-9aab-2fd8d8c833f2",
+            "id": "gamenext_component_uuid_7815ac24-e5e8-4872-957d-91e23e130448",
             "edit_description": "",
             "component_id": "",
             "name": "桥墩space2",
@@ -2300,7 +2300,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_ecba39fd-8868-495a-8152-56dbb6c40921",
+            "id": "gamenext_component_uuid_814b3776-67d3-4f1d-a97e-73f2c03c0fdc",
             "edit_description": "",
             "component_id": "",
             "name": "拖拽放置区3",
@@ -2532,7 +2532,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_dd980593-cdc1-4795-b3d3-061a574c11a5",
+            "id": "gamenext_component_uuid_d08ad0ba-18b2-4770-b85a-1b0e8027f7bd",
             "edit_description": "",
             "component_id": "",
             "name": "拖拽放置区4",
@@ -2764,7 +2764,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_4b119473-792b-48ff-80b3-9302cb7d7653",
+            "id": "gamenext_component_uuid_3f08021a-11bd-45cb-878a-0e124a3665be",
             "edit_description": "",
             "component_id": "",
             "name": "拖拽放置区5",
@@ -3081,7 +3081,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_b82ae132-60da-4f2a-868a-6bbb0b545eaa",
+            "id": "gamenext_component_uuid_172b55a4-2a08-4d67-8eb1-f9c6ce3fff21",
             "name": "砖块掉落1",
             "state_group": [],
             "states": [
@@ -3317,7 +3317,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_e13a3fa4-bc2f-498e-84c4-6259a1b26bf8",
+            "id": "gamenext_component_uuid_6708629b-deba-4d03-9294-fa0318ed9f22",
             "name": "砖块掉落2",
             "state_group": [],
             "states": [
@@ -3553,7 +3553,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_e5aa4748-4e8e-4151-a151-2a182dc90bdb",
+            "id": "gamenext_component_uuid_1f0fedcf-3caf-46d6-ab22-afa9992d43c2",
             "name": "砖块掉落3",
             "state_group": [],
             "states": [
@@ -3789,7 +3789,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_89be0826-4172-4dad-8b1c-e04b6c0d66e3",
+            "id": "gamenext_component_uuid_87cdf5ca-7f52-4a71-9df5-3401f497a79c",
             "name": "砖块掉落4",
             "state_group": [],
             "states": [
@@ -4025,7 +4025,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_287211e7-d3ce-4b2e-af9f-ddef08a0a2d5",
+            "id": "gamenext_component_uuid_373673db-3dc3-4443-ad70-bf589fa1be82",
             "name": "砖块掉落5",
             "state_group": [],
             "states": [
@@ -4176,7 +4176,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_1d866691-d719-44f1-9363-dc5e5339717a",
+            "id": "gamenext_component_uuid_c87225e3-c09c-4eb6-8b87-5bb1460649b3",
             "edit_description": "",
             "component_id": "",
             "name": "句号",
@@ -4291,7 +4291,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_5a2d12cb-2619-42d5-8a9a-119742882a03",
+            "id": "gamenext_component_uuid_debadcc5-ee76-445a-8866-12135118ecdd",
             "edit_description": "",
             "component_id": "",
             "name": "节点",
@@ -4401,7 +4401,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_221179c6-bcb5-4b9f-9162-fd0f4c224c18",
+            "id": "gamenext_component_uuid_632925f1-9eca-41fe-a60f-158b3a7ad336",
             "edit_description": "",
             "component_id": "",
             "name": "选项1",
@@ -4652,7 +4652,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_32099ec8-31f0-4d3a-8780-0b82a9e37aeb",
+            "id": "gamenext_component_uuid_75a1fe9d-adb0-4216-ac0f-94b0b66409f1",
             "edit_description": "",
             "component_id": "",
             "name": "选项2",
@@ -4903,7 +4903,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_8f5a03af-a5a2-4bf1-8585-8fd7d1af9f29",
+            "id": "gamenext_component_uuid_4f91bb83-1e0d-4af0-a12b-66456adda50f",
             "edit_description": "",
             "component_id": "",
             "name": "选项3",
@@ -5154,7 +5154,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_7eaaf03a-747f-4d6d-a70a-d82833a5b707",
+            "id": "gamenext_component_uuid_7d2e0dd5-23ed-4a14-b0c8-bb38e95c487a",
             "edit_description": "",
             "component_id": "",
             "name": "选项4",
@@ -5405,7 +5405,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_4d053b0f-b887-46a8-8cba-0d15b5d0a540",
+            "id": "gamenext_component_uuid_db99b8eb-a71e-4d49-ae8e-238aaf59ccf1",
             "edit_description": "",
             "component_id": "",
             "name": "选项5",
@@ -5657,7 +5657,7 @@
       ]
     },
     {
-      "id": "gamenext_level_uuid_63cd8acf-7e34-43a2-bc24-3df18d70c9b7",
+      "id": "gamenext_level_uuid_476f8867-a7d3-4f78-b89d-a8eaeafb3326",
       "title": {
         "component_data": {},
         "component_id": "",
@@ -5703,7 +5703,7 @@
       "components": [
         {
           "component_data": {
-            "id": "gamenext_component_uuid_b7228965-8654-4681-af92-0d39a0f6a3cc",
+            "id": "gamenext_component_uuid_2eb2cdef-52ca-4d45-bbef-11d77c2df0ea",
             "edit_description": "",
             "component_id": "",
             "name": "背景",
@@ -5818,7 +5818,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_b2f2e3be-2e10-4248-88c0-ec98b8548764",
+            "id": "gamenext_component_uuid_1a8b8a7b-4922-4778-8f2c-5435aa44df50",
             "edit_description": "",
             "component_id": "",
             "name": "题目配图",
@@ -5894,8 +5894,8 @@
                 "transform": {
                   "x": 91,
                   "y": 355,
-                  "w": 448,
-                  "h": 297,
+                  "w": 1707,
+                  "h": 1253,
                   "scaleX": 1,
                   "scaleY": 1,
                   "rot": 0,
@@ -5933,7 +5933,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_a642b2d1-5c85-4b35-9671-731eb9605322",
+            "id": "gamenext_component_uuid_4def3b70-f8c0-4355-99c7-aea94db06b2a",
             "edit_description": "",
             "component_id": "",
             "name": "关卡数组件",
@@ -6135,7 +6135,7 @@
               ],
               "value": []
             },
-            "id": "gamenext_component_uuid_cd21b3d6-4eff-43b8-8fcc-78529485e5f5",
+            "id": "gamenext_component_uuid_bdcf37d5-496a-4299-8123-2082cba64dac",
             "name": "喇叭低层级",
             "state_group": [],
             "states": [
@@ -6350,7 +6350,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_87125d04-0fe8-4a3d-8eac-0c9833a4525d",
+            "id": "gamenext_component_uuid_e2efa490-f097-4e3f-93ab-48a3373b31fb",
             "name": "小鹿开车",
             "state_group": [],
             "states": [
@@ -6723,7 +6723,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_4a04e45d-81c0-4668-9765-6982b7decbb1",
+            "id": "gamenext_component_uuid_fcf9b0b6-5fcc-4842-ace7-548179146aa3",
             "name": "点击选择",
             "state_group": [],
             "states": [
@@ -6993,7 +6993,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_0f85c409-11b7-4b60-adbb-d4f272b735ef",
+            "id": "gamenext_component_uuid_86de1285-daea-4c7e-b8a9-2f95bf589918",
             "edit_description": "",
             "component_id": "",
             "name": "拖拽放置区1",
@@ -7225,7 +7225,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_f21a6180-05de-4147-9c25-583631c80daa",
+            "id": "gamenext_component_uuid_7b1466d4-28bb-4d85-b229-b337cd4c4283",
             "edit_description": "",
             "component_id": "",
             "name": "拖拽放置区2",
@@ -7457,7 +7457,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_557f0845-e414-491e-929c-85631535464a",
+            "id": "gamenext_component_uuid_5e61b18f-1d11-4094-a87e-45513a41d4c4",
             "edit_description": "",
             "component_id": "",
             "name": "桥墩space1",
@@ -7572,7 +7572,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_66fa5ccf-a693-4f37-a229-f097cb3aa7e6",
+            "id": "gamenext_component_uuid_4481a6fd-e2ea-4951-9d4f-37d2a6effdb6",
             "edit_description": "",
             "component_id": "",
             "name": "拖拽放置区3",
@@ -7804,7 +7804,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_0b0fa934-2156-4018-987e-253919e02cfb",
+            "id": "gamenext_component_uuid_d9a80728-78c3-4b74-9227-7d8fb1fc87b7",
             "edit_description": "",
             "component_id": "",
             "name": "桥墩space2",
@@ -7919,7 +7919,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_6fec3de0-7c89-48df-bc20-5d975f31738e",
+            "id": "gamenext_component_uuid_8abacc5e-4748-4f90-aa61-0f14f3635bff",
             "edit_description": "",
             "component_id": "",
             "name": "拖拽放置区4",
@@ -8151,7 +8151,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_10fa7280-441f-4268-9b82-c38770d0e1de",
+            "id": "gamenext_component_uuid_1cbce662-e05a-43f4-b735-6208b9a7a120",
             "edit_description": "",
             "component_id": "",
             "name": "拖拽放置区5",
@@ -8468,7 +8468,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_32554874-eb1a-4b2a-ab31-bd69280d96aa",
+            "id": "gamenext_component_uuid_2c8f84f2-80f4-4172-b1f5-8ba86eb660bb",
             "name": "砖块掉落1",
             "state_group": [],
             "states": [
@@ -8704,7 +8704,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_87ea88e8-de1d-4064-9b30-875077ac011b",
+            "id": "gamenext_component_uuid_ab782065-93ff-4e2f-99ce-1b1e0c9b953a",
             "name": "砖块掉落2",
             "state_group": [],
             "states": [
@@ -8940,7 +8940,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_7e66d490-29db-40d6-8e25-50ec8d85f4aa",
+            "id": "gamenext_component_uuid_d310b0a1-d0e6-4ba9-a602-fd7a3ef637c8",
             "name": "砖块掉落3",
             "state_group": [],
             "states": [
@@ -9176,7 +9176,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_aaeeefae-b05a-4bb3-bdf0-4985d8e63e42",
+            "id": "gamenext_component_uuid_2364ec40-9241-4d52-b0af-65a10f9f3df5",
             "name": "砖块掉落4",
             "state_group": [],
             "states": [
@@ -9412,7 +9412,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_b8d75a7f-922b-4411-9626-690e2a10c6f3",
+            "id": "gamenext_component_uuid_35bbf11f-e884-47c7-a9f9-720ad397ae62",
             "name": "砖块掉落5",
             "state_group": [],
             "states": [
@@ -9563,7 +9563,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_c86f13d8-a029-4067-b470-43420bb53105",
+            "id": "gamenext_component_uuid_a86b3320-8548-4c22-97fc-8cbb60d71ccb",
             "edit_description": "",
             "component_id": "",
             "name": "句号",
@@ -9678,7 +9678,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_018f583c-d913-45d5-9ddc-4aaffc107f28",
+            "id": "gamenext_component_uuid_6acde7a7-4049-4929-ab2c-8c67066b56e5",
             "edit_description": "",
             "component_id": "",
             "name": "节点",
@@ -9788,7 +9788,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_7465063d-1846-4ed7-a353-bd9085230d6a",
+            "id": "gamenext_component_uuid_7005dd76-68b3-42dd-8782-a854a79e7d7a",
             "edit_description": "",
             "component_id": "",
             "name": "选项1",
@@ -10039,7 +10039,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_34410614-b5d6-4c57-ae19-613c246f589d",
+            "id": "gamenext_component_uuid_4c69ec29-7345-4707-bf66-3c62e528d3e2",
             "edit_description": "",
             "component_id": "",
             "name": "选项2",
@@ -10290,7 +10290,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_b01b02d5-7a39-4db6-be49-557765b60066",
+            "id": "gamenext_component_uuid_223bef2b-47a4-4e7b-a92e-f71cffb0c3c9",
             "edit_description": "",
             "component_id": "",
             "name": "选项3",
@@ -10541,7 +10541,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_c00c0abc-f5bb-4247-8ff4-34f0b8a23f14",
+            "id": "gamenext_component_uuid_5506c59c-ea00-4672-ac93-bbfd5c7f5e55",
             "edit_description": "",
             "component_id": "",
             "name": "选项4",
@@ -10792,7 +10792,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_d8cb378e-29a9-48e9-8549-5233c44b7a4f",
+            "id": "gamenext_component_uuid_799d6932-7bf8-4a22-a879-9bdf880a728d",
             "edit_description": "",
             "component_id": "",
             "name": "选项5",
@@ -11044,7 +11044,7 @@
       ]
     },
     {
-      "id": "gamenext_level_uuid_646e902d-1bfb-4ea1-acd4-ac9f317c4908",
+      "id": "gamenext_level_uuid_63d5e664-a9f0-4615-b430-83dce6e4e8b6",
       "title": {
         "component_data": {},
         "component_id": "",
@@ -11090,7 +11090,7 @@
       "components": [
         {
           "component_data": {
-            "id": "gamenext_component_uuid_6be2ae7f-e214-4955-afa2-38ecf32cfb57",
+            "id": "gamenext_component_uuid_c1b2a59e-c4fe-4e4c-9266-7504dee2a569",
             "edit_description": "",
             "component_id": "",
             "name": "背景",
@@ -11205,7 +11205,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_5cbb605e-742f-45c6-a71b-235b1193e2c8",
+            "id": "gamenext_component_uuid_4f080b80-1fd4-4768-b354-02d2e373da93",
             "edit_description": "",
             "component_id": "",
             "name": "题目配图",
@@ -11281,8 +11281,8 @@
                 "transform": {
                   "x": 91,
                   "y": 355,
-                  "w": 448,
-                  "h": 297,
+                  "w": 388,
+                  "h": 392,
                   "scaleX": 1,
                   "scaleY": 1,
                   "rot": 0,
@@ -11320,7 +11320,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_05a8aae6-8bf1-4874-9fa9-3ffdae5f9187",
+            "id": "gamenext_component_uuid_809afd7b-b424-494b-be32-5fc74a755923",
             "edit_description": "",
             "component_id": "",
             "name": "关卡数组件",
@@ -11522,7 +11522,7 @@
               ],
               "value": []
             },
-            "id": "gamenext_component_uuid_59e75270-3a0a-4a9c-bb3e-acd7b17d7817",
+            "id": "gamenext_component_uuid_ae4dfd55-c0c2-4410-a985-246f7d696eea",
             "name": "喇叭低层级",
             "state_group": [],
             "states": [
@@ -11737,7 +11737,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_dd6b3df6-0e5c-4ece-8664-13955a58ca52",
+            "id": "gamenext_component_uuid_2b7c9d04-4355-4041-a2fa-76be9b8eb7d1",
             "name": "小鹿开车",
             "state_group": [],
             "states": [
@@ -12110,7 +12110,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_1a15b410-637f-4551-90cb-b793af7a798a",
+            "id": "gamenext_component_uuid_69f64fd3-7559-400a-9220-7d11079a4e36",
             "name": "点击选择",
             "state_group": [],
             "states": [
@@ -12380,7 +12380,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_03e6c8b1-070a-4308-a765-5bb1b11e4473",
+            "id": "gamenext_component_uuid_3ab6d31d-7f2e-447c-a1cd-0313c190f392",
             "edit_description": "",
             "component_id": "",
             "name": "拖拽放置区1",
@@ -12612,7 +12612,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_83ef4263-2852-45a2-831b-1e3d36adb803",
+            "id": "gamenext_component_uuid_b4c26cec-d8ce-4e35-9a49-8fb215e6134f",
             "edit_description": "",
             "component_id": "",
             "name": "拖拽放置区2",
@@ -12844,7 +12844,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_a20221e7-8aba-4e37-a5ef-37545ae44e26",
+            "id": "gamenext_component_uuid_178c85b3-d4a5-4a2f-bb1d-a4046f73d38a",
             "edit_description": "",
             "component_id": "",
             "name": "拖拽放置区3",
@@ -13161,7 +13161,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_8bdf8d8d-ef42-4dd5-9f9c-c48fa09c3ca9",
+            "id": "gamenext_component_uuid_8b7c5b91-2fec-4769-a523-17f999ec48df",
             "name": "砖块掉落1",
             "state_group": [],
             "states": [
@@ -13397,7 +13397,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_a00e81b5-7824-4b19-8288-7012955ed8d2",
+            "id": "gamenext_component_uuid_938a62da-2f77-43f7-8608-c1fef58232ac",
             "name": "砖块掉落2",
             "state_group": [],
             "states": [
@@ -13633,7 +13633,7 @@
                 }
               ]
             },
-            "id": "gamenext_component_uuid_0ae90496-44ae-479b-8ca7-0402c4015a98",
+            "id": "gamenext_component_uuid_55984f91-bd3c-462d-aeba-8f162263ee08",
             "name": "砖块掉落3",
             "state_group": [],
             "states": [
@@ -13784,7 +13784,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_8ebb02a2-aa02-4c8b-a92e-5f29ce0cf3ea",
+            "id": "gamenext_component_uuid_f3f288f0-0a9e-44b9-beb5-3d3d3cfe90d8",
             "edit_description": "",
             "component_id": "",
             "name": "句号",
@@ -13899,7 +13899,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_57515c63-8095-435b-9324-6d86027b3011",
+            "id": "gamenext_component_uuid_d1176a04-e038-4f4b-8fd5-9b8307c7a72d",
             "edit_description": "",
             "component_id": "",
             "name": "节点",
@@ -14009,7 +14009,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_f0667c73-093d-45e8-a929-d5da87a9d079",
+            "id": "gamenext_component_uuid_bef9db5c-193f-4604-86eb-b9ad1a9cdbef",
             "edit_description": "",
             "component_id": "",
             "name": "选项1",
@@ -14260,7 +14260,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_4c779bfe-d178-47f2-832a-60b5f2cca506",
+            "id": "gamenext_component_uuid_a023c865-b2e7-48ac-a6ea-162dddeab780",
             "edit_description": "",
             "component_id": "",
             "name": "选项2",
@@ -14511,7 +14511,7 @@
         },
         {
           "component_data": {
-            "id": "gamenext_component_uuid_6478f24c-5b98-4494-a12e-9e429068e82e",
+            "id": "gamenext_component_uuid_15d571b4-013b-43fe-b6de-546a9eeb2b52",
             "edit_description": "",
             "component_id": "",
             "name": "选项3",

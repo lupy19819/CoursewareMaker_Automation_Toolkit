@@ -1011,6 +1011,47 @@ def build_config():
     return cfg
 
 
+def _run_resource_validation(cfg):
+    """生成后自动校验资源，白名单：每关的题目配图和题目音频（用户自定义上传）"""
+    try:
+        import importlib.util, pathlib
+        spec = importlib.util.spec_from_file_location(
+            'validate_resources',
+            pathlib.Path(__file__).parent / 'validate_resources.py'
+        )
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        validate = mod.validate
+        print_report = mod.print_report
+    except Exception as e:
+        print(f"⚠️  资源校验模块加载失败: {e}")
+        return
+
+    # 加载参考配置
+    ref_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                            'reference_configs', 'spelling_validation_ref.json')
+    if not os.path.exists(ref_path):
+        print(f"⚠️  参考配置不存在，跳过资源校验: {ref_path}")
+        return
+
+    with open(ref_path, encoding='utf-8') as f:
+        raw = f.read().strip().lstrip("'").rstrip("'")
+        ref = json.loads(raw)
+
+    # 白名单：每关的 word_image_url 和 word_audio_url
+    whitelist = set()
+    for q in LEVELS:
+        if q.get('word_image_url'):
+            whitelist.add(q['word_image_url'])
+        if q.get('word_audio_url'):
+            whitelist.add(q['word_audio_url'])
+
+    print("\n🔍 开始资源校验...")
+    result = validate(cfg, ref, whitelist_urls=whitelist)
+    print_report(result)
+    return result
+
+
 def main():
     os.makedirs("output", exist_ok=True)
     cfg = build_config()
@@ -1037,6 +1078,9 @@ def main():
             print(f"    ⚠️  word_audio_url 未填写（喇叭无音频）")
         if not q.get("word_image_url"):
             print(f"    ⚠️  word_image_url 未填写（节点_37 无图片）")
+
+
+    _run_resource_validation(cfg)
 
 
 if __name__ == "__main__":

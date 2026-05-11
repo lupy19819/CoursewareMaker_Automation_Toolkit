@@ -16,7 +16,7 @@ async function main() {
   const configText = fs.readFileSync(configPath, "utf8");
   const configObject = JSON.parse(configText);
 
-  const browser = await chromium.connectOverCDP("http://127.0.0.1:9222");
+  const _port = process.env.CHROME_PORT || 9222; const browser = await chromium.connectOverCDP("http://127.0.0.1:" + _port);
   const context = browser.contexts()[0];
   const page = context.pages().find((p) =>
     (p.url() || "").includes("coursewaremaker.speiyou.com")

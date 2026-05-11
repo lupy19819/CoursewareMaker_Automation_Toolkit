@@ -104,3 +104,11 @@
 | `scripts/upload_spelling_config.js` | CDP 上传配置（扫 9222/9223） |
 | `scripts/fetch_spelling_configs.js` | 抓取线上配置备份 |
 | `reference_configs/spelling_validation_ref.json` | 校验基准 |
+
+
+---
+## ⚠️ 重要规则（2026-05-11）
+
+**句子和作答区排布必须按每题实际需求灵活处理，不能照搬结构模板！**
+- 每题槽位数量、组件顺序、排布方式根据题目数据动态确定
+- 模板仅作为组件类型和参数参考，不作为排布参考

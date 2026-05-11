@@ -265,6 +265,230 @@
       "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/d1d538534c505e3edfd1fbc090f6a6cb.mp3",
       "category": "audio",
       "type": 2
+    },
+    {
+      "id": 75820,
+      "name": "26暑国际小班10贪吃e",
+      "category": "image",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-05-07/6f6bd48f255c90c849b56054cfe251cb.png",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 1,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
+    },
+    {
+      "id": 75821,
+      "name": "26暑国际小班10贪吃f",
+      "category": "image",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-05-07/a6ab25cac1b833e514bd229507fdff06.png",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 1,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
+    },
+    {
+      "id": 75822,
+      "name": "26暑国际小班10贪吃g",
+      "category": "image",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-05-07/ea7dc037963c2528cd772cf4cee54322.png",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 1,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
+    },
+    {
+      "id": 75823,
+      "name": "26暑国际小班10贪吃h",
+      "category": "image",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-05-07/616038a477e36a03786e13dc5c2e2aec.png",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 1,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
+    },
+    {
+      "id": 75824,
+      "name": "26暑国际小班10贪吃音频e",
+      "category": "audio",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-07/c5bfa6c41d43dd3340efcf7ca9586673.mp3",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 2,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
+    },
+    {
+      "id": 75825,
+      "name": "26暑国际小班10贪吃音频f",
+      "category": "audio",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-07/2f90546e50cb4f612c9922a2b59ec914.mp3",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 2,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
+    },
+    {
+      "id": 75826,
+      "name": "26暑国际小班10贪吃音频g",
+      "category": "audio",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-07/c4cd41355554d003b4146867a36e0aca.mp3",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 2,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
+    },
+    {
+      "id": 75827,
+      "name": "26暑国际小班10贪吃音频h",
+      "category": "audio",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-07/095421ce24170a713dc4cba729f1fef1.mp3",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 2,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
+    },
+    {
+      "id": 75828,
+      "name": "26暑国际小班10赛跑bag",
+      "category": "image",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-05-07/8c127bf68c564b31a843d3582b447efa.png",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 1,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
+    },
+    {
+      "id": 75829,
+      "name": "26暑国际小班10赛跑book",
+      "category": "image",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-05-07/1452c4cead4b3eba85ea424f3479b4c6.png",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 1,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
+    },
+    {
+      "id": 75830,
+      "name": "26暑国际小班10赛跑toy",
+      "category": "image",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2026-05-07/75551656ec57e4dc0c42c2e51ecb3fc7.png",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 1,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
+    },
+    {
+      "id": 75831,
+      "name": "26暑国际小班10赛跑音频单词bag",
+      "category": "audio",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-07/1c3317d9966a36a6462e4464d8494cb2.mp3",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 2,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
+    },
+    {
+      "id": 75832,
+      "name": "26暑国际小班10赛跑音频单词book",
+      "category": "audio",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-07/c542ec22c05bf2f2baabc8fa3b7be0b8.mp3",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 2,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
+    },
+    {
+      "id": 75833,
+      "name": "26暑国际小班10赛跑音频单词toy",
+      "category": "audio",
+      "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-07/f89b9ce4e24200ff40946a4d0929dd2a.mp3",
+      "desc": "",
+      "topic": [
+        1
+      ],
+      "tag": [
+        7
+      ],
+      "type": 2,
+      "creator_name": "江昊",
+      "update_time": "2026-05-07T16:57:30.166639"
     }
   ]
 }
