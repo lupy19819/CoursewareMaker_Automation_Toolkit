@@ -104,6 +104,14 @@ cp config.template.json config.json
 
 ## 📊 工作流程图
 
+### 排查总图
+
+优先查看：[WORKFLOW_DEBUG_FLOWCHART.md](WORKFLOW_DEBUG_FLOWCHART.md)
+
+包含：完整 mermaid 流程图、用户意图判定、目标游戏解析、玩法路由规则、每阶段输入/输出/脚本/常见故障点、配置返修边界、创建与保存链路、模板游戏校验矩阵、运动PK专项排查和脚本索引。
+
+交互预览页：[workflow_debug_interactive.html](workflow_debug_interactive.html)
+
 ### 完整流程
 
 ```

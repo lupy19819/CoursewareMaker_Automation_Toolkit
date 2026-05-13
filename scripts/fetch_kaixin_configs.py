@@ -80,7 +80,7 @@ def main():
 
         try:
             cfg = fetch_config(gid)
-            # 排除 components 大字段（仅保留 configuration 内容）
+            # 导出样本仅保留配置内容；保存/导入脚本必须保留完整 meta 并只替换 configuration。
             cfg.pop('components', None)
             with open(out_path, 'w', encoding='utf-8') as f:
                 json.dump(cfg, f, ensure_ascii=False, indent=2)

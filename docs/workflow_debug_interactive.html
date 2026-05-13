@@ -1,0 +1,867 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CoursewareMaker 交互式流程图</title>
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --surface: #ffffff;
+      --ink: #172033;
+      --muted: #657184;
+      --line: #b9c5d3;
+      --blue: #1769aa;
+      --blue-soft: #e6f1fb;
+      --green: #1f7a53;
+      --green-soft: #e8f6ef;
+      --amber: #a05d00;
+      --amber-soft: #fff4dc;
+      --red: #b3261e;
+      --red-soft: #fdebea;
+      --shadow: 0 14px 38px rgba(23, 32, 51, .12);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--surface);
+      border-bottom: 1px solid #d7dee8;
+      padding: 16px 22px;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 390px;
+      gap: 16px;
+      padding: 16px;
+      max-width: 1580px;
+      margin: 0 auto;
+    }
+
+    .toolbar {
+      grid-column: 1 / -1;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 10px;
+      border: 1px solid #d7dee8;
+      border-radius: 8px;
+      background: var(--surface);
+    }
+
+    .filter {
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--ink);
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .filter.active {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: #fff;
+    }
+
+    .chart-wrap {
+      overflow: auto;
+      min-height: 760px;
+      border: 1px solid #d7dee8;
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    svg {
+      display: block;
+      min-width: 1180px;
+      width: 100%;
+      height: auto;
+    }
+
+    .flow-edge {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 2.2;
+      marker-end: url(#arrow);
+    }
+
+    .flow-edge.warn {
+      stroke: var(--amber);
+      stroke-dasharray: 7 6;
+    }
+
+    .flow-edge.success {
+      stroke: var(--green);
+    }
+
+    .flow-node {
+      cursor: pointer;
+      transition: opacity .15s ease;
+    }
+
+    .flow-node rect,
+    .flow-node polygon {
+      fill: #fff;
+      stroke: var(--line);
+      stroke-width: 1.8;
+      transition: fill .15s ease, stroke .15s ease, filter .15s ease;
+    }
+
+    .flow-node text {
+      pointer-events: none;
+      fill: var(--ink);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .flow-node .small {
+      fill: var(--muted);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .flow-node:hover rect,
+    .flow-node:hover polygon,
+    .flow-node.active rect,
+    .flow-node.active polygon {
+      fill: var(--blue-soft);
+      stroke: var(--blue);
+      filter: drop-shadow(0 6px 12px rgba(23, 105, 170, .18));
+    }
+
+    .flow-node.kind-route rect,
+    .flow-node.kind-route polygon { fill: #fbfcfe; }
+    .flow-node.kind-warn rect { fill: var(--amber-soft); stroke: #d4932b; }
+    .flow-node.kind-ok rect { fill: var(--green-soft); stroke: #4a9a73; }
+    .flow-node.kind-danger rect { fill: var(--red-soft); stroke: #d46b65; }
+
+    .flow-node.hidden {
+      opacity: .13;
+    }
+
+    .flow-label {
+      fill: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .edge-label {
+      fill: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    aside {
+      position: sticky;
+      top: 92px;
+      align-self: start;
+      max-height: calc(100vh - 110px);
+      overflow: auto;
+      border: 1px solid #d7dee8;
+      border-radius: 8px;
+      background: var(--surface);
+      box-shadow: var(--shadow);
+    }
+
+    .detail {
+      padding: 18px;
+    }
+
+    .detail h2 {
+      margin: 0 0 6px;
+      font-size: 20px;
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    .tagline {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .section {
+      margin-top: 14px;
+      padding-top: 13px;
+      border-top: 1px solid #d7dee8;
+    }
+
+    .section h3 {
+      margin: 0 0 8px;
+      font-size: 14px;
+      letter-spacing: 0;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    li {
+      margin: 6px 0;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    code {
+      padding: 1px 5px;
+      border: 1px solid #d8e0ea;
+      border-radius: 5px;
+      background: #f2f5f8;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+    }
+
+    .quick-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .quick-links a {
+      padding: 6px 10px;
+      border: 1px solid #d7dee8;
+      border-radius: 999px;
+      color: var(--blue);
+      text-decoration: none;
+      font-size: 12px;
+      background: #fbfcfe;
+    }
+
+    @media (max-width: 1100px) {
+      main { grid-template-columns: 1fr; }
+      aside { position: static; max-height: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>CoursewareMaker 交互式流程图</h1>
+    <p class="subtitle">这是一张真正的流程图：按箭头看链路，点击节点看规则、脚本和排查点。筛选按钮会淡化无关节点，保留全图上下文。</p>
+  </header>
+
+  <main>
+    <nav class="toolbar" aria-label="筛选流程">
+      <button class="filter active" data-filter="all">全部</button>
+      <button class="filter" data-filter="core">主链路</button>
+      <button class="filter" data-filter="route">玩法路由</button>
+      <button class="filter" data-filter="yundong">运动PK</button>
+      <button class="filter" data-filter="template">模板游戏</button>
+      <button class="filter" data-filter="delivery">交付</button>
+    </nav>
+
+    <section class="chart-wrap" aria-label="CoursewareMaker 流程图">
+      <svg viewBox="0 0 1000 1540" role="img" aria-labelledby="chart-title chart-desc">
+        <title id="chart-title">CoursewareMaker 自动化工作流排查图</title>
+        <desc id="chart-desc">从任务输入到玩法路由、素材确认、配置生成、校验、新建、保存、回读、预览和发布的流程图。</desc>
+        <defs>
+          <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+            <path d="M2,2 L10,6 L2,10 Z" fill="#98a7b8"></path>
+          </marker>
+        </defs>
+
+        <text class="flow-label" x="42" y="36">从上往下阅读</text>
+        <text class="flow-label" x="42" y="460">三大游戏类型</text>
+        <text class="flow-label" x="42" y="670">实际游戏类型</text>
+        <text class="flow-label" x="42" y="1405">交付与故障</text>
+
+        <path class="flow-edge" d="M500 95 V145"></path>
+        <path class="flow-edge" d="M500 225 V270"></path>
+        <path class="flow-edge" d="M500 338 V380"></path>
+        <path class="flow-edge" d="M500 448 V500"></path>
+        <path class="flow-edge" d="M500 500 H250 V548"></path>
+        <path class="flow-edge" d="M500 500 H500 V548"></path>
+        <path class="flow-edge" d="M500 500 H750 V548"></path>
+        <path class="flow-edge" d="M250 640 V674"></path>
+        <path class="flow-edge" d="M500 640 V674"></path>
+        <path class="flow-edge" d="M750 640 V674"></path>
+        <path class="flow-edge" d="M250 790 V830 H500 V858"></path>
+        <path class="flow-edge" d="M500 790 V858"></path>
+        <path class="flow-edge" d="M750 790 V830 H500 V858"></path>
+        <path class="flow-edge" d="M500 926 V976"></path>
+        <path class="flow-edge" d="M500 1056 V1106"></path>
+        <path class="flow-edge" d="M500 1174 V1224"></path>
+        <path class="flow-edge" d="M500 1292 V1340"></path>
+        <path class="flow-edge success" d="M500 1408 V1428 H360 V1444"></path>
+        <path class="flow-edge success" d="M500 1408 V1428 H640 V1444"></path>
+        <path class="flow-edge warn" d="M570 1016 H860 V898 H590"></path>
+        <path class="flow-edge warn" d="M570 1262 H900 V1480 H760"></path>
+
+        <text class="edge-label" x="690" y="942">校验失败，回到按清单生成</text>
+        <text class="edge-label" x="706" y="1320">比对失败，进入故障排查</text>
+
+        <g class="flow-node active" data-id="intake" data-tags="core" transform="translate(410 48)">
+          <rect width="180" height="72" rx="8"></rect>
+          <text x="90" y="30" text-anchor="middle">1 意图判定</text>
+          <text class="small" x="90" y="53" text-anchor="middle">先定环节，再定类型</text>
+        </g>
+
+        <g class="flow-node kind-route" data-id="route" data-tags="core route" transform="translate(410 145)">
+          <polygon points="90,0 180,40 90,80 0,40"></polygon>
+          <text x="90" y="34" text-anchor="middle">2 游戏类型识别</text>
+          <text class="small" x="90" y="56" text-anchor="middle">三大类关键字</text>
+        </g>
+
+        <g class="flow-node" data-id="assets" data-tags="core" transform="translate(410 270)">
+          <rect width="180" height="68" rx="8"></rect>
+          <text x="90" y="28" text-anchor="middle">3 素材确认</text>
+          <text class="small" x="90" y="50" text-anchor="middle">查同名资源</text>
+        </g>
+
+        <g class="flow-node kind-warn" data-id="batchLock" data-tags="core route" transform="translate(410 380)">
+          <rect width="180" height="68" rx="8"></rect>
+          <text x="90" y="28" text-anchor="middle">4 生成任务清单</text>
+          <text class="small" x="90" y="50" text-anchor="middle">分类 / 脚本 / baseline</text>
+        </g>
+
+        <g class="flow-node kind-route" data-id="yundong" data-tags="route yundong" transform="translate(160 548)">
+          <rect width="180" height="92" rx="8"></rect>
+          <text x="90" y="30" text-anchor="middle">A 运动PK</text>
+          <text class="small" x="90" y="54" text-anchor="middle">赛跑 / 游泳 / 赛车</text>
+          <text class="small" x="90" y="74" text-anchor="middle">custom_game</text>
+        </g>
+
+        <g class="flow-node kind-route" data-id="copyTemplate" data-tags="route template" transform="translate(410 548)">
+          <rect width="180" height="92" rx="8"></rect>
+          <text x="90" y="30" text-anchor="middle">B 模板游戏</text>
+          <text class="small" x="90" y="54" text-anchor="middle">怪兽 / 阅读 / 公路</text>
+          <text class="small" x="90" y="74" text-anchor="middle">单词 / 魔法 / 过桥 / 开心</text>
+        </g>
+
+        <g class="flow-node kind-route" data-id="componentized" data-tags="route" transform="translate(660 548)">
+          <rect width="180" height="92" rx="8"></rect>
+          <text x="90" y="30" text-anchor="middle">C 标准组件化</text>
+          <text class="small" x="90" y="54" text-anchor="middle">关键字：标准组件化</text>
+          <text class="small" x="90" y="74" text-anchor="middle">workflow rules</text>
+        </g>
+
+        <g class="flow-node kind-route" data-id="run" data-tags="route yundong" transform="translate(58 684)">
+          <rect width="84" height="48" rx="8"></rect>
+          <text x="42" y="29" text-anchor="middle">赛跑</text>
+        </g>
+        <g class="flow-node kind-route" data-id="swim" data-tags="route yundong" transform="translate(158 684)">
+          <rect width="84" height="48" rx="8"></rect>
+          <text x="42" y="29" text-anchor="middle">游泳</text>
+        </g>
+        <g class="flow-node kind-route" data-id="racecar" data-tags="route yundong" transform="translate(258 684)">
+          <rect width="84" height="48" rx="8"></rect>
+          <text x="42" y="29" text-anchor="middle">赛车</text>
+        </g>
+
+        <g class="flow-node kind-route" data-id="monster" data-tags="route template" transform="translate(345 684)">
+          <rect width="90" height="44" rx="8"></rect>
+          <text x="45" y="27" text-anchor="middle">贪吃怪兽</text>
+        </g>
+        <g class="flow-node kind-route" data-id="fanboat" data-tags="route template" transform="translate(445 684)">
+          <rect width="90" height="44" rx="8"></rect>
+          <text x="45" y="27" text-anchor="middle">阅读帆船</text>
+        </g>
+        <g class="flow-node kind-route" data-id="train" data-tags="route template" transform="translate(545 684)">
+          <rect width="90" height="44" rx="8"></rect>
+          <text x="45" y="27" text-anchor="middle">阅读火车</text>
+        </g>
+        <g class="flow-node kind-route" data-id="road" data-tags="route template" transform="translate(645 684)">
+          <rect width="90" height="44" rx="8"></rect>
+          <text x="45" y="27" text-anchor="middle">公路冒险</text>
+        </g>
+        <g class="flow-node kind-route" data-id="spelling" data-tags="route template" transform="translate(345 746)">
+          <rect width="90" height="44" rx="8"></rect>
+          <text x="45" y="27" text-anchor="middle">单词拼拼</text>
+        </g>
+        <g class="flow-node kind-route" data-id="mofappl" data-tags="route template" transform="translate(445 746)">
+          <rect width="90" height="44" rx="8"></rect>
+          <text x="45" y="27" text-anchor="middle">魔法拼拼</text>
+        </g>
+        <g class="flow-node kind-route" data-id="bridge" data-tags="route template" transform="translate(545 746)">
+          <rect width="90" height="44" rx="8"></rect>
+          <text x="45" y="27" text-anchor="middle">过桥冒险</text>
+        </g>
+        <g class="flow-node kind-route" data-id="kaixin" data-tags="route template" transform="translate(645 746)">
+          <rect width="90" height="44" rx="8"></rect>
+          <text x="45" y="27" text-anchor="middle">开心游乐</text>
+        </g>
+
+        <g class="flow-node kind-route" data-id="stdChoice" data-tags="route" transform="translate(750 684)">
+          <rect width="76" height="44" rx="8"></rect>
+          <text x="38" y="27" text-anchor="middle">选择题</text>
+        </g>
+        <g class="flow-node kind-route" data-id="stdFill" data-tags="route" transform="translate(835 684)">
+          <rect width="76" height="44" rx="8"></rect>
+          <text x="38" y="27" text-anchor="middle">填空</text>
+        </g>
+        <g class="flow-node kind-route" data-id="stdDrag" data-tags="route" transform="translate(920 684)">
+          <rect width="76" height="44" rx="8"></rect>
+          <text x="38" y="27" text-anchor="middle">拖拽题</text>
+        </g>
+
+        <g class="flow-node" data-id="generate" data-tags="core" transform="translate(410 858)">
+          <rect width="180" height="68" rx="8"></rect>
+          <text x="90" y="28" text-anchor="middle">5 按清单生成配置</text>
+          <text class="small" x="90" y="50" text-anchor="middle">只执行不猜类型</text>
+        </g>
+
+        <g class="flow-node kind-warn" data-id="validate" data-tags="core" transform="translate(410 976)">
+          <polygon points="90,0 180,40 90,80 0,40"></polygon>
+          <text x="90" y="34" text-anchor="middle">6 配置校验</text>
+          <text class="small" x="90" y="56" text-anchor="middle">失败回生成</text>
+        </g>
+
+        <g class="flow-node" data-id="create" data-tags="core yundong" transform="translate(410 1106)">
+          <rect width="180" height="68" rx="8"></rect>
+          <text x="90" y="28" text-anchor="middle">7 新建游戏</text>
+          <text class="small" x="90" y="50" text-anchor="middle">拿 game_id</text>
+        </g>
+
+        <g class="flow-node kind-warn" data-id="save" data-tags="core yundong" transform="translate(410 1224)">
+          <rect width="180" height="68" rx="8"></rect>
+          <text x="90" y="28" text-anchor="middle">8 导入保存</text>
+          <text class="small" x="90" y="50" text-anchor="middle">PUT 配置对象</text>
+        </g>
+
+        <g class="flow-node kind-ok" data-id="compare" data-tags="core" transform="translate(410 1340)">
+          <rect width="180" height="68" rx="8"></rect>
+          <text x="90" y="28" text-anchor="middle">9 回读比对</text>
+          <text class="small" x="90" y="50" text-anchor="middle">线上 vs 本地</text>
+        </g>
+
+        <g class="flow-node" data-id="preview" data-tags="delivery" transform="translate(270 1444)">
+          <rect width="180" height="68" rx="8"></rect>
+          <text x="90" y="28" text-anchor="middle">10 预览链接</text>
+          <text class="small" x="90" y="50" text-anchor="middle">7 天有效</text>
+        </g>
+
+        <g class="flow-node" data-id="publish" data-tags="delivery" transform="translate(550 1444)">
+          <rect width="180" height="68" rx="8"></rect>
+          <text x="90" y="28" text-anchor="middle">11 发布</text>
+          <text class="small" x="90" y="50" text-anchor="middle">4 步 API</text>
+        </g>
+
+        <g class="flow-node kind-danger" data-id="faults" data-tags="core yundong template delivery" transform="translate(720 1438)">
+          <rect width="180" height="76" rx="8"></rect>
+          <text x="90" y="30" text-anchor="middle">故障速查</text>
+          <text class="small" x="90" y="54" text-anchor="middle">按现象反查环节</text>
+        </g>
+      </svg>
+    </section>
+
+    <aside aria-live="polite">
+      <div class="detail" id="detail"></div>
+    </aside>
+  </main>
+
+  <script>
+    const DETAILS = {
+      intake: {
+        title: "1 任务输入 / 意图判定",
+        summary: "先判断用户这句话属于哪个工作流环节，再确认题目、素材、目标游戏类型和参考配置。",
+        rules: [
+          "先判定意图，再判定游戏类型；反馈/返修类话术不能触发新建游戏。",
+          "返修信号：不对、错了、资源用错、位置不好、改一下、调整、反馈、预览看到、刚才那个、这个游戏。命中后进入配置返修。",
+          "给出 game_id 或具体游戏名，并要求上传/导入/保存/试一下时，进入导入保存到已有游戏，禁止新建。",
+          "目标游戏解析：game_id 优先；没有 game_id 时按游戏名精确查询；同名或多结果必须确认，不能选最新或第一个。",
+          "解析目标游戏后要回读并核对 game_id、game_name、game_type、编辑器入口和配置根结构。",
+          "检查/对比/为什么/差异/看下问题属于排查校验；打开监听浏览器属于操作采集；预览/发布属于交付环节。",
+          "只有明确说新建、创建一个新的、生成一个新的游戏、名字叫...，才进入新建游戏。",
+          "意图不明确时先确认是修改已有游戏还是新建，不能用 latest_game_id.txt 猜。",
+          "游戏类型只分三大类：运动PK、模板游戏、标准组件化题。",
+          "运动PK关键字：赛跑、游泳、赛车。",
+          "模板游戏关键字：贪吃小怪兽、阅读小帆船、阅读小火车、公路大冒险、单词拼拼乐、魔法拼拼乐、过桥大冒险、开心游乐园。",
+          "标准组件化题关键字：标准组件化。",
+          "确认输入是 Excel、JSON、题目列表，还是已有配置文件。",
+          "确认素材是否已有平台 URL；只有本地文件名不足以生成可用配置。"
+        ],
+        scripts: [["docs/WORKFLOW_DEBUG_FLOWCHART.md", "意图判定表"], ["docs/COURSEWAREMAKER_AUTOMATION_GUIDE.md", "总指南"], ["docs/DOCUMENTATION_INDEX.md", "文档索引"]],
+        faults: ["玩法没确认会导致 baseline 和保存入口全链路错。", "把返修反馈误判为新任务，会错误新建游戏。"]
+      },
+      route: {
+        title: "2 玩法路由",
+        summary: "先按任务名称/需求关键字识别三大类，再进入对应配置结构和 baseline。",
+        rules: [
+          "运动PK：命中赛跑、游泳、赛车；后续使用 custom_game，run/swim/racecar_detail.json，customEditor。",
+          "模板游戏：命中贪吃小怪兽、阅读小帆船、阅读小火车、公路大冒险、单词拼拼乐、魔法拼拼乐、过桥大冒险、开心游乐园；后续按具体模板选择参考配置和脚本。",
+          "标准组件化题：命中标准组件化；后续读取 courseware_workflow_rules.json。"
+        ],
+        scripts: [["standard_question_toolkit/data/courseware_workflow_rules.json", "机器可读路由"], ["scripts/validate_config.js", "统一校验"]],
+        faults: ["把运动PK按普通 game 流程导入，会出现入口和配置结构不匹配。"]
+      },
+      batchLock: {
+        title: "4 生成任务清单",
+        summary: "这一步只做决策锁定，不真正生成配置。它把批量需求拆成独立任务单，并为每条任务固定类型、脚本、baseline、输出路径和素材映射。",
+        rules: [
+          "一条游戏需求生成一张任务单；同一批里可以有多种游戏，但必须拆成多张任务单。",
+          "任务单负责锁定：game_family、命中关键字、具体游戏名、template/baseline、生成脚本、输出配置路径、素材 URL 映射、game_type、编辑器入口。",
+          "这一步可以根据游戏类型选择脚本和 baseline，但不读取题目生成 JSON。",
+          "输出目录按任务单隔离，建议包含游戏类型和游戏名，避免 config.json、latest_game_id.txt 互相覆盖。",
+          "后续步骤只能读取任务单执行，不能重新猜类型。"
+        ],
+        scripts: [["docs/WORKFLOW_DEBUG_FLOWCHART.md", "任务清单规则"], ["scripts/create_game_auto.js", "创建时必须按当前任务单读取 game_type"], ["scripts/validate_config.js", "保存前按当前任务单校验"]],
+        faults: [
+          "最容易串类型的点：上一条是运动PK，下一条模板游戏仍沿用 game_type=2 或 customEditor。",
+          "另一类高频问题：多个任务共用 output/config.json，后一个覆盖前一个。",
+          "配置生成阶段如果重新判断类型，可能和任务清单的锁定结果不一致。"
+        ]
+      },
+      assets: {
+        title: "3 素材确认",
+        summary: "上传前先查现有资源 list，确认是否已有同名资源；素材确认完成后再生成任务清单。",
+        rules: [
+          "上传前必须查询现有资源 list，按文件名/资源名检查是否已有同名资源。",
+          "如果存在同名资源，先暂停上传，向提需用户确认：直接使用现有资源，还是改名后重新上传。",
+          "只有用户确认“使用现有资源”时，才把旧资源 URL 写入资源映射。",
+          "只有用户确认“重新上传”时，才先改名再上传，避免覆盖或混淆同名资源。",
+          "上传后检查脚本输出或接口返回的 URL，确保能写入配置并可访问。",
+          "配置里不能写本地路径。"
+        ],
+        scripts: [["latest_resources.json", "本地资源缓存/资源 list"], ["courseware_bulk_upload_assets.mjs", "批量上传"], ["scripts/validate_resources.py", "资源校验"]],
+        faults: [
+          "同名资源未确认就复用，可能把旧素材误用到新游戏。",
+          "同名资源未改名就上传，后续映射时很难判断到底使用了哪一个。",
+          "URL 缺失会导致题干、选项、反馈图或音频为空。"
+        ]
+      },
+      generate: {
+        title: "5 按任务清单生成配置",
+        summary: "这一步只执行任务清单，不再做游戏类型判断。它读取题目、素材映射、baseline 和脚本路径，输出本地配置 JSON。",
+        rules: [
+          "必须读取当前任务单的 game_family、baseline、生成脚本、输出路径和素材 URL 映射。",
+          "禁止在配置生成阶段重新按关键字猜类型或临时换脚本。",
+          "模板游戏多数复制替换型模板只替换内容字段，不重排 components[]。",
+          "运动PK要保持 common.custom.additional_environment 和 custom_game 配套。",
+          "生成结果写入任务单指定的输出配置路径。"
+        ],
+        scripts: [["scripts/build_yundong_pk_config.py", "运动PK"], ["scripts/build_sj6_monster_config.py", "怪兽"], ["scripts/build_reading_config.py", "阅读类"], ["scripts/generate_spelling_config.py", "单词拼拼乐"]],
+        faults: ["baseline 选错，配置表面完整但运行时结构错。"]
+      },
+      validate: {
+        title: "6 配置校验",
+        summary: "保存前闸门。先按 game_family 分流，失败先修生成脚本、资源映射、参考配置或 baseline。",
+        rules: [
+          "运动PK：可用 validate_config.js 的 custom_game 分支，并可再跑 validate_yundong_pk_config.py。",
+          "标准组件化题：使用 validate_config.js，读取 workflow rules 中的 standard_choice/fill/drag baseline。",
+          "模板游戏：不能直接套标准组件化 baseline；必须按具体模板做专项规则校验、参考配置不变量检查、保存后回读和预览。",
+          "所有类型都必须检查 configuration 是对象，不是字符串；保存后 GET 回读并与本地配置规范化比对。"
+        ],
+        scripts: [["scripts/validate_config.js", "运动PK/标准组件化"], ["scripts/validate_yundong_pk_config.py", "运动PK专项"], ["scripts/validate_monster_config.py", "怪兽专项"], ["docs/WORKFLOW_DEBUG_FLOWCHART.md", "模板校验矩阵"]],
+        faults: ["custom_game 和 game 混用是最高频问题。", "模板游戏被误套标准拖拽 baseline 会出现大量假阳性错误。"]
+      },
+      create: {
+        title: "7 新建游戏",
+        summary: "创建游戏并拿到 game_id，确保 game_type 和编辑器入口正确。",
+        rules: [
+          "只有用户明确要求新建/创建新游戏，或任务清单处于新制作流程时，才允许进入本环节。",
+          "如果用户给了现有 game_id 或具体游戏名，并要求上传/导入/保存，必须跳过新建，先解析目标游戏再导入保存。",
+          "如果用户是在反馈问题或要求修改配置，必须进入配置返修，禁止新建。",
+          "普通组件化：game_type=1，#/editor?game_id=...。",
+          "运动PK：template_id=47995925-fb37-11ef-8c1b-ce918f8037e8，game_type=2。",
+          "运动PK入口必须是 #/customEditor?game_id=...。",
+          "可先创建空壳，再导入完整配置。"
+        ],
+        scripts: [["scripts/create_game_auto.js", "新建游戏"], ["latest_game_id.txt", "最近创建的 game_id"]],
+        faults: ["运动PK被建成 game_type=1，后续保存会出问题。"]
+      },
+      save: {
+        title: "8 导入保存",
+        summary: "更新已有游戏统一走 PUT；两个上传脚本使用同一套保存语义：GET 完整元信息，仅替换 configuration。",
+        rules: [
+          "统一保存语义：先 GET /game 获取完整 meta，再保留 meta，只覆盖 configuration，最后 PUT /game。",
+          "目标游戏可来自用户给定 game_id，也可来自精确解析后的游戏名；解析不唯一时必须先确认。",
+          "使用 PUT /beibo/game/config/game，不要用 POST 更新已有游戏。",
+          "configuration 必须是 JSON 对象，不能是 JSON 字符串。",
+          "components 字段保留 GET 返回数组；如果没有数组则补 []，与手动保存保持一致。",
+          "save_game_config_via_cdp.js 通过浏览器 CDP 保存，fetch 必须带 credentials: include。",
+          "upload_game_config.py 是 API 直传通道，需要手动提供 GAMEMAKER_TOKEN/GAMEMAKER_COOKIE，但 payload 结构与 CDP 脚本一致。",
+          "URL 含 openType=1 通常是引用/只读模式，应中止写入。"
+        ],
+        params: [
+          "save_game_config_via_cdp.js：连接已登录 Chrome → localStorage 取 GAMEMAKER_TOKEN → GET /game → payload={...detail.result, components: detail.result.components||[], configuration: localConfigObject} → PUT /game → GET 回读。",
+          "upload_game_config.py：使用环境变量 TOKEN/COOKIE → GET /game → payload=dict(meta) → payload['components']=meta.components 或 [] → payload['configuration']=本地配置对象 → PUT /game → GET 回读编码层数。",
+          "两者区别只在登录通道：CDP 通道复用浏览器登录态；Python 通道直传 API。保存 payload 结构保持一致。",
+          "上传脚本不再默认生成分享链接；预览链接放到后续交付节点处理。"
+        ],
+        scripts: [["scripts/save_game_config_via_cdp.js", "CDP 浏览器通道，主推荐"], ["scripts/upload_game_config.py", "API 直传通道，备用/批处理"]],
+        faults: ["POST 更新已有游戏可能返回“游戏名字重复”。"]
+      },
+      compare: {
+        title: "9 回读比对",
+        summary: "保存成功不等于配置正确写入，必须 GET 回读线上 configuration。",
+        rules: [
+          "比对根结构、关卡数、组件 ID、题目字段。",
+          "运动PK重点看 custom_game 和 component_id。",
+          "组件化重点看 game/additional/components 和 components[]。"
+        ],
+        scripts: [["scripts/save_game_config_via_cdp.js", "保存后回读比对"], ["scripts/fetch_spelling_configs.js", "抓取单词拼拼乐配置"]],
+        faults: ["API code=0 但页面没变化，多见于引用模式或 payload 错。"]
+      },
+      yundong: {
+        title: "A 运动PK",
+        summary: "赛跑、游泳、赛车属于定制游戏，配置结构和入口都不同。",
+        rules: [
+          "模板 ID：47995925-fb37-11ef-8c1b-ce918f8037e8。",
+          "组件 ID：21dcca07-c1e6-11ef-895a-4eb2c30c826b。",
+          "新建必须 game_type=2，入口 customEditor。",
+          "配置根结构必须包含 custom_game。"
+        ],
+        scripts: [["scripts/build_yundong_pk_config.py", "生成配置"], ["scripts/validate_yundong_pk_config.py", "专项校验"], ["docs/yundongpk_game_creation_workflow.md", "专项文档"]],
+        faults: ["导入普通 game 结构会与 customEditor 期望不匹配。"]
+      },
+      run: {
+        title: "A1 赛跑",
+        summary: "运动PK实际类型之一，命中关键字“赛跑”。使用赛跑皮肤 baseline，根结构保持 custom_game。",
+        rules: ["baseline：templates/detail_jsons/run_detail.json。", "创建参数继承运动PK规则：game_type=2，customEditor。", "任务清单中锁定 subtype=run，生成阶段不再重新判断。"],
+        params: ["目的：把 Excel 中的赛跑题目批量填入运动PK custom_game 骨架，输出可导入的赛跑配置。", "调用：python3 scripts/build_yundong_pk_config.py <sheet_name> <game_detail_json> [question_xlsx]。", "任务清单锁定：subtype=run、baseline_json_path=templates/detail_jsons/run_detail.json、game_type=2、editor=customEditor。", "输入题目：Excel sheet，列包含题号、题目音频名、题干图片名、选项序号、选项图片名、选项文字、正确项标记。", "输入资源：latest_resources.json；脚本按资源 name 查 URL，缺精确命中时会按后缀和分类做候选匹配。", "输入骨架：run_detail.json 提供 common.custom.additional_environment、custom_game 题目样式、选项三态底图、correctSpine。", "处理步骤：读取题目→推断 subtype→加载 run baseline→裁剪 custom_game 关卡数→逐关替换音频/题干图/选项图或选项文字→写入正确项 switch。", "字体规则：文字选项根据长度自动降低 fontSize，避免长文本溢出。", "输出：<sheet_name>.config.json 和 <sheet_name>.build-meta.json；meta 记录每关音频 URL、正确项、选项类型和 baseline 来源。"],
+        scripts: [["scripts/build_yundong_pk_config.py", "按 run baseline 生成"], ["scripts/validate_yundong_pk_config.py", "按赛跑专项校验"]],
+        faults: ["误用游泳/赛车 baseline 会导致场景资源和角色资源不匹配。"]
+      },
+      swim: {
+        title: "A2 游泳",
+        summary: "运动PK实际类型之一，命中关键字“游泳”。使用游泳皮肤 baseline。",
+        rules: ["baseline：templates/detail_jsons/swim_detail.json。", "根结构必须是 custom_game。", "任务清单中锁定 subtype=swim 和对应资源映射。"],
+        params: ["目的：把同一套运动PK题目结构套入游泳皮肤，保留游泳场景、角色、开始按钮和选项视觉。", "调用：python3 scripts/build_yundong_pk_config.py <sheet_name> <game_detail_json> [question_xlsx]。", "任务清单锁定：subtype=swim、baseline_json_path=templates/detail_jsons/swim_detail.json、game_type=2、editor=customEditor。", "类型推断：sheet 名包含“游泳”时 infer_subtype 返回 swim；任务清单应显式锁定，生成阶段不能再猜。", "处理步骤：从 swim baseline deepcopy custom_game 和环境→读取 latest_resources.json→按题目表替换 titleAuido/btnAudio/icon/options→保留 swim 的题目背景、三态底图和 correctSpine。", "输出：<sheet_name>.config.json 和 build-meta；meta 中 subtype 必须是 swim。", "校验：validate_yundong_pk_config.py 按游泳 baseline 检查 custom_game 和关键环境资源。"],
+        scripts: [["scripts/build_yundong_pk_config.py", "按 swim baseline 生成"], ["scripts/validate_yundong_pk_config.py", "按游泳专项校验"]],
+        faults: ["同一批里从赛跑切到游泳时，不能复用上一条任务的 scene 资源。"]
+      },
+      racecar: {
+        title: "A3 赛车",
+        summary: "运动PK实际类型之一，命中关键字“赛车”。使用赛车皮肤 baseline。",
+        rules: ["baseline：templates/detail_jsons/racecar_detail.json。", "根结构必须是 custom_game。", "赛车 scene marker 与赛跑/游泳不同，任务清单必须锁定 racecar baseline。"],
+        params: ["目的：生成赛车皮肤的运动PK配置，保留车辆、赛道、箭头等赛车专属环境。", "调用：python3 scripts/build_yundong_pk_config.py <sheet_name> <game_detail_json> [question_xlsx]。", "任务清单锁定：subtype=racecar、baseline_json_path=templates/detail_jsons/racecar_detail.json、game_type=2、editor=customEditor。", "类型推断：sheet 名包含“赛车”时 infer_subtype 返回 racecar。", "识别差异：workflow rules 中 racecar 的 scene_marker_path 是 common.custom.additional_environment.scene.images.ArrowImg，不同于 run/swim 的 startBtnImg。", "处理步骤：加载 racecar baseline→保留赛车 scene/character/spine→替换题干音频、题干图、选项图/文字、正确项 switch。", "输出：<sheet_name>.config.json；build-meta 标明 skin_baseline=racecar_detail.json。", "校验重点：不能用 run/swim 的环境检测或资源映射，否则赛车皮肤会串成其他运动PK皮肤。"],
+        scripts: [["scripts/build_yundong_pk_config.py", "按 racecar baseline 生成"], ["scripts/validate_yundong_pk_config.py", "按赛车专项校验"]],
+        faults: ["误用 run/swim 的 startBtnImg 判断赛车，可能识别不到正确皮肤。"]
+      },
+      copyTemplate: {
+        title: "B 模板游戏",
+        summary: "模板游戏是第二大类，先按关键字识别具体模板，再使用该模板自己的参考配置、生成脚本和规则。",
+        rules: [
+          "关键字：贪吃小怪兽、阅读小帆船、阅读小火车、公路大冒险、单词拼拼乐、魔法拼拼乐、过桥大冒险、开心游乐园。",
+          "先按关键字进入对应模板工作流，再选对参考配置：游戏类型、皮肤、槽位数量、题型形态。",
+          "多数模板游戏从参考配置 deepcopy 完整关卡，只替换题干、音频、图片、选项、正确项。",
+          "保持 components[] 原顺序，它决定实际渲染层级。",
+          "单词拼拼乐虽然有独立 slot/space/fixed 规则，但一级分类仍归入模板游戏。",
+          "模板校验四层：基础结构、参考配置不变量、模板专项规则、保存后回读和预览。",
+          "模板游戏虽然是 game 结构，但不得直接按标准组件化题的选择/填空/拖拽 baseline 校验。"
+        ],
+        scripts: [["docs/公路大冒险_工作流.md", "公路大冒险"], ["docs/开心游乐园_动态生成工作流.md", "开心游乐园"], ["docs/过桥大冒险_动态生成工作流.md", "过桥大冒险"], ["scripts/build_reading_config.py", "阅读小帆船/阅读小火车"], ["scripts/validate_monster_config.py", "贪吃小怪兽校验"], ["scripts/generate_spelling_config.py", "单词拼拼乐"], ["docs/MOFAPPL_WORKFLOW.md", "魔法拼拼乐"]],
+        faults: ["遮挡问题优先看 components[]，不要只改 zIndex。", "没有专项 validator 的模板，必须至少做参考配置不变量检查、回读比对和预览。"]
+      },
+      monster: {
+        title: "B1 贪吃小怪兽",
+        summary: "模板游戏。复制替换型，基于怪兽参考配置生成，重点处理题型分类、三态选项和反馈资源。",
+        rules: ["根结构是 game。", "从参考配置 deepcopy 关卡，不重排 components[]。", "替换题干资源、选项资源、正确项、反馈动效/音效。"],
+        params: ["目的：从固定怪兽模板生成一套完整 game 配置，适配图片题、文字题和正确/错误反馈。", "调用：python3 scripts/build_sj6_monster_config.py；当前脚本使用内置常量，不通过 CLI 传参。", "关键常量：QUESTION_XLSX=zhiyinlou_monster_test.xlsx，SHEET_NAME=Sj6贪吃小怪兽，TEMPLATE_JSON=monster_template_from_localstorage.json，OUTPUT_JSON=Sj6贪吃小怪兽.config.json。", "输入题目：Excel 每题包含题号、音频名、题干图片名、题干文字、选项序号、选项图片名、选项文字、正确项标记。", "输入资源：latest_resources.json，按资源 name 精确查 URL；缺资源会直接抛 Missing audio/image resource。", "模板定位：TitleStem 写题干音频；LevelNumber 写 n/total；AloneClickChoice 根据 x 坐标绑定左/中/右；节点/节点_104/节点_103 分别承载选项视觉。", "替换逻辑：图片选项写 MSprite，文字选项写 MLabel；正确选项写 anwserRadio=1，错误写 anwserRadio=2；正确节点补 level_correct 状态，错误节点移除 level_correct。", "反馈逻辑：RIGHT_ANIMATION_BY_OPTION 把正确选项映射到 right_1_2/right_2_2/right_3_2，写入节点_102 的 MSpine animation。", "输出：配置 JSON + build-meta；meta 记录每题音频 URL、正确项、选项类型。", "校验：validate_monster_config.py 检查结构；check_monster_vs_ref.py 对比参考配置差异。"],
+        scripts: [["scripts/build_sj6_monster_config.py", "生成配置"], ["scripts/validate_monster_config.py", "专项校验"], ["docs/MONSTER_WORKFLOW.md", "工作流说明"]],
+        faults: ["选项节点被遮挡时优先检查参考配置 components[] 顺序。"]
+      },
+      fanboat: {
+        title: "B2 阅读小帆船",
+        summary: "模板游戏。与阅读小火车共用生成脚本，通过 type 区分。",
+        rules: ["根结构是 game。", "使用 fanboat 参考配置索引。", "选项 tag 与参考配置保持一致，组件顺序来自 deepcopy。"],
+        params: ["目的：基于小帆船参考配置生成拖拽匹配类阅读题，保留船体、放置区、拖拽组件和音频按钮结构。", "调用：python3 scripts/build_reading_config.py --type fanboat --options 3|4 --input question.json --output output/fanboat_configs/xxx.json。", "参数 --type=fanboat：决定读取 output/fanboat_configs_all/index.json，并使用小帆船组件命名和音频状态规则。", "参数 --options：必须是 2/3/4；脚本用它检查 slots 数量、拖拽选项数量和放置区数量。", "输入 question.json：slots 数组按放置区顺序排列，每项含 topic_audio、option_image、drag_audio；answers 用放置区序号映射正确 tag。", "tag 规则：fanboat 4选项为 a/b/c/d，fanboat 3选项为 1/2/3；脚本按 tag 排序 MDraggable。", "基准选择：优先用 BASE_GAME_NAMES 找指定参考游戏；找不到时回退扫描 index 中拖拽数量匹配的配置。", "替换逻辑：拖拽物品默认/拖拽中/放置三态图片都写 option_image；拖拽中/放置音效写 drag_audio；题干语音写“点击按下”状态 MAudio。", "正确项逻辑：按 answers 更新每个 LDragPlace 的 itemList。", "输出与校验：输出指定 JSON；脚本内部 validate_config 会检查拖拽数、放置区数、tag 和音频是否完整。"],
+        scripts: [["scripts/build_reading_config.py --type fanboat", "生成配置"], ["docs/阅读小帆船_工作流.md", "工作流说明"]],
+        faults: ["用错 train/fanboat 参考配置会导致外观和组件命名不匹配。"]
+      },
+      train: {
+        title: "B3 阅读小火车",
+        summary: "模板游戏。与阅读小帆船共用生成脚本，通过 type=train 区分。",
+        rules: ["根结构是 game。", "使用 train 参考配置索引。", "所有组件顺序来自基准配置，不在脚本中重排。"],
+        params: ["目的：基于小火车参考配置生成拖拽匹配类阅读题，保留火车版音频按钮和拖拽交互结构。", "调用：python3 scripts/build_reading_config.py --type train --options 3|4 --input question.json --output output/train_configs/xxx.json。", "参数 --type=train：决定读取 output/train_configs_all/index.json，并使用小火车组件命名。", "参数 --options：决定选 3/4 选项模板；slots 数必须与 option_count 一致。", "输入 question.json 与小帆船相同：slots 提供 topic_audio、option_image、drag_audio，answers 提供放置区到正确 tag 的映射。", "tag 规则：train 4选项为 1/2/3/4，train 3选项为 a/b/c。", "基准选择：优先用 BASE_GAME_NAMES，如国际starter阅读小火车秋12或国际F融阅读小火车暑5；失败则扫描匹配拖拽数量的配置。", "替换逻辑：替换 MDraggable 三态图片和拖拽音效；题干语音写“按下”状态 MAudio；放置区 LDragPlace.itemList 写正确 tag。", "输出与校验：输出指定 JSON；内部校验拖拽数、放置区数、tag、题干语音完整性。"],
+        scripts: [["scripts/build_reading_config.py --type train", "生成配置"], ["docs/阅读小火车_工作流.md", "工作流说明"]],
+        faults: ["参考配置抓取不完整时，生成脚本会找不到对应索引。"]
+      },
+      road: {
+        title: "B4 公路大冒险",
+        summary: "模板游戏。按绿地/沙漠等参考配置生成，先锁定背景/皮肤。",
+        rules: ["根结构是 game。", "先确认使用哪套背景和参考配置。", "复制替换型，不重排 components[]。"],
+        params: ["目的：基于公路大冒险参考配置批量替换题目内容，生成可导入的道路冒险 game 配置。", "调用示例：python3 scripts/generate_guoji_l2_shu4_road.py。", "输入题目：当前工作流文档示例使用脚本内 QUESTIONS 常量；任务清单应记录题目来源和输出路径。", "参考配置：默认使用绿地模板；如果需求是沙漠背景，必须先在任务清单里锁定沙漠参考配置路径。", "处理方式：deepcopy 参考配置关卡和 top-level 结构，只替换题干、选项三态图片、正确项、反馈资源等可变字段。", "选项图片规则：按文档中的选项图片命名规则匹配待机/正确/错误三态资源。", "层级规则：components[] 顺序继承参考配置，不在生成脚本里重排。", "输出：output/xxx_config.json；导入命令为 python3 scripts/upload_game_config.py <game_id> <config.json>。", "参数风险：背景/皮肤不是运行时参数，而是参考配置选择；选错参考配置会整套视觉都错。"],
+        scripts: [["docs/公路大冒险_工作流.md", "工作流说明"], ["scripts/generate_guoji_l2_shu4_road.py", "相关生成脚本"]],
+        faults: ["未先确认背景，容易用错绿地/沙漠模板。"]
+      },
+      spelling: {
+        title: "B5 单词拼拼乐",
+        summary: "模板游戏。基于 slot/space/fixed 答题区和拖拽物生成配置。",
+        rules: ["根结构是 game。", "生成脚本输出内层 cfg。", "slot/space/fixed 顺序必须与题面一致。", "上传后 double_encoded 必须为 false。"],
+        params: ["目的：从单词/句子题目数据生成单词拼拼乐内层 cfg，供 upload_game_config.py 写入 CoursewareMaker。", "调用：python3 scripts/generate_spelling_config.py；当前脚本主要通过修改脚本内 LEVELS/QUESTIONS 数据运行。", "题目字段：text 是句子全文；answer_area 是答题区顺序；items 是乱序拖拽选项；word_audio_url 是喇叭音频；word_image_url 是题目插图。", "answer_area 规则：slot 生成 LDragPlace 并写 content；space 生成隐藏透明 MSprite 占位；fixed 生成不可拖拽 MLabel。", "资源规则：固定资源、状态 key、背景、桌子、fin 动效等来自参考配置或脚本常量，不从题目表重新创建。", "组件顺序：generate_level() 按背景→桌子→放置区/空格/固定文本→遮挡/fin/题图/关卡数/烟雾/喇叭→拖拽物品组装，拖拽物品最后保证交互在最上层。", "输出：output/spelling_configs/<游戏名>.json 或脚本默认输出；注意它是内层 cfg。", "保存规则：upload_game_config.py 写入时 configuration 必须是对象，保存后检查 double_encoded=false。", "校验/备份：fetch_spelling_configs.js 可抓线上配置对比，reference_configs/spelling_validation_ref.json 用于结构和资源校验。"],
+        scripts: [["scripts/generate_spelling_config.py", "生成配置"], ["reference_configs/spelling_ref_new.json", "参考配置"], ["docs/SPELLING_WORKFLOW.md", "工作流说明"]],
+        faults: ["configuration 被字符串化会导致 double_encoded=true。"]
+      },
+      mofappl: {
+        title: "B6 魔法拼拼乐",
+        summary: "模板游戏。按魔法拼拼乐组件层级、state 和数据映射规则生成。",
+        rules: ["根结构是 game。", "按 MOFAPPL_WORKFLOW 中的数据映射、组件层级和 State 规则处理。", "保持参考配置结构，替换目标内容。"],
+        params: ["目的：复用单词拼拼乐题目数据，生成魔法拼拼乐版本的拖拽配置。", "文档命令：python3 scripts/generate_mofappl_config.py --input <xlsx> --ref reference_configs/spelling_validation_ref.json --template <mofappl_ref> --output <json>；当前脚本也包含内置示例/默认入口。", "关键参考：SPELLING_REF 提供题目图片/音频 URL；MOFAPPL_REF_5 是 5 槽模板；MOFAPPL_REF_3 是 3 槽模板；MOFAPPL_REF_FIXED 提供固定文本组件模板。", "模板选择：find_template_level(ref_data, n_slots) 根据拖拽放置区数量找槽位数匹配的模板关卡；n<=3 优先 3 槽模板，否则优先 5 槽模板。", "数据映射：slot 生成 LDragPlace，选项文本生成 MDraggable；space 通常跳过，由图形/文本头尾留白表达；fixed 可生成 文本-xx 或画进图里。", "组件构造：make_slot_comp/make_item_comp/make_fixed_text_comp/make_space_comp/make_head_comp/make_tail_comp/make_horn_comp 都是 deepcopy 模板组件后替换 tag、文本、坐标或音频。", "State 规则：拖拽放置区和固定字母 default 显示、compLoadFinish 隐藏后倒计时恢复；文本-fin 先展示句子再隐藏；拖拽物品按 default/placed/dragging/correct/wrong 控制显示。", "层级规则：组件数组必须让拖拽物品在最上层，IP角色烟雾遮挡高于文本-fin。", "后处理：生成后可运行 fix_mofappl_v3.py 修复坐标偏移、尺寸和 state。"],
+        scripts: [["scripts/generate_mofappl_config.py", "生成配置"], ["docs/MOFAPPL_WORKFLOW.md", "工作流说明"]],
+        faults: ["组件 State 映射错会导致正确/错误/默认态显示异常。"]
+      },
+      bridge: {
+        title: "B7 过桥大冒险",
+        summary: "模板游戏。动态生成类，重点是桥区槽位、字号和组件命名匹配。",
+        rules: ["根结构是 game。", "按过桥大冒险动态生成工作流选择参考配置。", "末尾句点、槽位宽度、字号等按专项规则处理。"],
+        params: ["目的：基于过桥大冒险参考配置生成桥区填空/拼句类配置，并直接通过 PUT 保存到目标游戏。", "调用示例：python3 scripts/generate_guoqiao_shu2.py；部分脚本会内置 GAME_ID，需要先改成目标游戏 ID。", "参考配置：output/guoqiao_configs/87ddb0a3-ea04-11f0-9165-0e324dbd00ee.json，包含完整 meta/additional/components/common 和关卡骨架。", "结构规则：top-level components 注册表、common 公共层、levelData.uiConfig 必须从参考配置 deepcopy，否则编辑器运行会报 undefined length 或 setResUrlFromArr 错误。", "题目数据：通常在脚本常量中定义 parts/选项/正确项；parts 末尾固定词可以带句点。", "句点规则：脚本会从显示标签中去掉末尾句点，由独立句号组件承担，避免重复显示。", "布局规则：桥区填满、等宽槽、自适应字号、无音频时居中等规则来自工作流文档。", "保存方式：脚本中通过 urllib.request 调 PUT /beibo/game/config/game，payload 保留 GET 返回元数据并写入 configuration 对象。"],
+        scripts: [["docs/过桥大冒险_动态生成工作流.md", "工作流说明"], ["scripts/generate_guoqiao_shu2.py", "相关生成脚本"]],
+        faults: ["组件命名或槽位规则不匹配会导致桥区布局错位。"]
+      },
+      kaixin: {
+        title: "B8 开心游乐园",
+        summary: "模板游戏。动态生成类，重点是槽数、组件命名和渲染层级。",
+        rules: ["根结构是 game。", "根据参考配置适配组件名称查找逻辑。", "components[] 数组顺序决定实际渲染层级。"],
+        params: ["目的：基于开心游乐园参考配置生成动态题目，重点保持原模板坐标、槽数和组件层级稳定。", "调用示例：python3 scripts/generate_kaixin_shu2.py；任务清单必须先锁定 REF 路径和目标 GAME_ID。", "参考配置示例：output/kaixin_refs/57cd2b7b-4b73-11f1-b0f5-e648d636fd2c.json。", "参考选择：必须槽数匹配、同系列匹配；槽数/选项数不靠脚本自由伸缩，换不同参考模板解决。", "固定继承：背景、小鹿动效、错误配合、词卡背景图、top-level components、additional、common 都从参考配置 deepcopy。", "替换内容：只替换可变文字、图片、音频、选项数或目标组件内容。", "坐标规则：所有组件位置和尺寸继承参考配置，不动态重算；长文字溢出时应换更合适模板或缩短文字。", "组件查找：不同系列组件命名可能不同，如已知条件左5 vs 已知条件3，脚本应使用 name_contains 模糊匹配。", "渲染层级：components[] 越靠后越在上层，zIndex 不作为运行时层级依据。"],
+        scripts: [["docs/开心游乐园_动态生成工作流.md", "工作流说明"], ["scripts/generate_kaixin_test.py", "相关生成脚本"]],
+        faults: ["不同系列组件命名不一致时，精确匹配容易失败，应按文档规则处理。"]
+      },
+      componentized: {
+        title: "C 标准组件化",
+        summary: "标准题型通过 workflow rules 描述题型、皮肤和 expected_config。",
+        rules: [
+          "一级识别关键字只看：标准组件化。",
+          "适用选择题、填空/计算题、拖拽题。",
+          "新增皮肤或题型先补 workflow rules，再更新生成脚本。",
+          "校验背景、题干 label、输入框、键盘、选择按钮、拖拽物、放置框。"
+        ],
+        scripts: [["standard_question_toolkit/data/courseware_workflow_rules.json", "校验基准"], ["standard_question_toolkit/scripts/generate_*.py", "生成脚本"]],
+        faults: ["只改脚本不改 workflow rules 会导致校验无法识别。"]
+      },
+      stdChoice: {
+        title: "C1 标准选择题",
+        summary: "标准组件化实际题型之一，按 workflow rules 中 standard_choice baseline 校验。",
+        rules: ["根结构是 game。", "必须包含选择按钮组件。", "选择按钮状态资源来自 expected_config.component_assets.choice_button。"],
+        params: ["目的：标准组件化选择题的生成结果必须符合 workflow rules 中的选择题 baseline，避免混入填空/拖拽组件。", "任务清单锁定：game_family=标准组件化题，gameplay_type=standard_choice，skin_key=具体皮肤，baseline=validation_baselines 中对应项。", "生成脚本来源：standard_question_toolkit/scripts/generate_*.py 按年级/题型生成 game 结构配置。", "校验入口：node scripts/validate_config.js --file <config.json>。", "validate_config.js 工作方式：识别关卡组件→判断题型→加载 courseware_workflow_rules.json expected_config→检查背景、互斥组件和选择按钮状态资源。", "关键资源：choice_button 的 default/correct/wrong 等状态必须来自 expected_config.component_assets.choice_button。", "输出要求：根结构为 game，不得包含 custom_game。"],
+        scripts: [["standard_question_toolkit/data/courseware_workflow_rules.json", "standard_choice baseline"], ["scripts/validate_config.js", "校验"]],
+        faults: ["选择按钮状态图混入其他皮肤资源会被校验拦截。"]
+      },
+      stdFill: {
+        title: "C2 标准填空/计算题",
+        summary: "标准组件化实际题型之一，按 fill/compute baseline 校验。",
+        rules: ["根结构是 game。", "校验输入框、键盘、题干 label 和布局常量。", "题干文本按 profile 拆分。"],
+        params: ["目的：标准填空/计算题要求输入框、键盘和题干文字拆分符合统一 baseline。", "任务清单锁定：gameplay_type=standard_fill_compute，skin_key=具体皮肤，baseline=validation_baselines 对应项。", "生成脚本来源：standard_question_toolkit/scripts/generate_*.py；脚本负责放置题干、输入框、键盘和反馈组件。", "校验入口：node scripts/validate_config.js --file <config.json>。", "validate_config.js 工作方式：读取 workflowBaseline.expected_config.question_text_profile 判断题干 label 拆分规则；检查 input_box 和 keyboard 状态资源是否来自 expected_config。", "布局校验：读取 layout_constants.json，检查固定布局常量，防止输入框/键盘偏移。", "输出要求：根结构为 game；如果题干 label 过长或拆分不符合 profile，校验会提示修生成脚本。"],
+        scripts: [["standard_question_toolkit/data/courseware_workflow_rules.json", "fill_compute baseline"], ["scripts/validate_config.js", "校验"]],
+        faults: ["题干未按 profile 拆 label 时，容易出现换行或遮挡异常。"]
+      },
+      stdDrag: {
+        title: "C3 标准拖拽题",
+        summary: "标准组件化实际题型之一，按 drag baseline 校验。",
+        rules: ["根结构是 game。", "校验拖拽物、放置框、题干 label 和背景。", "拖拽物和放置框资源必须来自对应皮肤 expected_config。"],
+        params: ["目的：标准拖拽题要求拖拽物、放置框、题干和背景资源全部匹配同一皮肤 baseline。", "任务清单锁定：gameplay_type=standard_drag，skin_key=具体皮肤，baseline=validation_baselines 对应项。", "生成脚本来源：standard_question_toolkit/scripts/generate_*.py；脚本负责生成拖拽物、放置框、答案关系和题干组件。", "校验入口：node scripts/validate_config.js --file <config.json>。", "validate_config.js 工作方式：检查 drag_item 和 drag_place 的状态资源集合是否属于 expected_config.component_assets；同时检查背景、题干 label、互斥组件。", "资源要求：拖拽物和放置框不能跨皮肤混用；否则运行时视觉和交互态会不一致。", "输出要求：根结构为 game，不得混入运动PK custom_game。"],
+        scripts: [["standard_question_toolkit/data/courseware_workflow_rules.json", "standard_drag baseline"], ["scripts/validate_config.js", "校验"]],
+        faults: ["拖拽物和放置框皮肤不一致会导致交互态异常。"]
+      },
+      preview: {
+        title: "10 生成预览链接",
+        summary: "回读比对通过后生成预览链接，用于人工验收。",
+        rules: ["使用正确 game_id。", "预览链接通常 7 天有效。", "批量任务可用 batch 脚本统一生成。"],
+        scripts: [["scripts/generate_share_link.js", "单个预览"], ["scripts/batch_generate_share_links.js", "批量预览"]],
+        faults: ["game_id 错会生成非目标游戏链接。"]
+      },
+      publish: {
+        title: "11 发布",
+        summary: "确认预览无误后执行发布 API 链路。",
+        rules: [
+          "发布包含 gamePublish、gameDesc、build_queue、unlock 四步。",
+          "unlock 必须 POST，不能 PUT。",
+          "年份、学期、年级、学科、讲次要与交付要求一致。"
+        ],
+        scripts: [["scripts/publish_game_auto.js", "发布脚本"], ["docs/game_publish_workflow_analysis.md", "发布分析"]],
+        faults: ["unlock 用 PUT 会 404。"]
+      },
+      faults: {
+        title: "故障速查",
+        summary: "从现象反查环节。",
+        rules: [
+          "运动PK导入后打不开：查 game_type=2、customEditor、custom_game。",
+          "游戏名字重复：查是否误用 POST 更新已有游戏。",
+          "API 成功但页面没变化：查 openType=1、回读比对、payload 根结构。",
+          "配置双重编码：查 configuration 是否是字符串。",
+          "组件遮挡/点击不到：查 components[] 顺序。",
+          "发布失败：查 unlock 是否 POST。"
+        ],
+        scripts: [["docs/WORKFLOW_DEBUG_FLOWCHART.md", "文字版总图"], ["WORKFLOW.md", "运动PK修复记录"]],
+        faults: ["先定位现象对应阶段，再看该阶段的输入、输出和脚本日志。"]
+      }
+    };
+
+    const detailEl = document.getElementById("detail");
+    const nodes = Array.from(document.querySelectorAll(".flow-node"));
+    const filters = Array.from(document.querySelectorAll(".filter"));
+
+    function section(title, items) {
+      if (!items || !items.length) return "";
+      const body = items.map((item) => {
+        if (Array.isArray(item)) return `<li><code>${item[0]}</code>：${item[1]}</li>`;
+        return `<li>${item}</li>`;
+      }).join("");
+      return `<div class="section"><h3>${title}</h3><ul>${body}</ul></div>`;
+    }
+
+    function render(id) {
+      const data = DETAILS[id];
+      if (!data) return;
+      detailEl.innerHTML = `
+        <h2>${data.title}</h2>
+        <p class="tagline">${data.summary}</p>
+        ${section("规则", data.rules)}
+        ${section("参数/工作方式", data.params)}
+        ${section("脚本/文档", data.scripts)}
+        ${section("常见故障", data.faults)}
+        <div class="quick-links">
+          <a href="WORKFLOW_DEBUG_FLOWCHART.md">文字版总图</a>
+          <a href="COURSEWAREMAKER_AUTOMATION_GUIDE.md">总指南</a>
+          <a href="DOCUMENTATION_INDEX.md">文档索引</a>
+        </div>
+      `;
+      nodes.forEach((node) => node.classList.toggle("active", node.dataset.id === id));
+    }
+
+    nodes.forEach((node) => {
+      node.addEventListener("click", () => render(node.dataset.id));
+      node.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") render(node.dataset.id);
+      });
+      node.setAttribute("tabindex", "0");
+      node.setAttribute("role", "button");
+    });
+
+    filters.forEach((filter) => {
+      filter.addEventListener("click", () => {
+        const value = filter.dataset.filter;
+        filters.forEach((item) => item.classList.toggle("active", item === filter));
+        nodes.forEach((node) => {
+          const tags = (node.dataset.tags || "").split(/\s+/);
+          node.classList.toggle("hidden", value !== "all" && !tags.includes(value));
+        });
+      });
+    });
+
+    render("intake");
+  </script>
+</body>
+</html>

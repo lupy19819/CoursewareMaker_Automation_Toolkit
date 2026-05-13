@@ -234,18 +234,58 @@ standard_question_toolkit/data/courseware_workflow_rules.json
 
 该文件是自动化流程的最高优先级工作流文件，包含：
 
-- `workflow.route_first`：先按具体 baseline JSON 和根数据结构判断运动 PK / 通用组件化，避免混用结构。
+- `workflow.route_first`：先按具体 baseline JSON、根数据结构和 `game_family` 判断运动 PK / 模板游戏 / 标准组件化题，避免混用结构。
 - `workflow.stages`：素材、生成、校验、创建、保存、分享/发布的顺序。
-- `validation_baselines`：正确 `expected_config`，覆盖运动 PK 的赛跑/游泳/赛车三套皮肤，以及标准题型的选择题、填空/计算题、拖拽题 × 紫/黄/蓝三套皮肤。
+- `validation_baselines`：正确 `expected_config`，覆盖运动 PK 的赛跑/游泳/赛车三套皮肤，以及标准题型的选择题、填空/计算题、拖拽题 × 紫/黄/蓝三套皮肤。模板游戏不直接套这些标准组件化 baseline。
 - `template_baseline_paths`：运动 PK、贪吃小怪兽、标准题型的原始基准 JSON 路径。
 
-生成配置 JSON 后必须先执行：
+生成配置 JSON 后必须先按 `game_family` 选择校验入口：
 
 ```bash
+# 运动PK / 标准组件化题
 node scripts/validate_config.js --file <config.json>
 ```
 
-校验脚本会读取 `courseware_workflow_rules.json`。运动 PK 按 `custom_game` 结构和 run/swim/racecar baseline JSON 校验；组件化标准题按 `game` 结构逐关识别题型和皮肤，并校验背景、组件互斥关系、题干 label、输入框、键盘、选择按钮、拖拽物和放置框资源。
+`validate_config.js` 会读取 `courseware_workflow_rules.json`。运动 PK 按 `custom_game` 结构和 run/swim/racecar baseline JSON 校验；标准组件化题按 `game` 结构逐关识别题型和皮肤，并校验背景、组件互斥关系、题干 label、输入框、键盘、选择按钮、拖拽物和放置框资源。
+
+模板游戏虽然也是 `game` 结构，但不能直接套标准组件化校验。模板游戏必须执行：
+
+1. JSON/根结构校验：`common`、`game`、`additional`、`components` 齐全，关卡数与题目数一致。
+2. 参考配置不变量校验：从任务单锁定的参考配置 deepcopy，保留公共层、注册表、`levelData.uiConfig`、组件命名、状态名和 `components[]` 顺序。
+3. 模板专项规则校验：检查该模板自己的槽位、tag、正确项、三态资源、反馈动效、字号、桥区/道路/游乐园布局等。
+4. 保存后校验：GET 回读线上 `configuration`，和本地配置规范化比对；再进预览页检查首关交互、音频、正确/错误反馈和翻页。
+
+### 用户意图先于游戏类型
+
+每次收到用户消息，必须先判断它属于哪个工作流环节，再判断游戏类型。过去“用户反馈配置问题却触发新建游戏”的根因，就是把“过桥/运动PK/模板”等游戏类型识别放在了“用户意图识别”之前。
+
+意图判定硬规则：
+
+- 用户说“错了、不对、调整、改一下、资源用错、位置不好、放置区不好、音频错、正确项错、反馈、预览看到”时，进入**配置返修**，只修改现有配置；不得新建游戏。
+- 用户明确给出 `game_id` 或具体游戏名，并说“上传、导入、保存、试一下”时，进入**导入保存/跑通验证**，必须使用该现有目标游戏；不得新建游戏。
+- 用户说“检查、对比、为什么、差异、看下问题”时，进入**排查/校验**，先读配置、日志或接口；不得未经要求创建新游戏。
+- 用户说“打开监听浏览器、记录操作、监控”时，进入**环境准备/操作采集**，只监听和记录；不得修改配置或新建游戏。
+- 用户说“预览、分享链接、发布”时，进入**预览/发布**，不应改配置或新建游戏。
+- 只有用户明确说“新建、创建一个新的、生成一个新的游戏、名字叫...”时，才进入**新建游戏**。
+- 如果意图不明确，必须先确认“是修改已有游戏还是新建游戏”，不能用 `latest_game_id.txt` 或上一次上下文猜。
+
+意图确定后，才进入玩法路由：运动PK、模板游戏、标准组件化题。
+
+目标游戏解析规则：
+
+- `game_id` 优先级最高。用户给出 `game_id` 时，必须直接以该 ID 回读游戏详情。
+- 没有 `game_id` 但给出具体游戏名时，先按游戏名查询目标游戏，拿到唯一 `game_id` 后再保存或返修。
+- 如果游戏名存在同名、多条近似匹配或无法确认唯一目标，必须让用户确认具体游戏，不能自行选择第一个或最新一个。
+- 解析目标游戏后，必须记录并核对 `game_id`、`game_name`、`game_type`、编辑器入口和当前配置根结构。
+- 只有用户明确要求新建时，游戏名才作为新建游戏名称；否则游戏名默认是已有目标游戏的定位信息。
+
+配置返修的修改边界：
+
+- 只改用户明确反馈的关卡、组件和字段，以及为了让该反馈生效所必需的直接依赖字段。
+- 不因为“顺手优化”修改无关关卡、无关资源、背景、模板、公共层、组件顺序或创建参数。
+- 资源用错只换被点名资源；排版不好只调被反馈组件坐标/尺寸/字号/间距；正确项错只改对应答案关系。
+- 返修前记录修改范围，返修后输出 diff 摘要，确认没有改动无关字段。
+- 返修后必须复跑对应校验，保存后 GET 回读，并用预览复核反馈点。
 
 ### ⚠️ 强制执行顺序（所有游戏类型均适用）
 
@@ -270,15 +310,16 @@ Step 4: 生成配置 JSON（使用 Step 3 获取的真实资源 URL）
    └─ 通用组件化（算术题）→ 标准题型脚本
    ↓
    【Step 4 校验】（生成后必检，失败则回 Step 4 修正）
-   ├─ JSON 可解析
-   ├─ 每关结构完整（选项数量/唯一正确项/音效字段不为空）
-   ├─ 模板游戏额外：动效映射正确、纯文字题不换行
-   └─ node scripts/validate_config.js --file <config.json>
+   ├─ 运动PK / 标准组件化题：node scripts/validate_config.js --file <config.json>
+   ├─ 模板游戏：按具体模板专项规则校验，不直接套标准组件化 baseline
+   ├─ 模板游戏基础项：JSON 可解析、关卡数正确、参考配置不变量未破坏
+   └─ 模板游戏保存后：回读比对 + 预览交互
    ↓
 Step 5: 导入配置到游戏并保存
    ├─ 更新已有游戏统一使用 PUT /beibo/game/config/game
-   ├─ fetch 必须带 credentials: "include"
-   └─ configuration 必须是对象，不是字符串；写回前排除 components 大字段
+   ├─ 保存 payload 保留 GET /game 返回的完整元信息，只替换 configuration
+   ├─ CDP 通道 fetch 必须带 credentials: "include"
+   └─ configuration 必须是对象，不是字符串；components 保留原数组或补 []
    ↓
 Step 6: 生成预览分享链接（测试确认）
    ↓
@@ -918,7 +959,7 @@ beibotoken: <TOKEN>
 
 ### 2. upload_game_config.py
 
-通过 CDP 将配置注入并保存到游戏。
+通过 API 直传配置并保存到游戏；保存 payload 结构与 CDP 脚本一致。
 
 ```http
 PUT https://sszt-gateway.speiyou.com/beibo/game/config/game
@@ -926,12 +967,13 @@ beibotoken: <TOKEN>
 credentials: include
 
 {
-  "...": "GET /game 返回的元数据（排除 components 大字段）",
+  "...": "GET /game 返回的完整元数据",
+  "components": [...原 components 数组，若不是数组则补 []],
   "configuration": { ...配置对象，必须是对象不是字符串... }
 }
 ```
 
-注意：`POST /game` 在部分已有 `game_id` 上会被平台当成新建/另存版本，可能返回“游戏名字重复”。更新已有游戏配置统一使用 `PUT + credentials: include`。
+注意：`POST /game` 在部分已有 `game_id` 上会被平台当成新建/另存版本，可能返回“游戏名字重复”。更新已有游戏配置统一使用 `PUT`。CDP 脚本通过浏览器 `credentials: include` 复用登录态；Python 脚本通过显式 TOKEN/COOKIE 直传，但二者 payload 语义一致。
 
 ---
 

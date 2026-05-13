@@ -1,7 +1,7 @@
 /**
  * 通过 CDP 保存游戏配置到 CoursewareMaker
  * 关键修复：fetch 必须带 credentials: 'include' 才能正确发送 cookies
- * 工作流：GET 现有游戏详情 → PUT 更新原 game_id 的 configuration
+ * 工作流：GET 现有游戏详情 → 保留完整元信息，仅替换 configuration → PUT 更新原 game_id
  */
 const fs = require("fs");
 const { chromium } = require("playwright");
@@ -45,9 +45,11 @@ async function main() {
         innerConfig = JSON.parse(configObject.result.configuration);
       }
 
-      const { components: _omit, ...detailMeta } = detail.result;
-
-      const payload = { ...detailMeta, configuration: innerConfig };
+      const payload = {
+        ...detail.result,
+        components: Array.isArray(detail.result.components) ? detail.result.components : [],
+        configuration: innerConfig,
+      };
 
       const saveRes = await fetch(
         "https://sszt-gateway.speiyou.com/beibo/game/config/game",

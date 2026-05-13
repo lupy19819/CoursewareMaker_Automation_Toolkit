@@ -10,7 +10,8 @@ upload_game_config.py
     python3 scripts/upload_game_config.py ad4d7659-4d0c-11f1-b0f5-e648d636fd2c output/guoqiao_shu2/guoqiao_shu2.json
 
 说明：
-    - 从浏览器 localStorage 读取 token（需先在脚本顶部配置 TOKEN/COOKIE，或通过环境变量传入）
+    - 需先在脚本顶部配置 TOKEN/COOKIE，或通过环境变量传入
+    - 保存语义与 CDP 脚本统一：GET /game 拿完整元信息，仅替换 configuration 后 PUT /game
     - configuration 字段以 dict 形式传入 payload，由 json.dumps 序列化一次（单层编码），服务器会再存一次
     - 若传 JSON 字符串，服务器会存成双重编码，导致引擎 analysisComponentsJson 崩溃
 
@@ -63,22 +64,6 @@ def api_put(path, payload, token, cookie):
         return json.loads(resp.read())
 
 
-def api_post(path, payload, token, cookie):
-    body = json.dumps(payload, ensure_ascii=False).encode('utf-8')
-    req = urllib.request.Request(
-        f'{BASE_URL}{path}',
-        data=body,
-        headers={
-            'beibotoken': token,
-            'Cookie': cookie,
-            'Content-Type': 'application/json; charset=utf-8',
-        },
-        method='POST'
-    )
-    with urllib.request.urlopen(req, timeout=15) as resp:
-        return json.loads(resp.read())
-
-
 # ─── 主流程 ───────────────────────────────────────────────────────────────────
 
 def upload_config(game_id: str, config_path: str, token: str, cookie: str):
@@ -97,32 +82,13 @@ def upload_config(game_id: str, config_path: str, token: str, cookie: str):
     print(f"✅ 游戏信息已获取：{meta['game_name']} ({game_id})")
 
     # 3. 构建 PUT payload
-    # 关键：configuration 传 dict（不是 JSON 字符串）
-    # json.dumps(payload) 会把它序列化为 JSON 对象（单层编码）
-    # 服务器存储时会再序列化一次，读取时 json.loads(raw) 直接得到 dict
-    payload = {
-        'game_id': game_id,
-        'game_name': meta['game_name'],
-        'description': meta.get('description', ''),
-        'picture': meta.get('picture', ''),
-        'template_id': meta.get('template_id', ''),
-        'config_category_id': meta.get('config_category_id', ''),
-        'tag': meta.get('tag', ''),
-        'configuration': cfg,           # ⚠️ dict，不是 json.dumps(cfg)
-        'year': meta.get('year', ''),
-        'term_id': meta.get('term_id', ''),
-        'subject_id': meta.get('subject_id', ''),
-        'grade': meta.get('grade', ''),
-        'cnum_id': meta.get('cnum_id', ''),
-        'settlement_type': meta.get('settlement_type', ''),
-        'is_experiential_game': meta.get('is_experiential_game', 0),
-        'is_level': meta.get('is_level', 0),
-        'is_play': meta.get('is_play', 0),
-        'game_type': meta.get('game_type', ''),
-        'platform': meta.get('platform', ''),
-        'skill_tag': meta.get('skill_tag', ''),
-        'knowledge': meta.get('knowledge', ''),
-    }
+    # 关键：保存语义与浏览器/CDP 脚本一致：
+    # - 保留 GET /game 返回的完整元信息
+    # - 仅替换 configuration
+    # - configuration 传 dict（不是 JSON 字符串）
+    payload = dict(meta)
+    payload['components'] = payload.get('components') if isinstance(payload.get('components'), list) else []
+    payload['configuration'] = cfg
 
     # 4. 保存
     result = api_put('/game', payload, token, cookie)
@@ -138,19 +104,6 @@ def upload_config(game_id: str, config_path: str, token: str, cookie: str):
         print(f"✅ 编码验证通过（单层），关卡数: {len(parsed.get('game', []))}")
     else:
         print(f"⚠️  仍为双重编码，请检查 payload 结构")
-
-    # 6. 生成分享链接
-    share_r = api_post('/createPreviewUrl', {
-        'game_id': game_id,
-        'base_preview_url': 'https://coursewaremaker.speiyou.com/#/share-preview'
-    }, token, cookie)
-    if share_r.get('code') == 0:
-        url = share_r['result']['preview_url']
-        valid = share_r['result']['valid_date']
-        print(f"\n🔗 分享链接（有效期至 {valid}）：\n   {url}")
-    else:
-        print(f"⚠️  生成分享链接失败: {share_r}")
-
 
 # ─── CLI 入口 ─────────────────────────────────────────────────────────────────
 

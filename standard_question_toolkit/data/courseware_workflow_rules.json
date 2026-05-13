@@ -1,12 +1,60 @@
 {
   "version": "2026-04-24",
-  "purpose": "CoursewareMaker 自动化生成流程与生成后校验基准。生成配置后，validate_config.js 读取 validation_baselines 中的 expected_config 做结构、皮肤、组件资源和布局校验。",
+  "purpose": "CoursewareMaker 自动化生成流程与生成后校验基准。生成配置后先按 game_family 选择校验入口：运动PK和标准组件化题可由 validate_config.js 读取 validation_baselines 校验；模板游戏必须走具体模板的专项校验、参考配置对比、回读比对和预览确认。",
   "platform_creation_profiles": {
     "_note": "仅用于平台创建接口参数，不作为玩法路由标准。玩法路由必须以 route_first[].baseline_json_path 和 data_shape 为准。",
     "componentized": "70a3010b-0b7a-11ef-b3a3-fa7902489df6",
     "yundong_pk": "47995925-fb37-11ef-8c1b-ce918f8037e8"
   },
   "workflow": {
+    "intent_routing": [
+      {
+        "intent": "config_repair",
+        "signals": ["不对", "错了", "资源用错", "位置不好", "改一下", "调整", "反馈", "预览看到", "刚才那个", "这个游戏"],
+        "stage": "配置返修",
+        "allowed_actions": ["定位现有 game_id、游戏名或配置文件", "只修改用户反馈字段和直接依赖", "保存后回读比对"],
+        "forbidden_actions": ["新建游戏", "重新生成无关关卡", "替换模板", "替换无关资源"]
+      },
+      {
+        "intent": "import_to_existing_game",
+        "signals": ["game_id", "游戏名", "上传", "导入", "保存", "试一下"],
+        "stage": "导入保存/跑通验证",
+        "allowed_actions": ["使用用户给定 game_id 保存配置", "没有 game_id 时按游戏名精确查询唯一目标游戏", "GET 回读线上 configuration"],
+        "forbidden_actions": ["新建游戏", "使用 latest_game_id.txt 猜目标游戏", "同名多结果时自行选择"]
+      },
+      {
+        "intent": "inspect_or_compare",
+        "signals": ["检查", "对比", "为什么", "差异", "能不能跑通", "看下问题"],
+        "stage": "排查/校验",
+        "allowed_actions": ["读取配置", "读取日志", "接口回读", "给出问题定位"],
+        "forbidden_actions": ["未经要求创建新游戏", "未经要求发布"]
+      },
+      {
+        "intent": "monitor_manual_operation",
+        "signals": ["打开监听浏览器", "记录操作", "监控"],
+        "stage": "环境准备/操作采集",
+        "allowed_actions": ["打开 CDP 浏览器", "监听网络请求", "记录手动操作"],
+        "forbidden_actions": ["修改配置", "新建游戏"]
+      },
+      {
+        "intent": "create_new_game",
+        "signals": ["新建", "创建一个新的", "生成一个新的游戏", "名字叫"],
+        "stage": "新建游戏",
+        "allowed_actions": ["创建新 game_id", "按任务单导入配置"],
+        "forbidden_actions": ["复用旧 latest_game_id", "沿用上一条任务的 game_type 或 editor"]
+      }
+    ],
+    "target_game_resolution": {
+      "priority": ["user_provided_game_id", "exact_game_name_lookup", "current_task_context"],
+      "rules": [
+        "game_id 优先，必须直接 GET /beibo/game/config/game?game_id=<id> 回读详情。",
+        "没有 game_id 但用户给出具体游戏名时，必须查询并解析到唯一 game_id。",
+        "游戏名同名、多条近似命中或无法唯一确认时，必须让用户确认目标游戏。",
+        "不得用 latest_game_id.txt 或最近创建游戏替代用户给出的游戏名。",
+        "只有用户明确要求新建时，游戏名才作为新建游戏名称；否则游戏名默认是已有目标游戏定位信息。"
+      ],
+      "verify_fields": ["game_id", "game_name", "game_type", "editor_entry", "configuration_shape"]
+    },
     "route_first": [
       {
         "when": "游戏名称或类型包含 赛跑、游泳、赛车、运动PK",
@@ -21,7 +69,15 @@
         "build_script": "scripts/build_yundong_pk_config.py"
       },
       {
-        "when": "游戏名称或类型包含 单词拼拼乐、spelling",
+        "when": "游戏名称或类型包含 贪吃小怪兽、阅读小帆船、阅读小火车、公路大冒险、单词拼拼乐、魔法拼拼乐、过桥大冒险、开心游乐园、spelling",
+        "gameplay_family": "template_game",
+        "data_shape": "game",
+        "baseline_json_path": "按具体模板在任务清单中锁定",
+        "build_script": "按具体模板选择 build/generate 脚本",
+        "validation_policy": "不直接套标准组件化 validation_baselines；先做 JSON/根结构/参考配置不变量检查，再做模板专项规则校验、保存后回读比对和浏览器预览。"
+      },
+      {
+        "when": "游戏名称或类型包含 单词拼拼乐、spelling（历史兼容路由，一级分类仍属于 template_game）",
         "gameplay_family": "spelling",
         "data_shape": "game",
         "baseline_json_path": "reference_configs/spelling_ref_new.json",
@@ -30,7 +86,7 @@
         "notes": "单词拼拼乐：slot/space/fixed 答题区 + 拖拽物品 + 文本-fin。生成脚本直接输出内层 cfg（common/game/additional/components），上传后 double_encoded 必须为 false。"
       },
       {
-        "when": "其他组件化游戏：标准题型、贪吃小怪兽、画板类等",
+        "when": "标准组件化题：选择题、填空/计算题、拖拽题、画板类等",
         "gameplay_family": "componentized",
         "data_shape": "game",
         "baseline_json_path": "standard_question_toolkit/templates/base_choice_fill_template.json",
@@ -42,15 +98,16 @@
       }
     ],
     "stages": [
+      "先识别用户意图：新任务、导入保存、配置返修、排查校验、监听、预览发布",
       "准备题目结构和素材清单",
       "上传素材资源并确认 URL",
       "按玩法路由生成配置 JSON",
-      "按本文件 validation_baselines 校验生成配置",
+      "按 game_family 选择校验入口：运动PK/标准组件化题用 validation_baselines；模板游戏用专项规则和参考配置不变量校验",
       "按玩法路由的数据结构选择创建/保存路径：custom_game 走运动PK结构，game 走组件化结构",
       "生成分享链接或发布游戏"
     ],
     "post_generation_gate": {
-      "command": "node scripts/validate_config.js --file <config.json>",
+      "command": "按 game_family 分流：运动PK/标准组件化题 node scripts/validate_config.js --file <config.json>；模板游戏运行对应专项校验或参考配置不变量检查",
       "must_pass_before_save": true
     }
   },
