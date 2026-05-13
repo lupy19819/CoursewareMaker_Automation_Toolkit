@@ -8,10 +8,25 @@ __pycache__/
 
 # 认证 token（敏感，禁止提交）
 beibotoken
+cookie.txt
+*cookie*.txt
+*token*.txt
 
 # 临时游戏数据文件
 game_*.json
 latest_game_id.txt
+latest_resources.json
+temp_game_list.json
+*.config.json
+*.build-meta.json
+*.xlsx
+
+# 本地素材、输入和生成输出
+assets/
+input/
+output/
+generated_configs/
+chrome_monitoring_logs/
 
 # 临时分析/修复脚本
 check_layout_overlap.js
@@ -21,3 +36,9 @@ analyze_*.js
 fix_v*.js
 patch_*.js
 recreate_game.js
+create_run_*.js
+create_with_template_config*.js
+fix_game_config.js
+fix_template_id.js
+update_game_images*.js
+upload_correct_config.js
