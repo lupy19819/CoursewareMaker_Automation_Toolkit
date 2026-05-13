@@ -347,7 +347,7 @@ node D:\codexProject\create_game_auto.js "游戏名称" "模板ID" ""
 
 # Step 5: 导入配置
 GAME_ID=$(cat D:\codexProject\latest_game_id.txt)
-node D:\codexProject\save_game_config_via_cdp.js "$GAME_ID" "配置.json"
+python3 scripts/upload_game_config.py "$GAME_ID" "配置.json"
 
 # Step 6: 发布游戏
 node D:\codexProject\publish_game_auto.js "$GAME_ID" 2026 "2" "1"

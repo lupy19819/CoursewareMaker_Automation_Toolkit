@@ -103,7 +103,7 @@ node create_game_auto.js "运动PK-赛跑" "70a3010b-0b7a-11ef-b3a3-fa7902489df6
 
 # 4. 导入配置
 GAME_ID=$(cat latest_game_id.txt)
-node save_game_config_via_cdp.js "$GAME_ID" "关卡01_配置.json"
+python3 scripts/upload_game_config.py "$GAME_ID" "关卡01_配置.json"
 
 # 5. 发布
 node publish_game_auto.js "$GAME_ID" 2026 "2" "1"
@@ -198,7 +198,7 @@ CONFIG_FILE="game_config.json"
 # 执行流程
 node create_game_auto.js "$GAME_NAME" "$TEMPLATE_ID" "" && \
 GAME_ID=$(cat latest_game_id.txt) && \
-node save_game_config_via_cdp.js "$GAME_ID" "$CONFIG_FILE" && \
+python3 scripts/upload_game_config.py "$GAME_ID" "$CONFIG_FILE" && \
 node generate_share_link.js "$GAME_ID" && \
 node publish_game_auto.js "$GAME_ID" 2026 "2" "1"
 ```

@@ -173,13 +173,18 @@ def get_all_template_comps(template_level, name_contains):
 # 组件构建函数（动态坐标）
 # ─────────────────────────────────────────────
 def set_transform(cd, x, y, w, h, scale_x=1.0, scale_y=1.0):
-    """把坐标写入 component_data 的 transform 字段（各 state 共享同一 transform）"""
-    cd['transform'] = {
+    """把坐标写入 component_data 的 transform 字段（顶层 + 各 state）"""
+    tf = {
         'x': round(x, 2), 'y': round(y, 2),
         'w': round(w, 2), 'h': round(h, 2),
         'scaleX': scale_x, 'scaleY': scale_y,
         'rotation': 0, 'anchorX': 0.5, 'anchorY': 0.5
     }
+    cd['transform'] = tf
+    # 同步更新所有 state 的 transform（游戏引擎实际读 states[i].transform）
+    for st in cd.get('states', []):
+        if 'transform' in st:
+            st['transform'].update({'x': tf['x'], 'y': tf['y'], 'w': tf['w'], 'h': tf['h']})
 
 
 def make_slot_comp(template_slot, slot_val: str, x: float, idx: int) -> dict:

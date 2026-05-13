@@ -1,0 +1,1227 @@
+{
+  "additional_custom_game": [],
+  "common": {
+    "additional_settlement_component": {
+      "component_data": {},
+      "component_id": "",
+      "component_name": "",
+      "component_url": "",
+      "name": "",
+      "version": "0.0.0"
+    },
+    "custom": {
+      "additional_environment": {
+        "character": {
+          "audios": {
+            "audioIP1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/46b74547d4a50cccae8c0e1b52069469.mp3",
+            "audioIP1_wrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/3da6020a3f6ddad284a779a125639e50.mp3",
+            "audioIP2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/ad98fcf772d73c086f063ea4fb151ea8.mp3",
+            "audioIP2_wrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/60e1c4960bdfb3180269719071415ef8.mp3",
+            "audioIP3": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/a054a94699d67245e9953aff3faf6d64.mp3",
+            "audioIP3_wrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/d304e512fdcc4d59f90272b30792af1a.mp3"
+          },
+          "images": {
+            "headNormal1": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/6f2ba08f9889bba3eff6f64cc09620ea.png",
+              "x": -550,
+              "y": 78
+            },
+            "headNormal2": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/12f8811ed889f98c5a9b3b87644d9517.png",
+              "x": 0,
+              "y": 78
+            },
+            "headNormal3": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/e657ccc89f8888ac134ed062dce800e0.png",
+              "x": 550,
+              "y": 78
+            },
+            "headSelect1": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/cb417c2769dce4201db69ba0166c5bc9.png"
+            },
+            "headSelect2": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/10c800c0bfd39c4009e8d6f74b2c3be3.png"
+            },
+            "headSelect3": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/d7f93e85cfbc67dcc2bdaff0db9445c5.png"
+            }
+          },
+          "spine": {
+            "IP1": {
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-26/f4e7e1c231d579c7a06b3951fc9966ec.zip",
+              "spine_spine_id": 51995,
+              "x": -790,
+              "y": 440
+            },
+            "IP2": {
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-26/ff37d4821c2118c57ecd742fb5d6dec6.zip",
+              "spine_spine_id": 51997,
+              "x": -790,
+              "y": 270
+            },
+            "IP3": {
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-26/35c9477d63529f434b6f5fd99d7915d4.zip",
+              "spine_spine_id": 51996,
+              "x": -790,
+              "y": 107
+            },
+            "IPCelebrate1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-13/d4a7b8586e1fdde06da701bff6ce7e52.zip",
+            "IPCelebrate1_spine_id": 51206,
+            "IPCelebrate2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-13/adf13fda58d9bcf1cf0d0b35429b34dc.zip",
+            "IPCelebrate2_spine_id": 51210,
+            "IPCelebrate3": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-13/3dde160e4444defe910f09dbbd00abcd.zip",
+            "IPCelebrate3_spine_id": 51208
+          }
+        },
+        "scene": {
+          "ShowCelebrate": false,
+          "audios": {
+            "audioCelebrate": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/d979eb38e8db89f84a7432d07680d72b.mp3",
+            "bgm1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/9912ee32423f96290c7f68d38ae0481f.mp3",
+            "bgm2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/1d75ad183ff0e71cdd02929a6398d06e.mp3"
+          },
+          "images": {
+            "ArrowImg": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/a70f33ea6b9f7f3b0ac65703422347d1.png",
+            "bgBack1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/d6ca543363cf3819ec5419a865b67f6a.png",
+            "bgBack2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/cb58ce1f10704c065c67378393615a64.png",
+            "bgCelebrate": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/0133576c14b8dbdcad4156f713e036ab.png",
+            "bgSelectIP": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/1753d5faa64c73d93a041bf94895ecfc.png",
+            "crossImgCoords1": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/2a2d9a9365491b2c1106e8dd29f94190.png",
+              "x": 778,
+              "y": 300
+            },
+            "crossImgCoords2": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/2a2d9a9365491b2c1106e8dd29f94190.png",
+              "x": 780,
+              "y": -248
+            },
+            "startBtnImg": {
+              "height": 252,
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-04-14/73502ffe0e7a0dc8d32be3073798d6a2.png",
+              "width": 258,
+              "x": 0,
+              "y": -330
+            },
+            "startLine": {
+              "image1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-25/34715fe57788005400754e807267909a.png",
+              "image2": "",
+              "image3": ""
+            },
+            "tableImg": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-26/6c5da3ffc4891969a72cf27260f0edb0.png",
+              "x": 0,
+              "y": -225
+            },
+            "trackBlock1_bottom": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/00fe5a220925ae85e6b01b5bc8694653.png",
+            "trackBlock1_second": "",
+            "trackBlock1_third": "",
+            "trackBlock1_top": "",
+            "trackBlock2_bottom": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/00fe5a220925ae85e6b01b5bc8694653.png",
+            "trackBlock2_second": "",
+            "trackBlock2_third": "",
+            "trackBlock2_top": ""
+          },
+          "isRepeat": true,
+          "showSelectIP": true,
+          "spine": {
+            "IPSelect": {
+              "loopTimes": -1,
+              "scale": 1,
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-03-07/56b6e377475b12cf318cfccfa62a81f9.zip",
+              "spine_spine_id": 41568
+            },
+            "crossLine_back": {
+              "scale": 1,
+              "spine": "",
+              "x": 0,
+              "y": -326
+            },
+            "crossLine_front": {
+              "scale": 1,
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-13/da25d49e902afe28c0a63476fb1425bf.zip",
+              "spine_spine_id": 51204,
+              "x": 774,
+              "y": 10
+            },
+            "fireworks": {
+              "loopTimes": 1,
+              "scale": 1,
+              "spine": "https://courseware-maker-test-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/V0022385/2025-02-12/da2ddbeda35968215b5dc99f8320e6a0.zip",
+              "spine_spine_id": 2920,
+              "x": 0,
+              "y": 0
+            }
+          }
+        }
+      },
+      "component": {
+        "component_id": "21dcca07-c1e6-11ef-895a-4eb2c30c826b",
+        "component_name": "运动PK赛",
+        "component_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assetboundle/yundongPK/0.1.0/3X/yundongPK.zip",
+        "name": "yundongPK",
+        "version": "0.1.0"
+      },
+      "environment": {
+        "character": {
+          "audios": {
+            "audioIP1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/46b74547d4a50cccae8c0e1b52069469.mp3",
+            "audioIP1_wrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/3da6020a3f6ddad284a779a125639e50.mp3",
+            "audioIP2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/ad98fcf772d73c086f063ea4fb151ea8.mp3",
+            "audioIP2_wrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/60e1c4960bdfb3180269719071415ef8.mp3",
+            "audioIP3": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/a054a94699d67245e9953aff3faf6d64.mp3",
+            "audioIP3_wrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/d304e512fdcc4d59f90272b30792af1a.mp3"
+          },
+          "images": {
+            "headNormal1": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/6f2ba08f9889bba3eff6f64cc09620ea.png",
+              "x": -550,
+              "y": 78
+            },
+            "headNormal2": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/12f8811ed889f98c5a9b3b87644d9517.png",
+              "x": 0,
+              "y": 78
+            },
+            "headNormal3": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/e657ccc89f8888ac134ed062dce800e0.png",
+              "x": 550,
+              "y": 78
+            },
+            "headSelect1": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/cb417c2769dce4201db69ba0166c5bc9.png"
+            },
+            "headSelect2": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/10c800c0bfd39c4009e8d6f74b2c3be3.png"
+            },
+            "headSelect3": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/d7f93e85cfbc67dcc2bdaff0db9445c5.png"
+            }
+          },
+          "spine": {
+            "IP1": {
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-26/f4e7e1c231d579c7a06b3951fc9966ec.zip",
+              "spine_spine_id": 51995,
+              "x": -790,
+              "y": 440
+            },
+            "IP2": {
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-26/ff37d4821c2118c57ecd742fb5d6dec6.zip",
+              "spine_spine_id": 51997,
+              "x": -790,
+              "y": 270
+            },
+            "IP3": {
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-26/35c9477d63529f434b6f5fd99d7915d4.zip",
+              "spine_spine_id": 51996,
+              "x": -790,
+              "y": 107
+            },
+            "IPCelebrate1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-13/d4a7b8586e1fdde06da701bff6ce7e52.zip",
+            "IPCelebrate1_spine_id": 51206,
+            "IPCelebrate2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-13/adf13fda58d9bcf1cf0d0b35429b34dc.zip",
+            "IPCelebrate2_spine_id": 51210,
+            "IPCelebrate3": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-13/3dde160e4444defe910f09dbbd00abcd.zip",
+            "IPCelebrate3_spine_id": 51208
+          }
+        },
+        "scene": {
+          "ShowCelebrate": false,
+          "audios": {
+            "audioCelebrate": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/d979eb38e8db89f84a7432d07680d72b.mp3",
+            "bgm1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/9912ee32423f96290c7f68d38ae0481f.mp3",
+            "bgm2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/123498/2024-12-24/1d75ad183ff0e71cdd02929a6398d06e.mp3"
+          },
+          "images": {
+            "ArrowImg": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/a70f33ea6b9f7f3b0ac65703422347d1.png",
+            "bgBack1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/d6ca543363cf3819ec5419a865b67f6a.png",
+            "bgBack2": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/cb58ce1f10704c065c67378393615a64.png",
+            "bgCelebrate": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/0133576c14b8dbdcad4156f713e036ab.png",
+            "bgSelectIP": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/1753d5faa64c73d93a041bf94895ecfc.png",
+            "crossImgCoords1": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/2a2d9a9365491b2c1106e8dd29f94190.png",
+              "x": 778,
+              "y": 300
+            },
+            "crossImgCoords2": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/2a2d9a9365491b2c1106e8dd29f94190.png",
+              "x": 780,
+              "y": -248
+            },
+            "startBtnImg": {
+              "height": 252,
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-04-14/73502ffe0e7a0dc8d32be3073798d6a2.png",
+              "width": 258,
+              "x": 0,
+              "y": -330
+            },
+            "startLine": {
+              "image1": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-25/34715fe57788005400754e807267909a.png",
+              "image2": "",
+              "image3": ""
+            },
+            "tableImg": {
+              "image": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-26/6c5da3ffc4891969a72cf27260f0edb0.png",
+              "x": 0,
+              "y": -225
+            },
+            "trackBlock1_bottom": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/00fe5a220925ae85e6b01b5bc8694653.png",
+            "trackBlock1_second": "",
+            "trackBlock1_third": "",
+            "trackBlock1_top": "",
+            "trackBlock2_bottom": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-06-13/00fe5a220925ae85e6b01b5bc8694653.png",
+            "trackBlock2_second": "",
+            "trackBlock2_third": "",
+            "trackBlock2_top": ""
+          },
+          "isRepeat": true,
+          "showSelectIP": true,
+          "spine": {
+            "IPSelect": {
+              "loopTimes": -1,
+              "scale": 1,
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-03-07/56b6e377475b12cf318cfccfa62a81f9.zip",
+              "spine_spine_id": 41568
+            },
+            "crossLine_back": {
+              "scale": 1,
+              "spine": "",
+              "x": 0,
+              "y": -326
+            },
+            "crossLine_front": {
+              "scale": 1,
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-06-13/da25d49e902afe28c0a63476fb1425bf.zip",
+              "spine_spine_id": 51204,
+              "x": 774,
+              "y": 10
+            },
+            "fireworks": {
+              "loopTimes": 1,
+              "scale": 1,
+              "spine": "https://courseware-maker-test-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/V0022385/2025-02-12/da2ddbeda35968215b5dc99f8320e6a0.zip",
+              "spine_spine_id": 2920,
+              "x": 0,
+              "y": 0
+            }
+          }
+        }
+      }
+    },
+    "global_config": {
+      "font_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/font/xesEnglishFont_BOLD.ttf",
+      "score_config": {
+        "additional_score": [],
+        "score": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "type": "average"
+      },
+      "transparent_canvas": false
+    },
+    "level_settlement": {
+      "component_data": {},
+      "component_id": ""
+    },
+    "levels": {
+      "component_data": {},
+      "component_id": ""
+    },
+    "settlement_component": {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "5a446ade-9049-11ef-b825-e6dfda1bc362",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSprite": 1
+          },
+          "tools": {
+            "starCount": {
+              "repeatConfig": {}
+            }
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "default",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [],
+          "eventMap": [],
+          "value": []
+        },
+        "id": "gamenext_component_uuid_c1411074-a24e-4723-af03-6be7d1542e95",
+        "name": "英语挑战成功结算",
+        "state_group": [],
+        "states": [],
+        "zIndex": 0
+      },
+      "component_id": "5a446ade-9049-11ef-b825-e6dfda1bc362",
+      "component_name": "英语挑战成功结算",
+      "component_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assetboundle/OverTipsEN/0.0.5/3X/OverTipsEN.zip",
+      "index": 0,
+      "lockState": {
+        "componentId": "",
+        "componentName": "",
+        "componentState": "",
+        "state": false
+      },
+      "name": "OverTipsEN",
+      "version": "0.0.5",
+      "webEditorCustomInfo": {
+        "chain": "",
+        "isAnswerComponent": false,
+        "isJudgeComponent": false
+      }
+    }
+  },
+  "components": [
+    {
+      "component_id": "21dcca07-c1e6-11ef-895a-4eb2c30c826b",
+      "component_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assetboundle/yundongPK/0.1.0/3X/yundongPK.zip"
+    },
+    {
+      "component_id": "5a446ade-9049-11ef-b825-e6dfda1bc362",
+      "component_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assetboundle/OverTipsEN/0.0.5/3X/OverTipsEN.zip"
+    }
+  ],
+  "custom_game": [
+    {
+      "id": "gamenext_level_uuid_2a3e888b-a7b0-4da8-b90c-e7b6fa1597b2",
+      "topics": [
+        {
+          "CustomTopicConfig": {
+            "maxQuestionNum": 1,
+            "minQuestionNum": 1
+          },
+          "title_res": {
+            "audioSpine": {
+              "scale": 1,
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-03-13/564eca9312afd9205954ad8ef80b0d9b.zip",
+              "spine_spine_id": 41767
+            },
+            "btnAudio": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/2c0ffcd93cb4d7d509c56b8c3596c72d.mp3",
+            "icon": "",
+            "options": [
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/08c387f530b6bdb58f8d94fc6554a286.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": true
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/d1d538534c505e3edfd1fbc090f6a6cb.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/c9b371add75a643120547e50fb1fde79.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": false
+                }
+              }
+            ],
+            "titleAuido": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/2c0ffcd93cb4d7d509c56b8c3596c72d.mp3",
+            "titleBg": "https://courseware-maker-test-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0022385/2025-02-12/34643c6a17db8094502d1024f096371b.png",
+            "titleText": {
+              "MLabel": "",
+              "fontSize": 70
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "gamenext_level_uuid_cb0004e4-1edb-40aa-b018-b410bd12903d",
+      "topics": [
+        {
+          "CustomTopicConfig": {
+            "maxQuestionNum": 1,
+            "minQuestionNum": 1
+          },
+          "title_res": {
+            "audioSpine": {
+              "scale": 1,
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-03-13/564eca9312afd9205954ad8ef80b0d9b.zip",
+              "spine_spine_id": 41767
+            },
+            "btnAudio": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/dff8635bb33d90d59b7eb46c96383183.mp3",
+            "icon": "",
+            "options": [
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/c9b371add75a643120547e50fb1fde79.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/d1d538534c505e3edfd1fbc090f6a6cb.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": true
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/08c387f530b6bdb58f8d94fc6554a286.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": false
+                }
+              }
+            ],
+            "titleAuido": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/dff8635bb33d90d59b7eb46c96383183.mp3",
+            "titleBg": "https://courseware-maker-test-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0022385/2025-02-12/34643c6a17db8094502d1024f096371b.png",
+            "titleText": {
+              "MLabel": "",
+              "fontSize": 70
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "gamenext_level_uuid_2474089c-d3cb-4115-b6fd-e48c83122308",
+      "topics": [
+        {
+          "CustomTopicConfig": {
+            "maxQuestionNum": 1,
+            "minQuestionNum": 1
+          },
+          "title_res": {
+            "audioSpine": {
+              "scale": 1,
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-07-18/138bd12d7d2aa5a0f884038ef2563b2e.zip",
+              "spine_spine_id": 54073
+            },
+            "btnAudio": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/80d742e5e73a92f065781a06ed8dd55b.mp3",
+            "icon": "",
+            "options": [
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/b34b8625f9464a28b897a58a29853f5a.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/819393a493c417b5a1a11302afa67e68.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/4ceee0c12a0e4a707197a3c7f8460216.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/08c387f530b6bdb58f8d94fc6554a286.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 80
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/b34b8625f9464a28b897a58a29853f5a.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/819393a493c417b5a1a11302afa67e68.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/4ceee0c12a0e4a707197a3c7f8460216.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/d1d538534c505e3edfd1fbc090f6a6cb.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 80
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/b34b8625f9464a28b897a58a29853f5a.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/819393a493c417b5a1a11302afa67e68.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/4ceee0c12a0e4a707197a3c7f8460216.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": ""
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/c9b371add75a643120547e50fb1fde79.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 80
+                  },
+                  "switch": true
+                }
+              }
+            ],
+            "titleAuido": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/80d742e5e73a92f065781a06ed8dd55b.mp3",
+            "titleBg": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-07-15/c91001a962202b6628fb9ad213bf6d85.png",
+            "titleText": {
+              "MLabel": "",
+              "fontSize": 70
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "gamenext_level_uuid_f6a51301-7cfb-4f32-bac9-debd8217a997",
+      "topics": [
+        {
+          "CustomTopicConfig": {
+            "maxQuestionNum": 1,
+            "minQuestionNum": 1
+          },
+          "title_res": {
+            "audioSpine": {
+              "scale": 1,
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-07-18/138bd12d7d2aa5a0f884038ef2563b2e.zip",
+              "spine_spine_id": 54073
+            },
+            "btnAudio": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/80d742e5e73a92f065781a06ed8dd55b.mp3",
+            "icon": "",
+            "options": [
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/b34b8625f9464a28b897a58a29853f5a.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/819393a493c417b5a1a11302afa67e68.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/4ceee0c12a0e4a707197a3c7f8460216.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/08c387f530b6bdb58f8d94fc6554a286.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 80
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/b34b8625f9464a28b897a58a29853f5a.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/819393a493c417b5a1a11302afa67e68.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/4ceee0c12a0e4a707197a3c7f8460216.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/c9b371add75a643120547e50fb1fde79.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 80
+                  },
+                  "switch": true
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/b34b8625f9464a28b897a58a29853f5a.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/819393a493c417b5a1a11302afa67e68.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-08-27/4ceee0c12a0e4a707197a3c7f8460216.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": ""
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/d1d538534c505e3edfd1fbc090f6a6cb.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 80
+                  },
+                  "switch": false
+                }
+              }
+            ],
+            "titleAuido": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/80d742e5e73a92f065781a06ed8dd55b.mp3",
+            "titleBg": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/136920/2025-07-15/c91001a962202b6628fb9ad213bf6d85.png",
+            "titleText": {
+              "MLabel": "",
+              "fontSize": 70
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "gamenext_level_uuid_0c39e557-bc02-455b-9b29-7c5944cd4e5a",
+      "topics": [
+        {
+          "CustomTopicConfig": {
+            "maxQuestionNum": 1,
+            "minQuestionNum": 1
+          },
+          "title_res": {
+            "audioSpine": {
+              "scale": 1,
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-03-13/564eca9312afd9205954ad8ef80b0d9b.zip",
+              "spine_spine_id": 41767
+            },
+            "btnAudio": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/2c0ffcd93cb4d7d509c56b8c3596c72d.mp3",
+            "icon": "",
+            "options": [
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/d1d538534c505e3edfd1fbc090f6a6cb.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/c9b371add75a643120547e50fb1fde79.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/08c387f530b6bdb58f8d94fc6554a286.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": true
+                }
+              }
+            ],
+            "titleAuido": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/2c0ffcd93cb4d7d509c56b8c3596c72d.mp3",
+            "titleBg": "https://courseware-maker-test-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0022385/2025-02-12/34643c6a17db8094502d1024f096371b.png",
+            "titleText": {
+              "MLabel": "",
+              "fontSize": 70
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "gamenext_level_uuid_d1707424-9125-4963-8aa9-437a716a1959",
+      "topics": [
+        {
+          "CustomTopicConfig": {
+            "maxQuestionNum": 1,
+            "minQuestionNum": 1
+          },
+          "title_res": {
+            "audioSpine": {
+              "scale": 1,
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-03-13/564eca9312afd9205954ad8ef80b0d9b.zip",
+              "spine_spine_id": 41767
+            },
+            "btnAudio": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/dff8635bb33d90d59b7eb46c96383183.mp3",
+            "icon": "",
+            "options": [
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/c9b371add75a643120547e50fb1fde79.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/08c387f530b6bdb58f8d94fc6554a286.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/d1d538534c505e3edfd1fbc090f6a6cb.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": true
+                }
+              }
+            ],
+            "titleAuido": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/dff8635bb33d90d59b7eb46c96383183.mp3",
+            "titleBg": "https://courseware-maker-test-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0022385/2025-02-12/34643c6a17db8094502d1024f096371b.png",
+            "titleText": {
+              "MLabel": "",
+              "fontSize": 70
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "gamenext_level_uuid_10da67cc-9b93-4ae0-955c-b621c63a5e6f",
+      "topics": [
+        {
+          "CustomTopicConfig": {
+            "maxQuestionNum": 1,
+            "minQuestionNum": 1
+          },
+          "title_res": {
+            "audioSpine": {
+              "scale": 1,
+              "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-03-13/564eca9312afd9205954ad8ef80b0d9b.zip",
+              "spine_spine_id": 41767
+            },
+            "btnAudio": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/2c0ffcd93cb4d7d509c56b8c3596c72d.mp3",
+            "icon": "",
+            "options": [
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/08c387f530b6bdb58f8d94fc6554a286.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": true
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/d1d538534c505e3edfd1fbc090f6a6cb.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/731a90d485e9ae1011a2aeabe9136256.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/e4bd49f403f3160b2593f6dcc02c5b15.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-27/a17b4101f3adf657f077fe27af30e5bc.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/c9b371add75a643120547e50fb1fde79.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 70
+                  },
+                  "switch": false
+                }
+              }
+            ],
+            "titleAuido": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/2c0ffcd93cb4d7d509c56b8c3596c72d.mp3",
+            "titleBg": "https://courseware-maker-test-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0022385/2025-02-12/34643c6a17db8094502d1024f096371b.png",
+            "titleText": {
+              "MLabel": "",
+              "fontSize": 70
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "gamenext_level_uuid_338c4ff6-fe1f-4e0a-92af-8ebfdbdaa17b",
+      "topics": [
+        {
+          "CustomTopicConfig": {
+            "maxQuestionNum": 1,
+            "minQuestionNum": 1
+          },
+          "title_res": {
+            "audioSpine": {
+              "scale": 1,
+              "spine": "",
+              "spine_spine_id": 41767
+            },
+            "btnAudio": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/80d742e5e73a92f065781a06ed8dd55b.mp3",
+            "icon": "",
+            "options": [
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/4192d4c48b6cf223c7a51e6b20f18df5.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/f31beef3024fa39f939c895c99f54972.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/d0cfd42d83197416d60af0d7f6451619.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/d1d538534c505e3edfd1fbc090f6a6cb.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 60
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/4192d4c48b6cf223c7a51e6b20f18df5.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/f31beef3024fa39f939c895c99f54972.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/d0cfd42d83197416d60af0d7f6451619.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/c9b371add75a643120547e50fb1fde79.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 60
+                  },
+                  "switch": true
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-26/8b65cac8099a9fa81ffaf447e3b95045.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-26/00fff714c807ed9e0881c7db31353976.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-26/ca55ed698e65fbd688eab0a9242169ab.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": ""
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/08c387f530b6bdb58f8d94fc6554a286.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 60
+                  },
+                  "switch": false
+                }
+              }
+            ],
+            "titleAuido": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/80d742e5e73a92f065781a06ed8dd55b.mp3",
+            "titleBg": "https://courseware-maker-test-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0022385/2025-02-12/34643c6a17db8094502d1024f096371b.png",
+            "titleText": {
+              "MLabel": "",
+              "fontSize": 70
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "gamenext_level_uuid_55f74cd6-979d-4d04-abe0-9df48ad083b9",
+      "topics": [
+        {
+          "CustomTopicConfig": {
+            "maxQuestionNum": 1,
+            "minQuestionNum": 1
+          },
+          "title_res": {
+            "audioSpine": {
+              "scale": 1,
+              "spine": "",
+              "spine_spine_id": 41767
+            },
+            "btnAudio": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/dff8635bb33d90d59b7eb46c96383183.mp3",
+            "icon": "",
+            "options": [
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/4192d4c48b6cf223c7a51e6b20f18df5.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/f31beef3024fa39f939c895c99f54972.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/d0cfd42d83197416d60af0d7f6451619.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/08c387f530b6bdb58f8d94fc6554a286.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 60
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/4192d4c48b6cf223c7a51e6b20f18df5.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/f31beef3024fa39f939c895c99f54972.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/d0cfd42d83197416d60af0d7f6451619.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/c9b371add75a643120547e50fb1fde79.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 60
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-26/8b65cac8099a9fa81ffaf447e3b95045.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-26/00fff714c807ed9e0881c7db31353976.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-26/ca55ed698e65fbd688eab0a9242169ab.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": ""
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/d1d538534c505e3edfd1fbc090f6a6cb.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 60
+                  },
+                  "switch": true
+                }
+              }
+            ],
+            "titleAuido": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/dff8635bb33d90d59b7eb46c96383183.mp3",
+            "titleBg": "https://courseware-maker-test-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0022385/2025-02-12/34643c6a17db8094502d1024f096371b.png",
+            "titleText": {
+              "MLabel": "",
+              "fontSize": 70
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "gamenext_level_uuid_85574065-9a27-43ea-b7cb-678304ab8412",
+      "topics": [
+        {
+          "CustomTopicConfig": {
+            "maxQuestionNum": 1,
+            "minQuestionNum": 1
+          },
+          "title_res": {
+            "audioSpine": {
+              "scale": 1,
+              "spine": "",
+              "spine_spine_id": 41767
+            },
+            "btnAudio": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/2c0ffcd93cb4d7d509c56b8c3596c72d.mp3",
+            "icon": "",
+            "options": [
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/4192d4c48b6cf223c7a51e6b20f18df5.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/f31beef3024fa39f939c895c99f54972.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/d0cfd42d83197416d60af0d7f6451619.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/08c387f530b6bdb58f8d94fc6554a286.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 60
+                  },
+                  "switch": true
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/4192d4c48b6cf223c7a51e6b20f18df5.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/f31beef3024fa39f939c895c99f54972.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-09-05/d0cfd42d83197416d60af0d7f6451619.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/350551/2025-06-26/1d5bd4d67269f720d10cf028401dc84f.zip",
+                    "spine_spine_id": 52039
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/d1d538534c505e3edfd1fbc090f6a6cb.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 60
+                  },
+                  "switch": false
+                }
+              },
+              {
+                "item": {
+                  "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-26/8b65cac8099a9fa81ffaf447e3b95045.png",
+                  "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-26/00fff714c807ed9e0881c7db31353976.png",
+                  "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-11-26/ca55ed698e65fbd688eab0a9242169ab.png",
+                  "correctSpine": {
+                    "scale": 1,
+                    "spine": ""
+                  },
+                  "icon": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/c9b371add75a643120547e50fb1fde79.mp3",
+                  "opstionText": {
+                    "MLabel": "",
+                    "fontSize": 60
+                  },
+                  "switch": false
+                }
+              }
+            ],
+            "titleAuido": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/2c0ffcd93cb4d7d509c56b8c3596c72d.mp3",
+            "titleBg": "https://courseware-maker-test-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0022385/2025-02-12/34643c6a17db8094502d1024f096371b.png",
+            "titleText": {
+              "MLabel": "",
+              "fontSize": 70
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

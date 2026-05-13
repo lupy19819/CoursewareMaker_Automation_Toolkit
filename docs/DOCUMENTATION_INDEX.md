@@ -40,7 +40,7 @@
 **内容**:
 - 2026-05-08 运动PK新建 + 导入实测结果
 - `create_game_auto.js` 运动PK `game_type=2` 规则
-- `save_game_config_via_cdp.js` 使用 `PUT + credentials: include` 更新配置
+- `upload_game_config.py` 使用 `PUT + credentials: include` 更新配置
 
 ---
 
@@ -133,7 +133,7 @@ cp config.template.json config.json
 └──────────┬──────────┘
            ↓
 ┌─────────────────────┐
-│ 5. 导入配置          │ → save_game_config_via_cdp.js
+│ 5. 导入配置          │ → upload_game_config.py
 │   - PUT + credentials│
 │   - 保存配置         │
 └──────────┬──────────┘

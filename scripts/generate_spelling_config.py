@@ -853,7 +853,14 @@ def calc_item_positions(n):
 
 
 def generate_level(q):
-    """生成单个关卡的 components 列表"""
+    """生成单个关卡的 components 列表
+
+    ⚠️ 渲染层级 = components[] 数组顺序（越靠后越在上层），zIndex 仅作编辑器排序参考。
+    组装顺序（底层→顶层）：
+      背景 → 桌子 → 拖拽放置区/空格/固定文本 → 遮挡背景 → fin动效
+      → 文本-fin → 节点_37(配图) → 关卡数组件 → 烟雾动效 → 喇叭
+      → 拖拽物品(最后=最顶层，保证可拖拽交互)
+    """
     answer_area = q["answer_area"]
     items = q["items"]
 
@@ -869,23 +876,22 @@ def generate_level(q):
     comps.append(make_bg(q["text"]))
     comps.append(make_table())
 
+    # 作答区：拖拽放置区 / 英语空格 / 固定文本
     slot_idx = 0
     space_idx = 0
     fixed_idx = 0
-    for item, x in zip(answer_area, positions):
-        if item["type"] == "slot":
+    for area_item, x in zip(answer_area, positions):
+        if area_item["type"] == "slot":
             slot_idx += 1
-            comps.append(make_drag_slot(item["content"], x, slot_idx))
-        elif item["type"] == "space":
+            comps.append(make_drag_slot(area_item["content"], x, slot_idx))
+        elif area_item["type"] == "space":
             space_idx += 1
             comps.append(make_space(x, space_idx))
-        elif item["type"] == "fixed":
+        elif area_item["type"] == "fixed":
             fixed_idx += 1
-            comps.append(make_fixed_text(item["content"], x, fixed_idx))
+            comps.append(make_fixed_text(area_item["content"], x, fixed_idx))
 
-    for i, (letter, x) in enumerate(zip(items, item_xs)):
-        comps.append(make_drag_item(letter, x, i))
-
+    # 固定组件（在拖拽物品之前）
     comps.append(make_mask_bg())
     comps.append(make_fin())
     comps.append(make_text_fin(q["text"]))
@@ -893,6 +899,11 @@ def generate_level(q):
     comps.append(make_level_num())
     comps.append(make_smoke())
     comps.append(make_horn(q.get("word_audio_url", "")))
+
+    # 拖拽物品（最后 = 最顶层，保证可拖拽交互）
+    for i, (letter, x) in enumerate(zip(items, item_xs)):
+        comps.append(make_drag_item(letter, x, i))
+
     return comps
 
 

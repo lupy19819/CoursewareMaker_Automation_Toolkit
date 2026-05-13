@@ -177,7 +177,7 @@ echo ""
 
 SCRIPTS=(
     "create_game_auto.js"
-    "save_game_config_via_cdp.js"
+    "upload_game_config.py"
     "publish_game_auto.js"
     "generate_share_link.js"
     "batch_create_games.js"

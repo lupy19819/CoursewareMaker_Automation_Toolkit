@@ -30,8 +30,8 @@
    └─ python3 scripts/generate_spelling_config.py
    └─ 输出：output/spelling_configs/<游戏名>.json
 
-5. 上传配置到编辑器（CDP，自动扫 9222/9223 端口）
-   └─ node scripts/upload_spelling_config.js <game_id> <config.json>
+5. 上传配置到编辑器
+   └─ python3 scripts/upload_game_config.py <game_id> <config.json>
 
 6. 备份/对比（可选）
    └─ node scripts/fetch_spelling_configs.js
@@ -73,6 +73,23 @@
 
 ---
 
+## 组件渲染顺序
+
+**⚠️ 渲染层级 = `components[]` 数组顺序（越靠后越在上层），zIndex 字段仅作编辑器排序参考，不影响运行时渲染。**
+
+组装组件时必须严格按以下顺序（从底层→顶层）：
+
+```
+[背景] → [桌子] → [拖拽放置区] → [英语空格] → [固定文本]
+→ [遮挡背景] → [fin动效] → [文本-fin] → [节点_37(配图)]
+→ [关卡数组件] → [烟雾动效] → [喇叭]
+→ [拖拽物品]  ← 最后 = 最顶层，保证可拖拽交互
+```
+
+> 脚本中 `generate_level()` 函数已按此顺序组装 components 数组。
+
+---
+
 ## 与魔法拼拼乐的数据复用关系
 
 同一份题目数据可同时生成单词拼拼乐和魔法拼拼乐两种游戏配置：
@@ -101,10 +118,27 @@
 | 文件 | 说明 |
 |---|---|
 | `scripts/generate_spelling_config.py` | 主生成脚本（输出内层 cfg） |
-| `scripts/upload_spelling_config.js` | CDP 上传配置（扫 9222/9223） |
+| `scripts/upload_game_config.py` | 上传配置到 CoursewareMaker |
 | `scripts/fetch_spelling_configs.js` | 抓取线上配置备份 |
 | `reference_configs/spelling_validation_ref.json` | 校验基准 |
 
+
+---
+## 组件渲染顺序
+
+**⚠️ 渲染层级 = `components[]` 数组顺序（越靠后越在上层），zIndex 字段仅作编辑器排序参考，不影响运行时渲染。**
+
+标准层级顺序（从底层→顶层，即数组从前→后）：
+
+```
+[背景] → [桌子(装饰)] → [fin动效] → [遮挡烟雾动效] → [喇叭]
+→ [节点_37(题目配图)] → [文本-fin(完整单词展示)] → [文本头] → [文本尾]
+→ [拖拽放置区X] [英语空格] [文本-XX(固定字母)]  ← 作答区
+→ [遮挡背景]
+→ [拖拽物品X]  ← 最后 = 最顶层，保证可拖拽交互
+```
+
+> 注意：拖拽物品虽在顶层，但通过 state 机制在开场时隐藏（K_ITEM_HIDE），遮挡背景隐藏后再显示。
 
 ---
 ## ⚠️ 重要规则（2026-05-11）

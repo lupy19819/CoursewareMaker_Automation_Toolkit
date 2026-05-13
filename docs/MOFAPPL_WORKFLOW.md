@@ -78,7 +78,7 @@ IP角色烟雾遮挡    ← 必须在文本-fin 之后（层级高于 fin）
 | 脚本 | 用途 |
 |---|---|
 | `scripts/generate_mofappl_config.py` | 从题目数据生成配置 JSON |
-| `scripts/save_game_config_via_cdp.js` | 导入配置到 CoursewareMaker |
+| `scripts/upload_game_config.py` | 导入配置到 CoursewareMaker |
 | `scripts/fix_mofappl_v3.py` | 修复坐标偏移、尺寸、state 等问题 |
 
 ---
@@ -96,8 +96,8 @@ python3 scripts/generate_mofappl_config.py \
 # 2. 修复坐标/尺寸/state
 python3 scripts/fix_mofappl_v3.py output/mofappl_configs/新游戏名.json
 
-# 3. 导入编辑器（需要 Chrome 9222 端口已开启）
-node scripts/save_game_config_via_cdp.js <game_id> output/mofappl_configs/新游戏名.json
+# 3. 导入编辑器
+python3 scripts/upload_game_config.py <game_id> output/mofappl_configs/新游戏名.json
 ```
 
 ---

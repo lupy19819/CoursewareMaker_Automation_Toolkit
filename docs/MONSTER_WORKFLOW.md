@@ -34,7 +34,7 @@
    └─ node scripts/create_game_auto.js → 获得 game_id
 
 6. 导入配置
-   └─ node scripts/save_game_config_via_cdp.js <game_id> Sj6贪吃小怪兽.config.json
+   └─ python3 scripts/upload_game_config.py <game_id> Sj6贪吃小怪兽.config.json
 
 7. 发布
    └─ node scripts/publish_game_auto.js
@@ -71,6 +71,33 @@ RIGHT_ANIMATION_BY_OPTION = {1: "right_1_2", 2: "right_2_2", 3: "right_3_2"}
 
 - `validate_monster_config.py`：检查配置结构完整性
 - `check_monster_vs_ref.py`：对比参考配置与生成配置，找出差异
+
+---
+
+## 组件渲染顺序
+
+**⚠️ 渲染层级 = `components[]` 数组顺序（越靠后越在上层），zIndex 字段仅作编辑器排序参考，不影响运行时渲染。**
+
+贪吃小怪兽为「复制替换型」游戏，所有组件顺序来自参考模板 deepcopy，**不在生成脚本中重排**。只要基准模板的 `components[]` 顺序正确，生成结果即正确。
+
+标准层级顺序（从底层→顶层，即数组从前→后）：
+
+```
+[背景] → [装饰层] → [TitleStem(题干)] → [关卡数组件]
+→ [节点/节点_103/节点_104(选项节点)] → [AloneClickChoice(点击判定)]
+→ [节点_102(小怪兽反馈动效)]
+```
+
+> 选项图片/文字通过 `节点` 组件展示，点击逻辑通过 `AloneClickChoice` 组件判定，两者在数中先后配对。
+
+---
+## 组件渲染顺序
+
+**⚠️ 渲染层级 = `components[]` 数组顺序（越靠后越在上层），zIndex 字段仅作编辑器排序参考，不影响运行时渲染。**
+
+贪吃小怪兽为「复制替换型」游戏：从模板 JSON deepcopy 完整关卡后，仅替换内容字段（音频、图片、文字、正确项标记），**不重排 components 数组**。因此渲染顺序完全由模板 JSON 决定，生成脚本不干预。
+
+如果模板的 components 顺序有问题（如选项节点被其他组件遮挡），需在模板源头修复，而非在生成脚本中处理。
 
 ---
 

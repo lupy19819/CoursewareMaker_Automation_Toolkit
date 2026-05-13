@@ -168,7 +168,7 @@ node create_game_auto.js "游戏名称" "模板ID" "empty_config.json"
 GAME_ID=$(cat latest_game_id.txt)
 
 # 步骤2: 导入配置
-node save_game_config_via_cdp.js $GAME_ID game_config.json
+python3 scripts/upload_game_config.py $GAME_ID game_config.json
 
 # 步骤3: 发布游戏
 node publish_game_auto.js $GAME_ID 2026 "2" "1"

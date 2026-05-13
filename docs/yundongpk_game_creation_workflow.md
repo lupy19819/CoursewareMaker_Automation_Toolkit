@@ -28,7 +28,7 @@ GAME_ID=$(cat latest_game_id.txt)
 python3 scripts/validate_yundong_pk_config.py "配置.json" 赛跑
 
 # 3. 导入配置并保存
-node scripts/save_game_config_via_cdp.js "$GAME_ID" "配置.json"
+python3 scripts/upload_game_config.py "$GAME_ID" "配置.json"
 ```
 
 实测结果：
@@ -212,13 +212,13 @@ node scripts/save_game_config_via_cdp.js "$GAME_ID" "配置.json"
 | **编辑器入口** | `#/editor?game_id=...` | `#/customEditor?game_id=...` ✅ |
 | **配置路径** | 传 `""` 会报“配置文件不存在” | 允许空配置，先建壳再导入 ✅ |
 | **user 字段** | 只读 `USER_INFO`，实际为空时写成“用户” | 读取 `GAMEMAKER_USER_INFO` 并输出 `姓名（拼音）` ✅ |
-| **configuration来源** | 可为空壳 `{}`，后续通过 `save_game_config_via_cdp.js` 注入 | 浏览器完整流程会带默认配置；自动化已验证空壳 + 导入也可用 |
+| **configuration来源** | 可为空壳 `{}`，后续通过 `upload_game_config.py` 注入 | 浏览器完整流程会带默认配置；自动化已验证空壳 + 导入也可用 |
 | **锁定** | 创建后锁定 | 相同 ✅ |
 | **保存** | 曾尝试 `POST`，可能被当成新建/另存版本 | 更新已有游戏使用 `PUT + credentials: include` ✅ |
 | **截图** | 无 | 上传截图到COS |
 
 ### 结论
-修复后的 `create_game_auto.js` 可以创建运动PK空壳游戏，关键是 `game_type=2` 和 `customEditor` 入口正确。后续用 `save_game_config_via_cdp.js` 通过 `PUT` 导入完整 `custom_game` 配置，已验证可直接写入原 `game_id`。
+修复后的 `create_game_auto.js` 可以创建运动PK空壳游戏，关键是 `game_type=2` 和 `customEditor` 入口正确。后续用 `upload_game_config.py` 通过 `PUT` 导入完整 `custom_game` 配置，已验证可直接写入原 `game_id`。
 
 ---
 
@@ -229,7 +229,7 @@ node scripts/save_game_config_via_cdp.js "$GAME_ID" "配置.json"
 # 1. 创建空壳游戏
 node create_game_auto.js "游戏名" "47995925-fb37-11ef-8c1b-ce918f8037e8" ""
 # 2. 注入配置
-node save_game_config_via_cdp.js "$GAME_ID" "config.json"
+python3 scripts/upload_game_config.py "$GAME_ID" "config.json"
 ```
 
 ### 方案B: 新建脚本（带默认配置创建 - 可选）

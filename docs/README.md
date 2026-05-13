@@ -100,7 +100,7 @@ node generate_share_link.js "$GAME_ID"
 | 脚本 | 功能 | 用法 |
 |------|------|------|
 | `create_game_auto.js` | 创建游戏 | `node create_game_auto.js "游戏名" "模板ID" ""` |
-| `save_game_config_via_cdp.js` | 导入配置 | `node save_game_config_via_cdp.js <game_id> <config.json>` |
+| `upload_game_config.py` | 导入配置 | `python3 scripts/upload_game_config.py <game_id> <config.json>` |
 | `publish_game_auto.js` | 发布游戏 | `node publish_game_auto.js <game_id> 2026 "2" "1"` |
 | `generate_share_link.js` | 生成分享链接 | `node generate_share_link.js <game_id>` |
 
@@ -142,7 +142,7 @@ node create_game_auto.js "2026新一思维诊断1" "70a3010b-0b7a-11ef-b3a3-fa79
 GAME_ID=$(cat latest_game_id.txt)
 
 # 3. 导入配置
-node save_game_config_via_cdp.js "$GAME_ID" "关卡01_配置.json"
+python3 scripts/upload_game_config.py "$GAME_ID" "关卡01_配置.json"
 
 # 4. 生成分享链接（可选）
 node generate_share_link.js "$GAME_ID"
@@ -211,7 +211,7 @@ D:/codexProject/
 │
 ├── 脚本文件/
 │   ├── create_game_auto.js
-│   ├── save_game_config_via_cdp.js
+│   ├── upload_game_config.py
 │   ├── publish_game_auto.js
 │   ├── generate_share_link.js
 │   ├── batch_*.js

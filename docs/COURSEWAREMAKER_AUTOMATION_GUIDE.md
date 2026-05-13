@@ -93,7 +93,7 @@ curl http://localhost:9222/json/version
 D:/codexProject/
 ├── 核心脚本
 │   ├── create_game_auto.js                   # 创建游戏（通用/运动PK均适用）
-│   ├── save_game_config_via_cdp.js           # 导入配置并保存
+│   ├── upload_game_config.py           # 导入配置并保存
 │   ├── publish_game_auto.js                   # 发布游戏
 │   ├── generate_share_link.js                 # 生成预览分享链接
 │   ├── batch_create_games.js                  # 批量创建游戏
@@ -198,7 +198,7 @@ Headers:
     │     数据结构: game
     │     基准JSON: reference_configs/spelling_ref_new.json
     │     生成脚本: scripts/generate_spelling_config.py
-    │     上传脚本: scripts/upload_spelling_config.js
+    │     上传脚本: scripts/upload_game_config.py
     │
     ├─ "公路大冒险" / "贪吃小怪兽" / 其他有固定基准配置的模板游戏
     │       ↓
@@ -430,7 +430,7 @@ python D:/codexProject/build_sj6_monster_config.py \
 ### Step 5: 导入配置并保存
 
 ```bash
-node D:/codexProject/save_game_config_via_cdp.js \
+python3 scripts/upload_game_config.py \
   "game_id" \
   "D:/codexProject/config.json"
 ```
@@ -512,7 +512,7 @@ node D:/codexProject/create_game_auto.js \
 - `create_game_auto.js` 会识别该模板并使用 `game_type: 2`
 - 组件ID: `21dcca07-c1e6-11ef-895a-4eb2c30c826b`（运动PK赛 v0.1.0）
 - 创建后编辑器入口: `customEditor?game_id=<game_id>`
-- 配置路径可传空字符串，先创建空壳 `{}`，后续用 `save_game_config_via_cdp.js` 导入完整配置
+- 配置路径可传空字符串，先创建空壳 `{}`，后续用 `upload_game_config.py` 导入完整配置
 
 ---
 
@@ -570,7 +570,7 @@ python D:/codexProject/build_yundong_pk_config.py \
 导入命令：
 
 ```bash
-node D:/codexProject/save_game_config_via_cdp.js "$GAME_ID" "<SheetName>.config.json"
+python3 scripts/upload_game_config.py "$GAME_ID" "<SheetName>.config.json"
 ```
 
 当前已验证的导入方式：
@@ -821,7 +821,7 @@ Step 4: 校验（参考 reference_configs/spelling_ref_new.json）
   - drag_item 数量 == slot 数量
 
 Step 5: 上传
-  node scripts/upload_spelling_config.js
+  node scripts/upload_game_config.py
   # 验证 double_encoded=false
 ```
 
@@ -882,7 +882,7 @@ Step 5: 导入新配置到原游戏并保存
 ### Step 5: 导入并保存
 
 ```bash
-node D:/codexProject/save_game_config_via_cdp.js \
+python3 scripts/upload_game_config.py \
   "原游戏game_id" \
   "新配置.json"
 ```
@@ -916,7 +916,7 @@ beibotoken: <TOKEN>
 
 ---
 
-### 2. save_game_config_via_cdp.js
+### 2. upload_game_config.py
 
 通过 CDP 将配置注入并保存到游戏。
 
@@ -1006,12 +1006,12 @@ QUESTIONS = [
 
 ---
 
-### 9. upload_spelling_config.js
+### 9. upload_game_config.py
 
 通过 CDP 将单词拼拼乐配置上传到编辑器。自动扫描 9222/9223 端口，上传后验证 `double_encoded=false`。
 
 ```bash
-node scripts/upload_spelling_config.js
+node scripts/upload_game_config.py
 # 默认读取 output/spelling_test_config.json
 # 需要先启动 Chrome 远程调试（--remote-debugging-port=9222）并打开对应游戏
 ```
@@ -1064,7 +1064,7 @@ https://sszt-gateway.speiyou.com
 | **引用** | 只读方式打开，无法修改内容 | ❌ 不可写入 |
 | **修改** | 编辑原游戏，直接修改原始配置 | ✅ 可写入 |
 
-**⚠️ 自动化脚本注意**：`save_game_config_via_cdp.js` 写入配置前，必须确保游戏是以**修改**模式打开的。如果以引用模式打开，写入操作会静默失效或报错。
+**⚠️ 自动化脚本注意**：`upload_game_config.py` 写入配置前，必须确保游戏是以**修改**模式打开的。如果以引用模式打开，写入操作会静默失效或报错。
 
 #### 网络层识别特征（通过 CDP 可检测）
 
@@ -1206,7 +1206,7 @@ python D:/codexProject/sync_courseware_resources.py
 python D:/codexProject/build_sj6_monster_config.py 题目表.xlsx
 
 # Step 5: 导入配置
-node D:/codexProject/save_game_config_via_cdp.js "$GAME_ID" config.json
+python3 scripts/upload_game_config.py "$GAME_ID" config.json
 
 # Step 6: 生成预览链接
 node D:/codexProject/generate_share_link.js "$GAME_ID"
@@ -1234,8 +1234,8 @@ python D:/codexProject/sync_courseware_resources.py
 python D:/codexProject/build_yundong_pk_config.py "国际小班游泳暑J6" "swim_detail.json" "题目表.xlsx"
 
 # Step 5: 导入配置
-# save_game_config_via_cdp.js 使用 PUT + credentials: include 更新原 game_id
-node D:/codexProject/save_game_config_via_cdp.js "$GAME_ID" "国际小班游泳暑J6.config.json"
+# upload_game_config.py 使用 PUT + credentials: include 更新原 game_id
+python3 scripts/upload_game_config.py "$GAME_ID" "国际小班游泳暑J6.config.json"
 
 # Step 6: 生成预览链接
 node D:/codexProject/generate_share_link.js "$GAME_ID"
@@ -1261,4 +1261,4 @@ bash D:/codexProject/docs/check_environment.sh
 - v2.1 (2026-04-21): **修正工作流顺序**：改为"新建游戏→上传资源→获取资源信息→生成配置→导入→预览→发布"，整合所有流程，强制明确Step 3资源确认节点
 - v2.2 (2026-04-27): 新增**模板游戏专用流程**章节（含公路大冒险子类）；修正小鹿动效映射（a→xia / b→zhong / c→shang，与位置直觉相反）；明确通用组件化专用于算术题；更新路由规则、游戏类型表和目录
 
-> 📝 待办：后续可在 `save_game_config_via_cdp.js` 加前置检查，检测 Tab URL 是否含 `openType=1`，有则中止并提示用户以修改模式重新打开。
+> 📝 待办：后续可在 `upload_game_config.py` 加前置检查，检测 Tab URL 是否含 `openType=1`，有则中止并提示用户以修改模式重新打开。

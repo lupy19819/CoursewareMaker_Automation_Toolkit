@@ -6,7 +6,7 @@
 const puppeteer = require('puppeteer-core');
 const fs = require('fs');
 
-const CHROME_DEBUG_PORT = 9222;
+const CHROME_DEBUG_PORT = process.env.CHROME_PORT || 9222;
 const API_BASE = 'https://sszt-gateway.speiyou.com/beibo/game/config';
 const BASE_PREVIEW_URL = 'https://coursewaremaker.speiyou.com/#/share-preview';
 

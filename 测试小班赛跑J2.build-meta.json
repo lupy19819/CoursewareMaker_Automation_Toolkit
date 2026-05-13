@@ -1,0 +1,80 @@
+{
+  "sheet_name": "测试小班赛跑J2",
+  "game_name": "国际小班跑酷赛跑暑J2_codextest2",
+  "subtype": "run",
+  "skin_baseline": "/home/148139_wy/.openclaw/workspace/CoursewareMaker_Automation_Toolkit/templates/detail_jsons/run_detail.json",
+  "skeleton_source": "国际小班跑酷赛跑暑J2_codextest2",
+  "question_count": 10,
+  "levels": [
+    {
+      "question_no": 1,
+      "audio_name": "测试小班赛跑J2赛跑音频daddy",
+      "audio_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/3cb71004bd1d726058088b02d04d8bdd.mp3",
+      "correct_option": 2,
+      "option_type": "image"
+    },
+    {
+      "question_no": 2,
+      "audio_name": "测试小班赛跑J2赛跑音频mummy",
+      "audio_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/3e49ba2c4f93825bb9e2214da9e96fdc.mp3",
+      "correct_option": 1,
+      "option_type": "image"
+    },
+    {
+      "question_no": 3,
+      "audio_name": "测试小班赛跑J2赛跑音频baby",
+      "audio_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/fe9f68903243e002b3a26244907700b7.mp3",
+      "correct_option": 1,
+      "option_type": "image"
+    },
+    {
+      "question_no": 4,
+      "audio_name": "测试小班赛跑J2赛跑音频mummy",
+      "audio_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/3e49ba2c4f93825bb9e2214da9e96fdc.mp3",
+      "correct_option": 2,
+      "option_type": "image"
+    },
+    {
+      "question_no": 5,
+      "audio_name": "测试小班赛跑J2赛跑音频daddy",
+      "audio_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/3cb71004bd1d726058088b02d04d8bdd.mp3",
+      "correct_option": 3,
+      "option_type": "image"
+    },
+    {
+      "question_no": 6,
+      "audio_name": "测试小班赛跑J2赛跑音频baby",
+      "audio_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/fe9f68903243e002b3a26244907700b7.mp3",
+      "correct_option": 3,
+      "option_type": "image"
+    },
+    {
+      "question_no": 7,
+      "audio_name": "测试小班赛跑J2赛跑音频mummy",
+      "audio_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/3e49ba2c4f93825bb9e2214da9e96fdc.mp3",
+      "correct_option": 2,
+      "option_type": "image"
+    },
+    {
+      "question_no": 8,
+      "audio_name": "测试小班赛跑J2赛跑音频baby",
+      "audio_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/fe9f68903243e002b3a26244907700b7.mp3",
+      "correct_option": 3,
+      "option_type": "image"
+    },
+    {
+      "question_no": 9,
+      "audio_name": "测试小班赛跑J2赛跑音频daddy",
+      "audio_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/3cb71004bd1d726058088b02d04d8bdd.mp3",
+      "correct_option": 3,
+      "option_type": "image"
+    },
+    {
+      "question_no": 10,
+      "audio_name": "测试小班赛跑J2赛跑音频baby",
+      "audio_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-06/fe9f68903243e002b3a26244907700b7.mp3",
+      "correct_option": 3,
+      "option_type": "image"
+    }
+  ]
+}
