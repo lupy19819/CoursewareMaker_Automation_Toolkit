@@ -16,13 +16,14 @@ upload_game_config.py
     - 若传 JSON 字符串，服务器会存成双重编码，导致引擎 analysisComponentsJson 崩溃
 
 注意：
-    - TOKEN 来自 localStorage.getItem('GAMEMAKER_TOKEN')
-    - COOKIE 来自 document.cookie 中的 oneLoginToken
-    - 两者均有过期时间，需定期更新
+    - TOKEN 来自 localStorage.getItem('GAMEMAKER_TOKEN') 【必须】
+    - COOKIE 来自 document.cookie 中的 oneLoginToken 【可选】
+    - TOKEN 和 COOKIE 均有过期时间，需定期更新
+    - 仅使用 TOKEN 模式已测试支持：配置上传 ✅  发布游戏 ⚠️（可能受限）
 
 环境变量：
-    GAMEMAKER_TOKEN   beibotoken 值
-    GAMEMAKER_COOKIE  oneLoginToken=xxx 完整 cookie 字符串
+    GAMEMAKER_TOKEN   beibotoken 值（必须）
+    GAMEMAKER_COOKIE  oneLoginToken=xxx 完整 cookie 字符串（可选）
 """
 
 import json
@@ -121,9 +122,8 @@ if __name__ == '__main__':
         sys.exit(1)
 
     if not COOKIE:
-        print("❌ 缺少 COOKIE，请设置环境变量 GAMEMAKER_COOKIE 或在脚本顶部填写")
-        print("   格式：oneLoginToken=<value>（从 document.cookie 获取）")
-        sys.exit(1)
+        print("⚠️  缺少 COOKIE，将只使用 TOKEN 进行认证")
+        COOKIE = ""  # 设置为空字符串，让请求继续
 
     try:
         upload_config(game_id, config_path, TOKEN, COOKIE)
