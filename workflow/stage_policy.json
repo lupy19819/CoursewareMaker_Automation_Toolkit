@@ -1,0 +1,55 @@
+{
+  "version": "2026-05-14",
+  "description": "Required inputs, allowed actions, and blocking conditions by deterministic workflow intent.",
+  "policies": {
+    "config_repair": {
+      "required_any": [["game_id", "game_name", "config_path"]],
+      "required_fields": ["feedback_scope"],
+      "allowed_actions": ["resolve_existing_target", "patch_feedback_scope", "validate", "save_existing", "roundtrip_compare", "preview"],
+      "forbidden_actions": ["create_game", "replace_template", "rewrite_unrelated_levels", "publish"],
+      "block_if_missing": "缺少已有目标或反馈范围：返修必须先定位 game_id/游戏名/配置文件，并锁定用户反馈字段。"
+    },
+    "import_to_existing_game": {
+      "required_any": [["game_id", "game_name"]],
+      "required_fields": ["config_path"],
+      "allowed_actions": ["resolve_existing_target", "validate", "save_existing", "roundtrip_compare", "preview"],
+      "forbidden_actions": ["create_game", "guess_latest_game_id", "publish"],
+      "block_if_missing": "缺少 game_id/游戏名或配置路径：导入保存必须有明确已有目标和配置文件。"
+    },
+    "inspect_or_compare": {
+      "required_any": [["game_id", "game_name", "config_path", "log_path"]],
+      "required_fields": [],
+      "allowed_actions": ["read_config", "read_logs", "fetch_remote_config", "validate", "compare", "report"],
+      "forbidden_actions": ["create_game", "save_existing_without_target", "publish"],
+      "block_if_missing": "缺少可排查对象：需要 game_id、游戏名、配置文件或日志路径。"
+    },
+    "monitor_manual_operation": {
+      "required_any": [[]],
+      "required_fields": [],
+      "allowed_actions": ["open_cdp_browser", "start_monitor", "record_requests", "report"],
+      "forbidden_actions": ["create_game", "save_existing", "modify_config", "publish"],
+      "block_if_missing": ""
+    },
+    "preview_or_publish": {
+      "required_any": [["game_id", "game_name"]],
+      "required_fields": [],
+      "allowed_actions": ["resolve_existing_target", "generate_share_link", "publish_if_explicit"],
+      "forbidden_actions": ["create_game", "modify_config"],
+      "block_if_missing": "缺少目标游戏：预览/发布必须先有 game_id 或唯一游戏名。"
+    },
+    "create_new_game": {
+      "required_any": [[]],
+      "required_fields": ["game_name", "game_family"],
+      "allowed_actions": ["create_game", "import_initial_config", "validate", "roundtrip_compare", "preview"],
+      "forbidden_actions": ["reuse_latest_game_id", "reuse_previous_game_type", "reuse_previous_editor_entry"],
+      "block_if_missing": "缺少新游戏名称或游戏类型：新建前必须锁定 game_name 和 game_family。"
+    },
+    "new_production_task": {
+      "required_any": [["config_path"]],
+      "required_fields": ["game_family"],
+      "allowed_actions": ["confirm_resources", "split_batches", "generate_config", "validate"],
+      "forbidden_actions": ["skip_resource_confirmation", "reuse_previous_task_state", "publish"],
+      "block_if_missing": "缺少题目/配置输入文件或游戏类型：新制作任务必须先锁定输入文件，并识别到三大类之一。"
+    }
+  }
+}

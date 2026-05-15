@@ -19,8 +19,9 @@ from openpyxl import Workbook, load_workbook
 from openpyxl.styles import Font
 
 
-DEFAULT_JSON = Path("/Users/tal/Documents/New project/编辑器上传素材_resources导出.json")
-DEFAULT_XLSX = Path("/Users/tal/Documents/New project/编辑器上传素材_resources导出.xlsx")
+REPO_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_JSON = REPO_ROOT / "resources" / "latest_resources.json"
+DEFAULT_XLSX = REPO_ROOT / "resources" / "latest_resources.xlsx"
 API_URL = "https://sszt-gateway.speiyou.com/beibo/game/config/resources"
 COURSEWARE_HOST = "coursewaremaker.speiyou.com"
 

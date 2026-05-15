@@ -117,7 +117,7 @@ node generate_share_link.js "$GAME_ID"
 | 脚本 | 功能 | 用法 |
 |------|------|------|
 | `build_yundong_pk_config.py` | 运动PK配置 | `python build_yundong_pk_config.py <excel>` |
-| `build_sj6_monster_config.py` | 贪吃小怪兽配置 | `python build_sj6_monster_config.py <excel>` |
+| `build_sj6_monster_config.py` | 贪吃小怪兽配置 | `python3 scripts/build_sj6_monster_config.py --xlsx <题目.xlsx> --sheet <SheetName> --resources <resources.json> --template reference_configs/monster/贪吃_reference_clean.json --output <输出.config.json> --meta <输出.build-meta.json>` |
 | `sync_courseware_resources.py` | 同步资源库 | `python sync_courseware_resources.py` |
 
 ### 监控工具
@@ -220,7 +220,7 @@ D:/codexProject/
 ├── 配置文件/
 │   ├── latest_game_id.txt
 │   ├── *_game_id_list.json
-│   └── latest_resources.json
+│   └── resources/latest_resources.json
 │
 ├── 数据源/
 │   └── *.xlsx

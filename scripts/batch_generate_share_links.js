@@ -5,6 +5,7 @@
 
 const puppeteer = require('puppeteer-core');
 const fs = require('fs');
+const path = require('path');
 
 const CHROME_DEBUG_PORT = process.env.CHROME_PORT || 9222;
 const API_BASE = 'https://sszt-gateway.speiyou.com/beibo/game/config';
@@ -131,12 +132,14 @@ async function main() {
 
   // 保存结果
   const timestamp = Date.now();
-  const resultFile = `D:/codexProject/share_links_batch_${timestamp}.json`;
+  const resultDir = process.env.COURSEWARE_OUTPUT_DIR || path.join('output', 'share_links');
+  fs.mkdirSync(resultDir, { recursive: true });
+  const resultFile = path.join(resultDir, `share_links_batch_${timestamp}.json`);
   fs.writeFileSync(resultFile, JSON.stringify(results, null, 2));
 
   // 生成Markdown报告
   const mdReport = generateMarkdownReport(results, gameListFile);
-  const mdFile = `D:/codexProject/share_links_report_${timestamp}.md`;
+  const mdFile = path.join(resultDir, `share_links_report_${timestamp}.md`);
   fs.writeFileSync(mdFile, mdReport);
 
   // 打印总结

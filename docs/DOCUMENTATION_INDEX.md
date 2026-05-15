@@ -38,6 +38,7 @@
 **阅读时间**: 5分钟  
 **适合人群**: 需要确认最新可运行链路的用户、AI助手  
 **内容**:
+- 2026-05-14 确定性 `workflow/` 控制层：router / planner / guard
 - 2026-05-08 运动PK新建 + 导入实测结果
 - `create_game_auto.js` 运动PK `game_type=2` 规则
 - `upload_game_config.py` 使用 `PUT + credentials: include` 更新配置
@@ -66,6 +67,23 @@
 ---
 
 ## 🛠️ 工具和脚本
+
+### 🧩 `workflow/` - 确定性工作流控制层
+**用途**: 减少 AI 判断差异，先由规则引擎决定环节、游戏类型、任务单和动作权限。<br>
+**使用**:
+```bash
+python3 workflow/workflow_router.py -m "<用户消息>" --pretty
+python3 workflow/workflow_router.py -m "<用户消息>" | python3 workflow/workflow_planner.py --pretty
+python3 workflow/workflow_router.py -m "<用户消息>" | python3 workflow/workflow_planner.py | python3 workflow/workflow_guard.py --action save_existing --pretty
+```
+
+**包含**:
+- `intent_rules.json`：意图识别优先级
+- `game_type_rules.json`：三大类和具体游戏类型路由
+- `stage_policy.json`：每个环节必填输入、允许/禁止动作
+- `script_registry.json`：固定脚本入口
+- `validation_policy.json`：校验策略
+- `workflow_router.py` / `workflow_planner.py` / `workflow_guard.py`
 
 ### 🔍 [check_environment.sh](check_environment.sh) - 环境检查脚本
 **用途**: 自动检查环境配置  
@@ -185,10 +203,10 @@ cp config.template.json config.json
 | **同步上传记录到资源表** | 所有游戏类型 | `sync_uploads_to_sheet.py` |
 | **创建单个游戏** | QUICK_START.md | 场景A |
 | **批量创建游戏** | QUICK_START.md | 场景B |
-| **贪吃小怪兽配置生成** | MONSTER_WORKFLOW.md | 完整流程 |
-| **单词拼拼乐配置生成** | SPELLING_WORKFLOW.md | 完整流程 |
-| **魔法拼拼乐配置生成** | MOFAPPL_WORKFLOW.md | 完整流程 |
-| **运动PK配置生成** | yundongpk_game_creation_workflow.md | 完整流程 |
+| **贪吃小怪兽配置生成** | MONSTER_WORKFLOW.md | 专项生成与校验规则 |
+| **单词拼拼乐配置生成** | SPELLING_WORKFLOW.md | 专项生成与校验规则 |
+| **魔法拼拼乐配置生成** | MOFAPPL_WORKFLOW.md | 专项生成与校验规则 |
+| **运动PK配置生成** | yundongpk_game_creation_workflow.md | 专项创建参数与导入校验规则 |
 | **发布游戏** | COURSEWAREMAKER_AUTOMATION_GUIDE.md | 步骤6：发布游戏 |
 | **生成分享链接** | COURSEWAREMAKER_AUTOMATION_GUIDE.md | 步骤5：生成预览分享链接 |
 | **API调用** | COURSEWAREMAKER_AUTOMATION_GUIDE.md | API参考 |
@@ -271,17 +289,17 @@ cp config.template.json config.json
 
 ## 🌉 过桥大冒险专区
 
-### ✅ [过桥大冒险_动态生成工作流.md](过桥大冒险_动态生成工作流.md) — **唯一正式流程（2026-05-11）**
-从题目数据 → 动态生成 JSON → Python API 直接保存，无需 CDP/Playwright。
-包含：布局规则、字号规则、保存 API 完整代码、调试备忘。
-**所有过桥大冒险配置生成均使用此文档，老方法已删除。**
+### ✅ [过桥大冒险_动态生成工作流.md](过桥大冒险_动态生成工作流.md) — **专项生成与校验规则（2026-05-11）**
+从题目数据动态生成 JSON；导入保存、回读、预览和发布回到主流程执行。
+包含：布局规则、字号规则、专项生成边界、调试备忘。
+**所有过桥大冒险配置生成均使用此文档，老方法已删除；但它不替代主流程。**
 
 ---
 
 ## 📝 更新日志
 
 ### v1.1.0 (2026-05-11)
-- ✅ 新增过桥大冒险动态生成工作流（Python 脚本 + HTTP API）
+- ✅ 新增过桥大冒险动态生成规则（Python 生成脚本 + 主流程保存边界）
 - ✅ 过桥大冒险布局规则定稿（桥区填满、等宽槽、自适应字号、无音频居中）
 
 ### v1.0.0 (2026-04-16)

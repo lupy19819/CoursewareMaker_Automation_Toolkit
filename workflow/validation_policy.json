@@ -1,0 +1,133 @@
+{
+  "version": "2026-05-14",
+  "strategy": {
+    "principle": "规则脚本校验为主，参考配置不变量对比为辅，代表性案例回归用于防止脚本退化。",
+    "main_workflow_responsibilities": [
+      "按 game_family 和 game_subtype 选择校验策略",
+      "确认本地配置、build-meta、输入文件、参考配置路径都来自当前任务单",
+      "按顺序执行 rules_validator、reference_invariants、fixture_regression、roundtrip_compare、preview",
+      "汇总校验报告并在任一 required 阶段失败时阻断保存/发布",
+      "禁止模板游戏直接套用标准组件化 baseline"
+    ],
+    "single_game_responsibilities": [
+      "定义本游戏题目输入 schema",
+      "定义本游戏专项规则脚本或生成脚本内置校验",
+      "定义固定模板资源允许项与题目动态字段",
+      "定义参考配置不变量清单",
+      "维护本游戏 fixtures，用于脚本回归而不是替代规则校验"
+    ],
+    "layers": [
+      {
+        "id": "rules_validator",
+        "scope": "single_game",
+        "required": true,
+        "purpose": "校验字段存在、题目映射、正确项、资源类型、组件关系、层级等确定性规则。"
+      },
+      {
+        "id": "reference_invariants",
+        "scope": "single_game",
+        "required": true,
+        "purpose": "只比固定模板不变量：公共层、组件注册表、关键状态、固定皮肤资源、components[] 顺序或骨架。"
+      },
+      {
+        "id": "fixture_regression",
+        "scope": "single_game",
+        "required": false,
+        "purpose": "使用代表性案例防止生成脚本退化；案例不足时记录 warning，不作为唯一通过依据。"
+      },
+      {
+        "id": "roundtrip_compare",
+        "scope": "main_workflow",
+        "required": true,
+        "purpose": "保存后 GET 回读，确认线上 configuration 与本地规范化配置一致。"
+      },
+      {
+        "id": "preview",
+        "scope": "main_workflow",
+        "required": true,
+        "purpose": "浏览器预览首关交互、翻页、音频和反馈。"
+      }
+    ]
+  },
+  "policies": {
+    "yundong_pk": {
+      "required_shape": "custom_game",
+      "main_workflow_layers": ["rules_validator", "reference_invariants", "fixture_regression", "roundtrip_compare", "preview"],
+      "validators": ["scripts/validate_yundong_pk_config.py", "scripts/validate_config.js"],
+      "rules_validator": ["scripts/validate_yundong_pk_config.py <config.json> <赛跑|游泳|赛车>", "node scripts/validate_config.js --file <config.json>"],
+      "reference_invariants": ["reference_configs/yundong_pk/<赛跑|游泳|赛车>_reference.json", "templates/detail_jsons/<run|swim|racecar>_detail.json"],
+      "fixture_regression": {
+        "required": false,
+        "path": "validation_fixtures/yundong_pk/<run|swim|racecar>/",
+        "status": "missing_or_partial"
+      },
+      "must_check": ["baseline_subtype", "custom_game_levels", "title_audio_fields", "options", "correct_answer", "roundtrip_compare", "preview"]
+    },
+    "template_game": {
+      "required_shape": "game",
+      "main_workflow_layers": ["rules_validator", "reference_invariants", "fixture_regression", "roundtrip_compare", "preview"],
+      "validators": ["template_specific_validator_or_reference_invariants"],
+      "must_check": ["json_root", "dynamic_question_input_meta", "reference_invariants", "components_order", "subtype_slots_or_tags", "resources", "roundtrip_compare", "preview"],
+      "dynamic_input_contract": {
+        "fixed_template_resources_allowed": ["background", "skin", "spine", "component_bundle", "state_key", "layout_skeleton", "top_level_common", "top_level_components"],
+        "question_related_fields_must_come_from_input": ["stem_text", "sentence", "answer_area", "slots", "options", "correct_answer", "stem_image", "scene_image", "option_image", "stem_audio", "option_audio"]
+      },
+      "subtype_validators": {
+        "monster": {
+          "rules_validator": ["scripts/validate_monster_config.py <config.json> --meta <build-meta.json>"],
+          "reference_invariants": ["reference_configs/monster/贪吃_reference_clean.json"],
+          "fixture_regression": "validation_fixtures/template_game/monster/"
+        },
+        "spelling": {
+          "rules_validator": ["scripts/generate_spelling_config.py input validation", "scripts/validate_resources.py"],
+          "reference_invariants": ["reference_configs/spelling_validation_ref.json", "reference_configs/spelling_ref_new.json"],
+          "fixture_regression": "validation_fixtures/template_game/spelling/"
+        },
+        "magic_spelling": {
+          "rules_validator": ["scripts/generate_mofappl_config.py input validation", "scripts/validate_resources.py"],
+          "reference_invariants": ["output/mofappl_configs/<槽数模板>.json"],
+          "fixture_regression": "validation_fixtures/template_game/magic_spelling/"
+        },
+        "road_adventure": {
+          "rules_validator": ["scripts/generate_guoji_l2_shu4_road.py input validation"],
+          "reference_invariants": ["<任务单锁定的公路大冒险参考配置.json>"],
+          "fixture_regression": "validation_fixtures/template_game/road_adventure/"
+        },
+        "bridge": {
+          "rules_validator": ["scripts/generate_guoqiao_shu2.py input validation"],
+          "reference_invariants": ["<任务单锁定的过桥大冒险参考配置.json>"],
+          "fixture_regression": "validation_fixtures/template_game/bridge/"
+        },
+        "amusement_park": {
+          "rules_validator": ["scripts/generate_kaixin_shu2.py input validation"],
+          "reference_invariants": ["<任务单锁定的开心游乐园参考配置.json>"],
+          "fixture_regression": "validation_fixtures/template_game/amusement_park/"
+        },
+        "fanboat": {
+          "rules_validator": ["scripts/build_reading_config.py --type fanboat internal validation"],
+          "reference_invariants": ["output/fanboat_configs_all/index.json + selected reference config"],
+          "fixture_regression": "validation_fixtures/template_game/fanboat/"
+        },
+        "train": {
+          "rules_validator": ["scripts/build_reading_config.py --type train internal validation"],
+          "reference_invariants": ["output/train_configs_all/index.json + selected reference config"],
+          "fixture_regression": "validation_fixtures/template_game/train/"
+        }
+      },
+      "forbidden": ["standard_component_only_validation"]
+    },
+    "standard_component": {
+      "required_shape": "game",
+      "main_workflow_layers": ["rules_validator", "reference_invariants", "fixture_regression", "roundtrip_compare", "preview"],
+      "validators": ["scripts/validate_config.js"],
+      "rules_validator": ["node scripts/validate_config.js --file <config.json>"],
+      "reference_invariants": ["standard_question_toolkit/data/courseware_workflow_rules.json", "standard_question_toolkit/templates/<template>.json"],
+      "fixture_regression": {
+        "required": false,
+        "path": "validation_fixtures/standard_component/<choice|fill_compute|drag>/",
+        "status": "missing_or_partial"
+      },
+      "must_check": ["layout_constants", "component_ids", "skin_resources", "question_text", "answer_relations", "roundtrip_compare", "preview"]
+    }
+  }
+}

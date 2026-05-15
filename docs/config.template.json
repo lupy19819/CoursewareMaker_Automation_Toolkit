@@ -93,7 +93,7 @@
     "logs": "D:/codexProject/chrome_monitoring_logs",
     "results": "D:/codexProject",
     "latestGameId": "D:/codexProject/latest_game_id.txt",
-    "latestResources": "D:/codexProject/latest_resources.json"
+    "latestResources": "D:/codexProject/resources/latest_resources.json"
   },
 
   "batch": {

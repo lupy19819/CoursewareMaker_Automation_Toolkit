@@ -107,8 +107,7 @@ D:/codexProject/
 ├── 配置生成脚本
 │   ├── build_yundong_pk_config.py             # 运动PK配置生成（含游泳/赛车/赛跑）
 │   ├── build_road_adventure_config.py        # ⚠️ TODO: 公路大冒险配置生成（待开发）
-│   ├── build_sj6_monster_config.py           # 贪吃小怪兽配置生成
-│   └── build_sj6_monster_config.py            # 贪吃小怪兽配置生成
+│   └── build_sj6_monster_config.py           # 贪吃小怪兽配置生成
 │
 ├── standard_question_toolkit/                 # 标准化题型工具集
 │   ├── README_FOR_CLAUDE.md                   # ← 入口文档
@@ -128,7 +127,7 @@ D:/codexProject/
 │   ├── latest_game_id.txt                     # 最新创建的游戏ID
 │   ├── xinyi_game_id_list.json                # 新一年级游戏ID列表
 │   ├── xiner_game_id_list.json                # 新二年级游戏ID列表
-│   ├── latest_resources.json                  # 资源库缓存
+│   ├── resources/latest_resources.json        # git 内资源库缓存
 │   └── .yach-config.json                      # 知音楼认证配置
 │
 └── 日志和结果
@@ -197,7 +196,7 @@ Headers:
     │   → 使用【单词拼拼乐专用流程】
     │     数据结构: game
     │     基准JSON: reference_configs/spelling_ref_new.json
-    │     生成脚本: scripts/generate_spelling_config.py
+    │     生成脚本: scripts/generate_spelling_config.py --input <题目.json> --output <输出.config.json> --meta <build-meta.json>
     │     上传脚本: scripts/upload_game_config.py
     │
     ├─ "公路大冒险" / "贪吃小怪兽" / 其他有固定基准配置的模板游戏
@@ -224,15 +223,44 @@ Headers:
 
 ## 完整工作流总览
 
-### 机器可读工作流与校验基准
+### 确定性工作流入口
 
-完整流程路由和生成后校验基准统一保存在：
+为降低 AI 模型差异，完整流程先由 `workflow/` 下的机器可读规则和 CLI 决定。AI 只负责传入用户消息、转述阻塞原因、补问信息和执行 ready plan 中指定的固定脚本。
+
+```bash
+# 用户消息 -> 结构化路由
+python3 workflow/workflow_router.py -m "<用户消息>" --pretty
+
+# 路由结果 -> 确定性任务单；缺信息时返回 status=blocked
+python3 workflow/workflow_router.py -m "<用户消息>" | python3 workflow/workflow_planner.py --pretty
+
+# 执行动作前检查是否越权
+python3 workflow/workflow_router.py -m "<用户消息>" \
+  | python3 workflow/workflow_planner.py \
+  | python3 workflow/workflow_guard.py --action save_existing --pretty
+```
+
+确定性规则文件：
+
+```text
+workflow/intent_rules.json
+workflow/game_type_rules.json
+workflow/stage_policy.json
+workflow/script_registry.json
+workflow/validation_policy.json
+```
+
+这些文件负责固化：意图优先级、三大类游戏路由、每个环节的必填输入、允许/禁止动作、脚本注册表和校验策略。`workflow_planner.py` 返回 `status=blocked` 时必须停止，不得由 AI 自行绕过继续执行。
+
+### 机器可读校验基准
+
+生成后校验基准同时保存在：
 
 ```text
 standard_question_toolkit/data/courseware_workflow_rules.json
 ```
 
-该文件是自动化流程的最高优先级工作流文件，包含：
+该文件作为生成后校验和标准组件化基准文件，包含：
 
 - `workflow.route_first`：先按具体 baseline JSON、根数据结构和 `game_family` 判断运动 PK / 模板游戏 / 标准组件化题，避免混用结构。
 - `workflow.stages`：素材、生成、校验、创建、保存、分享/发布的顺序。
@@ -257,7 +285,7 @@ node scripts/validate_config.js --file <config.json>
 
 ### 用户意图先于游戏类型
 
-每次收到用户消息，必须先判断它属于哪个工作流环节，再判断游戏类型。过去“用户反馈配置问题却触发新建游戏”的根因，就是把“过桥/运动PK/模板”等游戏类型识别放在了“用户意图识别”之前。
+每次收到用户消息，必须先调用 `workflow_router.py` 判断它属于哪个工作流环节，再判断游戏类型。过去“用户反馈配置问题却触发新建游戏”的根因，就是把“过桥/运动PK/模板”等游戏类型识别放在了“用户意图识别”之前。
 
 意图判定硬规则：
 
@@ -406,8 +434,8 @@ node D:/codexProject/scripts/courseware_bulk_upload_assets.mjs <文件夹路径>
 
 **方式二：通过 API 查询**（如需补充信息）
 ```bash
-node D:/codexProject/sync_courseware_resources.py
-# 输出: latest_resources.json（包含所有资源的id/name/url）
+python3 scripts/sync_courseware_resources.py --split-by-category
+# 输出: resources/latest_resources.json（包含所有资源的id/name/url）
 ```
 
 或直接调用查询 API：
@@ -450,9 +478,15 @@ beibotoken: <TOKEN>
 #### 4.1 贪吃小怪兽
 
 ```bash
-python D:/codexProject/build_sj6_monster_config.py \
-  D:/codexProject/zhiyinlou_monster_test_latest.xlsx \
-  --output-dir D:/codexProject/generated_configs/monster_games
+python3 scripts/build_sj6_monster_config.py \
+  --xlsx <题目.xlsx> \
+  --sheet <SheetName> \
+  --resources <resources.json> \
+  --template reference_configs/monster/贪吃_reference_clean.json \
+  --output <输出.config.json> \
+  --meta <输出.build-meta.json>
+
+python3 scripts/validate_monster_config.py <输出.config.json> --meta <输出.build-meta.json>
 ```
 
 #### 4.2 标准化题型（填空/选择/拖拽）
@@ -852,7 +886,10 @@ Step 2: 上传素材（图片 + 音频）并确认 CDN URL
 
 Step 3: 生成配置
   cd CoursewareMaker_Automation_Toolkit
-  python3 scripts/generate_spelling_config.py
+  python3 scripts/generate_spelling_config.py \
+    --input data/spelling_questions.json \
+    --output output/spelling_configs/<游戏名>.json \
+    --meta output/spelling_configs/<游戏名>.build-meta.json
 
 Step 4: 校验（参考 reference_configs/spelling_ref_new.json）
   - 检查每关 slot zIndex 从 19 递减
@@ -1022,28 +1059,34 @@ POST https://sszt-gateway.speiyou.com/beibo/game/config/createPreviewUrl
 
 ### 8. generate_spelling_config.py
 
-生成单词拼拼乐配置。输入题目数据（text/slots/items），输出内层 cfg（common/game/additional/components 结构）。
+生成单词拼拼乐配置。正式任务必须通过 `--input` 传入题目数据，输出内层 cfg（common/game/additional/components 结构）。脚本内固定背景、皮肤、状态 key、动效等模板资源可以保留为常量；题目文字、答题区、选项、题图和音频必须来自输入。
 
 **用法：**
 ```bash
-python3 scripts/generate_spelling_config.py
-# 输出：output/spelling_test_config.json
+python3 scripts/generate_spelling_config.py \
+  --input data/spelling_questions.json \
+  --output output/spelling_configs/<游戏名>.json \
+  --meta output/spelling_configs/<游戏名>.build-meta.json
 ```
 
-**题目数据格式（在脚本顶部 QUESTIONS 列表修改）：**
-```python
-QUESTIONS = [
-  {
-    "text": "make a snowman",
-    "slots": ["m","a","k","e","n"],          # 可拖拽字母
-    "items": [                                 # 答题区元素顺序（左→右）
-      {"type":"slot"},{"type":"slot"},{"type":"slot"},{"type":"slot"},
-      {"type":"space"},{"type":"fixed","content":"a"},{"type":"space"},
-      {"type":"slot"},{"type":"slot"},{"type":"slot"},{"type":"slot"},{"type":"slot"},
-    ]
-  },
-  ...
-]
+**题目数据格式：**
+```json
+{
+  "levels": [
+    {
+      "text": "make a snowman",
+      "answer_area": [
+        {"type": "slot", "content": "m"},
+        {"type": "slot", "content": "ake"},
+        {"type": "space"},
+        {"type": "fixed", "content": "a"}
+      ],
+      "items": ["ake", "m"],
+      "word_audio_url": "https://...mp3",
+      "word_image_url": "https://...png"
+    }
+  ]
+}
 ```
 
 ---
@@ -1242,10 +1285,17 @@ GAME_ID=$(cat D:/codexProject/latest_game_id.txt)
 node D:/codexProject/scripts/courseware_bulk_upload_assets.mjs "D:\素材文件夹"
 
 # Step 3: 确认获取资源URL（检查脚本输出或查询API）
-python D:/codexProject/sync_courseware_resources.py
+python3 scripts/sync_courseware_resources.py
 
-# Step 4: 生成配置
-python D:/codexProject/build_sj6_monster_config.py 题目表.xlsx
+# Step 4: 生成配置并校验
+python3 scripts/build_sj6_monster_config.py \
+  --xlsx 题目表.xlsx \
+  --sheet <SheetName> \
+  --resources resources/latest_resources.json \
+  --template reference_configs/monster/贪吃_reference_clean.json \
+  --output config.json \
+  --meta config.build-meta.json
+python3 scripts/validate_monster_config.py config.json --meta config.build-meta.json
 
 # Step 5: 导入配置
 python3 scripts/upload_game_config.py "$GAME_ID" config.json

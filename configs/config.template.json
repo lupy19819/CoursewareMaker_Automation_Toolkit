@@ -109,14 +109,14 @@
   },
 
   "paths": {
-    "description": "项目路径配置",
-    "projectRoot": "D:/codexProject",
-    "generatedConfigs": "D:/codexProject/generated_configs",
-    "dataSource": "D:/codexProject",
-    "logs": "D:/codexProject/chrome_monitoring_logs",
-    "results": "D:/codexProject",
-    "latestGameId": "D:/codexProject/latest_game_id.txt",
-    "latestResources": "D:/codexProject/latest_resources.json"
+    "description": "项目路径配置；默认使用项目根目录相对路径，跨 Windows/macOS/Linux 通用",
+    "projectRoot": ".",
+    "generatedConfigs": "output/generated_configs",
+    "dataSource": "data",
+    "logs": "output/chrome_monitoring_logs",
+    "results": "output",
+    "latestGameId": "latest_game_id.txt",
+    "latestResources": "resources/latest_resources.json"
   },
 
   "batch": {
@@ -128,7 +128,7 @@
       "xinyi": {
         "gameNamePrefix": "2026新一思维全能力诊断",
         "templateId": "70a3010b-0b7a-11ef-b3a3-fa7902489df6",
-        "configDir": "D:/codexProject/generated_configs/xinyi_split_12_games",
+        "configDir": "output/generated_configs/xinyi_split_12_games",
         "grade": "1",
         "startIndex": 1,
         "endIndex": 12
@@ -136,7 +136,7 @@
       "xiner": {
         "gameNamePrefix": "2026新二思维全能力诊断",
         "templateId": "70a3010b-0b7a-11ef-b3a3-fa7902489df6",
-        "configDir": "D:/codexProject/generated_configs/xiner_split_12_games",
+        "configDir": "output/generated_configs/xiner_split_12_games",
         "grade": "2",
         "startIndex": 1,
         "endIndex": 12
@@ -155,7 +155,7 @@
     "enabled": true,
     "level": "info",
     "saveToFile": true,
-    "logDir": "D:/codexProject/chrome_monitoring_logs"
+    "logDir": "output/chrome_monitoring_logs"
   },
 
   "monitoring": {

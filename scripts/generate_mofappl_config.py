@@ -14,6 +14,7 @@ generate_mofappl_config.py
 import json
 import copy
 import uuid
+import argparse
 import os
 import sys
 
@@ -824,6 +825,70 @@ def generate_from_questions(questions: list, output_file: str = None) -> str:
     return out_path
 
 
+def load_questions(path: str) -> list:
+    """Load dynamic question data. Template skeleton/skin still comes from fixed refs."""
+    with open(path, encoding='utf-8') as f:
+        payload = json.load(f)
+    questions = payload.get('questions', payload.get('levels')) if isinstance(payload, dict) else payload
+    if not isinstance(questions, list) or not questions:
+        raise ValueError('input must be a non-empty list or an object with questions/levels')
+    validate_questions(questions)
+    return questions
+
+
+def validate_questions(questions: list) -> None:
+    for index, q in enumerate(questions, 1):
+        prefix = f'L{index}'
+        for key in ('slots', 'items', 'sentence', 'sentence_parts'):
+            if key not in q:
+                raise ValueError(f'{prefix}: missing required field: {key}')
+        slots = q.get('slots') or []
+        items = q.get('items') or []
+        parts = q.get('sentence_parts') or []
+        if not slots:
+            raise ValueError(f'{prefix}: slots cannot be empty')
+        if not items:
+            raise ValueError(f'{prefix}: items cannot be empty')
+        if sorted(map(str, slots)) != sorted(map(str, [p.get('content') for p in parts if p.get('type') == 'slot'])):
+            raise ValueError(f'{prefix}: slots must match slot entries in sentence_parts')
+        missing_items = sorted(set(map(str, slots)) - set(map(str, items)))
+        if missing_items:
+            raise ValueError(f'{prefix}: slot answers missing from items: {missing_items}')
+        for part in parts:
+            part_type = part.get('type')
+            if part_type not in {'fixed', 'slot', 'space'}:
+                raise ValueError(f'{prefix}: unsupported sentence_parts type: {part_type}')
+            if part_type in {'fixed', 'slot'} and not str(part.get('content', '')).strip():
+                raise ValueError(f'{prefix}: {part_type} content cannot be empty')
+        if not q.get('audio_url'):
+            raise ValueError(f'{prefix}: audio_url is required for dynamic input')
+
+
+def write_meta(path: str, questions: list, output_path: str) -> None:
+    if not path:
+        return
+    meta = {
+        'schema': 'coursewaremaker.magic_spelling.build_meta.v1',
+        'generator': 'scripts/generate_mofappl_config.py',
+        'output': output_path,
+        'question_count': len(questions),
+        'levels': [
+            {
+                'index': i,
+                'sentence': q.get('sentence'),
+                'slot_count': len(q.get('slots', [])),
+                'item_count': len(q.get('items', [])),
+                'audio_url': q.get('audio_url', ''),
+                'fixed_parts': [p.get('content', '') for p in q.get('sentence_parts', []) if p.get('type') == 'fixed'],
+            }
+            for i, q in enumerate(questions, 1)
+        ],
+    }
+    os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
+    with open(path, 'w', encoding='utf-8') as f:
+        json.dump(meta, f, ensure_ascii=False, indent=2)
+
+
 def _run_resource_validation(generated_cfg, ref_cfg, questions):
     """
     生成后自动调用资源校验。
@@ -849,6 +914,10 @@ def _run_resource_validation(generated_cfg, ref_cfg, questions):
             whitelist.add(q['image'])
         if q.get('audio'):
             whitelist.add(q['audio'])
+        if q.get('image_url'):
+            whitelist.add(q['image_url'])
+        if q.get('audio_url'):
+            whitelist.add(q['audio_url'])
 
     print("\n🔍 开始资源校验...")
     result = validate(generated_cfg, ref_cfg, whitelist_urls=whitelist)
@@ -857,5 +926,17 @@ def _run_resource_validation(generated_cfg, ref_cfg, questions):
 
 
 if __name__ == '__main__':
-    out = sys.argv[1] if len(sys.argv) > 1 else None
-    generate(out)
+    parser = argparse.ArgumentParser(description='魔法拼拼乐配置生成脚本')
+    parser.add_argument('legacy_output', nargs='?', help='兼容旧用法：仅传输出路径')
+    parser.add_argument('--input', help='动态题目 JSON。题目相关字段必须从这里读取')
+    parser.add_argument('--output', help='输出配置 JSON')
+    parser.add_argument('--meta', help='输出 build meta JSON')
+    args = parser.parse_args()
+
+    output = args.output or args.legacy_output
+    if args.input:
+        qs = load_questions(args.input)
+        out_path = generate_from_questions(qs, output)
+        write_meta(args.meta, qs, out_path)
+    else:
+        generate(output)

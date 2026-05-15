@@ -4,6 +4,7 @@
 支持答题区三种组件：slot（拖拽放置区）、space（英语空格）、fixed（固定文本）
 """
 
+import argparse
 import json, uuid, copy, os
 
 # ===== 题目数据 =====
@@ -936,7 +937,76 @@ def build_transition():
     }
 
 
-def build_config():
+def load_levels(path):
+    """Load dynamic question levels. Template skin resources remain fixed in this script."""
+    with open(path, encoding="utf-8") as f:
+        payload = json.load(f)
+    levels = payload.get("levels", payload) if isinstance(payload, dict) else payload
+    if not isinstance(levels, list) or not levels:
+        raise ValueError("input must be a non-empty list or an object with a non-empty levels list")
+    validate_levels(levels, require_topic_assets=True)
+    return levels
+
+
+def validate_levels(levels, require_topic_assets=False):
+    for index, q in enumerate(levels, 1):
+        prefix = f"L{index}"
+        for key in ("text", "answer_area", "items"):
+            if key not in q:
+                raise ValueError(f"{prefix}: missing required field: {key}")
+        if not isinstance(q["answer_area"], list) or not q["answer_area"]:
+            raise ValueError(f"{prefix}: answer_area must be a non-empty list")
+        slots = [a for a in q["answer_area"] if a.get("type") == "slot"]
+        if not slots:
+            raise ValueError(f"{prefix}: answer_area must contain at least one slot")
+        if not isinstance(q["items"], list) or not q["items"]:
+            raise ValueError(f"{prefix}: items must be a non-empty list")
+        slot_values = [str(a.get("content", "")) for a in slots]
+        item_values = [str(item) for item in q["items"]]
+        missing_items = sorted(set(slot_values) - set(item_values))
+        if missing_items:
+            raise ValueError(f"{prefix}: slot answers missing from items: {missing_items}")
+        for part in q["answer_area"]:
+            part_type = part.get("type")
+            if part_type not in {"slot", "space", "fixed"}:
+                raise ValueError(f"{prefix}: unsupported answer_area type: {part_type}")
+            if part_type in {"slot", "fixed"} and not str(part.get("content", "")).strip():
+                raise ValueError(f"{prefix}: {part_type} content cannot be empty")
+        if require_topic_assets:
+            if not q.get("word_audio_url"):
+                raise ValueError(f"{prefix}: word_audio_url is required for dynamic input")
+            if not q.get("word_image_url"):
+                raise ValueError(f"{prefix}: word_image_url is required for dynamic input")
+
+
+def write_meta(path, levels, output_path):
+    if not path:
+        return
+    meta = {
+        "schema": "coursewaremaker.spelling.build_meta.v1",
+        "generator": "scripts/generate_spelling_config.py",
+        "output": output_path,
+        "question_count": len(levels),
+        "levels": [
+            {
+                "index": i,
+                "text": q.get("text"),
+                "slot_count": sum(1 for a in q.get("answer_area", []) if a.get("type") == "slot"),
+                "item_count": len(q.get("items", [])),
+                "word_audio_url": q.get("word_audio_url", ""),
+                "word_image_url": q.get("word_image_url", ""),
+            }
+            for i, q in enumerate(levels, 1)
+        ],
+    }
+    os.makedirs(os.path.dirname(os.path.abspath(path)), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(meta, f, ensure_ascii=False, indent=2)
+
+
+def build_config(levels=None):
+    levels = levels or LEVELS
+    validate_levels(levels)
     cfg = {
         "common": {
             "settlement_component": {
@@ -1000,7 +1070,7 @@ def build_config():
         ]
     }
 
-    for q in LEVELS:
+    for q in levels:
         level = {
             "id": f"gamenext_level_uuid_{uuid.uuid4()}",
             "title": {"component_id": "", "component_url": "", "component_data": {}},
@@ -1022,7 +1092,7 @@ def build_config():
     return cfg
 
 
-def _run_resource_validation(cfg):
+def _run_resource_validation(cfg, levels=None):
     """生成后自动校验资源，白名单：每关的题目配图和题目音频（用户自定义上传）"""
     try:
         import importlib.util, pathlib
@@ -1051,7 +1121,7 @@ def _run_resource_validation(cfg):
 
     # 白名单：每关的 word_image_url 和 word_audio_url
     whitelist = set()
-    for q in LEVELS:
+    for q in (levels or LEVELS):
         if q.get('word_image_url'):
             whitelist.add(q['word_image_url'])
         if q.get('word_audio_url'):
@@ -1064,14 +1134,21 @@ def _run_resource_validation(cfg):
 
 
 def main():
-    os.makedirs("output", exist_ok=True)
-    cfg = build_config()
+    parser = argparse.ArgumentParser(description="单词拼拼乐配置生成脚本")
+    parser.add_argument("--input", help="动态题目 JSON。题目相关字段必须从这里读取")
+    parser.add_argument("--output", default="output/spelling_test_config.json", help="输出配置 JSON")
+    parser.add_argument("--meta", help="输出 build meta JSON")
+    args = parser.parse_args()
 
-    with open("output/spelling_test_config.json", "w", encoding="utf-8") as f:
+    levels = load_levels(args.input) if args.input else LEVELS
+    os.makedirs(os.path.dirname(os.path.abspath(args.output)), exist_ok=True)
+    cfg = build_config(levels)
+
+    with open(args.output, "w", encoding="utf-8") as f:
         json.dump(cfg, f, ensure_ascii=False, indent=2)
 
     print(f"✅ 生成完成：{len(cfg['game'])} 关")
-    for i, q in enumerate(LEVELS):
+    for i, q in enumerate(levels):
         aa = q["answer_area"]
         n_slots = sum(1 for a in aa if a["type"] == "slot")
         n_spaces = sum(1 for a in aa if a["type"] == "space")
@@ -1091,7 +1168,8 @@ def main():
             print(f"    ⚠️  word_image_url 未填写（节点_37 无图片）")
 
 
-    _run_resource_validation(cfg)
+    write_meta(args.meta, levels, args.output)
+    _run_resource_validation(cfg, levels)
 
 
 if __name__ == "__main__":

@@ -7,12 +7,20 @@ generate_kaixin_shu2.py
 按 LEVELS 数据逐关替换可变部分。
 """
 
+import argparse
 import json, copy, uuid, os
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-REF  = os.path.join(BASE, 'output/kaixin_refs/57cd2b7b-4b73-11f1-b0f5-e648d636fd2c.json')
-OUT  = os.path.join(BASE, 'output/kaixin_shu2/kaixin_shu2.json')
+parser = argparse.ArgumentParser(description='开心游乐园配置生成脚本')
+parser.add_argument('--input', help='动态题目 JSON。已知词/选项/正确项/音频必须从这里读取；场景图仅在显式提供时覆盖模板')
+parser.add_argument('--template', help='模板/参考配置 JSON')
+parser.add_argument('--output', help='输出配置 JSON')
+parser.add_argument('--meta', help='输出 build meta JSON')
+ARGS = parser.parse_args()
+
+REF  = ARGS.template or os.path.join(BASE, 'output/kaixin_refs/57cd2b7b-4b73-11f1-b0f5-e648d636fd2c.json')
+OUT  = ARGS.output or os.path.join(BASE, 'output/kaixin_shu2/kaixin_shu2.json')
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
 
 # ── 参考配置 ────────────────────────────────────────────────────────────────
@@ -57,6 +65,30 @@ LEVELS = [
     },
 ]
 
+
+def load_dynamic_levels(path):
+    with open(path, encoding='utf-8') as f:
+        payload = json.load(f)
+    levels = payload.get('levels', payload.get('questions')) if isinstance(payload, dict) else payload
+    if not isinstance(levels, list) or not levels:
+        raise ValueError('input must be a non-empty list or an object with levels/questions')
+    for index, lv in enumerate(levels, 1):
+        prefix = f'L{index}'
+        for key in ('fixed_text', 'options', 'correct'):
+            if key not in lv:
+                raise ValueError(f'{prefix}: missing required field: {key}')
+        if not isinstance(lv.get('options'), list) or len(lv['options']) != 3:
+            raise ValueError(f'{prefix}: 开心游乐园 requires exactly 3 options')
+        if lv.get('correct') not in lv.get('options', []):
+            raise ValueError(f'{prefix}: correct must be one of options')
+        if not (lv.get('option_audio_urls') or lv.get('option_audio_url')):
+            raise ValueError(f'{prefix}: option_audio_urls or option_audio_url is required for dynamic input')
+    return levels
+
+
+if ARGS.input:
+    LEVELS = load_dynamic_levels(ARGS.input)
+
 # ── 工具函数 ────────────────────────────────────────────────────────────────
 AUDIO_PLACEHOLDER = (
     'https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/'
@@ -99,6 +131,9 @@ def make_option_comp(ref_comp, text, audio_url):
     c = copy.deepcopy(ref_comp)
     c['component_data']['name'] = c['component_data'].get('name', '选项')
     c['component_data']['id']   = str(uuid.uuid4())
+    tools = c['component_data'].get('components', {}).get('tools', {})
+    if 'MDraggable' in tools:
+        tools['MDraggable']['tag'] = text
     for label in ['默认', '放置', '当前组件错误']:
         st = get_state(c['component_data'], label)
         if st:
@@ -130,11 +165,12 @@ ref_opt1        = get_comp(ref_lvl0_comps, '选项1')
 
 # ── 构建关卡 ────────────────────────────────────────────────────────────────
 def build_level(lvl_data, lvl_idx):
-    scene_img   = lvl_data['scene_img']
+    scene_img   = lvl_data.get('scene_img') or lvl_data.get('scene_img_override') or ''
     fixed_text  = lvl_data['fixed_text']
     options     = lvl_data['options']
     correct     = lvl_data['correct']
-    punct       = lvl_data['punct']
+    punct       = lvl_data.get('punct', '.')
+    option_audio_urls = lvl_data.get('option_audio_urls') or [lvl_data.get('option_audio_url')] * len(options)
 
     comps = []
 
@@ -145,7 +181,7 @@ def build_level(lvl_data, lvl_idx):
     # 2. 场景图（节点）
     node = copy.deepcopy(ref_node)
     st = get_state(node['component_data'])
-    if st:
+    if st and scene_img:
         set_msprite(st, scene_img)
     comps.append(node)
 
@@ -165,6 +201,9 @@ def build_level(lvl_data, lvl_idx):
     # 5. 拖拽放置区（1个槽）
     slot = copy.deepcopy(ref_slot)
     slot['component_data']['id'] = str(uuid.uuid4())
+    tools = slot['component_data'].get('components', {}).get('tools', {})
+    if 'LDragPlace' in tools:
+        tools['LDragPlace']['itemList'] = [correct]
     comps.append(slot)
 
     # 6. 放置区错误配合
@@ -180,7 +219,8 @@ def build_level(lvl_data, lvl_idx):
 
     # 9. 选项（3个）—— 最后 = 最顶层，保证可拖拽交互
     for i, opt_text in enumerate(options):
-        opt = make_option_comp(ref_opt1, opt_text, AUDIO_PLACEHOLDER)
+        opt_audio = option_audio_urls[i] if i < len(option_audio_urls) and option_audio_urls[i] else AUDIO_PLACEHOLDER
+        opt = make_option_comp(ref_opt1, opt_text, opt_audio)
         opt['component_data']['name'] = f'选项{i+1}'
         comps.append(opt)
 
@@ -224,3 +264,25 @@ with open(OUT, 'w', encoding='utf-8') as f:
 print(f'\n✅ 已生成: {OUT}')
 print(f'   关卡数: {len(result["game"])}')
 print(f'   顶层keys: {list(result.keys())}')
+if ARGS.meta:
+    meta = {
+        'schema': 'coursewaremaker.amusement_park.build_meta.v1',
+        'generator': 'scripts/generate_kaixin_shu2.py',
+        'template': REF,
+        'output': OUT,
+        'question_count': len(LEVELS),
+        'levels': [
+            {
+                'index': i,
+                'fixed_text': lv.get('fixed_text'),
+                'correct': lv.get('correct'),
+                'options': lv.get('options', []),
+                'scene_img_override': lv.get('scene_img') or lv.get('scene_img_override', ''),
+                'has_option_audio_urls': bool(lv.get('option_audio_urls') or lv.get('option_audio_url')),
+            }
+            for i, lv in enumerate(LEVELS, 1)
+        ],
+    }
+    os.makedirs(os.path.dirname(os.path.abspath(ARGS.meta)), exist_ok=True)
+    with open(ARGS.meta, 'w', encoding='utf-8') as f:
+        json.dump(meta, f, ensure_ascii=False, indent=2)

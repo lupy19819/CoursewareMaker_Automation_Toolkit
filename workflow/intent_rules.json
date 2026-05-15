@@ -1,0 +1,69 @@
+{
+  "version": "2026-05-14",
+  "description": "Deterministic intent routing rules. Rules are evaluated by ascending priority; the first match becomes the workflow intent unless a hard conflict is detected.",
+  "rules": [
+    {
+      "intent": "config_repair",
+      "priority": 10,
+      "signals": ["不对", "错了", "资源用错", "位置不好", "放置区", "改一下", "调整", "反馈", "预览看到", "刚才那个", "这个游戏", "音频错", "正确项错"],
+      "stage": "配置返修",
+      "allowed_actions": ["resolve_existing_target", "patch_feedback_scope", "validate", "save_existing", "roundtrip_compare"],
+      "forbidden_actions": ["create_game", "replace_template", "rewrite_unrelated_levels", "replace_unrelated_resources", "publish"]
+    },
+    {
+      "intent": "import_to_existing_game",
+      "priority": 20,
+      "signals": ["上传", "导入", "保存", "试一下", "写入"],
+      "stage": "导入保存/跑通验证",
+      "allowed_actions": ["resolve_existing_target", "validate", "save_existing", "roundtrip_compare", "preview"],
+      "forbidden_actions": ["create_game", "guess_latest_game_id", "choose_duplicate_game_name", "publish"]
+    },
+    {
+      "intent": "inspect_or_compare",
+      "priority": 30,
+      "signals": ["检查", "对比", "为什么", "差异", "能不能跑通", "看下问题", "排查", "校验"],
+      "stage": "排查/校验",
+      "allowed_actions": ["read_config", "read_logs", "fetch_remote_config", "validate", "compare", "report"],
+      "forbidden_actions": ["create_game", "save_existing_without_target", "publish"]
+    },
+    {
+      "intent": "monitor_manual_operation",
+      "priority": 5,
+      "signals": ["打开监听浏览器", "记录操作", "监控", "监听"],
+      "stage": "环境准备/操作采集",
+      "allowed_actions": ["open_cdp_browser", "start_monitor", "record_requests", "report"],
+      "forbidden_actions": ["create_game", "save_existing", "modify_config", "publish"]
+    },
+    {
+      "intent": "preview_or_publish",
+      "priority": 50,
+      "signals": ["预览", "分享链接", "发布"],
+      "stage": "预览/发布",
+      "allowed_actions": ["resolve_existing_target", "generate_share_link", "publish_if_explicit"],
+      "forbidden_actions": ["create_game", "modify_config"]
+    },
+    {
+      "intent": "create_new_game",
+      "priority": 60,
+      "signals": ["新建", "创建一个新的", "生成一个新的游戏", "创建新的", "名字叫", "名字叫做"],
+      "stage": "新建游戏",
+      "allowed_actions": ["create_game", "import_initial_config", "validate", "roundtrip_compare", "preview"],
+      "forbidden_actions": ["reuse_latest_game_id", "reuse_previous_game_type", "reuse_previous_editor_entry"]
+    },
+    {
+      "intent": "new_production_task",
+      "priority": 90,
+      "signals": [],
+      "stage": "新制作任务",
+      "allowed_actions": ["confirm_resources", "split_batches", "generate_config", "validate"],
+      "forbidden_actions": ["skip_resource_confirmation", "reuse_previous_task_state", "publish"]
+    }
+  ],
+  "hard_rules": [
+    "If config_repair matches, do not create a game unless create_new_game also matches with an explicit new-game phrase and the message has no existing game_id.",
+    "If game_id is present with upload/import/save signals, the intent is import_to_existing_game unless config_repair has already matched.",
+    "A game name is an existing target by default unless create_new_game is the selected intent.",
+    "Ambiguous target game names and duplicate resources must block execution and ask for confirmation.",
+    "Publishing requires an explicit publish signal and a resolved target."
+  ]
+}

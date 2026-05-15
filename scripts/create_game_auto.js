@@ -46,6 +46,7 @@ async function getTokenFromChrome() {
     const token = await page.evaluate(() => {
         return localStorage.getItem('GAMEMAKER_TOKEN');
     });
+    await browser.disconnect();
 
     if (!token) {
         throw new Error('未找到GAMEMAKER_TOKEN，请先登录 CoursewareMaker');
@@ -86,6 +87,7 @@ async function getUserName() {
         }
         return '用户';
     });
+    await browser.disconnect();
 
     return userName;
 }
@@ -173,6 +175,7 @@ async function openGameEditor(gameId, gameType) {
 
     const page = await browser.newPage();
     await page.goto(editorUrl);
+    await browser.disconnect();
 
     console.log(`🌐 已在浏览器中打开编辑器`);
     console.log(`🔗 ${editorUrl}`);

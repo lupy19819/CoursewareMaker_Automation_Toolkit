@@ -1,8 +1,23 @@
-# 魔法拼拼乐配置生成工作流
+# 魔法拼拼乐专项生成与校验规则
 
 ## 概览
 
-从「单词拼拼乐测试表格」的题目数据，生成可直接导入 CoursewareMaker 的魔法拼拼乐配置 JSON。
+本文只描述主流程中「模板游戏 > 魔法拼拼乐」在配置生成和专项校验阶段的固定规则。
+
+意图判定、素材同名确认、任务清单、新建游戏、导入保存、回读比对、预览和发布都由主流程 `workflow/` 控制。本文不得作为独立完整链路执行。
+
+---
+
+## 主流程挂载点
+
+```text
+任务输入 / Router / Planner
+  -> 素材确认与同名资源确认（主流程）
+  -> 任务清单锁定 game_family=template_game, game_subtype=magic_spelling
+  -> 配置生成（本文：generate_mofappl_config.py / fix_mofappl_v3.py）
+  -> 配置校验（本文：结构参考 + 魔法拼拼乐专项规则）
+  -> 后续创建 / 导入 / 回读 / 预览 / 发布（主流程）
+```
 
 ---
 
@@ -10,8 +25,8 @@
 
 | 来源 | 说明 |
 |---|---|
-| 题目表格 | 知音楼 Excel/Sheet，含题目序号、音频命名、题干图片、题干文本、答题区、选项 |
-| 校验基准 | `reference_configs/spelling_validation_ref.json`（从单词拼拼乐游戏抓取，含题目图片/音频 URL） |
+| 题目 JSON | `--input <题目.json>`，含句子、音频、槽位、选项、固定文本结构 |
+| 校验基准 | `reference_configs/spelling_validation_ref.json`（只作参考结构/资源校验，不作为正式题目来源） |
 | 结构参考 | `output/mofappl_configs/77cb396a-babd-11f0-885a-ba4dce53cceb.json`（5槽模板） |
 
 ---
@@ -78,7 +93,6 @@ IP角色烟雾遮挡    ← 必须在文本-fin 之后（层级高于 fin）
 | 脚本 | 用途 |
 |---|---|
 | `scripts/generate_mofappl_config.py` | 从题目数据生成配置 JSON |
-| `scripts/upload_game_config.py` | 导入配置到 CoursewareMaker |
 | `scripts/fix_mofappl_v3.py` | 修复坐标偏移、尺寸、state 等问题 |
 
 ---
@@ -86,19 +100,41 @@ IP角色烟雾遮挡    ← 必须在文本-fin 之后（层级高于 fin）
 ## 生成流程
 
 ```bash
-# 1. 生成配置
 python3 scripts/generate_mofappl_config.py \
-  --input data/题目数据.xlsx \
-  --ref reference_configs/spelling_validation_ref.json \
-  --template output/mofappl_configs/77cb396a-babd-11f0-885a-ba4dce53cceb.json \
-  --output output/mofappl_configs/新游戏名.json
+  --input data/magic_spelling_questions.json \
+  --output output/mofappl_configs/<游戏名>.json \
+  --meta output/mofappl_configs/<游戏名>.build-meta.json
 
-# 2. 修复坐标/尺寸/state
+# 可选：修复坐标/尺寸/state
 python3 scripts/fix_mofappl_v3.py output/mofappl_configs/新游戏名.json
 
-# 3. 导入编辑器
-python3 scripts/upload_game_config.py <game_id> output/mofappl_configs/新游戏名.json
+# 后续导入保存、回读、预览由主流程执行
 ```
+
+正式输入示例：
+
+```json
+{
+  "questions": [
+    {
+      "sentence": "make a snowman",
+      "sentence_parts": [
+        {"type": "slot", "content": "m"},
+        {"type": "slot", "content": "ake"},
+        {"type": "space", "content": " "},
+        {"type": "fixed", "content": "a"},
+        {"type": "space", "content": " "},
+        {"type": "slot", "content": "snowman"}
+      ],
+      "slots": ["m", "ake", "snowman"],
+      "items": ["snowman", "ake", "m"],
+      "audio_url": "https://...mp3"
+    }
+  ]
+}
+```
+
+模板骨架、皮肤资源、组件状态结构可以来自固定参考配置；`sentence/sentence_parts/slots/items/audio_url` 属于题目相关信息，正式任务必须从 `--input` 读取。
 
 ---
 

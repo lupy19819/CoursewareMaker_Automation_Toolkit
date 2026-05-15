@@ -4,6 +4,7 @@
 基准：国际level1公路大冒险暑4 (9248a803-3136-11f0-a334-fa29dffefa84)
 4道题，图片+音频型，绿地模板
 """
+import argparse
 import json, copy, sys
 from pathlib import Path
 
@@ -48,8 +49,8 @@ QUESTIONS = [
 
 def get_correct_option_index(options):
     """返回正确选项的 1-based 索引"""
-    for i, (_, is_correct) in enumerate(options):
-        if is_correct:
+    for i, option in enumerate(options):
+        if is_correct(option):
             return i + 1
     raise ValueError("No correct option found")
 
@@ -67,10 +68,102 @@ def get_animation_for_correct(option_index, game_level):
     ANIM_MAP = {1: "xia", 2: "zhong", 3: "shang"}
     return ANIM_MAP.get(option_index, "zhong")
 
-def replace_level(level_data, audio_key, options):
+def resolve_audio(question):
+    if isinstance(question, dict):
+        if question.get("audio_url"):
+            return question["audio_url"]
+        if question.get("audio_key"):
+            return AUDIOS[question["audio_key"]]
+        return ""
+    return AUDIOS[question]
+
+
+def resolve_stem_text(question):
+    if isinstance(question, dict):
+        return (question.get("stem_text") or question.get("title_text") or question.get("text") or "").strip()
+    return ""
+
+
+def infer_prompt_type(question):
+    audio = resolve_audio(question)
+    text = resolve_stem_text(question)
+    if audio and text:
+        return "audio_text"
+    if audio:
+        return "pure_audio"
+    if text:
+        return "pure_text"
+    return "unknown"
+
+
+def resolve_image(option, state):
+    if isinstance(option, dict):
+        if option.get("image_urls"):
+            return option["image_urls"][state]
+        if option.get("image_key"):
+            return IMAGES[f"{option['image_key']}_{state}"]
+    image_key = option[0] if isinstance(option, (list, tuple)) else option
+    return IMAGES[f"{image_key}_{state}"]
+
+
+def is_correct(option):
+    if isinstance(option, dict):
+        return bool(option.get("correct") or option.get("is_correct"))
+    return bool(option[1])
+
+
+def normalize_questions(payload):
+    questions = payload.get("questions", payload.get("levels")) if isinstance(payload, dict) else payload
+    if not isinstance(questions, list) or not questions:
+        raise ValueError("input must be a non-empty list or an object with questions/levels")
+    normalized = []
+    for index, q in enumerate(questions, 1):
+        if isinstance(q, dict):
+            audio = q
+            options = q.get("options", [])
+        else:
+            audio_key, options = q
+            audio = {"audio_key": audio_key}
+        if infer_prompt_type(audio) == "unknown":
+            raise ValueError(f"L{index}: road adventure requires audio_url/audio_key and/or stem_text")
+        if len(options) != 3:
+            raise ValueError(f"L{index}: road adventure requires exactly 3 options")
+        if sum(1 for option in options if is_correct(option)) != 1:
+            raise ValueError(f"L{index}: each level must have exactly one correct option")
+        normalized.append((audio, options))
+    return normalized
+
+
+def load_questions(path):
+    with open(path, encoding="utf-8") as f:
+        return normalize_questions(json.load(f))
+
+
+def set_label_value(component, value):
+    changed = False
+    for state in component.get("component_data", {}).get("states", []):
+        source = state.get("source", {})
+        label = source.get("MLabel")
+        if isinstance(label, dict):
+            label["value"] = value
+            changed = True
+    return changed
+
+
+def is_stem_text_component(component):
+    cd = component.get("component_data", {})
+    name = cd.get("name", "")
+    if not any(keyword in name for keyword in ("题干", "题目", "文本", "问题")):
+        return False
+    return any("MLabel" in state.get("source", {}) for state in cd.get("states", []))
+
+
+def replace_level(level_data, audio_ref, options):
     """替换单关的音频和选项图片"""
     level = copy.deepcopy(level_data)
     components = level.get("components", [])
+    stem_text = resolve_stem_text(audio_ref)
+    stem_text_written = False
     
     choice_idx = 0  # 计数 AloneClickChoice
     
@@ -84,17 +177,21 @@ def replace_level(level_data, audio_key, options):
             for s in states:
                 if s.get("label") == "播放语音":
                     if "MAudio" in s.get("source", {}):
-                        s["source"]["MAudio"]["value"] = AUDIOS[audio_key]
+                        s["source"]["MAudio"]["value"] = resolve_audio(audio_ref)
+
+        # 替换题干文本。模板必须提供明确的 MLabel 承载节点，否则阻断，避免把文本误写到选项或装饰组件。
+        if stem_text and is_stem_text_component(c):
+            stem_text_written = set_label_value(c, stem_text) or stem_text_written
         
         # 替换选项图片
         if c.get("name") == "AloneClickChoice" and choice_idx < len(options):
-            img_key, is_correct = options[choice_idx]
+            opt = options[choice_idx]
             
             # 设置 anwserRadio
             tools = cd.get("components", {}).get("tools", {})
             if "AloneClickChoice" in tools:
                 tools["AloneClickChoice"]["anwserConfig"] = {
-                    "anwserRadio": 1 if is_correct else 2
+                    "anwserRadio": 1 if is_correct(opt) else 2
                 }
             
             # 替换三态图片
@@ -104,11 +201,11 @@ def replace_level(level_data, audio_key, options):
                 if "MSprite" not in src:
                     continue
                 if label == "默认":
-                    src["MSprite"]["value"] = IMAGES[f"{img_key}_m"]
+                    src["MSprite"]["value"] = resolve_image(opt, "m")
                 elif label == "当前组件正确":
-                    src["MSprite"]["value"] = IMAGES[f"{img_key}_d"]
+                    src["MSprite"]["value"] = resolve_image(opt, "d")
                 elif label == "当前组件错误":
-                    src["MSprite"]["value"] = IMAGES[f"{img_key}_c"]
+                    src["MSprite"]["value"] = resolve_image(opt, "c")
             
             choice_idx += 1
         
@@ -121,12 +218,22 @@ def replace_level(level_data, audio_key, options):
                     src = s.get("source", {})
                     if "MSpine" in src:
                         src["MSpine"]["animation"] = anim
+
+    if stem_text and not stem_text_written:
+        raise ValueError("road adventure stem_text provided but no stem text MLabel component was found in template")
     
     return level
 
 # ── 主程序 ────────────────────────────────────────────────────
 def main():
-    base_path = BASE_DIR / "output/road_adventure_configs/9248a803-3136-11f0-a334-fa29dffefa84.json"
+    parser = argparse.ArgumentParser(description="公路大冒险配置生成脚本")
+    parser.add_argument("--input", help="动态题目 JSON。题目相关音频/选项/正确项必须从这里读取")
+    parser.add_argument("--template", default=str(BASE_DIR / "output/road_adventure_configs/9248a803-3136-11f0-a334-fa29dffefa84.json"), help="模板/参考配置 JSON")
+    parser.add_argument("--output", default=str(BASE_DIR / "output/国际level2公路大冒险暑4_config.json"), help="输出配置 JSON")
+    parser.add_argument("--meta", help="输出 build meta JSON")
+    args = parser.parse_args()
+
+    base_path = Path(args.template)
     with open(base_path, "r", encoding="utf-8") as f:
         base = json.load(f)
     
@@ -136,21 +243,42 @@ def main():
     base_levels = base["game"]
     new_levels = []
     
-    for i, (audio_key, options) in enumerate(QUESTIONS):
+    questions = load_questions(args.input) if args.input else normalize_questions(QUESTIONS)
+    for i, (audio_ref, options) in enumerate(questions):
         # 使用基准第 i 关（循环使用前4关）
         base_level = base_levels[i % len(base_levels)]
-        new_level = replace_level(base_level, audio_key, options)
+        new_level = replace_level(base_level, audio_ref, options)
         new_levels.append(new_level)
     
     new_config["game"] = new_levels
     
-    out_path = BASE_DIR / "output/国际level2公路大冒险暑4_config.json"
+    out_path = Path(args.output)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(new_config, f, ensure_ascii=False, indent=2)
     
     print(f"✅ 配置已生成: {out_path}")
     print(f"   关卡数: {len(new_levels)}")
+    if args.meta:
+        meta = {
+            "schema": "coursewaremaker.road_adventure.build_meta.v1",
+            "generator": "scripts/generate_guoji_l2_shu4_road.py",
+            "template": str(base_path),
+            "output": str(out_path),
+            "question_count": len(questions),
+            "levels": [
+                {
+                    "index": i,
+                    "prompt_type": infer_prompt_type(audio_ref),
+                    "stem_text": resolve_stem_text(audio_ref),
+                    "has_audio": bool(resolve_audio(audio_ref)),
+                    "option_count": len(options),
+                }
+                for i, (audio_ref, options) in enumerate(questions, 1)
+            ],
+        }
+        Path(args.meta).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.meta).write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
     
     # 校验
     errors = []

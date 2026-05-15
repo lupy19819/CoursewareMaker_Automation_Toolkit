@@ -170,7 +170,7 @@ CoursewareMaker_Automation_Toolkit/
 
 | 文件类型 | 原因 |
 |---------|------|
-| `latest_resources.json` (3MB) | 目标设备登录后重新 sync 即可 |
+| `resources/latest_resources.json` | 目标设备登录后重新 sync 即可 |
 | `chrome_monitoring_logs/` | 历史监听日志，新设备不需要 |
 | `generated_configs/` | 历史生成结果，新设备重新生成 |
 | `node_modules/` | npm install 即可重建 |

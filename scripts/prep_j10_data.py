@@ -1,6 +1,6 @@
 """
 准备 J10 数据：
-1. 更新 latest_resources.json，加入J10资源
+1. 更新 resources/latest_resources.json，加入J10资源
 2. 创建 zhiyinlou_monster_test_j10.xlsx（贪吃J10）
 3. 在 zhiyinlou_race_test_latest.xlsx 中追加 J10赛跑 sheet
 """
@@ -34,8 +34,9 @@ J10_RESOURCES = [
     {"id": 75833, "name": "26暑国际小班10赛跑音频单词toy",  "category": "audio", "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2026-05-07/f89b9ce4e24200ff40946a4d0929dd2a.mp3"},
 ]
 
-# ── 2. 更新 latest_resources.json ──────────────────────────────
-res_path = BASE / "latest_resources.json"
+# ── 2. 更新 resources/latest_resources.json ────────────────────
+res_path = BASE / "resources" / "latest_resources.json"
+res_path.parent.mkdir(parents=True, exist_ok=True)
 existing = json.loads(res_path.read_text(encoding="utf-8")) if res_path.exists() else {"rows": []}
 existing_ids = {r["id"] for r in existing["rows"] if r.get("id")}
 ts = datetime.datetime.now().isoformat()
@@ -48,7 +49,7 @@ for r in J10_RESOURCES:
             "creator_name": "江昊", "update_time": ts
         })
 res_path.write_text(json.dumps(existing, ensure_ascii=False, indent=2), encoding="utf-8")
-print(f"✓ latest_resources.json 已更新，共{len(existing['rows'])}条")
+print(f"✓ resources/latest_resources.json 已更新，共{len(existing['rows'])}条")
 
 # ── 3. 创建贪吃J10 XLSX ──────────────────────────────────────────
 MONSTER_SHEET = "国际新小班暑J10贪吃小怪兽"

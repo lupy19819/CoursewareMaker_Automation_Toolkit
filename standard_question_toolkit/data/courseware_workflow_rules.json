@@ -1,6 +1,20 @@
 {
   "version": "2026-04-24",
   "purpose": "CoursewareMaker 自动化生成流程与生成后校验基准。生成配置后先按 game_family 选择校验入口：运动PK和标准组件化题可由 validate_config.js 读取 validation_baselines 校验；模板游戏必须走具体模板的专项校验、参考配置对比、回读比对和预览确认。",
+  "deterministic_control_layer": {
+    "purpose": "跨端、跨模型执行时，先由 workflow/ 下的规则引擎决定意图、游戏类型、任务单和动作权限，AI 只负责转述、补问和解释脚本结果。",
+    "router": "workflow/workflow_router.py",
+    "planner": "workflow/workflow_planner.py",
+    "guard": "workflow/workflow_guard.py",
+    "rules": [
+      "workflow/intent_rules.json",
+      "workflow/game_type_rules.json",
+      "workflow/stage_policy.json",
+      "workflow/script_registry.json",
+      "workflow/validation_policy.json"
+    ],
+    "hard_rule": "workflow_planner.py 返回 status=blocked 时必须停止，不能由 AI 绕过继续执行。"
+  },
   "platform_creation_profiles": {
     "_note": "仅用于平台创建接口参数，不作为玩法路由标准。玩法路由必须以 route_first[].baseline_json_path 和 data_shape 为准。",
     "componentized": "70a3010b-0b7a-11ef-b3a3-fa7902489df6",
@@ -81,9 +95,9 @@
         "gameplay_family": "spelling",
         "data_shape": "game",
         "baseline_json_path": "reference_configs/spelling_ref_new.json",
-        "build_script": "scripts/generate_spelling_config.py",
-        "upload_script": "scripts/upload_spelling_config.js",
-        "notes": "单词拼拼乐：slot/space/fixed 答题区 + 拖拽物品 + 文本-fin。生成脚本直接输出内层 cfg（common/game/additional/components），上传后 double_encoded 必须为 false。"
+        "build_script": "scripts/generate_spelling_config.py --input <题目.json> --output <输出.config.json> --meta <输出.build-meta.json>",
+        "upload_script": "scripts/upload_game_config.py",
+        "notes": "单词拼拼乐：slot/space/fixed 答题区 + 拖拽物品 + 文本-fin。模板固定资源可保留在脚本/参考配置中；题目文字、答题区、选项、题图和音频必须来自 --input。生成脚本直接输出内层 cfg（common/game/additional/components），上传后 double_encoded 必须为 false。"
       },
       {
         "when": "标准组件化题：选择题、填空/计算题、拖拽题、画板类等",
@@ -92,8 +106,7 @@
         "baseline_json_path": "standard_question_toolkit/templates/base_choice_fill_template.json",
         "build_scripts": [
           "standard_question_toolkit/scripts/generate_grade3_config.py",
-          "standard_question_toolkit/scripts/generate_grade4_config.py",
-          "scripts/build_sj6_monster_config.py"
+          "standard_question_toolkit/scripts/generate_grade4_config.py"
         ]
       }
     ],
@@ -222,8 +235,8 @@
         "left": 32.0198
       },
       "item_x_offset": -150,
-      "build_script": "scripts/generate_spelling_config.py",
-      "upload_script": "scripts/upload_spelling_config.js"
+      "build_script": "scripts/generate_spelling_config.py --input <题目.json> --output <输出.config.json> --meta <输出.build-meta.json>",
+      "upload_script": "scripts/upload_game_config.py"
     }
   },
   "shared_assets": {

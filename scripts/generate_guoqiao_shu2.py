@@ -14,16 +14,25 @@
            句号（仅调整 x）、节点、common 层结构
 """
 
+import argparse
 import json, copy, uuid, os, sys, re
 
 # ──────────────────────────────────────────────
 # 路径
 # ──────────────────────────────────────────────
 TOOLKIT   = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-REF_PATH  = '/tmp/guoqiao_ref_clean.json'   # 上传的新参考配置
 OLD_REF   = os.path.join(TOOLKIT, 'output/guoqiao_configs/87ddb0a3-ea04-11f0-9165-0e324dbd00ee.json')
 OUT_DIR   = os.path.join(TOOLKIT, 'output/guoqiao_shu2')
-OUT_FILE  = os.path.join(OUT_DIR, 'guoqiao_shu2.json')
+DEFAULT_REF_PATH = '/tmp/guoqiao_ref_clean.json'   # 上传的新参考配置
+DEFAULT_OUT_FILE = os.path.join(OUT_DIR, 'guoqiao_shu2.json')
+parser = argparse.ArgumentParser(description='过桥大冒险配置生成脚本')
+parser.add_argument('--input', help='动态题目 JSON。题目图片/音频/句子/选项必须从这里读取')
+parser.add_argument('--template', default=DEFAULT_REF_PATH, help='模板/参考配置 JSON')
+parser.add_argument('--output', default=DEFAULT_OUT_FILE, help='输出配置 JSON')
+parser.add_argument('--meta', help='输出 build meta JSON')
+ARGS = parser.parse_args()
+REF_PATH = ARGS.template
+OUT_FILE = ARGS.output
 os.makedirs(OUT_DIR, exist_ok=True)
 
 # ──────────────────────────────────────────────
@@ -109,6 +118,36 @@ LEVELS = [
         'options': ['They', "don't", 'like', 'staying inside.', 'likes'],
     },
 ]
+
+
+def load_dynamic_levels(path):
+    with open(path, encoding='utf-8') as f:
+        payload = json.load(f)
+    levels = payload.get('levels', payload.get('questions')) if isinstance(payload, dict) else payload
+    if not isinstance(levels, list) or not levels:
+        raise ValueError('input must be a non-empty list or an object with levels/questions')
+    for index, lv in enumerate(levels, 1):
+        prefix = f'L{index}'
+        for key in ('sentence', 'quiz_img', 'audio', 'parts', 'options'):
+            if key not in lv:
+                raise ValueError(f'{prefix}: missing required field: {key}')
+        if not lv.get('quiz_img'):
+            raise ValueError(f'{prefix}: quiz_img is required for dynamic input')
+        if not lv.get('audio'):
+            raise ValueError(f'{prefix}: audio is required for dynamic input')
+        drag_parts = [p for p in lv.get('parts', []) if p.get('type') == 'drag']
+        if not drag_parts:
+            raise ValueError(f'{prefix}: at least one drag part is required')
+        if not lv.get('options'):
+            raise ValueError(f'{prefix}: options cannot be empty')
+        missing = sorted(set(p.get('text') for p in drag_parts) - set(lv.get('options', [])))
+        if missing:
+            raise ValueError(f'{prefix}: drag answers missing from options: {missing}')
+    return levels
+
+
+if ARGS.input:
+    LEVELS = load_dynamic_levels(ARGS.input)
 
 # ──────────────────────────────────────────────
 # 辅助函数
@@ -476,6 +515,28 @@ with open(OUT_FILE, 'w', encoding='utf-8') as f:
 
 print(f'✅ 生成完成: {OUT_FILE}')
 print(f'   关卡数: {len(game_levels)}')
+if ARGS.meta:
+    meta = {
+        'schema': 'coursewaremaker.bridge.build_meta.v1',
+        'generator': 'scripts/generate_guoqiao_shu2.py',
+        'template': REF_PATH,
+        'output': OUT_FILE,
+        'question_count': len(LEVELS),
+        'levels': [
+            {
+                'index': i,
+                'sentence': lv.get('sentence'),
+                'drag_count': sum(1 for p in lv.get('parts', []) if p.get('type') == 'drag'),
+                'option_count': len(lv.get('options', [])),
+                'quiz_img': lv.get('quiz_img', ''),
+                'audio': lv.get('audio', ''),
+            }
+            for i, lv in enumerate(LEVELS, 1)
+        ],
+    }
+    os.makedirs(os.path.dirname(os.path.abspath(ARGS.meta)), exist_ok=True)
+    with open(ARGS.meta, 'w', encoding='utf-8') as f:
+        json.dump(meta, f, ensure_ascii=False, indent=2)
 for i, lvl in enumerate(game_levels):
     comps = lvl['components']
     n_slots  = sum(1 for c in comps if '拖拽放置区' in c['component_data']['name'])

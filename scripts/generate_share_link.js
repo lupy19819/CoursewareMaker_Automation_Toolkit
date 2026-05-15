@@ -5,8 +5,9 @@
 
 const puppeteer = require('puppeteer-core');
 const fs = require('fs');
+const path = require('path');
 
-const CHROME_DEBUG_PORT = 9222;
+const CHROME_DEBUG_PORT = process.env.CHROME_PORT || 9222;
 const API_BASE = 'https://sszt-gateway.speiyou.com/beibo/game/config';
 const BASE_PREVIEW_URL = 'https://coursewaremaker.speiyou.com/#/share-preview';
 
@@ -104,7 +105,9 @@ async function main() {
 
   // 保存结果
   const timestamp = Date.now();
-  const resultFile = `D:/codexProject/share_link_${gameId.substring(0, 8)}_${timestamp}.json`;
+  const resultDir = process.env.COURSEWARE_OUTPUT_DIR || path.join('output', 'share_links');
+  fs.mkdirSync(resultDir, { recursive: true });
+  const resultFile = path.join(resultDir, `share_link_${gameId.substring(0, 8)}_${timestamp}.json`);
   fs.writeFileSync(resultFile, JSON.stringify(result, null, 2));
   console.log(`\n📁 结果已保存: ${resultFile}`);
 
