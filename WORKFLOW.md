@@ -47,26 +47,51 @@ python3 workflow/workflow_router.py -m "..." \
 9. 保存统一使用 `GET 完整元信息 → 只替换 configuration → PUT /beibo/game/config/game`，`components` 保留原数组或补 `[]`。
 10. `workflow_planner.py` 返回 `status=blocked` 时必须停止，向用户补问信息；AI 不得绕过阻塞继续执行。新制作任务必须先锁定题目/配置输入文件和游戏类型，不能只凭一句“生成某游戏配置”进入执行。
 
-## 端到端执行器
+## 唯一执行入口
 
-弱模型或跨端执行时，优先使用端到端执行器，不要让 AI 临场拼接命令。当前已固定支持「模板游戏 > 贪吃小怪兽 > 从 Yach/Excel 新建游戏」：
+弱模型或跨端执行时，统一使用 `workflow_executor.py`。它不是第二套“快速入口”，也不自行定义流程；它只做三件事：
+
+1. 调用 `workflow_router.py` 和 `workflow_planner.py` 获取唯一任务单。
+2. 按 planner 输出的 steps 执行，并在关键动作前调用 `workflow_guard.py`。
+3. 从 `workflow/execution_registry.json` 读取具体游戏的固定命令模板，禁止 AI 临场拼接生成命令。
 
 ```bash
-python3 workflow/run_courseware_task.py \
+python3 workflow/workflow_executor.py \
   --message "新建并生成一个贪吃小怪兽游戏，题目配置在 https://... 《游戏名》 表格的【SheetName】sheet 中"
 ```
 
-该执行器会按固定顺序执行：
+`workflow/run_courseware_task.py` 仅作为旧命令兼容壳，内部直接转发到 `workflow_executor.py`，不得在其中新增流程逻辑。
+
+当前 executor 已通过 `execution_registry.json` 固定以下生成适配：
+
+- 运动PK：赛跑、游泳、赛车。
+- 模板游戏：贪吃小怪兽、公路大冒险、过桥大冒险、开心游乐园、单词拼拼乐、魔法拼拼乐、阅读小帆船、阅读小火车。
+
+执行器按任务类型组合以下确定性步骤：
 
 1. `workflow_router.py` / `workflow_planner.py` 锁定意图、游戏类型、Yach doc id、sheet、游戏名。
 2. `scripts/fetch_yach_sheet.py` 导出在线表格，或使用 `--xlsx` 指定的本地 Excel。
-3. `scripts/resolve_sheet_resources.py` 只解析当前 sheet 引用的资源并输出 filtered resources。
-4. `scripts/build_sj6_monster_config.py` 生成配置。
-5. `scripts/validate_monster_config.py` 专项校验。
+3. Excel 输入使用 `scripts/resolve_sheet_resources.py`，JSON 输入使用 `scripts/resolve_input_resources.py`，只解析当前任务引用的资源。
+4. 按 `game_family/game_subtype` 从 `execution_registry.json` 选择固定生成脚本和参数。
+5. 执行专项校验或生成脚本内置校验。
 6. `scripts/create_game_auto.js` 新建游戏。
 7. `scripts/save_game_config_via_cdp.js` 统一保存。
 8. `scripts/roundtrip_compare_config.js` 回读线上配置并做 canonical JSON 对比。
 9. `scripts/create_preview_url.js` 生成预览链接。
+
+如果某个游戏的适配还没有写入 `execution_registry.json`，executor 必须阻塞并要求补适配，不能让模型临场发挥。
+
+配置返修/调整还必须额外执行范围护栏：
+
+```bash
+python3 scripts/validate_patch_scope.py \
+  --before <修改前.config.json> \
+  --after <修改后.config.json> \
+  --allow '$.game[2]' \
+  --report <patch-scope-report.json>
+```
+
+用户只反馈某一题、某个资源或某个放置区时，允许路径必须收敛到对应 JSON 前缀；出现无关关卡、无关组件或模板骨架变化时阻断保存。
 
 ## 校验职责边界
 

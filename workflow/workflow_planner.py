@@ -110,17 +110,17 @@ def build_steps(route: dict[str, Any], registry: dict[str, Any], validation: dic
             steps.append({"action": "fetch_game_detail", "game_id": route["game_id"]})
 
     if intent == "new_production_task":
-        steps.extend(
-            [
-                {"action": "sync_resources", "script": scripts["resource_sync"]},
-                {"action": "confirm_same_name_resources", "blocking": True},
-                {"action": "split_and_lock_batch", "game_family": route.get("game_family"), "game_subtype": route.get("game_subtype")},
-            ]
-        )
+        if route.get("source_url") or route.get("yach_doc_id"):
+            steps.append({"action": "fetch_question_source", "script": scripts.get("fetch_yach_sheet"), "source_url": route.get("source_url"), "doc_id": route.get("yach_doc_id")})
+        if route.get("sheet_name"):
+            steps.append({"action": "resolve_sheet_resources", "script": scripts.get("resolve_sheet_resources"), "sheet_name": route.get("sheet_name")})
+        elif route.get("config_path"):
+            steps.append({"action": "resolve_input_resources", "script": scripts.get("resolve_input_resources"), "input": route.get("config_path")})
+        steps.append({"action": "split_and_lock_batch", "game_family": route.get("game_family"), "game_subtype": route.get("game_subtype")})
         gen_script = script_for_generation(route, registry)
         if gen_script:
             steps.append({"action": "generate_config", "script": gen_script})
-        steps.extend(validation_steps(route, validation))
+        steps.extend(validation_steps(route, validation, include_main_workflow=False))
 
     if intent == "create_new_game":
         if route.get("source_url") or route.get("yach_doc_id"):
@@ -152,6 +152,7 @@ def build_steps(route: dict[str, Any], registry: dict[str, Any], validation: dic
 
     if intent == "config_repair":
         steps.append({"action": "patch_feedback_scope", "scope": route.get("feedback_scope"), "minimal_change": True})
+        steps.append({"action": "validate_patch_scope", "script": scripts.get("validate_patch_scope"), "blocking": True})
         steps.extend(validation_steps(route, validation))
         if route.get("game_id") or route.get("game_name"):
             steps.append({"action": "save_existing", "script": scripts["save_via_cdp"], "config_path": route.get("config_path")})

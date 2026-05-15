@@ -45,7 +45,7 @@
       "block_if_missing": "缺少新游戏名称或游戏类型：新建前必须锁定 game_name 和 game_family。"
     },
     "new_production_task": {
-      "required_any": [["config_path"]],
+      "required_any": [["config_path", "source_url", "yach_doc_id"]],
       "required_fields": ["game_family"],
       "allowed_actions": ["confirm_resources", "split_batches", "generate_config", "validate"],
       "forbidden_actions": ["skip_resource_confirmation", "reuse_previous_task_state", "publish"],
