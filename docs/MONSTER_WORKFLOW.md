@@ -82,7 +82,7 @@ python3 scripts/build_sj6_monster_config.py \
 - 每题必须且只能有 1 个正确项。
 - 资源名必须存在，且 category 必须匹配：题干音频为 `audio`，选项图片和题干图片为 `image`。
 - 资源表中同名资源默认会阻塞；只有已经完成同名确认后，才可加 `--allow-duplicate-resource-names`。
-- 支持 `pure_audio`、`no_audio_image`、`audio_text`、`audio_image` 四类题干；如果输入字段和模板承载组件不匹配，会阻塞并报出缺失的 prompt node。
+- 支持 `pure_audio`、`no_audio_image`、`audio_text`、`audio_image`、`no_audio_text` 五类题干；如果输入字段和模板承载组件不匹配，会阻塞并报出缺失的 prompt node。
 
 推荐先用资源解析脚本生成本任务专用资源表，避免全量资源库里的历史重复名干扰：
 
@@ -109,6 +109,7 @@ python3 scripts/resolve_sheet_resources.py \
 
 - `pure_audio`：使用 `TitleStem` 承载题干音频，不需要中心题干视觉节点。
 - `audio_text`：`stem_text` 写入中心 `MLabel` 题干节点；节点按 `base=MLabel`、中心偏上位置识别，不依赖节点名。
+- `no_audio_text`：无图片无音频、只有题干文字时，脚本会确定性创建中心 `MLabel` 题干节点 `题干文本`。固定样式为 `x=0, y=250, w=980, h=180, fontSize=72, color=#000000, fontFamily=FZCuYuan-M03S`，并同步写入默认和组件加载完成状态。
 - `audio_image`：`stem_img_name` 查资源后写入中心 `MSprite` 题干节点；节点按中心位置、尺寸和图片资源特征识别。
 - `no_audio_image`：不要求 `TitleStem`，`stem_img_name` 写入中心 `MSprite` 题干节点；下方文字选项节点按 x 坐标左中右映射。
 - 如果模板里找不到对应中心文字/图片节点，脚本必须阻塞，不能静默丢弃题干字段。
@@ -134,7 +135,7 @@ python3 scripts/resolve_sheet_resources.py \
 | 2 | 中 | `节点_104` | -200 <= x < 200 的 `AloneClickChoice` |
 | 3 | 右 | `节点_103` | x >= 200 的 `AloneClickChoice` |
 
-图片选项写 `MSprite.value`，文字选项写 `MLabel.value`。若模板有独立选项文字层，则按文字节点 x 坐标左中右同步写入；文字选项不会清空选项底图。
+图片选项写 `MSprite.value`，文字选项写 `MLabel.value`。图片选项必须同时写入选项节点的 `default` 和 `compLoadFinish` 状态；正确选项还必须写入 `level_correct` 状态，且三者使用同一个题目输入图片 URL。若模板有独立选项文字层，则按文字节点 x 坐标左中右同步写入；文字选项不会清空选项底图。
 
 ### 正确项与反馈
 

@@ -24,6 +24,16 @@ from typing import Any
 
 NODE_NAME_BY_OPTION = {1: "节点", 2: "节点_104", 3: "节点_103"}
 RIGHT_ANIMATION_BY_OPTION = {1: "right_1_2", 2: "right_2_2", 3: "right_3_2"}
+NO_AUDIO_PROMPT_TYPES = {"no_audio_image", "no_audio_text"}
+PROMPT_TEXT_STYLE = {
+    "x": 0,
+    "y": 250,
+    "w": 980,
+    "h": 180,
+    "fontSize": 72,
+    "color": "#000000",
+    "fontFamily": "FZCuYuan-M03S",
+}
 
 
 def load_config(path: Path) -> dict[str, Any]:
@@ -68,6 +78,13 @@ def source_value(component: dict[str, Any] | None, source_name: str, state_name:
         return ""
     state = get_state(component, state_name) or {}
     return state.get("source", {}).get(source_name, {}).get("value", "") or ""
+
+
+def label_source(component: dict[str, Any] | None, state_name: str = "default") -> dict[str, Any]:
+    if not component:
+        return {}
+    state = get_state(component, state_name) or {}
+    return state.get("source", {}).get("MLabel", {})
 
 
 def has_source(component: dict[str, Any], source_name: str) -> bool:
@@ -155,6 +172,8 @@ def component_signature(level: dict[str, Any]) -> list[tuple[str, str, str]]:
     sig = []
     for comp in level.get("components", []):
         cd = comp.get("component_data", {})
+        if cd.get("name") == "题干文本" and cd.get("base") == "MLabel":
+            continue
         sig.append((comp.get("component_name", ""), comp.get("name", ""), cd.get("name", "")))
     return sig
 
@@ -194,7 +213,7 @@ def validate(path: Path, *, expected_levels: int | None, meta_path: Path | None,
         if ref_sig and component_signature(level_data) != ref_sig:
             errors.append(f"关{level}: components[] 顺序或组件签名与参考模板不一致")
 
-        if question_type != "no_audio_image" and not title:
+        if question_type not in NO_AUDIO_PROMPT_TYPES and not title:
             errors.append(f"关{level}: 缺少 TitleStem/音频播放按钮")
         elif title:
             click_end = get_state(title, "clickEnd")
@@ -202,8 +221,10 @@ def validate(path: Path, *, expected_levels: int | None, meta_path: Path | None,
             comp_load = get_state(title, "compLoadFinish")
             load_audio = (comp_load or {}).get("source", {}).get("MAudio", {}).get("value", "")
             jump = (comp_load or {}).get("jump", {})
-            if not click_audio:
+            if question_type not in NO_AUDIO_PROMPT_TYPES and not click_audio:
                 errors.append(f"关{level}: TitleStem.clickEnd 音频 URL 为空")
+            if question_type in NO_AUDIO_PROMPT_TYPES and click_audio:
+                errors.append(f"关{level}: 无音频题 TitleStem.clickEnd 音频应为空")
             if load_audio:
                 errors.append(f"关{level}: TitleStem.compLoadFinish 音频应为空，实际非空")
             if jump.get("type") != "countdown" or jump.get("to") != "clickEnd":
@@ -267,12 +288,19 @@ def validate(path: Path, *, expected_levels: int | None, meta_path: Path | None,
                 node = nodes.get(opt["node_name"])
                 if not node:
                     continue
-                default = get_state(node, "default") or {}
-                source = default.get("source", {})
-                sprite = source.get("MSprite", {}).get("value", "")
-                label = source.get("MLabel", {}).get("value", "")
-                if opt.get("image_url") and sprite != opt["image_url"]:
-                    errors.append(f"关{level}: 选项{opt['option_no']} 图片 URL 与 meta 不一致")
+                sprites = {
+                    state_name: source_value(node, "MSprite", state_name)
+                    for state_name in ["default", "compLoadFinish", "level_correct"]
+                    if get_state(node, state_name)
+                }
+                label = source_value(node, "MLabel")
+                if opt.get("image_url"):
+                    if sprites.get("default") != opt["image_url"]:
+                        errors.append(f"关{level}: 选项{opt['option_no']} 默认状态图片 URL 与 meta 不一致")
+                    if sprites.get("compLoadFinish") != opt["image_url"]:
+                        errors.append(f"关{level}: 选项{opt['option_no']} 组件加载完成状态图片 URL 与 meta 不一致")
+                    if opt.get("is_correct") and sprites.get("level_correct") != opt["image_url"]:
+                        errors.append(f"关{level}: 正确选项{opt['option_no']} 全局正确状态图片 URL 与 meta 不一致")
                 if opt.get("text") and label != opt["text"]:
                     text_node = text_nodes.get(opt["option_no"])
                     text_node_label = source_value(text_node, "MLabel") if text_node else ""
@@ -280,6 +308,16 @@ def validate(path: Path, *, expected_levels: int | None, meta_path: Path | None,
                         errors.append(f"关{level}: 选项{opt['option_no']} 文本与 meta 不一致")
                 if not opt.get("image_url") and not opt.get("text"):
                     warnings.append(f"关{level}: 选项{opt['option_no']} meta 未记录图片或文本")
+            if prompt.get("prompt_mode") == "text" and prompt_node:
+                tr = state_transform(prompt_node)
+                src = label_source(prompt_node)
+                style = prompt.get("prompt_style") or PROMPT_TEXT_STYLE
+                for key in ["x", "y", "w", "h"]:
+                    if tr.get(key) != style.get(key):
+                        errors.append(f"关{level}: 题干文字组件 transform.{key} 应为 {style.get(key)}，实际 {tr.get(key)}")
+                for key in ["fontSize", "color", "fontFamily"]:
+                    if src.get(key) != style.get(key):
+                        errors.append(f"关{level}: 题干文字组件 MLabel.{key} 应为 {style.get(key)}，实际 {src.get(key)}")
 
     if errors:
         print(f"INVALID — {path}")

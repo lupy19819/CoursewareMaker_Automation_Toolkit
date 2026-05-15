@@ -16,6 +16,7 @@ from collections import Counter, defaultdict
 from copy import deepcopy
 from pathlib import Path
 from typing import Any
+from uuid import uuid4
 
 import openpyxl
 
@@ -30,8 +31,18 @@ DEFAULT_SHEET_NAME = "Sj6贪吃小怪兽"
 NODE_NAME_BY_OPTION = {1: "节点", 2: "节点_104", 3: "节点_103"}
 RIGHT_ANIMATION_BY_OPTION = {1: "right_1_2", 2: "right_2_2", 3: "right_3_2"}
 OPTION_COUNT = 3
-SUPPORTED_PROMPT_TYPES = {"pure_audio", "no_audio_image", "audio_text", "audio_image"}
+SUPPORTED_PROMPT_TYPES = {"pure_audio", "no_audio_image", "audio_text", "audio_image", "no_audio_text"}
 OPTION_NODE_NAMES = set(NODE_NAME_BY_OPTION.values())
+PROMPT_TEXT_NODE_NAME = "题干文本"
+PROMPT_TEXT_STYLE = {
+    "x": 0,
+    "y": 250,
+    "w": 980,
+    "h": 180,
+    "fontSize": 72,
+    "color": "#000000",
+    "fontFamily": "FZCuYuan-M03S",
+}
 
 
 class ConfigError(RuntimeError):
@@ -177,6 +188,13 @@ def ensure_state(component: dict[str, Any], state_name: str, fallback_state_name
     return fallback
 
 
+def ensure_source_entry(state: dict[str, Any], source_name: str, fallback: dict[str, Any] | None = None) -> dict[str, Any]:
+    source = state.setdefault("source", {})
+    if source_name not in source:
+        source[source_name] = deepcopy(fallback or {})
+    return source[source_name]
+
+
 def set_active_hide(state: dict[str, Any]) -> None:
     state.setdefault("active", {})
     state["active"]["canEdit"] = True
@@ -209,7 +227,7 @@ def set_node_content(
     preserve_existing_sprite: bool = False,
 ) -> None:
     for state_name in ["default", "compLoadFinish", "level_correct"]:
-        state = get_state(component, state_name)
+        state = ensure_state(component, state_name, "default") if state_name == "compLoadFinish" else get_state(component, state_name)
         if not state:
             continue
         source = state.setdefault("source", {})
@@ -224,22 +242,16 @@ def set_node_content(
 
 def set_label_content(component: dict[str, Any], text_value: str) -> None:
     for state_name in ["default", "compLoadFinish", "level_correct"]:
-        state = get_state(component, state_name)
-        if not state:
-            continue
-        source = state.setdefault("source", {})
-        if "MLabel" in source:
-            source["MLabel"]["value"] = text_value
+        state = ensure_state(component, state_name, "default") if state_name == "compLoadFinish" else get_state(component, state_name)
+        if state:
+            ensure_source_entry(state, "MLabel")["value"] = text_value
 
 
 def set_sprite_content(component: dict[str, Any], sprite_url: str) -> None:
     for state_name in ["default", "compLoadFinish", "level_correct"]:
-        state = get_state(component, state_name)
-        if not state:
-            continue
-        source = state.setdefault("source", {})
-        if "MSprite" in source:
-            source["MSprite"]["value"] = sprite_url
+        state = ensure_state(component, state_name, "default") if state_name == "compLoadFinish" else get_state(component, state_name)
+        if state:
+            ensure_source_entry(state, "MSprite")["value"] = sprite_url
 
 
 def remove_level_correct_state(component: dict[str, Any]) -> None:
@@ -370,6 +382,99 @@ def prompt_text_node(level: dict[str, Any]) -> dict[str, Any] | None:
     return sorted(candidates, key=lambda item: (item[0], item[1]))[0][2]
 
 
+def max_component_index(level: dict[str, Any]) -> int:
+    indexes = [comp.get("index") for comp in level.get("components", []) if isinstance(comp.get("index"), int)]
+    return max(indexes, default=-1)
+
+
+def create_prompt_text_component(text_value: str, level: dict[str, Any]) -> dict[str, Any]:
+    """Create the central prompt text node used by no-audio pure text stems.
+
+    The monster reference template does not always carry this node. Historical
+    CoursewareMaker BaseComponent MLabel structure is reused, while size/color
+    are fixed to the monster prompt text style documented in the workflow.
+    """
+    state = {
+        "groupKey": "",
+        "state": "default",
+        "label": "默认",
+        "notDelete": False,
+        "transform": {
+            "x": PROMPT_TEXT_STYLE["x"],
+            "y": PROMPT_TEXT_STYLE["y"],
+            "w": PROMPT_TEXT_STYLE["w"],
+            "h": PROMPT_TEXT_STYLE["h"],
+            "scaleX": 1,
+            "scaleY": 1,
+            "rot": 0,
+            "editRot": False,
+            "anchorX": 0.5,
+            "anchorY": 0.5,
+        },
+        "source": {
+            "MLabel": {
+                "value": text_value,
+                "color": PROMPT_TEXT_STYLE["color"],
+                "fontFamily": PROMPT_TEXT_STYLE["fontFamily"],
+                "fontSize": PROMPT_TEXT_STYLE["fontSize"],
+                "isBold": False,
+                "isItalic": False,
+                "isUnderline": False,
+                "alignType": "center",
+                "interval": [0, 0, 0, 0, 0],
+                "closeable": True,
+            }
+        },
+        "jump": {"canEdit": True, "opened": 0, "type": "", "to": "", "duration": 0},
+        "active": {"canEdit": True, "switch": False, "value": "show"},
+    }
+    comp = {
+        "component_data": {
+            "id": f"gamenext_component_uuid_{uuid4()}",
+            "edit_description": "",
+            "component_id": "",
+            "name": PROMPT_TEXT_NODE_NAME,
+            "zIndex": 13,
+            "base": "MLabel",
+            "components": {
+                "tools": {},
+                "source": {"MLabel": 1},
+                "lockState": {"state": False, "componentId": "", "componentName": "", "componentState": ""},
+                "judgeRules": {"forbidIfCorrect": False, "inAnswerPool": False},
+                "webEditorCustomInfo": {"chain": "", "isAnswerComponent": False, "isJudgeComponent": False},
+            },
+            "edit": {"lock": True, "curState": "default", "baseNotChange": False},
+            "custom": [],
+            "state_group": [],
+            "states": [state, deepcopy({**state, "state": "compLoadFinish", "label": "组件加载完成"})],
+            "event": {
+                "eventMap": [{"label": "点击", "name": "click", "sys": False}],
+                "dispatchFunList": [
+                    {"allowEventName": ["all"], "label": "显示", "name": "onShow"},
+                    {"allowEventName": ["all"], "label": "隐藏", "name": "onHide"},
+                    {"allowEventName": ["all"], "label": "旋转", "name": "onRotated"},
+                ],
+                "value": [],
+            },
+        },
+        "component_id": "BaseComponent",
+        "component_name": "节点",
+        "component_url": "",
+        "index": max_component_index(level) + 1,
+        "name": "BaseComponent",
+        "version": "0.0.0",
+    }
+    level.setdefault("components", []).append(comp)
+    return comp
+
+
+def ensure_prompt_text_node(level: dict[str, Any], text_value: str) -> dict[str, Any]:
+    node = prompt_text_node(level)
+    if node:
+        return node
+    return create_prompt_text_component(text_value, level)
+
+
 def prompt_image_node(level: dict[str, Any]) -> dict[str, Any] | None:
     candidates = []
     for comp in level.get("components", []):
@@ -421,7 +526,7 @@ def index_level_components(level: dict[str, Any], question_type: str) -> dict[st
             effect_monster = comp
 
     missing = []
-    if question_type != "no_audio_image" and title_stem is None:
+    if question_type not in {"no_audio_image", "no_audio_text"} and title_stem is None:
         missing.append("TitleStem")
     if level_number is None:
         missing.append("LevelNumber")
@@ -436,6 +541,7 @@ def index_level_components(level: dict[str, Any], question_type: str) -> dict[st
         raise ConfigError(f"Template level is missing required monster components: {', '.join(missing)}")
 
     return {
+        "level": level,
         "nodes": comp_by_node_name,
         "clicks": click_by_position,
         "title_stem": title_stem,
@@ -480,16 +586,15 @@ def update_prompt(
     if question_type == "pure_audio":
         return prompt_meta
 
-    if question_type == "audio_text":
-        node = indexed["prompt_text_node"]
-        if not node:
-            raise ConfigError(f"Question {qno}: template has no central prompt text node")
+    if question_type in {"audio_text", "no_audio_text"}:
+        node = indexed["prompt_text_node"] or ensure_prompt_text_node(indexed["level"], question.get("stem_text") or "")
         set_label_content(node, question.get("stem_text") or "")
         prompt_meta.update(
             {
                 "prompt_mode": "text",
                 "prompt_node_name": node.get("component_data", {}).get("name"),
                 "prompt_text": question.get("stem_text") or "",
+                "prompt_style": PROMPT_TEXT_STYLE,
             }
         )
         return prompt_meta
