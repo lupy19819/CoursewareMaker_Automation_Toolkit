@@ -31,7 +31,7 @@
       "amusement_park": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
-        "default_template": "reference_configs/kaixin_ref.json",
+        "default_template": "reference_configs/kaixin_autumn8_starter_ref.json",
         "command": ["python", "scripts/generate_kaixin_shu2.py", "--input", "{input}", "--template", "{template}", "--output", "{config}", "--meta", "{meta}"],
         "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "amusement_park", "--input", "{input}", "--meta", "{meta}"]
       },
@@ -85,7 +85,7 @@
     "standard_component": {
       "standard_component": {
         "input_format": "json",
-        "supports_resource_filter": "json_manifest",
+        "supports_resource_filter": "none",
         "command": ["python", "standard_question_toolkit/scripts/generate_standard_component_config.py", "--input", "{input}", "--output", "{config}", "--meta", "{meta}"],
         "validator": ["node", "scripts/validate_config.js", "--file", "{config}"]
       }

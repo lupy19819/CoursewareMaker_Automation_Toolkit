@@ -39,6 +39,12 @@ def main() -> int:
     config = unwrap(json.loads(args.input.read_text(encoding="utf-8")))
     if not isinstance(config.get("game"), list) or not config["game"]:
         raise ValueError("standard_component config must contain non-empty game[]")
+    for index, level in enumerate(config["game"], 1):
+        components = level.get("components")
+        if not isinstance(components, list) or not components:
+            raise ValueError(f"L{index}: standard_component config must contain non-empty components[]")
+        if not any(comp.get("component_id") for comp in components if isinstance(comp, dict)):
+            raise ValueError(f"L{index}: no component_id found; refusing to pass through an untyped placeholder config")
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(config, ensure_ascii=False, indent=2), encoding="utf-8")

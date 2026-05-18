@@ -9,7 +9,7 @@ import openpyxl
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-ROOT = Path(os.environ.get("COURSEWARE_WORKDIR", r"D:\codexProject"))
+ROOT = Path(os.environ.get("COURSEWARE_WORKDIR", str(REPO_ROOT)))
 RESOURCE_JSON = Path(os.environ.get("COURSEWARE_RESOURCE_JSON", REPO_ROOT / "resources" / "latest_resources.json"))
 QUESTION_XLSX = ROOT / "zhiyinlou_race_test_latest.xlsx"
 WORKFLOW_RULES_JSON = REPO_ROOT / "standard_question_toolkit" / "data" / "courseware_workflow_rules.json"
@@ -253,7 +253,10 @@ def main() -> None:
         "levels": [],
     }
 
-    for level, question in zip(config["custom_game"], questions, strict=True):
+    if len(config["custom_game"]) != len(questions):
+        raise ValueError(f"Level count mismatch: template={len(config['custom_game'])}, questions={len(questions)}")
+
+    for level, question in zip(config["custom_game"], questions):
         topic = level["topics"][0]
         build_meta["levels"].append(update_topic(topic, question, resource_lookup, resource_rows))
 

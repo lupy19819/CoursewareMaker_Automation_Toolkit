@@ -26,9 +26,11 @@ os.makedirs(os.path.dirname(OUT), exist_ok=True)
 # ── 参考配置 ────────────────────────────────────────────────────────────────
 with open(REF) as f:
     ref_raw = json.load(f)
-ref = ref_raw['configuration']
+ref = ref_raw.get('configuration', ref_raw)
 if isinstance(ref, str):
     ref = json.loads(ref)
+if not isinstance(ref, dict) or 'game' not in ref:
+    raise ValueError(f'Invalid template config: {REF}')
 
 # ── 关卡数据 ────────────────────────────────────────────────────────────────
 # 资源图片 BASE（最新上传批次 2026-05-11）

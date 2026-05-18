@@ -188,10 +188,6 @@ def preflight_resources(input_path: Path, route_result: dict[str, Any], adapter:
                 str(filtered),
                 "--manifest",
                 str(manifest),
-                "--schema-family",
-                str(route_result.get("game_family") or ""),
-                "--schema-subtype",
-                str(route_result.get("game_subtype") or ""),
             ]
         )
         return {"filtered_resources": str(filtered), "resource_manifest": str(manifest)}
@@ -206,6 +202,10 @@ def preflight_resources(input_path: Path, route_result: dict[str, Any], adapter:
                 str(args.resources),
                 "--manifest",
                 str(manifest),
+                "--schema-family",
+                str(route_result.get("game_family") or ""),
+                "--schema-subtype",
+                str(route_result.get("game_subtype") or ""),
             ]
         )
         return {"filtered_resources": "", "resource_manifest": str(manifest)}
@@ -224,7 +224,7 @@ def generate_config(route_result: dict[str, Any], args: argparse.Namespace, out_
         raise ExecutorError("This adapter requires --sheet or a sheet name in the message.")
     if adapter.get("requires_options") and not args.options:
         raise ExecutorError("This adapter requires --options <2|3|4>.")
-    if adapter.get("requires_template") and not template:
+    if adapter.get("requires_template") and (not template or not str(template).endswith(".json")):
         raise ExecutorError("This adapter requires --template <reference_config.json>.")
     if template and str(template).endswith(".json") and not (ROOT / str(template)).exists() and not Path(str(template)).exists():
         raise ExecutorError(f"Template/reference config not found: {template}")
