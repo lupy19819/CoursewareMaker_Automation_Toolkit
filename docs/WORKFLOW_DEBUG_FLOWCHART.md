@@ -186,7 +186,7 @@ flowchart TD
 | 标准填空/计算题 | `standard_fill_compute` | 输入框、键盘、题干 label、布局常量 |
 | 标准拖拽题 | `standard_drag` | 拖拽物、放置框、题干 label、背景 |
 
-共同规则：根结构是 `game`，读取 `standard_question_toolkit/data/courseware_workflow_rules.json`，由 `scripts/validate_config.js` 校验。
+共同规则：根结构是 `game`。主流程先用 `standard_question_toolkit/scripts/validate_standard_component_config.py` 做稳定结构校验；锁定具体皮肤 baseline 后，可再用 `scripts/validate_config.js` 做布局/皮肤高级诊断。
 
 ## 五、素材确认与同名资源规则
 
@@ -247,7 +247,7 @@ flowchart TD
 | 素材确认 | 本地素材、资源表、已有 URL、资源 list | 可写入配置的素材 URL 和同名确认记录 | 上传前先查同名资源；同名时先问提需用户使用现有资源还是改名上传；上传后确认真实 URL；资源 list 必须保存在 git 项目内并持续合并 | `resources/latest_resources.json`、`courseware_bulk_upload_assets.mjs`、`scripts/sync_courseware_resources.py` | 同名资源误复用、未改名上传导致混淆、URL 缺失、使用项目外旧资源表 |
 | 生成任务清单 | router 输出、素材 URL 映射、题目清单 | 每个游戏一张任务单或 blocked 原因 | 锁定 game_family、关键字、template/baseline、生成脚本、输出路径、game_type、编辑器入口；不生成配置 | `workflow/workflow_planner.py`、`workflow/script_registry.json` | 多游戏混在同一上下文、复用上一条任务状态 |
 | 配置生成 | 当前任务单、题目表、参考配置、资源 URL | 本地 `.config.json` + build-meta | 只按任务清单执行，不重新判断类型；复制替换型不重排组件；模板固定资源可继承，题目相关字段必须来自输入 | 各 `build_*` / `generate_*` 脚本 | 生成阶段重新猜类型、用错 baseline、题型识别错、资源映射错、题目字段仍写死在脚本常量 |
-| 配置校验 | 本地配置 JSON、当前任务单 | 分层校验报告 | 主工作流按 `validation_policy.json` 调度：规则脚本校验为主，参考配置不变量对比为辅，案例回归用于防止脚本退化；模板游戏统一跑 `validate_template_game_config.py`，贪吃小怪兽/运动PK跑更强专项 validator；保存后统一回读比对和预览 | `workflow/workflow_planner.py`、`workflow/validation_policy.json`、`workflow/game_input_schemas.json`、各专项 validator | 根结构不对、皮肤不匹配、缺组件、状态图错、模板被误判成标准拖拽题、只做案例 diff 没跑规则 |
+| 配置校验 | 本地配置 JSON、当前任务单 | 分层校验报告 | 主工作流按 `validation_policy.json` 调度：规则脚本校验为主，参考配置不变量和关卡级 profile 对比为辅，案例回归用于防止脚本退化；模板游戏统一跑 `validate_template_game_config.py`，贪吃小怪兽/运动PK跑更强专项 validator；保存后统一回读比对和预览 | `workflow/workflow_planner.py`、`workflow/validation_policy.json`、`workflow/game_input_schemas.json`、各专项 validator | 根结构不对、皮肤不匹配、缺组件、状态图错、模板被误判成标准拖拽题、只做案例 diff 没跑规则 |
 | 新建游戏 | 游戏名、模板 ID、可选初始配置 | `game_id` | 运动PK模板必须 `game_type=2`；普通组件化 `game_type=1` | `scripts/create_game_auto.js` | 运动PK被建成普通游戏、入口 URL 错 |
 | 导入保存 | 唯一目标 `game_id`、配置 JSON | 线上保存成功 | 执行器已接管已有游戏导入分支；当前自动保存要求显式 `game_id`，游戏名解析必须先得到唯一 `game_id` 后再保存；保存语义：GET 完整元信息，只替换 `configuration`，保留/补齐 `components: []`，再 `PUT /beibo/game/config/game`；`configuration` 必须是对象，不是字符串 | `workflow/workflow_executor.py`、`scripts/save_game_config_via_cdp.js`、`scripts/upload_game_config.py` | POST 被当成另存、游戏名重复、双重编码、cookie 缺失 |
 | 回读比对 | 线上游戏详情、本地配置 | 比对结果 | GET 回读后比对关卡数、根结构、关键组件、题目字段 | 保存脚本内置比对或临时比对脚本 | API 成功但配置未真正写入、引用模式导致只读 |
@@ -384,6 +384,7 @@ flowchart LR
 |---|---|---|---|
 | `rules_validator` | 单游戏 | 必需 | 用规则脚本校验输入 schema、字段映射、资源类型、正确项、tag/itemList、组件层级等确定性规则 |
 | `reference_invariants` | 单游戏 | 必需 | 只对比固定模板不变量：公共层、组件注册表、关键 state、固定皮肤资源、骨架顺序 |
+| `level_reference_profile` | 单关卡 | 必需/推荐 | 从 `reference_configs/level_references/index.json` 逐关匹配结构和题型形态；记录槽位数、题干文字/音频/配图、选项文字/音频/图片 |
 | `fixture_regression` | 单游戏 | 可选 | 用代表性案例防止脚本退化；案例缺失只记 warning，不替代规则校验 |
 | `roundtrip_compare` | 主工作流 | 必需 | 保存后 GET 回读并和本地配置规范化比对 |
 | `preview` | 主工作流 | 必需 | 浏览器预览首关交互、音频、正确/错误反馈、翻页 |
@@ -394,13 +395,14 @@ flowchart LR
 
 模板游戏的校验不能只看根结构。它们和标准组件化题一样使用 `game` 数组，但组件语义、命名、状态和渲染顺序由具体模板决定。如果直接运行标准组件化 baseline，过桥大冒险、开心游乐园等会被误判成标准拖拽题。
 
-模板游戏统一按下面五层校验：
+模板游戏统一按下面六层校验：
 
 1. 基础结构校验：JSON 可解析；根结构必须包含 `common`、`game`、`additional`、`components`；`game.length` 与题目数一致；保存 payload 中 `configuration` 必须是对象，不是字符串。
 2. 模板专项规则校验：按具体模板检查题型规则、槽位数量、tag、正确答案、字号、桥区/道路/游乐园布局、三态图、反馈动效和音效。
 3. 参考配置不变量校验：从任务单锁定的参考配置读取结构，不允许随意重排 `components[]`；公共层、注册表、`levelData.uiConfig`、模板专属状态名和组件名必须保留；只替换题干、音频、图片、选项、正确项等内容字段。
-4. 案例回归：如果存在 `validation_fixtures/template_game/<subtype>/`，用代表性案例跑生成和校验，防止脚本改坏；没有案例不能当作通过依据。
-5. 保存后校验：导入保存后 GET 回读，和本地配置规范化比对；再进入预览页做首关交互、正确/错误反馈、翻页和音频播放检查。
+4. 关卡级 profile 校验：运行 `scripts/build_reference_level_index.py` 后，`validate_template_game_config.py --reference-index reference_configs/level_references/index.json` 按每一关匹配格式；例如 L1 是 4 槽、L2 是 3 槽，或 L1 是纯音频题干、L2 是音频+文字/配图题干时分别找对应 profile。
+5. 案例回归：如果存在 `validation_fixtures/template_game/<subtype>/`，用代表性案例跑生成和校验，防止脚本改坏；没有案例不能当作通过依据。
+6. 保存后校验：导入保存后 GET 回读，和本地配置规范化比对；再进入预览页做首关交互、正确/错误反馈、翻页和音频播放检查。
 
 | 模板 | 当前校验入口 | 必查规则 |
 |---|---|---|
@@ -420,10 +422,12 @@ flowchart LR
 | `scripts/create_game_auto.js` | 新建游戏 | `game_type`、模板 ID、编辑器入口、`latest_game_id.txt` |
 | `scripts/save_game_config_via_cdp.js` | CDP 浏览器通道保存配置，主推荐 | `credentials: include`、完整 meta、`configuration` 是否对象、回读比对 |
 | `scripts/upload_game_config.py` | API 直传通道保存配置，备用/批处理 | token/cookie、完整 meta、`components: []`、`configuration` 是否对象 |
-| `scripts/validate_config.js` | 运动PK和标准组件化题 workflow baseline 校验 | 根结构、皮肤、组件互斥、状态资源、布局常量；不要直接用于模板游戏 |
+| `standard_question_toolkit/scripts/validate_standard_component_config.py` | 标准组件化主流程校验 | `game[]`、`components[]`、`component_id`、`component_data`、基础 state 结构 |
+| `scripts/validate_config.js` | 运动PK和标准组件化高级诊断 | 皮肤、组件互斥、状态资源、布局常量；标准组件化需先锁定稳定 baseline，不要直接用于模板游戏 |
 | `scripts/validate_yundong_pk_config.py` | 运动PK专项校验 | 皮肤 baseline、`custom_game`、题目字段 |
 | `scripts/validate_monster_config.py` | 贪吃小怪兽专项校验 | 题干音频、点击选择、唯一正确项、底图节点 |
 | `scripts/validate_template_game_config.py` | 模板游戏通用生成后规则校验 | `game[]`、输入 schema、选项数、唯一正确项、拖拽 itemList、音频/图片存在 |
+| `scripts/build_reference_level_index.py` | 生成关卡级参考库 | 从 `reference_configs/` 拆出每关 level JSON，生成 `reference_configs/level_references/index.json` profile |
 | `workflow/audit_workflow.py` | 工作流静态审计 | adapter、生成脚本、模板、validator、资源 list、fixtures |
 | `workflow/game_input_schemas.json` | 每游戏确定性输入契约 | 必填字段、资源字段、固定模板资源与动态题目字段边界 |
 | `scripts/build_yundong_pk_config.py` | 生成运动PK配置 | Sheet 识别、run/swim/racecar baseline、资源映射 |
@@ -441,8 +445,11 @@ git status --short --branch
 git log -1 --oneline
 
 # 2. 校验配置：先按任务单 game_family 选择
-# 运动PK / 标准组件化题
+# 运动PK
 node scripts/validate_config.js --file path/to/config.json
+
+# 标准组件化题
+python standard_question_toolkit/scripts/validate_standard_component_config.py path/to/config.json
 
 # 模板游戏
 # 使用对应模板专项校验或生成脚本内置校验；没有专项脚本时执行参考配置不变量检查 + 保存后回读 + 预览

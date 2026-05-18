@@ -40,7 +40,7 @@ import sys
 
 # 基准配置路径（按游戏类型 + 选项数）
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-BASE_DIR = os.path.join(SCRIPT_DIR, '..', 'output')
+BASE_DIR = os.path.join(SCRIPT_DIR, '..', 'reference_configs', 'reading')
 
 BASE_CONFIGS = {
     ('fanboat', 3): 'fanboat_configs_all',
@@ -51,10 +51,10 @@ BASE_CONFIGS = {
 
 # 各场景的基准游戏名（优先从这里找基准）
 BASE_GAME_NAMES = {
-    ('fanboat', 3): '国际启F融阅读小帆船秋8',
-    ('fanboat', 4): '国际启蒙阅读小帆船秋8',
+    ('fanboat', 3): '阅读小帆船皮肤验收',
+    ('fanboat', 4): '国际启蒙阅读小帆船秋14',
     ('train',   3): '国际starter阅读小火车秋12',
-    ('train',   4): '国际F融阅读小火车暑5',
+    ('train',   4): '国际启蒙阅读小火车秋15',
 }
 
 # 各场景的tag序列
@@ -78,35 +78,43 @@ def load_base_config(game_type, option_count):
     with open(index_path) as f:
         index = json.load(f)
 
+    def level_option_count(level):
+        return sum(1 for c in level.get('components', [])
+                   if 'MDraggable' in c.get('component_data', {}).get('components', {}).get('tools', {}))
+
+    def choose_matching_level(cfg):
+        for level in cfg.get('game', []):
+            if level_option_count(level) == option_count:
+                selected = copy.deepcopy(cfg)
+                selected['game'] = [copy.deepcopy(level)]
+                return selected
+        return None
+
+    def read_candidate(game_id):
+        cfg_path = os.path.join(dir_path, f"{game_id}.json")
+        if not os.path.exists(cfg_path):
+            return None
+        with open(cfg_path) as f:
+            return json.load(f)
+
     target_name = BASE_GAME_NAMES[(game_type, option_count)]
-    game_id = None
     for g in index:
         if target_name in g['game_name']:
-            game_id = g['game_id']
-            break
+            cfg = read_candidate(g['game_id'])
+            selected = choose_matching_level(cfg) if cfg else None
+            if selected:
+                print(f"  基准游戏: {g['game_name']} / {option_count}选项关卡")
+                return selected
 
-    if not game_id:
-        # 退而求其次：找第一个选项数匹配的
-        for g in index:
-            cfg_path = os.path.join(dir_path, f"{g['game_id']}.json")
-            if not os.path.exists(cfg_path):
-                continue
-            with open(cfg_path) as f:
-                cfg = json.load(f)
-            level = cfg.get('game', [{}])[0]
-            draggables = sum(1 for c in level.get('components', [])
-                           if 'MDraggable' in c.get('component_data', {}).get('components', {}).get('tools', {}))
-            if draggables == option_count:
-                game_id = g['game_id']
-                print(f"  基准游戏: {g['game_name']}")
-                break
+    # 退而求其次：扫描所有参考配置的所有关卡，找第一个选项数匹配的。
+    for g in index:
+        cfg = read_candidate(g['game_id'])
+        selected = choose_matching_level(cfg) if cfg else None
+        if selected:
+            print(f"  基准游戏: {g['game_name']} / {option_count}选项关卡")
+            return selected
 
-    if not game_id:
-        raise ValueError(f"找不到 {game_type} {option_count}选项的基准配置")
-
-    cfg_path = os.path.join(dir_path, f"{game_id}.json")
-    with open(cfg_path) as f:
-        return json.load(f)
+    raise ValueError(f"找不到 {game_type} {option_count}选项的基准配置，请先补充 reference_configs/reading/{dir_key}")
 
 
 def get_draggable_components(level, option_count):

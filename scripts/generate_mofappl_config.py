@@ -22,10 +22,10 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # === 输入文件 ===
 SPELLING_REF     = os.path.join(BASE, 'reference_configs', 'spelling_validation_ref.json')
-MOFAPPL_REF_5    = os.path.join(BASE, 'output', 'mofappl_configs', '77cb396a-babd-11f0-885a-ba4dce53cceb.json')
-MOFAPPL_REF_3    = os.path.join(BASE, 'output', 'mofappl_configs', 'c3f13451-dfc0-11f0-9165-0e324dbd00ee.json')
+MOFAPPL_REF_5    = os.path.join(BASE, 'reference_configs', 'mofappl_configs', '77cb396a-babd-11f0-885a-ba4dce53cceb.json')
+MOFAPPL_REF_3    = os.path.join(BASE, 'reference_configs', 'mofappl_configs', 'c3f13451-dfc0-11f0-9165-0e324dbd00ee.json')
 # 含 固定文本组件（文本a）的参考配置，用于 fixed text 模板
-MOFAPPL_REF_FIXED = os.path.join(BASE, 'output', 'mofappl_configs', 'bbf611d1-bf91-11f0-9165-0e324dbd00ee.json')
+MOFAPPL_REF_FIXED = os.path.join(BASE, 'reference_configs', 'mofappl_configs', 'bbf611d1-bf91-11f0-9165-0e324dbd00ee.json')
 
 # === 输出 ===
 OUTPUT_DIR  = os.path.join(BASE, 'output', 'mofappl_configs')

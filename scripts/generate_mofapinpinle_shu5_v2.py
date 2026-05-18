@@ -179,8 +179,8 @@ def patch_word_image(level, word):
 
 
 def main():
-    ref5_path = os.path.join(BASE, 'output/mofappl_configs/77cb396a-babd-11f0-885a-ba4dce53cceb.json')
-    ref3_path = os.path.join(BASE, 'output/mofappl_configs/c3f13451-dfc0-11f0-9165-0e324dbd00ee.json')
+    ref5_path = os.path.join(BASE, 'reference_configs/mofappl_configs/77cb396a-babd-11f0-885a-ba4dce53cceb.json')
+    ref3_path = os.path.join(BASE, 'reference_configs/mofappl_configs/c3f13451-dfc0-11f0-9165-0e324dbd00ee.json')
     with open(ref5_path) as f:
         ref5 = json.load(f)
     with open(ref3_path) as f:

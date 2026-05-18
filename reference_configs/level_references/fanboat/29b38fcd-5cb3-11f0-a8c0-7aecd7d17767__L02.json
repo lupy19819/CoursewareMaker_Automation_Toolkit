@@ -1,0 +1,4695 @@
+{
+  "components": [
+    {
+      "component_data": {
+        "base": "MSpine",
+        "component_id": "",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSpine": {
+              "h": 360,
+              "w": 325
+            },
+            "MSprite": 1
+          },
+          "tools": {},
+          "webEditorCustomInfo": {
+            "chain": "",
+            "isAnswerComponent": false,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "default",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "倍速",
+              "name": "onTimeScale"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": []
+        },
+        "id": "gamenext_component_uuid_d9d4cea6-14a9-4b60-9ddc-1fb49a114155",
+        "name": "背景",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MSpine": {
+                "animation": "bg",
+                "opacity": false,
+                "playTime": -1,
+                "spineId": 53332,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-07-09/67b455997260b1b0072a94bddf18e72c.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 360,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 325,
+              "x": 0,
+              "y": 0
+            }
+          }
+        ],
+        "zIndex": 1
+      },
+      "component_id": "BaseComponent",
+      "component_name": "节点",
+      "component_url": "",
+      "index": 0,
+      "name": "BaseComponent",
+      "version": "0.0.0"
+    },
+    {
+      "component_data": {
+        "base": "MSpine",
+        "component_id": "",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSpine": {
+              "h": 1067.47,
+              "w": 1915
+            },
+            "MSprite": 1
+          },
+          "tools": {},
+          "webEditorCustomInfo": {
+            "chain": "",
+            "isAnswerComponent": false,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "compLoadFinish",
+          "lock": false
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "倍速",
+              "name": "onTimeScale"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": []
+        },
+        "id": "gamenext_component_uuid_a8d1a6e8-f6a8-420f-9dfe-9e9d4c39fe2a",
+        "name": "fin船",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MSpine": {
+                "animation": "idle",
+                "opacity": false,
+                "playTime": -1,
+                "spineId": 53431,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-07-10/c09cd6711f0bbbd7485e8945ec791338.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 1067.47,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 1915,
+              "x": -10.19,
+              "y": -45.8
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 1,
+              "to": "default",
+              "type": "spinePlayFinish"
+            },
+            "label": "组件加载完成",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_2",
+                "loop": false,
+                "loopNum": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2025-07-11/03fbc0a4c248eeff44b0ddaa96ff4471.mp3"
+              },
+              "MSpine": {
+                "animation": "in",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 53431,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-07-10/c09cd6711f0bbbd7485e8945ec791338.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "compLoadFinish",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 1067.47,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 1915,
+              "x": -10.19,
+              "y": -45.8
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "闯关成功",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_2",
+                "loop": false,
+                "loopNum": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2025-07-11/07491b9e891ca9f9d9d7b6055be6c578.mp3"
+              },
+              "MSpine": {
+                "animation": "right_3",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 53431,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-07-10/c09cd6711f0bbbd7485e8945ec791338.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "passSuccess",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 1067.47,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 1915,
+              "x": -10.19,
+              "y": -45.8
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 1,
+              "to": "default",
+              "type": "spinePlayFinish"
+            },
+            "label": "全局错误",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2025-07-11/7934d586d48399bbe96afcfdd122cfa3.mp3"
+              },
+              "MSpine": {
+                "animation": "wrong",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 53431,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/345733/2025-07-10/c09cd6711f0bbbd7485e8945ec791338.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "level_wrong",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 1067.47,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 1915,
+              "x": -10.19,
+              "y": -45.8
+            }
+          }
+        ],
+        "zIndex": 5
+      },
+      "component_id": "BaseComponent",
+      "component_name": "节点",
+      "component_url": "",
+      "index": 3,
+      "name": "BaseComponent",
+      "version": "0.0.0"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSprite": 1
+          },
+          "tools": {},
+          "webEditorCustomInfo": {
+            "chain": "",
+            "isAnswerComponent": false,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "default",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": [
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "default",
+              "params": {
+                "state": "default"
+              },
+              "source": "gamenext_component_uuid_a8d1a6e8-f6a8-420f-9dfe-9e9d4c39fe2a",
+              "trigger": "all_state"
+            },
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "passSuccess",
+              "params": {
+                "state": "compLoadFinish"
+              },
+              "source": "gamenext_component_uuid_a8d1a6e8-f6a8-420f-9dfe-9e9d4c39fe2a",
+              "trigger": "all_state"
+            }
+          ]
+        },
+        "id": "gamenext_component_uuid_d56e7615-c6dd-4de1-96d3-023ec953b2e9",
+        "name": "锁链1",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/1481dfe46907b618f3f70a148e9848fa.png"
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 86,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 28,
+              "x": -427.71,
+              "y": 191.34
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "组件加载完成",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/1481dfe46907b618f3f70a148e9848fa.png"
+              }
+            },
+            "state": "compLoadFinish",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 86,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 28,
+              "x": -427.71,
+              "y": 191.34
+            }
+          }
+        ],
+        "zIndex": 3
+      },
+      "component_id": "BaseComponent",
+      "component_name": "节点",
+      "component_url": "",
+      "index": 1,
+      "name": "BaseComponent",
+      "version": "0.0.0"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSprite": 1
+          },
+          "tools": {},
+          "webEditorCustomInfo": {
+            "chain": "",
+            "isAnswerComponent": false,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "compLoadFinish",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": [
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "default",
+              "params": {
+                "state": "default"
+              },
+              "source": "gamenext_component_uuid_a8d1a6e8-f6a8-420f-9dfe-9e9d4c39fe2a",
+              "trigger": "all_state"
+            },
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "passSuccess",
+              "params": {
+                "state": "compLoadFinish"
+              },
+              "source": "gamenext_component_uuid_a8d1a6e8-f6a8-420f-9dfe-9e9d4c39fe2a",
+              "trigger": "all_state"
+            }
+          ]
+        },
+        "id": "gamenext_component_uuid_96d9f4ef-4879-4a08-8580-a90e5770f392",
+        "name": "锁链2",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/1481dfe46907b618f3f70a148e9848fa.png"
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 86,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 28,
+              "x": 10.65,
+              "y": 129.76
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "组件加载完成",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/1481dfe46907b618f3f70a148e9848fa.png"
+              }
+            },
+            "state": "compLoadFinish",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 86,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 28,
+              "x": 10.65,
+              "y": 129.76
+            }
+          }
+        ],
+        "zIndex": 15
+      },
+      "component_id": "BaseComponent",
+      "component_name": "节点",
+      "component_url": "",
+      "index": 7,
+      "name": "BaseComponent",
+      "version": "0.0.0"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSprite": 1
+          },
+          "tools": {},
+          "webEditorCustomInfo": {
+            "chain": "",
+            "isAnswerComponent": false,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "compLoadFinish",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": [
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "default",
+              "params": {
+                "state": "default"
+              },
+              "source": "gamenext_component_uuid_a8d1a6e8-f6a8-420f-9dfe-9e9d4c39fe2a",
+              "trigger": "all_state"
+            },
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "passSuccess",
+              "params": {
+                "state": "compLoadFinish"
+              },
+              "source": "gamenext_component_uuid_a8d1a6e8-f6a8-420f-9dfe-9e9d4c39fe2a",
+              "trigger": "all_state"
+            }
+          ]
+        },
+        "id": "gamenext_component_uuid_f75c8022-f173-48e6-ae27-8739c0eef9ce",
+        "name": "锁链3",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/1481dfe46907b618f3f70a148e9848fa.png"
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 86,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 28,
+              "x": 423.49,
+              "y": 213.38
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "组件加载完成",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/1481dfe46907b618f3f70a148e9848fa.png"
+              }
+            },
+            "state": "compLoadFinish",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 86,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 28,
+              "x": 423.49,
+              "y": 213.38
+            }
+          }
+        ],
+        "zIndex": 16
+      },
+      "component_id": "BaseComponent",
+      "component_name": "节点",
+      "component_url": "",
+      "index": 8,
+      "name": "BaseComponent",
+      "version": "0.0.0"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": true,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSprite": 1
+          },
+          "tools": {
+            "LDragPlace": {
+              "blinkCount": 3,
+              "blinkTime": 2,
+              "blinkType": "wrong",
+              "canMoveDragElement": true,
+              "checkType": "stop",
+              "hasBlink": true,
+              "itemList": [
+                "1"
+              ],
+              "numWrongWait": 2,
+              "oneOrMore": "one",
+              "oneReplace": true,
+              "placeType": "Center",
+              "placedCountLimit": true,
+              "placedMaxCount": 1,
+              "rePos": 1,
+              "showResultState": true,
+              "sort": "unseq",
+              "sortData": {
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "paddingX": 0,
+                "paddingY": 0,
+                "sortType": "left-top"
+              },
+              "tag": "",
+              "typeWrong": "cur",
+              "typeWrongCount": "wrong",
+              "worngBack": true
+            }
+          },
+          "webEditorCustomInfo": {
+            "chain": "LDragPlace/LComponent/MComponent/cc.Component/cc.Object",
+            "isAnswerComponent": true,
+            "isJudgeComponent": true
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "compLoadFinish",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            },
+            {
+              "label": "未作答",
+              "name": "unanswerd",
+              "sys": false
+            },
+            {
+              "label": "作答中",
+              "name": "answering",
+              "sys": false
+            },
+            {
+              "label": "正确",
+              "name": "correct",
+              "sys": false
+            },
+            {
+              "label": "错误",
+              "name": "wrong",
+              "sys": false
+            }
+          ],
+          "value": [
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "default",
+              "params": {
+                "state": "default"
+              },
+              "source": "gamenext_component_uuid_a8d1a6e8-f6a8-420f-9dfe-9e9d4c39fe2a",
+              "trigger": "all_state"
+            },
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "passSuccess",
+              "params": {
+                "state": "compLoadFinish"
+              },
+              "source": "gamenext_component_uuid_a8d1a6e8-f6a8-420f-9dfe-9e9d4c39fe2a",
+              "trigger": "all_state"
+            }
+          ]
+        },
+        "id": "gamenext_component_uuid_ec99d65b-18a6-4624-a02f-a9dfe32bf540",
+        "name": "拖拽放置区1",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/3f102fcaea7628942d34b3866cecdd0b.png"
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 246,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 256,
+              "x": -427.35,
+              "y": 24.52
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "可吸附",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/f4a58eb4f6cdb05da239abbab6094d5b.png"
+              }
+            },
+            "state": "adsorb",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 246,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 256,
+              "x": -427.35,
+              "y": 24.52
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "被吸附",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/c025bc06eb0579ca5783f16394c127da.png"
+              }
+            },
+            "state": "adsorbed",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 246,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 256,
+              "x": -427.35,
+              "y": 24.52
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "组件加载完成",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/3f102fcaea7628942d34b3866cecdd0b.png"
+              }
+            },
+            "state": "compLoadFinish",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 246,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 256,
+              "x": -427.35,
+              "y": 24.52
+            }
+          }
+        ],
+        "zIndex": 6
+      },
+      "component_id": "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd",
+      "component_name": "拖拽放置区",
+      "component_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assetboundle/LDragPlace/0.1.0/LDragPlace.zip",
+      "index": 0,
+      "name": "LDragPlace",
+      "version": "0.1.0"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": true,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSprite": 1
+          },
+          "tools": {
+            "LDragPlace": {
+              "blinkCount": 3,
+              "blinkTime": 2,
+              "blinkType": "wrong",
+              "canMoveDragElement": true,
+              "checkType": "stop",
+              "hasBlink": true,
+              "itemList": [
+                "2"
+              ],
+              "numWrongWait": 2,
+              "oneOrMore": "one",
+              "oneReplace": true,
+              "placeType": "Center",
+              "placedCountLimit": true,
+              "placedMaxCount": 1,
+              "rePos": 1,
+              "showResultState": true,
+              "sort": "unseq",
+              "sortData": {
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "paddingX": 0,
+                "paddingY": 0,
+                "sortType": "left-top"
+              },
+              "tag": "",
+              "typeWrong": "cur",
+              "typeWrongCount": "wrong",
+              "worngBack": true
+            }
+          },
+          "webEditorCustomInfo": {
+            "chain": "LDragPlace/LComponent/MComponent/cc.Component/cc.Object",
+            "isAnswerComponent": true,
+            "isJudgeComponent": true
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "default",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            },
+            {
+              "label": "未作答",
+              "name": "unanswerd",
+              "sys": false
+            },
+            {
+              "label": "作答中",
+              "name": "answering",
+              "sys": false
+            },
+            {
+              "label": "正确",
+              "name": "correct",
+              "sys": false
+            },
+            {
+              "label": "错误",
+              "name": "wrong",
+              "sys": false
+            }
+          ],
+          "value": [
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "default",
+              "params": {
+                "state": "default"
+              },
+              "source": "gamenext_component_uuid_a8d1a6e8-f6a8-420f-9dfe-9e9d4c39fe2a",
+              "trigger": "all_state"
+            },
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "passSuccess",
+              "params": {
+                "state": "compLoadFinish"
+              },
+              "source": "gamenext_component_uuid_a8d1a6e8-f6a8-420f-9dfe-9e9d4c39fe2a",
+              "trigger": "all_state"
+            }
+          ]
+        },
+        "id": "gamenext_component_uuid_50fade51-2c0f-4ea1-9ed3-0ad0cb485290",
+        "name": "拖拽放置区2",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/3f102fcaea7628942d34b3866cecdd0b.png"
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 246,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 256,
+              "x": 9.19,
+              "y": -36.15
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "可吸附",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/f4a58eb4f6cdb05da239abbab6094d5b.png"
+              }
+            },
+            "state": "adsorb",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 246,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 256,
+              "x": 9.19,
+              "y": -36.15
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "被吸附",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/c025bc06eb0579ca5783f16394c127da.png"
+              }
+            },
+            "state": "adsorbed",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 246,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 256,
+              "x": 9.19,
+              "y": -36.15
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "组件加载完成",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/3f102fcaea7628942d34b3866cecdd0b.png"
+              }
+            },
+            "state": "compLoadFinish",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 246,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 256,
+              "x": 9.19,
+              "y": -36.15
+            }
+          }
+        ],
+        "zIndex": 17
+      },
+      "component_id": "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd",
+      "component_name": "拖拽放置区",
+      "component_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assetboundle/LDragPlace/0.1.0/LDragPlace.zip",
+      "index": 1,
+      "name": "LDragPlace",
+      "version": "0.1.0"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": true,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSprite": 1
+          },
+          "tools": {
+            "LDragPlace": {
+              "blinkCount": 3,
+              "blinkTime": 2,
+              "blinkType": "wrong",
+              "canMoveDragElement": true,
+              "checkType": "stop",
+              "hasBlink": true,
+              "itemList": [
+                "3"
+              ],
+              "numWrongWait": 2,
+              "oneOrMore": "one",
+              "oneReplace": true,
+              "placeType": "Center",
+              "placedCountLimit": true,
+              "placedMaxCount": 1,
+              "rePos": 1,
+              "showResultState": true,
+              "sort": "unseq",
+              "sortData": {
+                "paddingBottom": 0,
+                "paddingLeft": 0,
+                "paddingRight": 0,
+                "paddingTop": 0,
+                "paddingX": 0,
+                "paddingY": 0,
+                "sortType": "left-top"
+              },
+              "tag": "",
+              "typeWrong": "cur",
+              "typeWrongCount": "wrong",
+              "worngBack": true
+            }
+          },
+          "webEditorCustomInfo": {
+            "chain": "LDragPlace/LComponent/MComponent/cc.Component/cc.Object",
+            "isAnswerComponent": true,
+            "isJudgeComponent": true
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "default",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            },
+            {
+              "label": "未作答",
+              "name": "unanswerd",
+              "sys": false
+            },
+            {
+              "label": "作答中",
+              "name": "answering",
+              "sys": false
+            },
+            {
+              "label": "正确",
+              "name": "correct",
+              "sys": false
+            },
+            {
+              "label": "错误",
+              "name": "wrong",
+              "sys": false
+            }
+          ],
+          "value": [
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "default",
+              "params": {
+                "state": "default"
+              },
+              "source": "gamenext_component_uuid_a8d1a6e8-f6a8-420f-9dfe-9e9d4c39fe2a",
+              "trigger": "all_state"
+            },
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "passSuccess",
+              "params": {
+                "state": "compLoadFinish"
+              },
+              "source": "gamenext_component_uuid_a8d1a6e8-f6a8-420f-9dfe-9e9d4c39fe2a",
+              "trigger": "all_state"
+            }
+          ]
+        },
+        "id": "gamenext_component_uuid_1d0dc00d-5339-491f-8ebf-f451a50d82b0",
+        "name": "拖拽放置区3",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/3f102fcaea7628942d34b3866cecdd0b.png"
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 246,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 256,
+              "x": 425.34,
+              "y": 47.34
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "可吸附",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/f4a58eb4f6cdb05da239abbab6094d5b.png"
+              }
+            },
+            "state": "adsorb",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 246,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 256,
+              "x": 425.34,
+              "y": 47.34
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "被吸附",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/c025bc06eb0579ca5783f16394c127da.png"
+              }
+            },
+            "state": "adsorbed",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 246,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 256,
+              "x": 425.34,
+              "y": 47.34
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "组件加载完成",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/3f102fcaea7628942d34b3866cecdd0b.png"
+              }
+            },
+            "state": "compLoadFinish",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 246,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 256,
+              "x": 425.34,
+              "y": 47.34
+            }
+          }
+        ],
+        "zIndex": 18
+      },
+      "component_id": "f9b49402-f73d-11ee-b9ef-8e2f78cd4bcd",
+      "component_name": "拖拽放置区",
+      "component_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assetboundle/LDragPlace/0.1.0/LDragPlace.zip",
+      "index": 2,
+      "name": "LDragPlace",
+      "version": "0.1.0"
+    },
+    {
+      "component_data": {
+        "base": "MSpine",
+        "component_id": "",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSpine": {
+              "h": 149.27,
+              "w": 151.89
+            },
+            "MSprite": 1
+          },
+          "tools": {},
+          "webEditorCustomInfo": {
+            "chain": "",
+            "isAnswerComponent": false,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "clickDown",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "倍速",
+              "name": "onTimeScale"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": [
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "correct",
+              "params": {
+                "state": "custom-1752059780706"
+              },
+              "source": "gamenext_component_uuid_ec99d65b-18a6-4624-a02f-a9dfe32bf540",
+              "trigger": "all_event"
+            }
+          ]
+        },
+        "id": "gamenext_component_uuid_9b587015-6be1-450b-88cf-e6c884d703de",
+        "name": "语音1",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MSpine": {
+                "animation": "lan-laba2_1",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 44272,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-04-15/89f75d41b172a99be49bb968404159a3.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 149.27,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 151.89,
+              "x": -427.34,
+              "y": 21.18
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 2.7,
+              "opened": 1,
+              "to": "default",
+              "type": "countdown"
+            },
+            "label": "组件加载完成",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSpine": {
+                "animation": "lan-laba2_1",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 44272,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-04-15/89f75d41b172a99be49bb968404159a3.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "compLoadFinish",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 149.27,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 151.89,
+              "x": -427.34,
+              "y": 21.18
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 1,
+              "to": "default",
+              "type": "audioPlayFinish"
+            },
+            "label": "点击按下",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_audio",
+                "loop": false,
+                "loopNum": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2025-05-30/c0bde62c39b30542077ecd0cd307b904.mp3"
+              },
+              "MSpine": {
+                "animation": "lan-laba2",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 44272,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-04-15/89f75d41b172a99be49bb968404159a3.zip",
+                "waitAudioLoop": true
+              }
+            },
+            "state": "clickDown",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 149.27,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 151.89,
+              "x": -427.34,
+              "y": 21.18
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "自定义状态1",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSpine": {
+                "animation": "lan-laba2_1",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 44272,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-04-15/89f75d41b172a99be49bb968404159a3.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "custom-1752059780706",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 149.27,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 151.89,
+              "x": -427.34,
+              "y": 21.18
+            }
+          }
+        ],
+        "zIndex": 7
+      },
+      "component_id": "BaseComponent",
+      "component_name": "节点",
+      "component_url": "",
+      "index": 4,
+      "name": "BaseComponent",
+      "version": "0.0.0"
+    },
+    {
+      "component_data": {
+        "base": "MSpine",
+        "component_id": "",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSpine": {
+              "h": 149.27,
+              "w": 151.89
+            },
+            "MSprite": 1
+          },
+          "tools": {},
+          "webEditorCustomInfo": {
+            "chain": "",
+            "isAnswerComponent": false,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "clickDown",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "倍速",
+              "name": "onTimeScale"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": [
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "correct",
+              "params": {
+                "state": "custom-1752059817891"
+              },
+              "source": "gamenext_component_uuid_50fade51-2c0f-4ea1-9ed3-0ad0cb485290",
+              "trigger": "all_event"
+            }
+          ]
+        },
+        "id": "gamenext_component_uuid_0d256c84-ed69-4ae1-b6f3-cddc0a9d72fe",
+        "name": "语音2",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MSpine": {
+                "animation": "lan-laba2_1",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 44272,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-04-15/89f75d41b172a99be49bb968404159a3.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 149.27,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 151.89,
+              "x": 8.96,
+              "y": -41.42
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 2.7,
+              "opened": 1,
+              "to": "default",
+              "type": "countdown"
+            },
+            "label": "组件加载完成",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSpine": {
+                "animation": "lan-laba2_1",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 44272,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-04-15/89f75d41b172a99be49bb968404159a3.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "compLoadFinish",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 149.27,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 151.89,
+              "x": 8.96,
+              "y": -41.42
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 1,
+              "to": "default",
+              "type": "audioPlayFinish"
+            },
+            "label": "点击按下",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_audio",
+                "loop": false,
+                "loopNum": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2025-05-30/c0bde62c39b30542077ecd0cd307b904.mp3"
+              },
+              "MSpine": {
+                "animation": "lan-laba2",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 44272,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-04-15/89f75d41b172a99be49bb968404159a3.zip",
+                "waitAudioLoop": true
+              }
+            },
+            "state": "clickDown",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 149.27,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 151.89,
+              "x": 8.96,
+              "y": -41.42
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "自定义状态1",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSpine": {
+                "animation": "lan-laba2_1",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 44272,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-04-15/89f75d41b172a99be49bb968404159a3.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "custom-1752059817891",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 149.27,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 151.89,
+              "x": 8.96,
+              "y": -41.42
+            }
+          }
+        ],
+        "zIndex": 22
+      },
+      "component_id": "BaseComponent",
+      "component_name": "节点",
+      "component_url": "",
+      "index": 9,
+      "name": "BaseComponent",
+      "version": "0.0.0"
+    },
+    {
+      "component_data": {
+        "base": "MSpine",
+        "component_id": "",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSpine": {
+              "h": 149.27,
+              "w": 151.89
+            },
+            "MSprite": 1
+          },
+          "tools": {},
+          "webEditorCustomInfo": {
+            "chain": "",
+            "isAnswerComponent": false,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "clickDown",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "倍速",
+              "name": "onTimeScale"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": [
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "correct",
+              "params": {
+                "state": "custom-1752059836011"
+              },
+              "source": "gamenext_component_uuid_1d0dc00d-5339-491f-8ebf-f451a50d82b0",
+              "trigger": "all_event"
+            }
+          ]
+        },
+        "id": "gamenext_component_uuid_8765ac59-8d6b-47d7-a2ba-a37127aa0cff",
+        "name": "语音3",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MSpine": {
+                "animation": "lan-laba2_1",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 44272,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-04-15/89f75d41b172a99be49bb968404159a3.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 149.27,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 151.89,
+              "x": 423,
+              "y": 44
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 2.7,
+              "opened": 1,
+              "to": "default",
+              "type": "countdown"
+            },
+            "label": "组件加载完成",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSpine": {
+                "animation": "lan-laba2_1",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 44272,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-04-15/89f75d41b172a99be49bb968404159a3.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "compLoadFinish",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 149.27,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 151.89,
+              "x": 423,
+              "y": 44
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 1,
+              "to": "default",
+              "type": "audioPlayFinish"
+            },
+            "label": "点击按下",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_audio",
+                "loop": false,
+                "loopNum": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2025-05-30/c0bde62c39b30542077ecd0cd307b904.mp3"
+              },
+              "MSpine": {
+                "animation": "lan-laba2",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 44272,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-04-15/89f75d41b172a99be49bb968404159a3.zip",
+                "waitAudioLoop": true
+              }
+            },
+            "state": "clickDown",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 149.27,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 151.89,
+              "x": 423,
+              "y": 44
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "自定义状态1",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MSpine": {
+                "animation": "lan-laba2_1",
+                "opacity": false,
+                "playTime": 1,
+                "spineId": 44272,
+                "timeScale": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/spine/136920/2025-04-15/89f75d41b172a99be49bb968404159a3.zip",
+                "waitAudioLoop": false
+              }
+            },
+            "state": "custom-1752059836011",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 149.27,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 151.89,
+              "x": 423,
+              "y": 44
+            }
+          }
+        ],
+        "zIndex": 22
+      },
+      "component_id": "BaseComponent",
+      "component_name": "节点",
+      "component_url": "",
+      "index": 10,
+      "name": "BaseComponent",
+      "version": "0.0.0"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MAudio": 1,
+            "MSprite": 1
+          },
+          "tools": {
+            "MDraggable": {
+              "layerRule": "history",
+              "matched": [],
+              "matcher": [],
+              "placeType": "Target",
+              "reuse": false,
+              "tag": "1"
+            }
+          },
+          "webEditorCustomInfo": {
+            "chain": "MDraggable/MComponent/cc.Component/cc.Object",
+            "isAnswerComponent": true,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "placed",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": []
+        },
+        "id": "gamenext_component_uuid_5ebbd23a-96b6-4556-809b-1ba14d5bf71f",
+        "name": "选项1",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/ae8fd3050aa41b4740da26c75ba90357.png"
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 289,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 300,
+              "x": -509.93,
+              "y": -392.46
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "拖拽中",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2025-07-11/580e8a966b116d9aec90297bce250b25.mp3"
+              },
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/ae8fd3050aa41b4740da26c75ba90357.png"
+              }
+            },
+            "state": "dragging",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 289,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 300,
+              "x": -509.93,
+              "y": -392.46
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "放置",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2025-07-11/7062444ca5f47a72808cea2f556cbfa3.mp3"
+              },
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/ae8fd3050aa41b4740da26c75ba90357.png"
+              }
+            },
+            "state": "placed",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 248.54,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 258,
+              "x": -509.93,
+              "y": -392.46
+            }
+          }
+        ],
+        "zIndex": 4
+      },
+      "component_id": "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd",
+      "component_name": "拖拽物品",
+      "component_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assetboundle/MDraggbale/0.0.8/MDraggbale.zip",
+      "index": 0,
+      "name": "MDraggbale",
+      "version": "0.0.8"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MAudio": 1,
+            "MSprite": 1
+          },
+          "tools": {
+            "MDraggable": {
+              "layerRule": "history",
+              "matched": [],
+              "matcher": [],
+              "placeType": "Target",
+              "reuse": false,
+              "tag": "2"
+            }
+          },
+          "webEditorCustomInfo": {
+            "chain": "MDraggable/MComponent/cc.Component/cc.Object",
+            "isAnswerComponent": true,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "placed",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": []
+        },
+        "id": "gamenext_component_uuid_d249ab26-85d1-4fa3-8c7f-dda3237fe605",
+        "name": "选项2",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/ae8fd3050aa41b4740da26c75ba90357.png"
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 289,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 300,
+              "x": 1.3,
+              "y": -393.46
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "拖拽中",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2025-07-11/580e8a966b116d9aec90297bce250b25.mp3"
+              },
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/ae8fd3050aa41b4740da26c75ba90357.png"
+              }
+            },
+            "state": "dragging",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 289,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 300,
+              "x": 1.3,
+              "y": -393.46
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "放置",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2025-07-11/7062444ca5f47a72808cea2f556cbfa3.mp3"
+              },
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/ae8fd3050aa41b4740da26c75ba90357.png"
+              }
+            },
+            "state": "placed",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 248.54,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 258,
+              "x": 1.3,
+              "y": -393.46
+            }
+          }
+        ],
+        "zIndex": 10
+      },
+      "component_id": "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd",
+      "component_name": "拖拽物品",
+      "component_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assetboundle/MDraggbale/0.0.8/MDraggbale.zip",
+      "index": 1,
+      "name": "MDraggbale",
+      "version": "0.0.8"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MAudio": 1,
+            "MSprite": 1
+          },
+          "tools": {
+            "MDraggable": {
+              "layerRule": "history",
+              "matched": [],
+              "matcher": [],
+              "placeType": "Target",
+              "reuse": false,
+              "tag": "3"
+            }
+          },
+          "webEditorCustomInfo": {
+            "chain": "MDraggable/MComponent/cc.Component/cc.Object",
+            "isAnswerComponent": true,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "placed",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": []
+        },
+        "id": "gamenext_component_uuid_117b0460-f8f8-46e9-b777-a664c932a67b",
+        "name": "选项3",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/ae8fd3050aa41b4740da26c75ba90357.png"
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 289,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 300,
+              "x": 514.79,
+              "y": -391.46
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "拖拽中",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2025-07-11/580e8a966b116d9aec90297bce250b25.mp3"
+              },
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/ae8fd3050aa41b4740da26c75ba90357.png"
+              }
+            },
+            "state": "dragging",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 289,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 300,
+              "x": 514.79,
+              "y": -391.46
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "放置",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/345733/2025-07-11/7062444ca5f47a72808cea2f556cbfa3.mp3"
+              },
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/ae8fd3050aa41b4740da26c75ba90357.png"
+              }
+            },
+            "state": "placed",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 248.54,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 258,
+              "x": 514.79,
+              "y": -391.46
+            }
+          }
+        ],
+        "zIndex": 13
+      },
+      "component_id": "d8b73bec-f719-11ee-b9ef-8e2f78cd4bcd",
+      "component_name": "拖拽物品",
+      "component_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assetboundle/MDraggbale/0.0.8/MDraggbale.zip",
+      "index": 2,
+      "name": "MDraggbale",
+      "version": "0.0.8"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSprite": 1
+          },
+          "tools": {},
+          "webEditorCustomInfo": {
+            "chain": "",
+            "isAnswerComponent": false,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "custom-1752047387496",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": [
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "dragging",
+              "params": {
+                "state": "custom-1752047387496"
+              },
+              "source": "gamenext_component_uuid_5ebbd23a-96b6-4556-809b-1ba14d5bf71f",
+              "trigger": "all_state"
+            },
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "default",
+              "params": {
+                "state": "default"
+              },
+              "source": "gamenext_component_uuid_5ebbd23a-96b6-4556-809b-1ba14d5bf71f",
+              "trigger": "all_state"
+            }
+          ]
+        },
+        "id": "gamenext_component_uuid_1981efc6-8b55-42ed-8650-e5f593db1dde",
+        "name": "水波1",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/390ce720bf67bbeb0ec7edf24a6ef92d.png"
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 81,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 365,
+              "x": -509.85,
+              "y": -514.57
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "自定义状态1",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/390ce720bf67bbeb0ec7edf24a6ef92d.png"
+              }
+            },
+            "state": "custom-1752047387496",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 81,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 365,
+              "x": -509.85,
+              "y": -514.57
+            }
+          }
+        ],
+        "zIndex": 5
+      },
+      "component_id": "BaseComponent",
+      "component_name": "节点",
+      "component_url": "",
+      "index": 2,
+      "name": "BaseComponent",
+      "version": "0.0.0"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSprite": 1
+          },
+          "tools": {},
+          "webEditorCustomInfo": {
+            "chain": "",
+            "isAnswerComponent": false,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "custom-1752047387496",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": [
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "dragging",
+              "params": {
+                "state": "custom-1752047387496"
+              },
+              "source": "gamenext_component_uuid_d249ab26-85d1-4fa3-8c7f-dda3237fe605",
+              "trigger": "all_state"
+            },
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "default",
+              "params": {
+                "state": "default"
+              },
+              "source": "gamenext_component_uuid_d249ab26-85d1-4fa3-8c7f-dda3237fe605",
+              "trigger": "all_state"
+            }
+          ]
+        },
+        "id": "gamenext_component_uuid_52b62a0c-21e7-43a5-9978-b8acad8f6262",
+        "name": "水波2",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/390ce720bf67bbeb0ec7edf24a6ef92d.png"
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 81,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 365,
+              "x": 2.97,
+              "y": -515.57
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "自定义状态1",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/390ce720bf67bbeb0ec7edf24a6ef92d.png"
+              }
+            },
+            "state": "custom-1752047387496",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 81,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 365,
+              "x": 2.97,
+              "y": -515.57
+            }
+          }
+        ],
+        "zIndex": 9
+      },
+      "component_id": "BaseComponent",
+      "component_name": "节点",
+      "component_url": "",
+      "index": 5,
+      "name": "BaseComponent",
+      "version": "0.0.0"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSprite": 1
+          },
+          "tools": {},
+          "webEditorCustomInfo": {
+            "chain": "",
+            "isAnswerComponent": false,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "custom-1752047387496",
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": [
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "dragging",
+              "params": {
+                "state": "custom-1752047387496"
+              },
+              "source": "gamenext_component_uuid_117b0460-f8f8-46e9-b777-a664c932a67b",
+              "trigger": "all_state"
+            },
+            {
+              "action": "changeState",
+              "collapsed": false,
+              "event": "default",
+              "params": {
+                "state": "default"
+              },
+              "source": "gamenext_component_uuid_117b0460-f8f8-46e9-b777-a664c932a67b",
+              "trigger": "all_state"
+            }
+          ]
+        },
+        "id": "gamenext_component_uuid_83391daa-09cc-4a3e-8c47-4494d18d1b02",
+        "name": "水波3",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/390ce720bf67bbeb0ec7edf24a6ef92d.png"
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 81,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 365,
+              "x": 514.15,
+              "y": -513.57
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "自定义状态1",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/345733/2025-07-09/390ce720bf67bbeb0ec7edf24a6ef92d.png"
+              }
+            },
+            "state": "custom-1752047387496",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 81,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 365,
+              "x": 514.15,
+              "y": -513.57
+            }
+          }
+        ],
+        "zIndex": 12
+      },
+      "component_id": "BaseComponent",
+      "component_name": "节点",
+      "component_url": "",
+      "index": 6,
+      "name": "BaseComponent",
+      "version": "0.0.0"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "28545aa7-45e5-11f0-9eb3-22a96242b3de",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSprite": 2
+          },
+          "tools": {
+            "LevelNumber": {
+              "subjectConfig": {
+                "subjectChoose": "ks"
+              }
+            }
+          },
+          "webEditorCustomInfo": {
+            "chain": "",
+            "isAnswerComponent": false,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "default",
+          "isLvNumComponent": true,
+          "lock": true
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": []
+        },
+        "id": "gamenext_component_uuid_97125d0f-54f3-4cf4-9451-0ba33e14e654",
+        "name": "关卡数组件",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": false,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MRichText": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "colorLeft": "#FF8600",
+                "colorRight": "#7B7D8F",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 50,
+                "interval": [
+                  10,
+                  0,
+                  0,
+                  -100,
+                  0
+                ],
+                "value": "10/20"
+              },
+              "MSprite": {
+                "key": "2",
+                "value": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0025307/2025-06-23/86383fe6868d3c5f95e786199dd6af82.png"
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 139,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 322,
+              "x": 742.8,
+              "y": 485.54
+            }
+          }
+        ],
+        "zIndex": 23
+      },
+      "component_id": "28545aa7-45e5-11f0-9eb3-22a96242b3de",
+      "component_name": "关卡数组件",
+      "component_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assetboundle/LevelNumber/0.0.2/LevelNumber.zip",
+      "index": 0,
+      "name": "LevelNumber",
+      "version": "0.0.2"
+    },
+    {
+      "component_data": {
+        "base": "MSprite",
+        "component_id": "",
+        "components": {
+          "judgeRules": {
+            "forbidIfCorrect": false,
+            "inAnswerPool": true
+          },
+          "lockState": {
+            "componentId": "",
+            "componentName": "",
+            "componentState": "",
+            "state": false
+          },
+          "source": {
+            "MSprite": 1
+          },
+          "tools": {},
+          "webEditorCustomInfo": {
+            "chain": "",
+            "isAnswerComponent": false,
+            "isJudgeComponent": false
+          }
+        },
+        "custom": [],
+        "edit": {
+          "baseNotChange": false,
+          "curState": "level_wrong",
+          "lock": false
+        },
+        "edit_description": "",
+        "event": {
+          "dispatchFunList": [
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "显示",
+              "name": "onShow"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "隐藏",
+              "name": "onHide"
+            },
+            {
+              "allowEventName": [
+                "all"
+              ],
+              "label": "旋转",
+              "name": "onRotated"
+            }
+          ],
+          "eventMap": [
+            {
+              "label": "点击",
+              "name": "click",
+              "sys": false
+            }
+          ],
+          "value": []
+        },
+        "id": "gamenext_component_uuid_6f6aca96-7dd9-4ed3-aef3-89c23973c0a0",
+        "name": "节点",
+        "state_group": [],
+        "states": [
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "hide"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 0,
+              "opened": 0,
+              "to": "",
+              "type": ""
+            },
+            "label": "默认",
+            "notDelete": false,
+            "source": {
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": ""
+              }
+            },
+            "state": "default",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 373.31,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 1662.48,
+              "x": -37.16,
+              "y": -382.71
+            }
+          },
+          {
+            "active": {
+              "canEdit": true,
+              "switch": true,
+              "value": "show"
+            },
+            "groupKey": "",
+            "jump": {
+              "canEdit": true,
+              "duration": 2,
+              "opened": 1,
+              "to": "default",
+              "type": "countdown"
+            },
+            "label": "全局错误",
+            "notDelete": false,
+            "source": {
+              "MAudio": {
+                "audioType": "play_effect_1",
+                "loop": false,
+                "loopNum": 1,
+                "value": ""
+              },
+              "MLabel": {
+                "alignType": "center",
+                "closeable": true,
+                "color": "#000000",
+                "fontFamily": "FZCuYuan-M03S",
+                "fontSize": 32,
+                "interval": [
+                  0,
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "isBold": false,
+                "isItalic": false,
+                "isUnderline": false,
+                "value": ""
+              },
+              "MSprite": {
+                "key": "",
+                "value": ""
+              }
+            },
+            "state": "level_wrong",
+            "transform": {
+              "anchorX": 0.5,
+              "anchorY": 0.5,
+              "editRot": false,
+              "h": 373.31,
+              "rot": 0,
+              "scaleX": 1,
+              "scaleY": 1,
+              "w": 1662.48,
+              "x": -37.16,
+              "y": -382.71
+            }
+          }
+        ],
+        "zIndex": 18
+      },
+      "component_id": "BaseComponent",
+      "component_name": "节点",
+      "component_url": "",
+      "index": 11,
+      "name": "BaseComponent",
+      "version": "0.0.0"
+    }
+  ],
+  "id": "gamenext_level_uuid_55ead01e-d223-460b-8731-cc9c1997e98e",
+  "levelData": {
+    "autoNextLevel": {
+      "auto": true,
+      "wait": 3
+    },
+    "autoStopLevel": {
+      "auto": false,
+      "errorCount": 1,
+      "wait": 0
+    },
+    "errorLimit": {
+      "allowErrorCount": 0
+    },
+    "failAutoReset": {
+      "auto": false,
+      "wait": 0
+    },
+    "judge": {
+      "autoJudge": 1,
+      "judgeRule": 0
+    },
+    "selectionComponent": {
+      "enabled": false,
+      "repelCount": 0,
+      "selections": []
+    },
+    "uiConfig": {}
+  },
+  "title": {
+    "component_data": {},
+    "component_id": "",
+    "component_url": ""
+  },
+  "transition": {
+    "component_data": {
+      "base": "MSprite",
+      "component_id": "c0d68b01-9045-11ef-b825-e6dfda1bc362",
+      "components": {
+        "judgeRules": {
+          "forbidIfCorrect": false,
+          "inAnswerPool": true
+        },
+        "lockState": {
+          "componentId": "",
+          "componentName": "",
+          "componentState": "",
+          "state": false
+        },
+        "source": {
+          "MSprite": 1
+        },
+        "tools": {}
+      },
+      "custom": [],
+      "edit": {
+        "baseNotChange": false,
+        "curState": "default",
+        "lock": true
+      },
+      "edit_description": "",
+      "event": {
+        "dispatchFunList": [],
+        "eventMap": [],
+        "value": []
+      },
+      "id": "gamenext_component_uuid_676dd0bd-47a3-4b20-bbcc-7e591c31866f",
+      "name": "通用转场2",
+      "state_group": [],
+      "states": [],
+      "zIndex": 0
+    },
+    "component_id": "c0d68b01-9045-11ef-b825-e6dfda1bc362",
+    "component_name": "通用转场2",
+    "component_url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assetboundle/Transition_2/0.0.1/Transition_2.zip",
+    "name": "Transition_2",
+    "version": "0.0.1"
+  },
+  "video": {
+    "component_data": {
+      "id": "",
+      "name": "过场视频",
+      "value": ""
+    },
+    "component_id": ""
+  }
+}

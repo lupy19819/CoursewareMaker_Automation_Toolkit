@@ -12,54 +12,54 @@
         "requires_sheet": true,
         "supports_resource_filter": "sheet",
         "command": ["python", "scripts/build_sj6_monster_config.py", "--xlsx", "{xlsx}", "--sheet", "{sheet}", "--resources", "{filtered_resources}", "--template", "reference_configs/monster/贪吃_reference_clean.json", "--output", "{config}", "--meta", "{meta}"],
-        "validator": ["python", "scripts/validate_monster_config.py", "{config}", "--meta", "{meta}", "--reference", "reference_configs/monster/贪吃_reference_clean.json"]
+        "validator": ["python", "scripts/validate_monster_workflow.py", "{config}", "--meta", "{meta}", "--reference", "reference_configs/monster/贪吃_reference_clean.json", "--reference-index", "reference_configs/level_references/index.json", "--reference-policy", "warn"]
       },
       "road_adventure": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
-        "requires_template": true,
+        "default_template": "reference_configs/road_adventure_ref.json",
         "command": ["python", "scripts/generate_guoji_l2_shu4_road.py", "--input", "{input}", "--template", "{template}", "--output", "{config}", "--meta", "{meta}"],
-        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "road_adventure", "--input", "{input}", "--meta", "{meta}"]
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "road_adventure", "--input", "{input}", "--meta", "{meta}", "--reference-index", "reference_configs/level_references/index.json", "--reference-policy", "require"]
       },
       "bridge": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
         "default_template": "reference_configs/guoqiao_ref.json",
         "command": ["python", "scripts/generate_guoqiao_shu2.py", "--input", "{input}", "--template", "{template}", "--output", "{config}", "--meta", "{meta}"],
-        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "bridge", "--input", "{input}", "--meta", "{meta}"]
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "bridge", "--input", "{input}", "--meta", "{meta}", "--reference-index", "reference_configs/level_references/index.json", "--reference-policy", "warn"]
       },
       "amusement_park": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
         "default_template": "reference_configs/kaixin_autumn8_starter_ref.json",
         "command": ["python", "scripts/generate_kaixin_shu2.py", "--input", "{input}", "--template", "{template}", "--output", "{config}", "--meta", "{meta}"],
-        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "amusement_park", "--input", "{input}", "--meta", "{meta}"]
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "amusement_park", "--input", "{input}", "--meta", "{meta}", "--reference-index", "reference_configs/level_references/index.json", "--reference-policy", "warn"]
       },
       "spelling": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
         "command": ["python", "scripts/generate_spelling_config.py", "--input", "{input}", "--output", "{config}", "--meta", "{meta}"],
-        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "spelling", "--input", "{input}", "--meta", "{meta}"]
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "spelling", "--input", "{input}", "--meta", "{meta}", "--reference-index", "reference_configs/level_references/index.json", "--reference-policy", "require"]
       },
       "magic_spelling": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
         "command": ["python", "scripts/generate_mofappl_config.py", "--input", "{input}", "--output", "{config}", "--meta", "{meta}"],
-        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "magic_spelling", "--input", "{input}", "--meta", "{meta}"]
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "magic_spelling", "--input", "{input}", "--meta", "{meta}", "--reference-index", "reference_configs/level_references/index.json", "--reference-policy", "warn"]
       },
       "fanboat": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
         "requires_options": true,
         "command": ["python", "scripts/build_reading_config.py", "--type", "fanboat", "--options", "{options}", "--input", "{input}", "--output", "{config}"],
-        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "fanboat", "--input", "{input}"]
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "fanboat", "--input", "{input}", "--reference-index", "reference_configs/level_references/index.json", "--reference-policy", "require"]
       },
       "train": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
         "requires_options": true,
         "command": ["python", "scripts/build_reading_config.py", "--type", "train", "--options", "{options}", "--input", "{input}", "--output", "{config}"],
-        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "train", "--input", "{input}"]
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "train", "--input", "{input}", "--reference-index", "reference_configs/level_references/index.json", "--reference-policy", "require"]
       }
     },
     "yundong_pk": {
@@ -90,7 +90,7 @@
         "input_format": "json",
         "supports_resource_filter": "none",
         "command": ["python", "standard_question_toolkit/scripts/generate_standard_component_config.py", "--input", "{input}", "--output", "{config}", "--meta", "{meta}"],
-        "validator": ["node", "scripts/validate_config.js", "--file", "{config}"]
+        "validator": ["python", "standard_question_toolkit/scripts/validate_standard_component_config.py", "{config}"]
       }
     }
   }

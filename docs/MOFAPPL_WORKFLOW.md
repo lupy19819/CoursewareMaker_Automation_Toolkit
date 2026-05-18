@@ -27,7 +27,7 @@
 |---|---|
 | 题目 JSON | `--input <题目.json>`，含句子、音频、槽位、选项、固定文本结构 |
 | 校验基准 | `reference_configs/spelling_validation_ref.json`（只作参考结构/资源校验，不作为正式题目来源） |
-| 结构参考 | `output/mofappl_configs/77cb396a-babd-11f0-885a-ba4dce53cceb.json`（5槽模板） |
+| 结构参考 | `reference_configs/mofappl_configs/77cb396a-babd-11f0-885a-ba4dce53cceb.json`（5槽模板，已纳入 git 固定参考） |
 
 ---
 

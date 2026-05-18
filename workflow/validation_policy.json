@@ -74,8 +74,8 @@
       },
       "subtype_validators": {
         "monster": {
-          "rules_validator": ["scripts/validate_monster_config.py <config.json> --meta <build-meta.json>"],
-          "reference_invariants": ["reference_configs/monster/贪吃_reference_clean.json"],
+          "rules_validator": ["scripts/validate_monster_workflow.py <config.json> --meta <build-meta.json> --reference-policy warn"],
+          "reference_invariants": ["reference_configs/monster/贪吃_reference_clean.json", "reference_configs/level_references/index.json per-level profile (warn until all real monster variants are covered)"],
           "fixture_regression": "validation_fixtures/template_game/monster/"
         },
         "spelling": {
@@ -84,33 +84,33 @@
           "fixture_regression": "validation_fixtures/template_game/spelling/"
         },
         "magic_spelling": {
-          "rules_validator": ["scripts/generate_mofappl_config.py input validation", "scripts/validate_template_game_config.py --subtype magic_spelling"],
-          "reference_invariants": ["output/mofappl_configs/<槽数模板>.json"],
+          "rules_validator": ["scripts/generate_mofappl_config.py input validation", "scripts/validate_template_game_config.py --subtype magic_spelling --reference-index reference_configs/level_references/index.json --reference-policy warn"],
+          "reference_invariants": ["reference_configs/mofappl_configs/<槽数模板>.json", "reference_configs/level_references/index.json per-level profile (warn until all real generated variants are covered)"],
           "fixture_regression": "validation_fixtures/template_game/magic_spelling/"
         },
         "road_adventure": {
-          "rules_validator": ["scripts/generate_guoji_l2_shu4_road.py input validation", "scripts/validate_template_game_config.py --subtype road_adventure"],
-          "reference_invariants": ["<任务单锁定的公路大冒险参考配置.json>"],
+          "rules_validator": ["scripts/generate_guoji_l2_shu4_road.py input validation", "scripts/validate_template_game_config.py --subtype road_adventure --reference-index reference_configs/level_references/index.json --reference-policy require"],
+          "reference_invariants": ["reference_configs/road_adventure_ref.json", "reference_configs/level_references/index.json per-level profile"],
           "fixture_regression": "validation_fixtures/template_game/road_adventure/"
         },
         "bridge": {
-          "rules_validator": ["scripts/generate_guoqiao_shu2.py input validation", "scripts/validate_template_game_config.py --subtype bridge"],
-          "reference_invariants": ["<任务单锁定的过桥大冒险参考配置.json>"],
+          "rules_validator": ["scripts/generate_guoqiao_shu2.py input validation", "scripts/validate_template_game_config.py --subtype bridge --reference-index reference_configs/level_references/index.json --reference-policy warn"],
+          "reference_invariants": ["<任务单锁定的过桥大冒险参考配置.json>", "reference_configs/level_references/index.json per-level profile (warn until all slot/format variants are covered)"],
           "fixture_regression": "validation_fixtures/template_game/bridge/"
         },
         "amusement_park": {
-          "rules_validator": ["scripts/generate_kaixin_shu2.py input validation", "scripts/validate_template_game_config.py --subtype amusement_park"],
-          "reference_invariants": ["<任务单锁定的开心游乐园参考配置.json>"],
+          "rules_validator": ["scripts/generate_kaixin_shu2.py input validation", "scripts/validate_template_game_config.py --subtype amusement_park --reference-index reference_configs/level_references/index.json --reference-policy warn"],
+          "reference_invariants": ["<任务单锁定的开心游乐园参考配置.json>", "reference_configs/level_references/index.json per-level profile (warn until all slot/format variants are covered)"],
           "fixture_regression": "validation_fixtures/template_game/amusement_park/"
         },
         "fanboat": {
-          "rules_validator": ["scripts/build_reading_config.py --type fanboat internal validation", "scripts/validate_template_game_config.py --subtype fanboat"],
-          "reference_invariants": ["output/fanboat_configs_all/index.json + selected reference config"],
+          "rules_validator": ["scripts/build_reading_config.py --type fanboat internal validation", "scripts/validate_template_game_config.py --subtype fanboat --reference-index reference_configs/level_references/index.json --reference-policy require"],
+          "reference_invariants": ["reference_configs/reading/fanboat_configs_all/index.json + selected reference config", "reference_configs/level_references/index.json per-level profile"],
           "fixture_regression": "validation_fixtures/template_game/fanboat/"
         },
         "train": {
-          "rules_validator": ["scripts/build_reading_config.py --type train internal validation", "scripts/validate_template_game_config.py --subtype train"],
-          "reference_invariants": ["output/train_configs_all/index.json + selected reference config"],
+          "rules_validator": ["scripts/build_reading_config.py --type train internal validation", "scripts/validate_template_game_config.py --subtype train --reference-index reference_configs/level_references/index.json --reference-policy require"],
+          "reference_invariants": ["reference_configs/reading/train_configs_all/index.json + selected reference config", "reference_configs/level_references/index.json per-level profile"],
           "fixture_regression": "validation_fixtures/template_game/train/"
         }
       },
@@ -119,15 +119,16 @@
     "standard_component": {
       "required_shape": "game",
       "main_workflow_layers": ["rules_validator", "reference_invariants", "fixture_regression", "roundtrip_compare", "preview"],
-      "validators": ["scripts/validate_config.js"],
-      "rules_validator": ["node scripts/validate_config.js --file <config.json>"],
+      "validators": ["standard_question_toolkit/scripts/validate_standard_component_config.py", "scripts/validate_config.js"],
+      "rules_validator": ["python standard_question_toolkit/scripts/validate_standard_component_config.py <config.json>"],
       "reference_invariants": ["standard_question_toolkit/data/courseware_workflow_rules.json", "standard_question_toolkit/templates/<template>.json"],
       "fixture_regression": {
         "required": false,
         "path": "validation_fixtures/standard_component/<choice|fill_compute|drag>/",
         "status": "missing_or_partial"
       },
-      "must_check": ["layout_constants", "component_ids", "skin_resources", "question_text", "answer_relations", "roundtrip_compare", "preview"]
+      "must_check": ["component_ids", "question_text", "answer_relations", "roundtrip_compare", "preview"],
+      "advanced_diagnostic": "node scripts/validate_config.js --file <config.json> checks layout_constants and skin_resources when a stable skin baseline is locked"
     }
   }
 }

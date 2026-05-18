@@ -153,9 +153,10 @@ def set_label_value(component, value):
 def is_stem_text_component(component):
     cd = component.get("component_data", {})
     name = cd.get("name", "")
-    if not any(keyword in name for keyword in ("题干", "题目", "文本", "问题")):
+    has_label = any("MLabel" in state.get("source", {}) for state in cd.get("states", []))
+    if not has_label:
         return False
-    return any("MLabel" in state.get("source", {}) for state in cd.get("states", []))
+    return any(keyword in name for keyword in ("题干", "题目", "文本", "问题")) or name == "节点"
 
 
 def replace_level(level_data, audio_ref, options):
@@ -228,7 +229,7 @@ def replace_level(level_data, audio_ref, options):
 def main():
     parser = argparse.ArgumentParser(description="公路大冒险配置生成脚本")
     parser.add_argument("--input", help="动态题目 JSON。题目相关音频/选项/正确项必须从这里读取")
-    parser.add_argument("--template", default=str(BASE_DIR / "output/road_adventure_configs/9248a803-3136-11f0-a334-fa29dffefa84.json"), help="模板/参考配置 JSON")
+    parser.add_argument("--template", default=str(BASE_DIR / "reference_configs/road_adventure_ref.json"), help="模板/参考配置 JSON")
     parser.add_argument("--output", default=str(BASE_DIR / "output/国际level2公路大冒险暑4_config.json"), help="输出配置 JSON")
     parser.add_argument("--meta", help="输出 build meta JSON")
     args = parser.parse_args()

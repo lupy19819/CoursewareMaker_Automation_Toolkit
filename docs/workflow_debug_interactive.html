@@ -577,12 +577,12 @@
         summary: "保存前闸门。先按 game_family 分流，失败先修生成脚本、资源映射、参考配置或 baseline。",
         rules: [
           "运动PK：可用 validate_config.js 的 custom_game 分支，并可再跑 validate_yundong_pk_config.py。",
-          "标准组件化题：统一执行器当前只接受已有 game[] 配置或 CoursewareMaker detail wrapper，再使用 validate_config.js 读取 workflow rules 中的 standard_choice/fill/drag baseline 校验。",
-          "模板游戏：不能直接套标准组件化 baseline；必须按具体模板做专项规则校验、validate_template_game_config.py、参考配置不变量检查、保存后回读和预览。",
+          "标准组件化题：统一执行器当前只接受已有 game[] 配置或 CoursewareMaker detail wrapper，主流程使用 validate_standard_component_config.py 做稳定结构校验；锁定具体皮肤 baseline 后再用 validate_config.js 做高级诊断。",
+          "模板游戏：不能直接套标准组件化 baseline；必须按具体模板做专项规则校验、validate_template_game_config.py、参考配置不变量、关卡级 profile、保存后回读和预览。",
           "执行前先跑 audit_workflow.py，缺 adapter、缺模板、缺 validator 会直接阻断，避免弱模型继续猜。",
           "所有类型都必须检查 configuration 是对象，不是字符串；保存后 GET 回读并与本地配置规范化比对。"
         ],
-        scripts: [["workflow/audit_workflow.py", "执行前静态审计"], ["workflow/game_input_schemas.json", "每游戏输入契约"], ["scripts/validate_config.js", "运动PK/标准组件化"], ["scripts/validate_template_game_config.py", "模板游戏通用规则"], ["scripts/validate_yundong_pk_config.py", "运动PK专项"], ["scripts/validate_monster_config.py", "怪兽专项"], ["docs/WORKFLOW_DEBUG_FLOWCHART.md", "模板校验矩阵"]],
+        scripts: [["workflow/audit_workflow.py", "执行前静态审计"], ["workflow/game_input_schemas.json", "每游戏输入契约"], ["standard_question_toolkit/scripts/validate_standard_component_config.py", "标准组件化主流程"], ["scripts/validate_config.js", "运动PK/高级诊断"], ["scripts/validate_template_game_config.py", "模板游戏通用规则"], ["scripts/build_reference_level_index.py", "关卡级参考库"], ["scripts/validate_yundong_pk_config.py", "运动PK专项"], ["scripts/validate_monster_config.py", "怪兽专项"], ["docs/WORKFLOW_DEBUG_FLOWCHART.md", "模板校验矩阵"]],
         faults: ["custom_game 和 game 混用是最高频问题。", "模板游戏被误套标准拖拽 baseline 会出现大量假阳性错误。"]
       },
       create: {
@@ -679,7 +679,7 @@
           "多数模板游戏从参考配置 deepcopy 完整关卡，只替换题干、音频、图片、选项、正确项。",
           "保持 components[] 原顺序，它决定实际渲染层级。",
           "单词拼拼乐虽然有独立 slot/space/fixed 规则，但一级分类仍归入模板游戏。",
-          "模板校验四层：基础结构、参考配置不变量、模板专项规则、保存后回读和预览。",
+          "模板校验五层：基础结构、参考配置不变量、关卡级 profile、模板专项规则、保存后回读和预览；关卡级 profile 会记录槽位数、题干文字/音频/配图、选项文字/音频/图片。",
           "模板游戏虽然是 game 结构，但不得直接按标准组件化题的选择/填空/拖拽 baseline 校验。"
         ],
         scripts: [["docs/公路大冒险_工作流.md", "公路大冒险"], ["docs/开心游乐园_动态生成工作流.md", "开心游乐园"], ["docs/过桥大冒险_动态生成工作流.md", "过桥大冒险"], ["scripts/build_reading_config.py", "阅读小帆船/阅读小火车"], ["scripts/validate_monster_config.py", "贪吃小怪兽校验"], ["scripts/generate_spelling_config.py", "单词拼拼乐"], ["docs/MOFAPPL_WORKFLOW.md", "魔法拼拼乐"]],
@@ -697,7 +697,7 @@
         title: "B2 阅读小帆船",
         summary: "模板游戏。与阅读小火车共用生成脚本，通过 type 区分。",
         rules: ["根结构是 game。", "使用 fanboat 参考配置索引。", "选项 tag 与参考配置保持一致，组件顺序来自 deepcopy。"],
-        params: ["目的：基于小帆船参考配置生成拖拽匹配类阅读题，保留船体、放置区、拖拽组件和音频按钮结构。", "调用：python3 scripts/build_reading_config.py --type fanboat --options 3|4 --input question.json --output output/fanboat_configs/xxx.json。", "参数 --type=fanboat：决定读取 output/fanboat_configs_all/index.json，并使用小帆船组件命名和音频状态规则。", "参数 --options：必须是 2/3/4；脚本用它检查 slots 数量、拖拽选项数量和放置区数量。", "输入 question.json：slots 数组按放置区顺序排列，每项含 topic_audio、option_image、drag_audio；answers 用放置区序号映射正确 tag。", "tag 规则：fanboat 4选项为 a/b/c/d，fanboat 3选项为 1/2/3；脚本按 tag 排序 MDraggable。", "基准选择：优先用 BASE_GAME_NAMES 找指定参考游戏；找不到时回退扫描 index 中拖拽数量匹配的配置。", "替换逻辑：拖拽物品默认/拖拽中/放置三态图片都写 option_image；拖拽中/放置音效写 drag_audio；题干语音写“点击按下”状态 MAudio。", "正确项逻辑：按 answers 更新每个 LDragPlace 的 itemList。", "输出与校验：输出指定 JSON；脚本内部 validate_config 会检查拖拽数、放置区数、tag 和音频是否完整。"],
+        params: ["目的：基于小帆船参考配置生成拖拽匹配类阅读题，保留船体、放置区、拖拽组件和音频按钮结构。", "调用：python3 scripts/build_reading_config.py --type fanboat --options 3|4 --input question.json --output output/fanboat_configs/xxx.json。", "参数 --type=fanboat：决定读取 reference_configs/reading/fanboat_configs_all/index.json，并使用小帆船组件命名和音频状态规则。", "参数 --options：必须是 2/3/4；脚本用它检查 slots 数量、拖拽选项数量和放置区数量。", "输入 question.json：slots 数组按放置区顺序排列，每项含 topic_audio、option_image、drag_audio；answers 用放置区序号映射正确 tag。", "tag 规则：fanboat 4选项为 a/b/c/d，fanboat 3选项为 1/2/3；脚本按 tag 排序 MDraggable。", "基准选择：优先用 BASE_GAME_NAMES 找指定参考游戏；找不到时回退扫描 index 中所有关卡，选择拖拽数量匹配的关卡。", "替换逻辑：拖拽物品默认/拖拽中/放置三态图片都写 option_image；拖拽中/放置音效写 drag_audio；题干语音写“点击按下”状态 MAudio。", "正确项逻辑：按 answers 更新每个 LDragPlace 的 itemList。", "输出与校验：输出指定 JSON；脚本内部 validate_config 会检查拖拽数、放置区数、tag 和音频是否完整。"],
         scripts: [["scripts/build_reading_config.py --type fanboat", "生成配置"], ["docs/阅读小帆船_工作流.md", "专项生成与校验规则"]],
         faults: ["用错 train/fanboat 参考配置会导致外观和组件命名不匹配。"]
       },
@@ -705,7 +705,7 @@
         title: "B3 阅读小火车",
         summary: "模板游戏。与阅读小帆船共用生成脚本，通过 type=train 区分。",
         rules: ["根结构是 game。", "使用 train 参考配置索引。", "所有组件顺序来自基准配置，不在脚本中重排。"],
-        params: ["目的：基于小火车参考配置生成拖拽匹配类阅读题，保留火车版音频按钮和拖拽交互结构。", "调用：python3 scripts/build_reading_config.py --type train --options 3|4 --input question.json --output output/train_configs/xxx.json。", "参数 --type=train：决定读取 output/train_configs_all/index.json，并使用小火车组件命名。", "参数 --options：决定选 3/4 选项模板；slots 数必须与 option_count 一致。", "输入 question.json 与小帆船相同：slots 提供 topic_audio、option_image、drag_audio，answers 提供放置区到正确 tag 的映射。", "tag 规则：train 4选项为 1/2/3/4，train 3选项为 a/b/c。", "基准选择：优先用 BASE_GAME_NAMES，如国际starter阅读小火车秋12或国际F融阅读小火车暑5；失败则扫描匹配拖拽数量的配置。", "替换逻辑：替换 MDraggable 三态图片和拖拽音效；题干语音写“按下”状态 MAudio；放置区 LDragPlace.itemList 写正确 tag。", "输出与校验：输出指定 JSON；内部校验拖拽数、放置区数、tag、题干语音完整性。"],
+        params: ["目的：基于小火车参考配置生成拖拽匹配类阅读题，保留火车版音频按钮和拖拽交互结构。", "调用：python3 scripts/build_reading_config.py --type train --options 3|4 --input question.json --output output/train_configs/xxx.json。", "参数 --type=train：决定读取 reference_configs/reading/train_configs_all/index.json，并使用小火车组件命名。", "参数 --options：决定选 3/4 选项模板；slots 数必须与 option_count 一致。", "输入 question.json 与小帆船相同：slots 提供 topic_audio、option_image、drag_audio，answers 提供放置区到正确 tag 的映射。", "tag 规则：train 4选项为 1/2/3/4，train 3选项为 a/b/c。", "基准选择：优先用 BASE_GAME_NAMES；失败则扫描 reference_configs/reading/train_configs_all 中所有关卡，选择拖拽数量匹配的关卡。", "替换逻辑：替换 MDraggable 三态图片和拖拽音效；题干语音写“按下”状态 MAudio；放置区 LDragPlace.itemList 写正确 tag。", "输出与校验：输出指定 JSON；内部校验拖拽数、放置区数、tag、题干语音完整性。"],
         scripts: [["scripts/build_reading_config.py --type train", "生成配置"], ["docs/阅读小火车_工作流.md", "专项生成与校验规则"]],
         faults: ["参考配置抓取不完整时，生成脚本会找不到对应索引。"]
       },
@@ -713,7 +713,7 @@
         title: "B4 公路大冒险",
         summary: "模板游戏。按绿地/沙漠等参考配置生成，先锁定背景/皮肤。",
         rules: ["根结构是 game。", "先确认使用哪套背景和参考配置。", "复制替换型，不重排 components[]。"],
-        params: ["目的：基于公路大冒险参考配置批量替换题目内容，生成可导入的道路冒险 game 配置。", "调用示例：python3 scripts/generate_guoji_l2_shu4_road.py --input <题目.json> --template <参考配置.json> --output <输出.config.json> --meta <build-meta.json>。", "输入题目：支持 pure_text、pure_audio、audio_text；stem_text 和/或 audio_url 必须来自 --input；选项三态图和正确项也必须来自 --input。", "参考配置：默认可使用绿地模板；如果需求是沙漠背景，必须先在任务清单里锁定沙漠参考配置路径。", "处理方式：deepcopy 参考配置关卡和 top-level 结构，只替换题干文本/音频、选项三态图片、正确项、反馈资源等可变字段。", "题干文本规则：输入 stem_text 时，模板必须存在明确题干 MLabel；找不到承载节点就阻断，避免误写到装饰或选项。", "选项图片规则：每个选项需要默认/正确/错误三态 URL。", "层级规则：components[] 顺序继承参考配置，不在生成脚本里重排。", "输出：output/xxx_config.json + build-meta；导入保存、回读、预览和发布必须回到主流程。", "参数风险：背景/皮肤不是运行时参数，而是参考配置选择；选错参考配置会整套视觉都错。"],
+        params: ["目的：基于公路大冒险参考配置批量替换题目内容，生成可导入的道路冒险 game 配置。", "调用示例：python3 scripts/generate_guoji_l2_shu4_road.py --input <题目.json> --template reference_configs/road_adventure_ref.json --output <输出.config.json> --meta <build-meta.json>。", "输入题目：支持 pure_text、pure_audio、audio_text；stem_text 和/或 audio_url 必须来自 --input；选项三态图和正确项也必须来自 --input。", "参考配置：默认使用 git 内固定的绿地模板 reference_configs/road_adventure_ref.json；如果需求是沙漠背景，必须先在任务清单里锁定沙漠参考配置路径。", "处理方式：deepcopy 参考配置关卡和 top-level 结构，只替换题干文本/音频、选项三态图片、正确项、反馈资源等可变字段。", "题干文本规则：输入 stem_text 时，模板必须存在明确题干 MLabel；找不到承载节点就阻断，避免误写到装饰或选项。", "选项图片规则：每个选项需要默认/正确/错误三态 URL。", "层级规则：components[] 顺序继承参考配置，不在生成脚本里重排。", "输出：output/xxx_config.json + build-meta；导入保存、回读、预览和发布必须回到主流程。", "参数风险：背景/皮肤不是运行时参数，而是参考配置选择；选错参考配置会整套视觉都错。"],
         scripts: [["docs/公路大冒险_工作流.md", "专项生成与校验规则"], ["scripts/generate_guoji_l2_shu4_road.py", "相关生成脚本"]],
         faults: ["未先确认背景，容易用错绿地/沙漠模板。"]
       },
@@ -729,7 +729,7 @@
         title: "B6 魔法拼拼乐",
         summary: "模板游戏。按魔法拼拼乐组件层级、state 和数据映射规则生成。",
         rules: ["根结构是 game。", "按 MOFAPPL_WORKFLOW 中的数据映射、组件层级和 State 规则处理。", "保持参考配置结构，替换目标内容。"],
-        params: ["目的：复用句子/槽位题目数据，生成魔法拼拼乐版本的拖拽配置。", "文档命令：python3 scripts/generate_mofappl_config.py --input <题目.json> --output <json> --meta <build-meta.json>；正式任务必须从 --input 读取题目字段。", "关键参考：MOFAPPL_REF_5 是 5 槽模板；MOFAPPL_REF_3 是 3 槽模板；MOFAPPL_REF_FIXED 提供固定文本组件模板。", "模板选择：find_template_level(ref_data, n_slots) 根据拖拽放置区数量找槽位数匹配的模板关卡；n<=3 优先 3 槽模板，否则优先 5 槽模板。", "数据映射：slot 生成 LDragPlace，选项文本生成 MDraggable；space 通常跳过，由图形/文本头尾留白表达；fixed 可生成 文本-xx 或画进图里。", "组件构造：make_slot_comp/make_item_comp/make_fixed_text_comp/make_space_comp/make_head_comp/make_tail_comp/make_horn_comp 都是 deepcopy 模板组件后替换 tag、文本、坐标或音频。", "State 规则：拖拽放置区和固定字母 default 显示、compLoadFinish 隐藏后倒计时恢复；文本-fin 先展示句子再隐藏；拖拽物品按 default/placed/dragging/correct/wrong 控制显示。", "层级规则：组件数组必须让拖拽物品在最上层，IP角色烟雾遮挡高于文本-fin。", "后处理：生成后可运行 fix_mofappl_v3.py 修复坐标偏移、尺寸和 state。"],
+        params: ["目的：复用句子/槽位题目数据，生成魔法拼拼乐版本的拖拽配置。", "文档命令：python3 scripts/generate_mofappl_config.py --input <题目.json> --output <json> --meta <build-meta.json>；正式任务必须从 --input 读取题目字段。", "关键参考：MOFAPPL_REF_5、MOFAPPL_REF_3、MOFAPPL_REF_FIXED 均来自 reference_configs/mofappl_configs，随 git 固定保存。", "模板选择：find_template_level(ref_data, n_slots) 根据拖拽放置区数量找槽位数匹配的模板关卡；n<=3 优先 3 槽模板，否则优先 5 槽模板。", "数据映射：slot 生成 LDragPlace，选项文本生成 MDraggable；space 通常跳过，由图形/文本头尾留白表达；fixed 可生成 文本-xx 或画进图里。", "组件构造：make_slot_comp/make_item_comp/make_fixed_text_comp/make_space_comp/make_head_comp/make_tail_comp/make_horn_comp 都是 deepcopy 模板组件后替换 tag、文本、坐标或音频。", "State 规则：拖拽放置区和固定字母 default 显示、compLoadFinish 隐藏后倒计时恢复；文本-fin 先展示句子再隐藏；拖拽物品按 default/placed/dragging/correct/wrong 控制显示。", "层级规则：组件数组必须让拖拽物品在最上层，IP角色烟雾遮挡高于文本-fin。", "后处理：生成后可运行 fix_mofappl_v3.py 修复坐标偏移、尺寸和 state。"],
         scripts: [["scripts/generate_mofappl_config.py", "生成配置"], ["docs/MOFAPPL_WORKFLOW.md", "专项生成与校验规则"]],
         faults: ["组件 State 映射错会导致正确/错误/默认态显示异常。"]
       },
@@ -763,17 +763,17 @@
       },
       stdChoice: {
         title: "C1 标准选择题",
-        summary: "标准组件化实际题型之一，统一执行器只接受已有配置 passthrough，再按 workflow rules 中 standard_choice baseline 校验。",
+        summary: "标准组件化实际题型之一，统一执行器只接受已有配置 passthrough，主流程先做稳定结构校验。",
         rules: ["根结构是 game。", "必须包含选择按钮组件。", "选择按钮状态资源来自 expected_config.component_assets.choice_button。"],
-        params: ["目的：标准组件化选择题的生成结果必须符合 workflow rules 中的选择题 baseline，避免混入填空/拖拽组件。", "任务清单锁定：game_family=标准组件化题，gameplay_type=standard_choice，skin_key=具体皮肤，baseline=validation_baselines 中对应项。", "统一执行器入口：standard_question_toolkit/scripts/generate_standard_component_config.py 只做已有配置 passthrough，不让 AI 临场生成标准组件化题。", "校验入口：node scripts/validate_config.js --file <config.json>。", "validate_config.js 工作方式：识别关卡组件→判断题型→加载 courseware_workflow_rules.json expected_config→检查背景、互斥组件和选择按钮状态资源。", "关键资源：choice_button 的 default/correct/wrong 等状态必须来自 expected_config.component_assets.choice_button。", "输出要求：根结构为 game，不得包含 custom_game。"],
-        scripts: [["standard_question_toolkit/data/courseware_workflow_rules.json", "standard_choice baseline"], ["scripts/validate_config.js", "校验"]],
+        params: ["目的：标准组件化选择题的生成结果必须先满足 game[]、components[]、component_id、component_data 等稳定结构要求；具体皮肤 baseline 锁定后再做高级诊断。", "任务清单锁定：game_family=标准组件化题，gameplay_type=standard_choice，skin_key=具体皮肤，baseline=validation_baselines 中对应项。", "统一执行器入口：standard_question_toolkit/scripts/generate_standard_component_config.py 只做已有配置 passthrough，不让 AI 临场生成标准组件化题。", "主流程校验入口：python standard_question_toolkit/scripts/validate_standard_component_config.py <config.json>。", "高级诊断入口：node scripts/validate_config.js --file <config.json>，用于已锁定稳定皮肤 baseline 的布局/资源检查。", "关键资源：choice_button 的 default/correct/wrong 等状态必须来自 expected_config.component_assets.choice_button。", "输出要求：根结构为 game，不得包含 custom_game。"],
+        scripts: [["standard_question_toolkit/scripts/validate_standard_component_config.py", "主流程校验"], ["standard_question_toolkit/data/courseware_workflow_rules.json", "standard_choice baseline"], ["scripts/validate_config.js", "高级诊断"]],
         faults: ["选择按钮状态图混入其他皮肤资源会被校验拦截。"]
       },
       stdFill: {
         title: "C2 标准填空/计算题",
         summary: "标准组件化实际题型之一，按 fill/compute baseline 校验。",
         rules: ["根结构是 game。", "校验输入框、键盘、题干 label 和布局常量。", "题干文本按 profile 拆分。"],
-        params: ["目的：标准填空/计算题要求输入框、键盘和题干文字拆分符合统一 baseline。", "任务清单锁定：gameplay_type=standard_fill_compute，skin_key=具体皮肤，baseline=validation_baselines 对应项。", "生成脚本来源：standard_question_toolkit/scripts/generate_*.py；脚本负责放置题干、输入框、键盘和反馈组件。", "校验入口：node scripts/validate_config.js --file <config.json>。", "validate_config.js 工作方式：读取 workflowBaseline.expected_config.question_text_profile 判断题干 label 拆分规则；检查 input_box 和 keyboard 状态资源是否来自 expected_config。", "布局校验：读取 layout_constants.json，检查固定布局常量，防止输入框/键盘偏移。", "输出要求：根结构为 game；如果题干 label 过长或拆分不符合 profile，校验会提示修生成脚本。"],
+        params: ["目的：标准填空/计算题主流程先校验稳定结构，输入框、键盘和题干文字拆分在具体皮肤 baseline 锁定后做高级诊断。", "任务清单锁定：gameplay_type=standard_fill_compute，skin_key=具体皮肤，baseline=validation_baselines 对应项。", "生成脚本来源：standard_question_toolkit/scripts/generate_*.py；脚本负责放置题干、输入框、键盘和反馈组件。", "主流程校验入口：python standard_question_toolkit/scripts/validate_standard_component_config.py <config.json>。", "高级诊断入口：node scripts/validate_config.js --file <config.json>，读取 workflowBaseline.expected_config.question_text_profile 判断题干 label 拆分规则。", "布局校验：读取 layout_constants.json，检查固定布局常量，防止输入框/键盘偏移。", "输出要求：根结构为 game；如果题干 label 过长或拆分不符合 profile，校验会提示修生成脚本。"],
         scripts: [["standard_question_toolkit/data/courseware_workflow_rules.json", "fill_compute baseline"], ["scripts/validate_config.js", "校验"]],
         faults: ["题干未按 profile 拆 label 时，容易出现换行或遮挡异常。"]
       },
@@ -781,7 +781,7 @@
         title: "C3 标准拖拽题",
         summary: "标准组件化实际题型之一，按 drag baseline 校验。",
         rules: ["根结构是 game。", "校验拖拽物、放置框、题干 label 和背景。", "拖拽物和放置框资源必须来自对应皮肤 expected_config。"],
-        params: ["目的：标准拖拽题要求拖拽物、放置框、题干和背景资源全部匹配同一皮肤 baseline。", "任务清单锁定：gameplay_type=standard_drag，skin_key=具体皮肤，baseline=validation_baselines 对应项。", "生成脚本来源：standard_question_toolkit/scripts/generate_*.py；脚本负责生成拖拽物、放置框、答案关系和题干组件。", "校验入口：node scripts/validate_config.js --file <config.json>。", "validate_config.js 工作方式：检查 drag_item 和 drag_place 的状态资源集合是否属于 expected_config.component_assets；同时检查背景、题干 label、互斥组件。", "资源要求：拖拽物和放置框不能跨皮肤混用；否则运行时视觉和交互态会不一致。", "输出要求：根结构为 game，不得混入运动PK custom_game。"],
+        params: ["目的：标准拖拽题主流程先校验稳定结构；拖拽物、放置框、题干和背景资源在具体皮肤 baseline 锁定后做高级诊断。", "任务清单锁定：gameplay_type=standard_drag，skin_key=具体皮肤，baseline=validation_baselines 对应项。", "生成脚本来源：standard_question_toolkit/scripts/generate_*.py；脚本负责生成拖拽物、放置框、答案关系和题干组件。", "主流程校验入口：python standard_question_toolkit/scripts/validate_standard_component_config.py <config.json>。", "高级诊断入口：node scripts/validate_config.js --file <config.json>，检查 drag_item 和 drag_place 的状态资源集合是否属于 expected_config.component_assets。", "资源要求：拖拽物和放置框不能跨皮肤混用；否则运行时视觉和交互态会不一致。", "输出要求：根结构为 game，不得混入运动PK custom_game。"],
         scripts: [["standard_question_toolkit/data/courseware_workflow_rules.json", "standard_drag baseline"], ["scripts/validate_config.js", "校验"]],
         faults: ["拖拽物和放置框皮肤不一致会导致交互态异常。"]
       },
