@@ -21,7 +21,10 @@
     "validate_generic": "scripts/validate_config.js",
     "validate_yundong_pk": "scripts/validate_yundong_pk_config.py",
     "validate_monster": "scripts/validate_monster_config.py",
-    "validate_resources": "scripts/validate_resources.py"
+    "validate_template_game": "scripts/validate_template_game_config.py",
+    "validate_resources": "scripts/validate_resources.py",
+    "audit_workflow": "workflow/audit_workflow.py",
+    "game_input_schemas": "workflow/game_input_schemas.json"
   },
   "generation": {
     "yundong_pk": {
@@ -38,7 +41,7 @@
       "amusement_park": "scripts/generate_kaixin_shu2.py --input <题目.json> --template <开心游乐园参考配置.json> --output <输出.config.json> --meta <输出.build-meta.json>"
     },
     "standard_component": {
-      "default": "standard_question_toolkit/scripts/generate_*.py"
+      "default": "standard_question_toolkit/scripts/generate_standard_component_config.py --input <已有配置.json> --output <输出.config.json> --meta <输出.build-meta.json>"
     }
   },
   "monitors": {

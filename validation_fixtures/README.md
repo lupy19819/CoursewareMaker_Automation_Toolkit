@@ -9,7 +9,7 @@
 3. 案例回归：可选执行，用来发现生成脚本退化。案例缺失时记录 warning，不得视为规则校验通过。
 4. 回读比对和预览：主工作流执行，保存后必须做。
 
-建议每个游戏至少补齐：
+每个游戏目录至少保留 `fixture.json`，用于让 `workflow/audit_workflow.py` 知道该分支已经被登记；完整回归案例再继续补齐以下文件：
 
 - `input.json` 或 `input.xlsx`：最小题目输入。
 - `reference.json`：该案例使用的参考配置或路径说明。
@@ -32,6 +32,7 @@ validation_fixtures/
   template_game/magic_spelling/
   template_game/bridge/
   template_game/amusement_park/
+  standard_component/standard_component/
   standard_component/choice/
   standard_component/fill_compute/
   standard_component/drag/

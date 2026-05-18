@@ -19,6 +19,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_RESOURCES = ROOT / "resources" / "latest_resources.json"
+DEFAULT_SCHEMAS = ROOT / "workflow" / "game_input_schemas.json"
 URL_RE = re.compile(r"^https?://", re.IGNORECASE)
 RESOURCE_KEY_RE = re.compile(r"(audio|image|img|sprite|scene|sound|url|resource)", re.IGNORECASE)
 
@@ -86,18 +87,69 @@ def walk(value: Any, key_path: str = "") -> list[dict[str, str]]:
     return found
 
 
+def schema_resource_keys(schema_path: Path, family: str | None, subtype: str | None) -> set[str]:
+    if not family or not subtype:
+        return set()
+    schemas = json.loads(schema_path.read_text(encoding="utf-8"))
+    contract = schemas.get(family, {}).get(subtype, {})
+    fields = contract.get("resource_fields", {})
+    keys: set[str] = set()
+    for values in fields.values():
+        keys.update(str(item) for item in values)
+    return keys
+
+
+def walk_schema(value: Any, resource_keys: set[str], key_path: str = "") -> list[dict[str, str]]:
+    found: list[dict[str, str]] = []
+    if isinstance(value, dict):
+        for key, child in value.items():
+            next_path = f"{key_path}.{key}" if key_path else str(key)
+            if str(key) in resource_keys:
+                for ref in collect_strings(child, next_path):
+                    found.append(ref)
+            else:
+                found.extend(walk_schema(child, resource_keys, next_path))
+    elif isinstance(value, list):
+        for index, child in enumerate(value):
+            found.extend(walk_schema(child, resource_keys, f"{key_path}[{index}]"))
+    return found
+
+
+def collect_strings(value: Any, key_path: str) -> list[dict[str, str]]:
+    if isinstance(value, str):
+        string = clean(value)
+        if not string:
+            return []
+        return [{"path": key_path, "value": string, "category": infer_category(key_path, string) or ""}]
+    if isinstance(value, list):
+        found: list[dict[str, str]] = []
+        for index, child in enumerate(value):
+            found.extend(collect_strings(child, f"{key_path}[{index}]"))
+        return found
+    if isinstance(value, dict):
+        found = []
+        for key, child in value.items():
+            found.extend(collect_strings(child, f"{key_path}.{key}"))
+        return found
+    return []
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--resources", type=Path, default=DEFAULT_RESOURCES)
     parser.add_argument("--manifest", type=Path, required=True)
     parser.add_argument("--allow-duplicates", action="store_true")
+    parser.add_argument("--schema-family")
+    parser.add_argument("--schema-subtype")
+    parser.add_argument("--schema-file", type=Path, default=DEFAULT_SCHEMAS)
     args = parser.parse_args()
 
     if not args.input.exists():
         raise ResolveError(f"Input JSON not found: {args.input}")
     payload = json.loads(args.input.read_text(encoding="utf-8"))
-    refs = walk(payload)
+    resource_keys = schema_resource_keys(args.schema_file, args.schema_family, args.schema_subtype)
+    refs = walk_schema(payload, resource_keys) if resource_keys else walk(payload)
     rows = load_rows(args.resources)
     grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
     for row in rows:

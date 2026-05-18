@@ -1,0 +1,1 @@
+{"schema":"coursewaremaker.validation_fixture.v1","game_family":"template_game","game_subtype":"magic_spelling","validator":"scripts/validate_template_game_config.py --subtype magic_spelling","purpose":"魔法拼拼乐 slots、items、sentence_parts 和音频回归。"}

@@ -53,10 +53,14 @@ def run_json(cmd: list[str], *, input_text: str | None = None) -> dict[str, Any]
 
 def route(message: str, args: argparse.Namespace) -> dict[str, Any]:
     cmd = [sys.executable, "workflow/workflow_router.py", "-m", message]
+    if args.game_id:
+        cmd += ["--game-id", args.game_id]
     if args.game_name:
         cmd += ["--game-name", args.game_name]
     if args.config_path:
         cmd += ["--config-path", str(args.config_path)]
+    if args.feedback_scope:
+        cmd += ["--feedback-scope", args.feedback_scope]
     if args.game_family:
         cmd += ["--game-family", args.game_family]
     if args.game_subtype:
@@ -120,13 +124,20 @@ def adapter_for(route_result: dict[str, Any], registry: dict[str, Any]) -> dict[
 
 def format_cmd(command: list[str], values: dict[str, Any]) -> list[str]:
     formatted = []
-    for item in command:
+    index = 0
+    while index < len(command):
+        item = command[index]
         try:
             value = item.format(**values)
         except KeyError as exc:
             raise ExecutorError(f"Adapter command references missing value: {exc}") from exc
-        if value not in {"", "None"}:
-            formatted.append(value)
+        if value in {"", "None"}:
+            if formatted and formatted[-1].startswith("--"):
+                formatted.pop()
+            index += 1
+            continue
+        formatted.append(value)
+        index += 1
     return formatted
 
 
@@ -177,6 +188,10 @@ def preflight_resources(input_path: Path, route_result: dict[str, Any], adapter:
                 str(filtered),
                 "--manifest",
                 str(manifest),
+                "--schema-family",
+                str(route_result.get("game_family") or ""),
+                "--schema-subtype",
+                str(route_result.get("game_subtype") or ""),
             ]
         )
         return {"filtered_resources": str(filtered), "resource_manifest": str(manifest)}
@@ -209,6 +224,10 @@ def generate_config(route_result: dict[str, Any], args: argparse.Namespace, out_
         raise ExecutorError("This adapter requires --sheet or a sheet name in the message.")
     if adapter.get("requires_options") and not args.options:
         raise ExecutorError("This adapter requires --options <2|3|4>.")
+    if adapter.get("requires_template") and not template:
+        raise ExecutorError("This adapter requires --template <reference_config.json>.")
+    if template and str(template).endswith(".json") and not (ROOT / str(template)).exists() and not Path(str(template)).exists():
+        raise ExecutorError(f"Template/reference config not found: {template}")
 
     values = {
         "input": str(input_path),
@@ -242,6 +261,83 @@ def generate_config(route_result: dict[str, Any], args: argparse.Namespace, out_
         "meta_path": str(meta_path) if meta_path.exists() else "",
         **resources,
     }
+
+
+def validate_existing_config(route_result: dict[str, Any], args: argparse.Namespace, out_dir: Path, adapter: dict[str, Any]) -> dict[str, str]:
+    raw_config_path = args.config_path or route_result.get("config_path")
+    if not raw_config_path:
+        raise ExecutorError("Existing-game import/repair requires --config-path <config.json>.")
+    config_path = Path(raw_config_path)
+    if not config_path.exists():
+        raise ExecutorError(f"Config file not found: {config_path}")
+
+    input_path = args.input or None
+    meta_path = args.meta or None
+    validator = adapter.get("validator")
+    if validator:
+        values = {
+            "input": str(input_path or ""),
+            "xlsx": str(input_path or ""),
+            "sheet": args.sheet or route_result.get("sheet_name") or "",
+            "template": str(args.template or adapter.get("default_template") or route_result.get("baseline") or ""),
+            "config": str(config_path),
+            "meta": str(meta_path or ""),
+            "filtered_resources": "",
+            "options": str(args.options or ""),
+        }
+        run(format_cmd(validator, values))
+
+    return {
+        "input_path": str(input_path or ""),
+        "config_path": str(config_path),
+        "meta_path": str(meta_path or ""),
+        "resource_manifest": "",
+        "filtered_resources": "",
+    }
+
+
+def save_existing(route_result: dict[str, Any], plan_result: dict[str, Any], args: argparse.Namespace, out_dir: Path, generated: dict[str, str]) -> dict[str, str]:
+    if args.dry_run:
+        return {}
+    game_id = args.game_id or route_result.get("game_id")
+    if not game_id:
+        raise ExecutorError("Saving an existing game currently requires an explicit game_id. Exact game-name lookup is not deterministic yet.")
+
+    guard("save_existing", plan_result)
+    run(["node", "scripts/save_game_config_via_cdp.js", game_id, generated["config_path"]])
+    guard("roundtrip_compare", plan_result)
+    remote_path = out_dir / f"{safe_name(game_id)}.remote.config.json"
+    run(["node", "scripts/roundtrip_compare_config.js", game_id, generated["config_path"], str(remote_path)])
+    preview_path = out_dir / f"{safe_name(game_id)}.preview.json"
+    preview = run_json(["node", "scripts/create_preview_url.js", game_id, str(preview_path)])
+    return {
+        "game_id": game_id,
+        "editor_url": f"https://coursewaremaker.speiyou.com/#/editor?game_id={game_id}",
+        "preview_url": preview.get("preview_url", ""),
+        "remote_config_path": str(remote_path),
+        "preview_manifest": str(preview_path),
+    }
+
+
+def validate_patch_scope(args: argparse.Namespace, out_dir: Path) -> None:
+    if not args.before_config:
+        raise ExecutorError("Config repair requires --before-config so patch scope can be verified.")
+    if not args.allow_patch_prefix:
+        raise ExecutorError("Config repair requires at least one --allow-patch-prefix JSON path.")
+    report = out_dir / "patch-scope-report.json"
+    cmd = [
+        sys.executable,
+        "scripts/validate_patch_scope.py",
+        "--before",
+        str(args.before_config),
+        "--after",
+        str(args.config_path),
+        "--report",
+        str(report),
+    ]
+    for prefix in args.allow_patch_prefix:
+        cmd += ["--allow", prefix]
+    run(cmd)
 
 
 def create_save_preview(route_result: dict[str, Any], plan_result: dict[str, Any], args: argparse.Namespace, out_dir: Path, generated: dict[str, str], registry: dict[str, Any]) -> dict[str, str]:
@@ -287,10 +383,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--source-url")
     parser.add_argument("--yach-doc-id")
     parser.add_argument("--game-name")
+    parser.add_argument("--game-id")
     parser.add_argument("--game-family", choices=["yundong_pk", "template_game", "standard_component"])
     parser.add_argument("--game-subtype")
     parser.add_argument("--config-path", type=Path)
+    parser.add_argument("--feedback-scope")
     parser.add_argument("--template")
+    parser.add_argument("--meta", type=Path)
+    parser.add_argument("--before-config", type=Path, help="Original config for repair scope validation")
+    parser.add_argument("--allow-patch-prefix", action="append", default=[], help="Allowed JSON path prefix for config repair")
     parser.add_argument("--template-id")
     parser.add_argument("--options", type=int, choices=[2, 3, 4], help="Reading game option count")
     parser.add_argument("--resources", type=Path, default=ROOT / "resources" / "latest_resources.json")
@@ -303,6 +404,7 @@ def main() -> int:
     args = parse_args()
     route_result = route(args.message, args)
     plan_result = plan(route_result)
+    run([sys.executable, "workflow/audit_workflow.py", "--allow-warnings"])
     registry = load_json(WORKFLOW_DIR / "execution_registry.json")
     adapter = adapter_for(route_result, registry)
 
@@ -310,10 +412,18 @@ def main() -> int:
     out_dir = (args.output_dir or ROOT / "output" / "courseware_runs" / safe_name(game_name)).resolve()
     out_dir.mkdir(parents=True, exist_ok=True)
 
-    generated = generate_config(route_result, args, out_dir, adapter)
+    if route_result.get("intent") in {"import_to_existing_game", "config_repair", "inspect_or_compare"}:
+        generated = validate_existing_config(route_result, args, out_dir, adapter)
+    else:
+        generated = generate_config(route_result, args, out_dir, adapter)
     online = {}
     if route_result.get("intent") == "create_new_game":
         online = create_save_preview(route_result, plan_result, args, out_dir, generated, registry)
+    elif route_result.get("intent") == "import_to_existing_game":
+        online = save_existing(route_result, plan_result, args, out_dir, generated)
+    elif route_result.get("intent") == "config_repair":
+        validate_patch_scope(args, out_dir)
+        online = save_existing(route_result, plan_result, args, out_dir, generated)
     elif route_result.get("intent") in {"new_production_task", "inspect_or_compare"}:
         pass
     else:

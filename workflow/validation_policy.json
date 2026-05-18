@@ -79,37 +79,37 @@
           "fixture_regression": "validation_fixtures/template_game/monster/"
         },
         "spelling": {
-          "rules_validator": ["scripts/generate_spelling_config.py input validation", "scripts/validate_resources.py"],
+          "rules_validator": ["scripts/generate_spelling_config.py input validation", "scripts/validate_template_game_config.py --subtype spelling"],
           "reference_invariants": ["reference_configs/spelling_validation_ref.json", "reference_configs/spelling_ref_new.json"],
           "fixture_regression": "validation_fixtures/template_game/spelling/"
         },
         "magic_spelling": {
-          "rules_validator": ["scripts/generate_mofappl_config.py input validation", "scripts/validate_resources.py"],
+          "rules_validator": ["scripts/generate_mofappl_config.py input validation", "scripts/validate_template_game_config.py --subtype magic_spelling"],
           "reference_invariants": ["output/mofappl_configs/<槽数模板>.json"],
           "fixture_regression": "validation_fixtures/template_game/magic_spelling/"
         },
         "road_adventure": {
-          "rules_validator": ["scripts/generate_guoji_l2_shu4_road.py input validation"],
+          "rules_validator": ["scripts/generate_guoji_l2_shu4_road.py input validation", "scripts/validate_template_game_config.py --subtype road_adventure"],
           "reference_invariants": ["<任务单锁定的公路大冒险参考配置.json>"],
           "fixture_regression": "validation_fixtures/template_game/road_adventure/"
         },
         "bridge": {
-          "rules_validator": ["scripts/generate_guoqiao_shu2.py input validation"],
+          "rules_validator": ["scripts/generate_guoqiao_shu2.py input validation", "scripts/validate_template_game_config.py --subtype bridge"],
           "reference_invariants": ["<任务单锁定的过桥大冒险参考配置.json>"],
           "fixture_regression": "validation_fixtures/template_game/bridge/"
         },
         "amusement_park": {
-          "rules_validator": ["scripts/generate_kaixin_shu2.py input validation"],
+          "rules_validator": ["scripts/generate_kaixin_shu2.py input validation", "scripts/validate_template_game_config.py --subtype amusement_park"],
           "reference_invariants": ["<任务单锁定的开心游乐园参考配置.json>"],
           "fixture_regression": "validation_fixtures/template_game/amusement_park/"
         },
         "fanboat": {
-          "rules_validator": ["scripts/build_reading_config.py --type fanboat internal validation"],
+          "rules_validator": ["scripts/build_reading_config.py --type fanboat internal validation", "scripts/validate_template_game_config.py --subtype fanboat"],
           "reference_invariants": ["output/fanboat_configs_all/index.json + selected reference config"],
           "fixture_regression": "validation_fixtures/template_game/fanboat/"
         },
         "train": {
-          "rules_validator": ["scripts/build_reading_config.py --type train internal validation"],
+          "rules_validator": ["scripts/build_reading_config.py --type train internal validation", "scripts/validate_template_game_config.py --subtype train"],
           "reference_invariants": ["output/train_configs_all/index.json + selected reference config"],
           "fixture_regression": "validation_fixtures/template_game/train/"
         }

@@ -1,6 +1,6 @@
 # CoursewareMaker 自动化工作流程
 
-## 最新全局执行入口（2026-05-14）
+## 最新全局执行入口（2026-05-18）
 
 完整工作流以 `workflow/` 机器可读规则和确定性 CLI 为执行入口，`docs/WORKFLOW_DEBUG_FLOWCHART.md` 和 `docs/workflow_debug_interactive.html` 作为排查与预览说明。
 
@@ -33,6 +33,9 @@ python3 workflow/workflow_router.py -m "..." \
 - `workflow/stage_policy.json`：每个环节的必填输入、阻塞条件、动作白名单/黑名单。
 - `workflow/script_registry.json`：各环节固定脚本入口。
 - `workflow/validation_policy.json`：按 `game_family` 分流的校验策略。
+- `workflow/execution_registry.json`：统一执行器使用的实际命令模板和 validator。
+- `workflow/game_input_schemas.json`：每个游戏的输入字段、资源字段、动态/固定资源边界。
+- `workflow/audit_workflow.py`：执行前静态审计，发现缺 adapter、缺模板、缺 validator 时阻断。
 
 当前执行顺序的硬规则：
 
@@ -41,7 +44,7 @@ python3 workflow/workflow_router.py -m "..." \
 3. 游戏类型只分三大类：运动PK、模板游戏、标准组件化题。任务清单必须锁定 `game_family`、baseline、脚本、输出路径、`game_type` 和编辑器入口。
 4. “新建/创建新游戏”且没有 `game_id` 时，显式新建意图优先于“上传过素材/导入素材”等资源描述，避免误走已有游戏导入环节。
 5. 素材确认在任务拆分前完成；上传前查项目内 `resources/latest_resources.json`，同名资源必须先让提需用户确认使用现有资源还是改名上传；同步资源时也必须合并回这个 git 内资源清单。生成阶段只校验当前题目表实际引用的资源名，不让历史全库重复名阻断无关任务。
-6. 校验按 `game_family` 分流，并采用“三层主校验 + 两个主流程收口”：规则脚本校验为主，参考配置不变量对比为辅，案例回归用于防止脚本退化；保存后由主流程统一做回读比对和预览。
+6. 校验按 `game_family` 分流，并采用“三层主校验 + 两个主流程收口”：规则脚本校验为主，参考配置不变量对比为辅，案例回归用于防止脚本退化；保存后由主流程统一做回读比对和预览。模板游戏统一增加 `scripts/validate_template_game_config.py` 作为生成后规则校验入口。
 7. 模板游戏允许固定模板资源写死或从参考配置继承，例如背景、皮肤、spine、组件 bundle、状态 key、公共层和布局骨架；题目相关信息必须来自锁定输入文件或素材确认结果，例如题干、句子、答题区、选项、正确答案、题图、场景图、题干音频和选项音频。
 8. 配置返修只改用户反馈项和直接依赖，禁止顺手重排、换模板、替换无关资源或新建游戏。
 9. 保存统一使用 `GET 完整元信息 → 只替换 configuration → PUT /beibo/game/config/game`，`components` 保留原数组或补 `[]`。
@@ -52,8 +55,9 @@ python3 workflow/workflow_router.py -m "..." \
 弱模型或跨端执行时，统一使用 `workflow_executor.py`。它不是第二套“快速入口”，也不自行定义流程；它只做三件事：
 
 1. 调用 `workflow_router.py` 和 `workflow_planner.py` 获取唯一任务单。
-2. 按 planner 输出的 steps 执行，并在关键动作前调用 `workflow_guard.py`。
-3. 从 `workflow/execution_registry.json` 读取具体游戏的固定命令模板，禁止 AI 临场拼接生成命令。
+2. 先跑 `workflow/audit_workflow.py --allow-warnings`，缺 adapter、缺脚本、缺 validator、缺模板时直接阻断。
+3. 按 planner 输出的 steps 执行，并在关键动作前调用 `workflow_guard.py`。
+4. 从 `workflow/execution_registry.json` 读取具体游戏的固定命令模板，禁止 AI 临场拼接生成命令。
 
 ```bash
 python3 workflow/workflow_executor.py \
@@ -66,18 +70,20 @@ python3 workflow/workflow_executor.py \
 
 - 运动PK：赛跑、游泳、赛车。
 - 模板游戏：贪吃小怪兽、公路大冒险、过桥大冒险、开心游乐园、单词拼拼乐、魔法拼拼乐、阅读小帆船、阅读小火车。
+- 标准组件化题：当前为确定性 passthrough，只接受已有 `game[]` 配置或 CoursewareMaker detail wrapper；不允许 AI 临场从题目描述生成标准组件化配置。
 
 执行器按任务类型组合以下确定性步骤：
 
 1. `workflow_router.py` / `workflow_planner.py` 锁定意图、游戏类型、Yach doc id、sheet、游戏名。
 2. `scripts/fetch_yach_sheet.py` 导出在线表格，或使用 `--xlsx` 指定的本地 Excel。
-3. Excel 输入使用 `scripts/resolve_sheet_resources.py`，JSON 输入使用 `scripts/resolve_input_resources.py`，只解析当前任务引用的资源。
+3. Excel 输入使用 `scripts/resolve_sheet_resources.py`，JSON 输入使用 `scripts/resolve_input_resources.py`，并按 `workflow/game_input_schemas.json` 中每个游戏的资源字段解析当前任务引用的资源。
 4. 按 `game_family/game_subtype` 从 `execution_registry.json` 选择固定生成脚本和参数。
-5. 执行专项校验或生成脚本内置校验。
-6. `scripts/create_game_auto.js` 新建游戏。
-7. `scripts/save_game_config_via_cdp.js` 统一保存。
-8. `scripts/roundtrip_compare_config.js` 回读线上配置并做 canonical JSON 对比。
-9. `scripts/create_preview_url.js` 生成预览链接。
+5. 执行专项校验或生成脚本内置校验；模板类游戏统一补跑 `scripts/validate_template_game_config.py`，贪吃小怪兽仍使用更强的 `scripts/validate_monster_config.py`。
+6. 新建任务用 `scripts/create_game_auto.js` 新建游戏。
+7. 已有游戏导入任务用 `scripts/save_game_config_via_cdp.js` 统一保存；执行器不再要求 AI 自行拼导入命令。
+8. 返修任务保存前必须执行 `scripts/validate_patch_scope.py`，需要 `--before-config` 和至少一个 `--allow-patch-prefix`。
+9. `scripts/roundtrip_compare_config.js` 回读线上配置并做 canonical JSON 对比。
+10. `scripts/create_preview_url.js` 生成预览链接。
 
 如果某个游戏的适配还没有写入 `execution_registry.json`，executor 必须阻塞并要求补适配，不能让模型临场发挥。
 

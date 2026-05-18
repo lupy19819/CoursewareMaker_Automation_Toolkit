@@ -177,12 +177,15 @@ echo ""
 
 SCRIPTS=(
     "create_game_auto.js"
-    "upload_game_config.py"
+    "save_game_config_via_cdp.js"
+    "roundtrip_compare_config.js"
+    "create_preview_url.js"
     "publish_game_auto.js"
     "generate_share_link.js"
-    "batch_create_games.js"
-    "batch_publish_all_games.js"
     "build_yundong_pk_config.py"
+    "validate_yundong_pk_config.py"
+    "validate_monster_config.py"
+    "validate_template_game_config.py"
     "sync_courseware_resources.py"
 )
 

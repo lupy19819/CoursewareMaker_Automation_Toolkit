@@ -1,0 +1,1 @@
+{"schema":"coursewaremaker.validation_fixture.v1","game_family":"template_game","game_subtype":"monster","reference_config":"reference_configs/monster/贪吃_reference_clean.json","validator":"scripts/validate_monster_config.py","purpose":"贪吃小怪兽模板骨架、题干、选项状态和正确项回归。"}

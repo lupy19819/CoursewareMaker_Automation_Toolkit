@@ -1,0 +1,1 @@
+{"schema":"coursewaremaker.validation_fixture.v1","game_family":"template_game","game_subtype":"train","validator":"scripts/validate_template_game_config.py --subtype train","purpose":"阅读小火车选项数、tag、题干音频和放置区 itemList 回归。"}

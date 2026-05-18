@@ -1,0 +1,1 @@
+{"schema":"coursewaremaker.validation_fixture.v1","game_family":"yundong_pk","game_subtype":"swim","reference_config":"reference_configs/yundong_pk/游泳_reference.json","validator":"scripts/validate_yundong_pk_config.py","purpose":"运动PK游泳 custom_game、题干和正确项回归。"}

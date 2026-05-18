@@ -1,0 +1,1 @@
+{"schema":"coursewaremaker.validation_fixture.v1","game_family":"template_game","game_subtype":"spelling","reference_config":"reference_configs/spelling_ref_new.json","validator":"scripts/validate_template_game_config.py --subtype spelling","purpose":"单词拼拼乐 answer_area、items、题图和音频回归。"}

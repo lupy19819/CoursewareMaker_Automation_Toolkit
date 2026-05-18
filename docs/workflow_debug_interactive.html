@@ -577,11 +577,12 @@
         summary: "保存前闸门。先按 game_family 分流，失败先修生成脚本、资源映射、参考配置或 baseline。",
         rules: [
           "运动PK：可用 validate_config.js 的 custom_game 分支，并可再跑 validate_yundong_pk_config.py。",
-          "标准组件化题：使用 validate_config.js，读取 workflow rules 中的 standard_choice/fill/drag baseline。",
-          "模板游戏：不能直接套标准组件化 baseline；必须按具体模板做专项规则校验、参考配置不变量检查、保存后回读和预览。",
+          "标准组件化题：统一执行器当前只接受已有 game[] 配置或 CoursewareMaker detail wrapper，再使用 validate_config.js 读取 workflow rules 中的 standard_choice/fill/drag baseline 校验。",
+          "模板游戏：不能直接套标准组件化 baseline；必须按具体模板做专项规则校验、validate_template_game_config.py、参考配置不变量检查、保存后回读和预览。",
+          "执行前先跑 audit_workflow.py，缺 adapter、缺模板、缺 validator 会直接阻断，避免弱模型继续猜。",
           "所有类型都必须检查 configuration 是对象，不是字符串；保存后 GET 回读并与本地配置规范化比对。"
         ],
-        scripts: [["scripts/validate_config.js", "运动PK/标准组件化"], ["scripts/validate_yundong_pk_config.py", "运动PK专项"], ["scripts/validate_monster_config.py", "怪兽专项"], ["docs/WORKFLOW_DEBUG_FLOWCHART.md", "模板校验矩阵"]],
+        scripts: [["workflow/audit_workflow.py", "执行前静态审计"], ["workflow/game_input_schemas.json", "每游戏输入契约"], ["scripts/validate_config.js", "运动PK/标准组件化"], ["scripts/validate_template_game_config.py", "模板游戏通用规则"], ["scripts/validate_yundong_pk_config.py", "运动PK专项"], ["scripts/validate_monster_config.py", "怪兽专项"], ["docs/WORKFLOW_DEBUG_FLOWCHART.md", "模板校验矩阵"]],
         faults: ["custom_game 和 game 混用是最高频问题。", "模板游戏被误套标准拖拽 baseline 会出现大量假阳性错误。"]
       },
       create: {
@@ -608,6 +609,7 @@
           "使用 PUT /beibo/game/config/game，不要用 POST 更新已有游戏。",
           "configuration 必须是 JSON 对象，不能是 JSON 字符串。",
           "components 字段保留 GET 返回数组；如果没有数组则补 []，与手动保存保持一致。",
+          "workflow_executor.py 已接管已有游戏导入分支，导入时先 validate，再 save，再 roundtrip，再生成 preview。",
           "save_game_config_via_cdp.js 通过浏览器 CDP 保存，fetch 必须带 credentials: include。",
           "upload_game_config.py 是 API 直传通道，需要手动提供 GAMEMAKER_TOKEN/GAMEMAKER_COOKIE，但 payload 结构与 CDP 脚本一致。",
           "URL 含 openType=1 通常是引用/只读模式，应中止写入。"
@@ -761,9 +763,9 @@
       },
       stdChoice: {
         title: "C1 标准选择题",
-        summary: "标准组件化实际题型之一，按 workflow rules 中 standard_choice baseline 校验。",
+        summary: "标准组件化实际题型之一，统一执行器只接受已有配置 passthrough，再按 workflow rules 中 standard_choice baseline 校验。",
         rules: ["根结构是 game。", "必须包含选择按钮组件。", "选择按钮状态资源来自 expected_config.component_assets.choice_button。"],
-        params: ["目的：标准组件化选择题的生成结果必须符合 workflow rules 中的选择题 baseline，避免混入填空/拖拽组件。", "任务清单锁定：game_family=标准组件化题，gameplay_type=standard_choice，skin_key=具体皮肤，baseline=validation_baselines 中对应项。", "生成脚本来源：standard_question_toolkit/scripts/generate_*.py 按年级/题型生成 game 结构配置。", "校验入口：node scripts/validate_config.js --file <config.json>。", "validate_config.js 工作方式：识别关卡组件→判断题型→加载 courseware_workflow_rules.json expected_config→检查背景、互斥组件和选择按钮状态资源。", "关键资源：choice_button 的 default/correct/wrong 等状态必须来自 expected_config.component_assets.choice_button。", "输出要求：根结构为 game，不得包含 custom_game。"],
+        params: ["目的：标准组件化选择题的生成结果必须符合 workflow rules 中的选择题 baseline，避免混入填空/拖拽组件。", "任务清单锁定：game_family=标准组件化题，gameplay_type=standard_choice，skin_key=具体皮肤，baseline=validation_baselines 中对应项。", "统一执行器入口：standard_question_toolkit/scripts/generate_standard_component_config.py 只做已有配置 passthrough，不让 AI 临场生成标准组件化题。", "校验入口：node scripts/validate_config.js --file <config.json>。", "validate_config.js 工作方式：识别关卡组件→判断题型→加载 courseware_workflow_rules.json expected_config→检查背景、互斥组件和选择按钮状态资源。", "关键资源：choice_button 的 default/correct/wrong 等状态必须来自 expected_config.component_assets.choice_button。", "输出要求：根结构为 game，不得包含 custom_game。"],
         scripts: [["standard_question_toolkit/data/courseware_workflow_rules.json", "standard_choice baseline"], ["scripts/validate_config.js", "校验"]],
         faults: ["选择按钮状态图混入其他皮肤资源会被校验拦截。"]
       },

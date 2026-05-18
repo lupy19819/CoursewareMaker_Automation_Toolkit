@@ -17,42 +17,49 @@
       "road_adventure": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
-        "default_template": "reference_configs/road_adventure_ref.json",
-        "command": ["python", "scripts/generate_guoji_l2_shu4_road.py", "--input", "{input}", "--template", "{template}", "--output", "{config}", "--meta", "{meta}"]
+        "requires_template": true,
+        "command": ["python", "scripts/generate_guoji_l2_shu4_road.py", "--input", "{input}", "--template", "{template}", "--output", "{config}", "--meta", "{meta}"],
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "road_adventure", "--input", "{input}", "--meta", "{meta}"]
       },
       "bridge": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
         "default_template": "reference_configs/guoqiao_ref.json",
-        "command": ["python", "scripts/generate_guoqiao_shu2.py", "--input", "{input}", "--template", "{template}", "--output", "{config}", "--meta", "{meta}"]
+        "command": ["python", "scripts/generate_guoqiao_shu2.py", "--input", "{input}", "--template", "{template}", "--output", "{config}", "--meta", "{meta}"],
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "bridge", "--input", "{input}", "--meta", "{meta}"]
       },
       "amusement_park": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
         "default_template": "reference_configs/kaixin_ref.json",
-        "command": ["python", "scripts/generate_kaixin_shu2.py", "--input", "{input}", "--template", "{template}", "--output", "{config}", "--meta", "{meta}"]
+        "command": ["python", "scripts/generate_kaixin_shu2.py", "--input", "{input}", "--template", "{template}", "--output", "{config}", "--meta", "{meta}"],
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "amusement_park", "--input", "{input}", "--meta", "{meta}"]
       },
       "spelling": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
-        "command": ["python", "scripts/generate_spelling_config.py", "--input", "{input}", "--output", "{config}", "--meta", "{meta}"]
+        "command": ["python", "scripts/generate_spelling_config.py", "--input", "{input}", "--output", "{config}", "--meta", "{meta}"],
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "spelling", "--input", "{input}", "--meta", "{meta}"]
       },
       "magic_spelling": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
-        "command": ["python", "scripts/generate_mofappl_config.py", "--input", "{input}", "--output", "{config}", "--meta", "{meta}"]
+        "command": ["python", "scripts/generate_mofappl_config.py", "--input", "{input}", "--output", "{config}", "--meta", "{meta}"],
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "magic_spelling", "--input", "{input}", "--meta", "{meta}"]
       },
       "fanboat": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
         "requires_options": true,
-        "command": ["python", "scripts/build_reading_config.py", "--type", "fanboat", "--options", "{options}", "--input", "{input}", "--output", "{config}"]
+        "command": ["python", "scripts/build_reading_config.py", "--type", "fanboat", "--options", "{options}", "--input", "{input}", "--output", "{config}"],
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "fanboat", "--input", "{input}"]
       },
       "train": {
         "input_format": "json",
         "supports_resource_filter": "json_manifest",
         "requires_options": true,
-        "command": ["python", "scripts/build_reading_config.py", "--type", "train", "--options", "{options}", "--input", "{input}", "--output", "{config}"]
+        "command": ["python", "scripts/build_reading_config.py", "--type", "train", "--options", "{options}", "--input", "{input}", "--output", "{config}"],
+        "validator": ["python", "scripts/validate_template_game_config.py", "{config}", "--subtype", "train", "--input", "{input}"]
       }
     },
     "yundong_pk": {
@@ -73,6 +80,14 @@
         "requires_sheet": true,
         "command": ["python", "scripts/build_yundong_pk_config.py", "{sheet}", "{template}", "{xlsx}"],
         "validator": ["python", "scripts/validate_yundong_pk_config.py", "{config}", "赛车"]
+      }
+    },
+    "standard_component": {
+      "standard_component": {
+        "input_format": "json",
+        "supports_resource_filter": "json_manifest",
+        "command": ["python", "standard_question_toolkit/scripts/generate_standard_component_config.py", "--input", "{input}", "--output", "{config}", "--meta", "{meta}"],
+        "validator": ["node", "scripts/validate_config.js", "--file", "{config}"]
       }
     }
   }

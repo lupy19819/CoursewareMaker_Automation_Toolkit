@@ -1,0 +1,1 @@
+{"schema":"coursewaremaker.validation_fixture.v1","game_family":"standard_component","game_subtype":"standard_component","validator":"scripts/validate_config.js --file","purpose":"标准组件化已有配置 passthrough 后按 workflow baseline 校验。"}
