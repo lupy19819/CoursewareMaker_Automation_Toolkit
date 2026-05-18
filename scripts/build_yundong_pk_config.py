@@ -53,9 +53,23 @@ def load_questions(xlsx_path: Path, sheet_name: str) -> list[dict]:
                 "option_no": int(opt_no),
                 "option_img_name": opt_img,
                 "option_text": opt_text,
-                "is_correct": is_correct is not None,
+                "is_correct": is_correct not in (None, "", 0, "0", "否", "false", "False"),
             }
         )
+
+    if not questions:
+        raise ValueError(f"No questions found in {xlsx_path}#{sheet_name}")
+    for question in questions:
+        qno = question["question_no"]
+        options = question.get("options", [])
+        if len(options) != 3:
+            raise ValueError(f"Question {qno}: expected 3 options, got {len(options)}")
+        option_numbers = sorted(option["option_no"] for option in options)
+        if option_numbers != [1, 2, 3]:
+            raise ValueError(f"Question {qno}: option numbers must be [1, 2, 3], got {option_numbers}")
+        correct = [option for option in options if option["is_correct"]]
+        if len(correct) != 1:
+            raise ValueError(f"Question {qno}: expected exactly one correct option, got {len(correct)}")
 
     return questions
 

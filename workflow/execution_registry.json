@@ -66,18 +66,21 @@
       "run": {
         "input_format": "xlsx",
         "requires_sheet": true,
+        "supports_resource_filter": "sheet",
         "command": ["python", "scripts/build_yundong_pk_config.py", "{sheet}", "{template}", "{xlsx}"],
         "validator": ["python", "scripts/validate_yundong_pk_config.py", "{config}", "赛跑"]
       },
       "swim": {
         "input_format": "xlsx",
         "requires_sheet": true,
+        "supports_resource_filter": "sheet",
         "command": ["python", "scripts/build_yundong_pk_config.py", "{sheet}", "{template}", "{xlsx}"],
         "validator": ["python", "scripts/validate_yundong_pk_config.py", "{config}", "游泳"]
       },
       "racecar": {
         "input_format": "xlsx",
         "requires_sheet": true,
+        "supports_resource_filter": "sheet",
         "command": ["python", "scripts/build_yundong_pk_config.py", "{sheet}", "{template}", "{xlsx}"],
         "validator": ["python", "scripts/validate_yundong_pk_config.py", "{config}", "赛车"]
       }
