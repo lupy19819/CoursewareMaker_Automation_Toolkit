@@ -39,25 +39,27 @@ python3 workflow/workflow_router.py -m "..." \
 
 当前执行顺序的硬规则：
 
-1. 先跑 `workflow_router.py`，由规则表判定用户意图和游戏类型；不得让 AI 自由选择环节。
-2. 目标游戏解析支持 `game_id` 和具体游戏名。`game_id` 优先；游戏名必须精确查询到唯一目标，同名或多结果先确认。
-3. 游戏类型只分三大类：运动PK、模板游戏、标准组件化题。任务清单必须锁定 `game_family`、baseline、脚本、输出路径、`game_type` 和编辑器入口。
-4. “新建/创建新游戏”且没有 `game_id` 时，显式新建意图优先于“上传过素材/导入素材”等资源描述，避免误走已有游戏导入环节。
-5. 素材确认在任务拆分前完成；上传前查项目内 `resources/latest_resources.json`，同名资源必须先让提需用户确认使用现有资源还是改名上传；同步资源时也必须合并回这个 git 内资源清单。生成阶段只校验当前题目表实际引用的资源名，不让历史全库重复名阻断无关任务。
-6. 校验按 `game_family` 分流，并采用“三层主校验 + 两个主流程收口”：规则脚本校验为主，参考配置不变量对比为辅，案例回归用于防止脚本退化；保存后由主流程统一做回读比对和预览。模板游戏统一增加 `scripts/validate_template_game_config.py` 作为生成后规则校验入口。
-7. 模板游戏允许固定模板资源写死或从参考配置继承，例如背景、皮肤、spine、组件 bundle、状态 key、公共层和布局骨架；题目相关信息必须来自锁定输入文件或素材确认结果，例如题干、句子、答题区、选项、正确答案、题图、场景图、题干音频和选项音频。
-8. 配置返修只改用户反馈项和直接依赖，禁止顺手重排、换模板、替换无关资源或新建游戏。
-9. 保存统一使用 `GET 完整元信息 → 只替换 configuration → PUT /beibo/game/config/game`，`components` 保留原数组或补 `[]`。
-10. `workflow_planner.py` 返回 `status=blocked` 时必须停止，向用户补问信息；AI 不得绕过阻塞继续执行。新制作任务必须先锁定题目/配置输入文件和游戏类型，不能只凭一句“生成某游戏配置”进入执行。
+1. 执行入口接到任务后必须先跑 `scripts/check_coursewaremaker_browser.js`，确认本地有可监听 Chrome/Edge（CDP 端口默认 `9222`）且 CoursewareMaker 已登录；未登录时打开登录页并输出二维码截图路径，阻断后续执行，提示用户扫码登录后重试。
+2. 再跑 `workflow_router.py`，由规则表判定用户意图和游戏类型；不得让 AI 自由选择环节。
+3. 目标游戏解析支持 `game_id` 和具体游戏名。`game_id` 优先；游戏名必须精确查询到唯一目标，同名或多结果先确认。
+4. 游戏类型只分三大类：运动PK、模板游戏、标准组件化题。任务清单必须锁定 `game_family`、baseline、脚本、输出路径、`game_type` 和编辑器入口。
+5. “新建/创建新游戏”且没有 `game_id` 时，显式新建意图优先于“上传过素材/导入素材”等资源描述，避免误走已有游戏导入环节。
+6. 素材确认在任务拆分前完成；上传前查项目内 `resources/latest_resources.json`，同名资源必须先让提需用户确认使用现有资源还是改名上传；同步资源时也必须合并回这个 git 内资源清单。生成阶段只校验当前题目表实际引用的资源名，不让历史全库重复名阻断无关任务。
+7. 校验按 `game_family` 分流，并采用“三层主校验 + 两个主流程收口”：规则脚本校验为主，参考配置不变量对比为辅，案例回归用于防止脚本退化；保存后由主流程统一做回读比对和预览。模板游戏统一增加 `scripts/validate_template_game_config.py` 作为生成后规则校验入口。
+8. 模板游戏允许固定模板资源写死或从参考配置继承，例如背景、皮肤、spine、组件 bundle、状态 key、公共层和布局骨架；题目相关信息必须来自锁定输入文件或素材确认结果，例如题干、句子、答题区、选项、正确答案、题图、场景图、题干音频和选项音频。
+9. 配置返修只改用户反馈项和直接依赖，禁止顺手重排、换模板、替换无关资源或新建游戏。
+10. 保存统一使用 `GET 完整元信息 → 只替换 configuration → PUT /beibo/game/config/game`，`components` 保留原数组或补 `[]`。
+11. `workflow_planner.py` 返回 `status=blocked` 时必须停止，向用户补问信息；AI 不得绕过阻塞继续执行。新制作任务必须先锁定题目/配置输入文件和游戏类型，不能只凭一句“生成某游戏配置”进入执行。
 
 ## 唯一执行入口
 
-弱模型或跨端执行时，统一使用 `workflow_executor.py`。它不是第二套“快速入口”，也不自行定义流程；它只做三件事：
+弱模型或跨端执行时，统一使用 `workflow_executor.py`。它不是第二套“快速入口”，也不自行定义流程；它只做固定步骤：
 
-1. 调用 `workflow_router.py` 和 `workflow_planner.py` 获取唯一任务单。
-2. 先跑 `workflow/audit_workflow.py --allow-warnings`，缺 adapter、缺脚本、缺 validator、缺模板时直接阻断。
-3. 按 planner 输出的 steps 执行，并在关键动作前调用 `workflow_guard.py`。
-4. 从 `workflow/execution_registry.json` 读取具体游戏的固定命令模板，禁止 AI 临场拼接生成命令。
+1. 先跑 `scripts/check_coursewaremaker_browser.js`，缺可监听浏览器或缺 CoursewareMaker 登录态时阻断；未登录时打开登录页并保存二维码截图。
+2. 调用 `workflow_router.py` 和 `workflow_planner.py` 获取唯一任务单。
+3. 再跑 `workflow/audit_workflow.py --allow-warnings`，缺 adapter、缺脚本、缺 validator、缺模板时直接阻断。
+4. 按 planner 输出的 steps 执行，并在关键动作前调用 `workflow_guard.py`。
+5. 从 `workflow/execution_registry.json` 读取具体游戏的固定命令模板，禁止 AI 临场拼接生成命令。
 
 ```bash
 python3 workflow/workflow_executor.py \
@@ -74,6 +76,7 @@ python3 workflow/workflow_executor.py \
 
 执行器按任务类型组合以下确定性步骤：
 
+0. `scripts/check_coursewaremaker_browser.js` 检查 CDP 浏览器和 `GAMEMAKER_TOKEN`；失败时输出 `coursewaremaker.browser_preflight.v1` 报告，未登录时附带登录二维码截图路径。
 1. `workflow_router.py` / `workflow_planner.py` 锁定意图、游戏类型、Yach doc id、sheet、游戏名。
 2. `scripts/fetch_yach_sheet.py` 导出在线表格，或使用 `--xlsx` 指定的本地 Excel。
 3. Excel 输入使用 `scripts/resolve_sheet_resources.py`，JSON 输入使用 `scripts/resolve_input_resources.py`，并按 `workflow/game_input_schemas.json` 中每个游戏的资源字段解析当前任务引用的资源。

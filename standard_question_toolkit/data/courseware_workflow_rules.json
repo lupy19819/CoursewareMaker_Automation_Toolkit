@@ -158,7 +158,12 @@
       "name": "游泳皮肤",
       "baseline_json_path": "templates/detail_jsons/swim_detail.json",
       "required_data_shape": "custom_game",
-      "scene_marker_path": "common.custom.additional_environment.scene.images.startBtnImg.image"
+      "scene_marker_path": "common.custom.additional_environment.scene.images.startBtnImg.image",
+      "option_state_urls": {
+        "bgOptionNormal": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-10-09/e36dc0bf6b32c8afa5a1b9020be8924b.png",
+        "bgOptionCorrect": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-10-09/a552c591a9dc9e46ff454f29bcb805c3.png",
+        "bgOptionWrong": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/V0056779/2025-10-09/2a4842bfab94e164d75e8e5e28c5ac36.png"
+      }
     },
     "racecar": {
       "name": "赛车皮肤",

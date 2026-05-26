@@ -2,6 +2,7 @@
   "version": "2026-05-14",
   "scripts": {
     "environment_check": "docs/check_environment.sh",
+    "browser_preflight": "scripts/check_coursewaremaker_browser.js",
     "resource_sync": "scripts/sync_courseware_resources.py",
     "fetch_yach_sheet": "scripts/fetch_yach_sheet.py",
     "resolve_sheet_resources": "scripts/resolve_sheet_resources.py",

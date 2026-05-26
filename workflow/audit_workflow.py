@@ -74,6 +74,7 @@ def audit_required_files(issues: list[dict[str, str]]) -> None:
         "workflow/execution_registry.json",
         "workflow/game_input_schemas.json",
         "resources/latest_resources.json",
+        "scripts/check_coursewaremaker_browser.js",
         "scripts/save_game_config_via_cdp.js",
         "scripts/roundtrip_compare_config.js",
         "scripts/create_preview_url.js",

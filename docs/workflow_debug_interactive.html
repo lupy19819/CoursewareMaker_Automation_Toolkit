@@ -579,10 +579,11 @@
           "运动PK：可用 validate_config.js 的 custom_game 分支，并可再跑 validate_yundong_pk_config.py。",
           "标准组件化题：统一执行器当前只接受已有 game[] 配置或 CoursewareMaker detail wrapper，主流程使用 validate_standard_component_config.py 做稳定结构校验；锁定具体皮肤 baseline 后再用 validate_config.js 做高级诊断。",
           "模板游戏：不能直接套标准组件化 baseline；必须按具体模板做专项规则校验、validate_template_game_config.py、参考配置不变量、关卡级 profile、保存后回读和预览。",
-          "执行前先跑 audit_workflow.py，缺 adapter、缺模板、缺 validator 会直接阻断，避免弱模型继续猜。",
+          "执行入口先跑 check_coursewaremaker_browser.js，确认可监听浏览器和 CoursewareMaker 登录态；未登录时打开登录页并保存二维码截图。",
+          "执行前再跑 audit_workflow.py，缺 adapter、缺模板、缺 validator 会直接阻断，避免弱模型继续猜。",
           "所有类型都必须检查 configuration 是对象，不是字符串；保存后 GET 回读并与本地配置规范化比对。"
         ],
-        scripts: [["workflow/audit_workflow.py", "执行前静态审计"], ["workflow/game_input_schemas.json", "每游戏输入契约"], ["standard_question_toolkit/scripts/validate_standard_component_config.py", "标准组件化主流程"], ["scripts/validate_config.js", "运动PK/高级诊断"], ["scripts/validate_template_game_config.py", "模板游戏通用规则"], ["scripts/build_reference_level_index.py", "关卡级参考库"], ["scripts/validate_yundong_pk_config.py", "运动PK专项"], ["scripts/validate_monster_config.py", "怪兽专项"], ["docs/WORKFLOW_DEBUG_FLOWCHART.md", "模板校验矩阵"]],
+        scripts: [["scripts/check_coursewaremaker_browser.js", "浏览器登录态自检"], ["workflow/audit_workflow.py", "执行前静态审计"], ["workflow/game_input_schemas.json", "每游戏输入契约"], ["standard_question_toolkit/scripts/validate_standard_component_config.py", "标准组件化主流程"], ["scripts/validate_config.js", "运动PK/高级诊断"], ["scripts/validate_template_game_config.py", "模板游戏通用规则"], ["scripts/build_reference_level_index.py", "关卡级参考库"], ["scripts/validate_yundong_pk_config.py", "运动PK专项"], ["scripts/validate_monster_config.py", "怪兽专项"], ["docs/WORKFLOW_DEBUG_FLOWCHART.md", "模板校验矩阵"]],
         faults: ["custom_game 和 game 混用是最高频问题。", "模板游戏被误套标准拖拽 baseline 会出现大量假阳性错误。"]
       },
       create: {
@@ -658,7 +659,7 @@
         title: "A2 游泳",
         summary: "运动PK实际类型之一，命中关键字“游泳”。使用游泳皮肤 baseline。",
         rules: ["baseline：templates/detail_jsons/swim_detail.json。", "根结构必须是 custom_game。", "任务清单中锁定 subtype=swim 和对应资源映射。"],
-        params: ["目的：把同一套运动PK题目结构套入游泳皮肤，保留游泳场景、角色、开始按钮和选项视觉。", "调用：python3 scripts/build_yundong_pk_config.py <sheet_name> <game_detail_json> [question_xlsx]。", "任务清单锁定：subtype=swim、baseline_json_path=templates/detail_jsons/swim_detail.json、game_type=2、editor=customEditor。", "类型推断：sheet 名包含“游泳”时 infer_subtype 返回 swim；任务清单应显式锁定，生成阶段不能再猜。", "处理步骤：从 swim baseline deepcopy custom_game 和环境→读取 resources/latest_resources.json→按题目表替换 titleAuido/btnAudio/icon/options→保留 swim 的题目背景、三态底图和 correctSpine。", "输出：<sheet_name>.config.json 和 build-meta；meta 中 subtype 必须是 swim。", "校验：validate_yundong_pk_config.py 按游泳 baseline 检查 custom_game 和关键环境资源。"],
+        params: ["目的：把同一套运动PK题目结构套入游泳皮肤，保留游泳场景、角色、开始按钮和选项视觉。", "调用：python3 scripts/build_yundong_pk_config.py <sheet_name> <game_detail_json> [question_xlsx]。", "任务清单锁定：subtype=swim、baseline_json_path=templates/detail_jsons/swim_detail.json、game_type=2、editor=customEditor。", "类型推断：sheet 名包含“游泳”时 infer_subtype 返回 swim；任务清单应显式锁定，生成阶段不能再猜。", "处理步骤：从 swim baseline deepcopy custom_game 和环境→读取 resources/latest_resources.json→按题目表替换 titleAuido/btnAudio/icon/options→保留 swim 的题目背景和 correctSpine→按 workflow rules 的 option_state_urls 统一覆盖选项三态底图。", "输出：<sheet_name>.config.json 和 build-meta；meta 中 subtype 必须是 swim，并记录 option_state_urls。", "校验：validate_yundong_pk_config.py 按游泳 baseline 检查 custom_game 和关键环境资源。"],
         scripts: [["scripts/build_yundong_pk_config.py", "按 swim baseline 生成"], ["scripts/validate_yundong_pk_config.py", "按游泳专项校验"]],
         faults: ["同一批里从赛跑切到游泳时，不能复用上一条任务的 scene 资源。"]
       },

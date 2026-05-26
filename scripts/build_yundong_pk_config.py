@@ -13,6 +13,7 @@ ROOT = Path(os.environ.get("COURSEWARE_WORKDIR", str(REPO_ROOT)))
 RESOURCE_JSON = Path(os.environ.get("COURSEWARE_RESOURCE_JSON", REPO_ROOT / "resources" / "latest_resources.json"))
 QUESTION_XLSX = ROOT / "zhiyinlou_race_test_latest.xlsx"
 WORKFLOW_RULES_JSON = REPO_ROOT / "standard_question_toolkit" / "data" / "courseware_workflow_rules.json"
+OPTION_STATE_KEYS = ("bgOptionNormal", "bgOptionCorrect", "bgOptionWrong")
 
 
 def resolve_sheet_name(workbook: openpyxl.Workbook, sheet_name: str) -> str:
@@ -122,12 +123,25 @@ def resolve_repo_path(path_value: str) -> Path:
     return REPO_ROOT / path
 
 
-def get_yundong_skin_baseline(subtype: str) -> Path:
+def get_yundong_skin_rule(subtype: str) -> dict:
     rules = load_workflow_rules()
     skin = rules.get("yundong_pk_skins", {}).get(subtype)
     if not skin:
         raise KeyError(f"Missing yundong skin baseline in workflow rules: {subtype}")
+    return skin
+
+
+def get_yundong_skin_baseline(subtype: str) -> Path:
+    skin = get_yundong_skin_rule(subtype)
     return resolve_repo_path(skin["baseline_json_path"])
+
+
+def get_yundong_option_state_urls(subtype: str) -> dict[str, str]:
+    state_urls = get_yundong_skin_rule(subtype).get("option_state_urls") or {}
+    missing = [key for key in OPTION_STATE_KEYS if key not in state_urls]
+    if state_urls and missing:
+        raise KeyError(f"Incomplete option_state_urls for {subtype}: missing {missing}")
+    return {key: state_urls[key] for key in OPTION_STATE_KEYS if key in state_urls}
 
 
 def infer_subtype(sheet_name: str) -> str:
@@ -166,6 +180,22 @@ def apply_topic_style_template(config: dict, style_config: dict) -> None:
             item["bgOptionWrong"] = deepcopy(template_item.get("bgOptionWrong", ""))
             if "correctSpine" in template_item:
                 item["correctSpine"] = deepcopy(template_item["correctSpine"])
+
+
+def apply_option_state_urls(config: dict, state_urls: dict[str, str]) -> int:
+    if not state_urls:
+        return 0
+
+    replacements = 0
+    for level in config.get("custom_game", []):
+        for topic in level.get("topics", []):
+            title_res = topic.get("title_res", {})
+            for option in title_res.get("options", []):
+                item = option.get("item", {})
+                for key, url in state_urls.items():
+                    item[key] = url
+                    replacements += 1
+    return replacements
 
 
 def calc_font_size(text: str, default: int) -> int:
@@ -249,6 +279,7 @@ def main() -> None:
     target_result, _target_config = load_template_from_game_detail(game_detail_json)
     subtype = infer_subtype(sheet_name)
     skin_baseline = get_yundong_skin_baseline(subtype)
+    option_state_urls = get_yundong_option_state_urls(subtype)
     skeleton_result, config = load_template_from_game_detail(skin_baseline)
 
     resource_rows = load_resource_rows()
@@ -263,6 +294,7 @@ def main() -> None:
         "subtype": subtype,
         "skin_baseline": str(skin_baseline),
         "skeleton_source": skeleton_result["game_name"],
+        "option_state_urls": option_state_urls,
         "question_count": total_levels,
         "levels": [],
     }
@@ -273,6 +305,8 @@ def main() -> None:
     for level, question in zip(config["custom_game"], questions):
         topic = level["topics"][0]
         build_meta["levels"].append(update_topic(topic, question, resource_lookup, resource_rows))
+
+    build_meta["option_state_url_replacements"] = apply_option_state_urls(config, option_state_urls)
 
     output_json.write_text(json.dumps(config, ensure_ascii=False, indent=2), encoding="utf-8")
     output_meta.write_text(json.dumps(build_meta, ensure_ascii=False, indent=2), encoding="utf-8")

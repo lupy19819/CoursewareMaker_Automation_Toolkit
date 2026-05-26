@@ -85,6 +85,22 @@ pip install pandas openpyxl requests pyyaml
 curl http://localhost:9222/json/version
 ```
 
+### 通用浏览器登录态自检
+
+所有通过 `workflow_executor.py` 执行的 CoursewareMaker 任务，都会先运行：
+
+```bash
+node scripts/check_coursewaremaker_browser.js --port 9222
+```
+
+自检内容：
+
+- 是否存在可监听浏览器（CDP 端口默认 `9222`，可用 `CHROME_PORT` 或 `--chrome-port` 覆盖）。
+- 是否存在 `coursewaremaker.speiyou.com` 页面。
+- 页面 `localStorage` 中是否能读取 `GAMEMAKER_TOKEN`。
+
+如果未登录，脚本会打开 CoursewareMaker 登录页并把带二维码的页面截图保存到 `output/courseware_preflight/`，随后阻断任务，提示用户扫码登录后重试。
+
 ---
 
 ## 目录结构
@@ -569,6 +585,7 @@ node D:/codexProject/batch_publish_all_games.js
 **与通用流程的区别**：
 - 使用 `custom_game` 数据结构，不使用组件化 `game` 结构。
 - `build_yundong_pk_config.py` 按赛跑/游泳/赛车拆成三套皮肤 baseline，读取 `courseware_workflow_rules.json > yundong_pk_skins`。
+- 游泳皮肤会额外读取 `yundong_pk_skins.swim.option_state_urls`，并把所有关卡、所有选项的 `bgOptionNormal / bgOptionCorrect / bgOptionWrong` 统一覆盖为该规则中的 URL。
 - 新建时必须使用 `game_type: 2`，并打开 `customEditor`；导入保存使用 `PUT + credentials: include` 更新原 `game_id`。
 
 ---

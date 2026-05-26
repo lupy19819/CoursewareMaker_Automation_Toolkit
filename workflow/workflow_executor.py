@@ -2,14 +2,16 @@
 """Single deterministic CoursewareMaker workflow executor.
 
 This is the only automation execution entrypoint. It does not define a second
-workflow. It routes the user message, asks the planner for ordered steps, guards
-dangerous actions, then uses execution_registry.json to run fixed adapters.
+workflow. It first checks the controllable CoursewareMaker browser login state,
+routes the user message, asks the planner for ordered steps, guards dangerous
+actions, then uses execution_registry.json to run fixed adapters.
 """
 
 from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -49,6 +51,40 @@ def run(cmd: list[str], *, input_text: str | None = None) -> subprocess.Complete
 
 def run_json(cmd: list[str], *, input_text: str | None = None) -> dict[str, Any]:
     return json.loads(run(cmd, input_text=input_text).stdout)
+
+
+def browser_preflight(args: argparse.Namespace) -> dict[str, Any]:
+    if args.skip_browser_preflight:
+        return {
+            "schema": "coursewaremaker.browser_preflight.v1",
+            "status": "skipped",
+            "message": "Browser preflight skipped by --skip-browser-preflight.",
+        }
+
+    cmd = [
+        "node",
+        "scripts/check_coursewaremaker_browser.js",
+        "--port",
+        str(args.chrome_port),
+        "--output-dir",
+        str(args.browser_preflight_output),
+    ]
+    proc = subprocess.run(cmd, cwd=ROOT, text=True, capture_output=True)
+    if proc.stderr:
+        print(proc.stderr, end="", file=sys.stderr)
+    try:
+        report = json.loads(proc.stdout)
+    except json.JSONDecodeError as exc:
+        raise ExecutorError(f"Browser preflight returned invalid JSON: {proc.stdout[:300]}") from exc
+
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+    if proc.returncode != 0 or report.get("status") != "ok":
+        screenshot = report.get("login_screenshot")
+        detail = report.get("message") or "CoursewareMaker browser preflight failed."
+        if screenshot:
+            detail += f" 登录二维码截图: {screenshot}"
+        raise ExecutorError(detail)
+    return report
 
 
 def route(message: str, args: argparse.Namespace) -> dict[str, Any]:
@@ -396,12 +432,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--options", type=int, choices=[2, 3, 4], help="Reading game option count")
     parser.add_argument("--resources", type=Path, default=ROOT / "resources" / "latest_resources.json")
     parser.add_argument("--output-dir", type=Path)
+    parser.add_argument("--chrome-port", default=os.environ.get("CHROME_PORT", "9222"), help="Controllable Chrome CDP port")
+    parser.add_argument("--browser-preflight-output", type=Path, default=ROOT / "output" / "courseware_preflight")
+    parser.add_argument("--skip-browser-preflight", action="store_true", help="Skip CoursewareMaker browser/login preflight")
     parser.add_argument("--dry-run", action="store_true", help="Stop after source/resource/config generation and validation")
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
+    preflight = browser_preflight(args)
     route_result = route(args.message, args)
     plan_result = plan(route_result)
     run([sys.executable, "workflow/audit_workflow.py", "--allow-warnings"])
@@ -436,6 +476,7 @@ def main() -> int:
         "game_family": route_result.get("game_family"),
         "game_subtype": route_result.get("game_subtype"),
         "game_name": game_name,
+        "browser_preflight": preflight,
         **generated,
         **online,
     }
