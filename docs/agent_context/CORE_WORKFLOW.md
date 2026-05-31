@@ -4,6 +4,9 @@ This is the model-neutral context entry for CoursewareMaker_Automation_Toolkit.
 It keeps agents focused on the deterministic workflow and avoids unnecessary
 repository reads.
 
+When locating scripts, check `docs/SCRIPT_INDEX.md` first, then open only the
+target script.
+
 ## 1. Project Positioning
 
 CoursewareMaker_Automation_Toolkit automates CoursewareMaker game production:

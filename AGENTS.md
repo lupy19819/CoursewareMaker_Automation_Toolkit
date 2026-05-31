@@ -8,6 +8,7 @@ workflow documentation.
 1. Read `docs/agent_context/CORE_WORKFLOW.md`.
 2. Then read `docs/agent_context/CODEX.md`.
 3. Read other files only when the current task type requires them.
+4. To locate scripts, check `docs/SCRIPT_INDEX.md` before opening `scripts/`.
 
 ## Core Rules
 
