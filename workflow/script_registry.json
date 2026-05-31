@@ -1,5 +1,6 @@
 {
-  "version": "2026-05-14",
+  "version": "2026-05-31",
+  "description": "Common script entrypoints only. Generation adapters and validators are sourced from workflow/execution_registry.json.",
   "scripts": {
     "environment_check": "docs/check_environment.sh",
     "browser_preflight": "scripts/check_coursewaremaker_browser.js",
@@ -26,24 +27,6 @@
     "validate_resources": "scripts/validate_resources.py",
     "audit_workflow": "workflow/audit_workflow.py",
     "game_input_schemas": "workflow/game_input_schemas.json"
-  },
-  "generation": {
-    "yundong_pk": {
-      "default": "scripts/build_yundong_pk_config.py"
-    },
-    "template_game": {
-      "monster": "scripts/build_sj6_monster_config.py --xlsx <题目.xlsx> --sheet <SheetName> --resources <resources.json> --template reference_configs/monster/贪吃_reference_clean.json --output <输出.config.json> --meta <输出.build-meta.json>",
-      "fanboat": "scripts/build_reading_config.py --type fanboat --options <3|4> --input <题目.json> --output <输出.config.json>",
-      "train": "scripts/build_reading_config.py --type train --options <3|4> --input <题目.json> --output <输出.config.json>",
-      "road_adventure": "scripts/generate_guoji_l2_shu4_road.py --input <题目.json> --template <公路参考配置.json> --output <输出.config.json> --meta <输出.build-meta.json>",
-      "spelling": "scripts/generate_spelling_config.py --input <题目.json> --output <输出.config.json> --meta <输出.build-meta.json>",
-      "magic_spelling": "scripts/generate_mofappl_config.py --input <题目.json> --output <输出.config.json> --meta <输出.build-meta.json>",
-      "bridge": "scripts/generate_guoqiao_shu2.py --input <题目.json> --template <过桥参考配置.json> --output <输出.config.json> --meta <输出.build-meta.json>",
-      "amusement_park": "scripts/generate_kaixin_shu2.py --input <题目.json> --template <开心游乐园参考配置.json> --output <输出.config.json> --meta <输出.build-meta.json>"
-    },
-    "standard_component": {
-      "default": "standard_question_toolkit/scripts/generate_standard_component_config.py --input <已有配置.json> --output <输出.config.json> --meta <输出.build-meta.json>"
-    }
   },
   "monitors": {
     "manual_operation": "scripts/monitors/monitor_chrome_activity.js",

@@ -14,8 +14,11 @@ cookie.txt
 
 # 临时游戏数据文件
 game_*.json
+!workflow/game_type_rules.json
+!workflow/game_input_schemas.json
 latest_game_id.txt
 latest_resources.json
+!resources/latest_resources.json
 temp_game_list.json
 *.config.json
 *.build-meta.json

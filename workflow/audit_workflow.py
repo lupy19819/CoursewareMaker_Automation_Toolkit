@@ -34,7 +34,22 @@ def add_issue(issues: list[dict[str, str]], severity: str, code: str, message: s
 def audit_registry(issues: list[dict[str, str]]) -> None:
     registry = load_json(WORKFLOW / "execution_registry.json")
     schemas = load_json(WORKFLOW / "game_input_schemas.json")
+    game_rules = load_json(WORKFLOW / "game_type_rules.json")
+    script_registry = load_json(WORKFLOW / "script_registry.json")
     adapters = registry.get("generation_adapters", {})
+    routed_subtypes = {
+        (family.get("game_family"), subtype.get("game_subtype"))
+        for family in game_rules.get("families", [])
+        for subtype in family.get("subtypes", [])
+    }
+
+    if "generation" in script_registry:
+        add_issue(
+            issues,
+            "error",
+            "duplicate_generation_source",
+            "script_registry.json must not define generation; use execution_registry.json generation_adapters",
+        )
 
     for family, subtypes in adapters.items():
         for subtype, adapter in subtypes.items():
@@ -42,6 +57,11 @@ def audit_registry(issues: list[dict[str, str]]) -> None:
             schema = schemas.get(family, {}).get(subtype)
             if not schema:
                 add_issue(issues, "error", "missing_schema", f"{label} has no game_input_schemas entry")
+            elif not schema.get("resource_fields"):
+                add_issue(issues, "error", "missing_resource_fields", f"{label} schema has no resource_fields")
+
+            if (family, subtype) not in routed_subtypes:
+                add_issue(issues, "error", "missing_game_type_rule", f"{label} has no game_type_rules entry")
 
             command = adapter.get("command") or []
             script = command[1] if len(command) > 1 and command[0] == "python" else (command[0] if command else "")

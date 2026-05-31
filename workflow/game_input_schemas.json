@@ -1,0 +1,133 @@
+{
+  "version": "2026-05-31",
+  "description": "Deterministic per-game input contracts. AI may map user material into these fields, but generators and validators must enforce them.",
+  "template_game": {
+    "monster": {
+      "input_format": "xlsx",
+      "resource_fields": {
+        "audio": ["音频命名", "题目音频", "题干音频", "audio_name", "audio_url", "stem_audio", "stem_audio_url", "option_audio", "option_audio_url"],
+        "image": ["题干图片", "选项图片名称", "选项图片", "stem_img_name", "option_img_name", "image_url", "stem_image", "stem_image_url", "option_image", "option_image_url"],
+        "url": ["url", "resource_url"]
+      },
+      "notes": ["Question, option, correct answer, stem image/audio, and option image/text must come from the locked sheet."]
+    },
+    "road_adventure": {
+      "input_format": "json",
+      "container_keys": ["questions", "levels"],
+      "required_any": [["audio_url", "audio_key", "stem_text", "title_text", "text"]],
+      "options_field": "options",
+      "option_count": 3,
+      "option_correct_keys": ["correct", "is_correct"],
+      "resource_fields": {
+        "audio": ["audio", "audio_url", "audio_key", "stem_audio", "question_audio"],
+        "image": ["image", "image_url", "image_key", "option_image", "option_image_url", "image_urls", "m", "d", "c"],
+        "url": ["url", "resource_url"]
+      }
+    },
+    "bridge": {
+      "input_format": "json",
+      "container_keys": ["levels", "questions"],
+      "required_fields": ["sentence", "quiz_img", "audio", "parts", "options"],
+      "resource_fields": {
+        "audio": ["audio", "audio_url", "stem_audio", "question_audio"],
+        "image": ["quiz_img", "quiz_image", "image", "image_url", "scene_img", "scene_image"],
+        "url": ["url", "resource_url"]
+      }
+    },
+    "amusement_park": {
+      "input_format": "json",
+      "container_keys": ["levels", "questions"],
+      "required_fields": ["fixed_text", "options", "correct"],
+      "required_any": [["option_audio_urls", "option_audio_url"]],
+      "options_field": "options",
+      "option_count": 3,
+      "correct_field": "correct",
+      "resource_fields": {
+        "audio": ["option_audio_urls", "option_audio_url", "audio", "audio_url", "stem_audio"],
+        "image": ["scene_img", "scene_image", "image", "image_url"],
+        "url": ["url", "resource_url"]
+      },
+      "fixed_template_resources_allowed": ["scene_img unless explicitly supplied", "background", "layout_skeleton"]
+    },
+    "spelling": {
+      "input_format": "json",
+      "container_keys": ["levels"],
+      "required_fields": ["text", "answer_area", "items", "word_audio_url", "word_image_url"],
+      "resource_fields": {
+        "audio": ["word_audio_url", "audio", "audio_url", "stem_audio"],
+        "image": ["word_image_url", "image", "image_url", "stem_image"],
+        "url": ["url", "resource_url"]
+      }
+    },
+    "magic_spelling": {
+      "input_format": "json",
+      "container_keys": ["questions", "levels"],
+      "required_fields": ["slots", "items", "sentence", "sentence_parts", "audio_url"],
+      "resource_fields": {
+        "audio": ["audio_url", "word_audio_url", "audio", "stem_audio"],
+        "image": ["word_image_url", "image", "image_url", "stem_image"],
+        "url": ["url", "resource_url"]
+      }
+    },
+    "fanboat": {
+      "input_format": "json",
+      "container_keys": ["slots", "questions", "levels"],
+      "required_fields": ["slots", "answers"],
+      "requires_options": true,
+      "resource_fields": {
+        "audio": ["topic_audio", "drag_audio", "audio", "audio_url"],
+        "image": ["option_image", "image", "image_url"],
+        "url": ["url", "resource_url"]
+      }
+    },
+    "train": {
+      "input_format": "json",
+      "container_keys": ["slots", "questions", "levels"],
+      "required_fields": ["slots", "answers"],
+      "requires_options": true,
+      "resource_fields": {
+        "audio": ["topic_audio", "drag_audio", "audio", "audio_url"],
+        "image": ["option_image", "image", "image_url"],
+        "url": ["url", "resource_url"]
+      }
+    }
+  },
+  "yundong_pk": {
+    "run": {
+      "input_format": "xlsx",
+      "resource_fields": {
+        "audio": ["音频命名", "题目音频", "题干音频", "audio_name", "audio_url", "stem_audio", "stem_audio_name", "question_audio", "title_audio"],
+        "image": ["题干图片", "选项图片名称", "选项图片", "stem_img_name", "option_img_name", "image_url", "stem_image", "option_image"],
+        "url": ["url", "resource_url"]
+      }
+    },
+    "swim": {
+      "input_format": "xlsx",
+      "resource_fields": {
+        "audio": ["音频命名", "题目音频", "题干音频", "audio_name", "audio_url", "stem_audio", "stem_audio_name", "question_audio", "title_audio"],
+        "image": ["题干图片", "选项图片名称", "选项图片", "stem_img_name", "option_img_name", "image_url", "stem_image", "option_image"],
+        "url": ["url", "resource_url"]
+      }
+    },
+    "racecar": {
+      "input_format": "xlsx",
+      "resource_fields": {
+        "audio": ["音频命名", "题目音频", "题干音频", "audio_name", "audio_url", "stem_audio", "stem_audio_name", "question_audio", "title_audio"],
+        "image": ["题干图片", "选项图片名称", "选项图片", "stem_img_name", "option_img_name", "image_url", "stem_image", "option_image"],
+        "url": ["url", "resource_url"]
+      }
+    }
+  },
+  "standard_component": {
+    "standard_component": {
+      "input_format": "json",
+      "accepted_shapes": ["game config object", "CoursewareMaker detail wrapper"],
+      "resource_fields": {
+        "audio": ["audio", "audio_url", "stem_audio", "question_audio", "option_audio"],
+        "image": ["image", "image_url", "stem_image", "question_image", "option_image", "background_image"],
+        "url": ["url", "resource_url"]
+      },
+      "notes": ["The deterministic executor only accepts an already generated standard component config until a full question-to-config generator is selected."]
+    }
+  }
+}

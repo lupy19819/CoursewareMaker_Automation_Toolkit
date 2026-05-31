@@ -40,13 +40,10 @@ def missing_fields(route: dict[str, Any], required: list[str]) -> list[str]:
     return [field for field in required if not route.get(field)]
 
 
-def script_for_generation(route: dict[str, Any], registry: dict[str, Any]) -> str | None:
+def adapter_for_generation(route: dict[str, Any], execution_registry: dict[str, Any]) -> dict[str, Any] | None:
     family = route.get("game_family")
     subtype = route.get("game_subtype")
-    generation = registry["generation"].get(family)
-    if not generation:
-        return None
-    return generation.get(subtype) or generation.get("default")
+    return execution_registry.get("generation_adapters", {}).get(family, {}).get(subtype)
 
 
 def validation_steps(route: dict[str, Any], validation: dict[str, Any], include_main_workflow: bool = True) -> list[dict[str, str]]:
@@ -95,18 +92,21 @@ def validation_steps(route: dict[str, Any], validation: dict[str, Any], include_
     return steps
 
 
-def build_steps(route: dict[str, Any], registry: dict[str, Any], validation: dict[str, Any]) -> list[dict[str, Any]]:
+def build_steps(
+    route: dict[str, Any],
+    script_registry: dict[str, Any],
+    execution_registry: dict[str, Any],
+    validation: dict[str, Any],
+) -> list[dict[str, Any]]:
     intent = route["intent"]
-    scripts = registry["scripts"]
+    scripts = script_registry["scripts"]
     steps: list[dict[str, Any]] = []
 
     if intent == "monitor_manual_operation":
-        return [{"action": "start_monitor", "script": registry["monitors"]["manual_operation"]}]
+        return [{"action": "start_monitor", "script": script_registry["monitors"]["manual_operation"]}]
 
     if intent in {"config_repair", "import_to_existing_game", "preview_or_publish", "inspect_or_compare"}:
-        if route.get("game_name") and not route.get("game_id"):
-            steps.append({"action": "resolve_existing_target", "method": "exact_game_name_lookup", "game_name": route["game_name"]})
-        elif route.get("game_id"):
+        if route.get("game_id"):
             steps.append({"action": "fetch_game_detail", "game_id": route["game_id"]})
 
     if intent == "new_production_task":
@@ -117,9 +117,9 @@ def build_steps(route: dict[str, Any], registry: dict[str, Any], validation: dic
         elif route.get("config_path"):
             steps.append({"action": "resolve_input_resources", "script": scripts.get("resolve_input_resources"), "input": route.get("config_path")})
         steps.append({"action": "split_and_lock_batch", "game_family": route.get("game_family"), "game_subtype": route.get("game_subtype")})
-        gen_script = script_for_generation(route, registry)
-        if gen_script:
-            steps.append({"action": "generate_config", "script": gen_script})
+        adapter = adapter_for_generation(route, execution_registry)
+        if adapter:
+            steps.append({"action": "generate_config", "adapter_source": "workflow/execution_registry.json", "command": adapter.get("command", [])})
         steps.extend(validation_steps(route, validation, include_main_workflow=False))
 
     if intent == "create_new_game":
@@ -127,9 +127,9 @@ def build_steps(route: dict[str, Any], registry: dict[str, Any], validation: dic
             steps.append({"action": "fetch_question_source", "script": scripts.get("fetch_yach_sheet"), "source_url": route.get("source_url"), "doc_id": route.get("yach_doc_id")})
         if route.get("sheet_name"):
             steps.append({"action": "resolve_sheet_resources", "script": scripts.get("resolve_sheet_resources"), "sheet_name": route.get("sheet_name")})
-        gen_script = script_for_generation(route, registry)
-        if gen_script and (route.get("config_path") or route.get("source_url") or route.get("yach_doc_id")):
-            steps.append({"action": "generate_config", "script": gen_script})
+        adapter = adapter_for_generation(route, execution_registry)
+        if adapter and (route.get("config_path") or route.get("source_url") or route.get("yach_doc_id")):
+            steps.append({"action": "generate_config", "adapter_source": "workflow/execution_registry.json", "command": adapter.get("command", [])})
             steps.extend(validation_steps(route, validation, include_main_workflow=False))
         steps.append(
             {
@@ -154,7 +154,7 @@ def build_steps(route: dict[str, Any], registry: dict[str, Any], validation: dic
         steps.append({"action": "patch_feedback_scope", "scope": route.get("feedback_scope"), "minimal_change": True})
         steps.append({"action": "validate_patch_scope", "script": scripts.get("validate_patch_scope"), "blocking": True})
         steps.extend(validation_steps(route, validation))
-        if route.get("game_id") or route.get("game_name"):
+        if route.get("game_id"):
             steps.append({"action": "save_existing", "script": scripts["save_via_cdp"], "config_path": route.get("config_path")})
             steps.append({"action": "roundtrip_compare"})
 
@@ -173,7 +173,8 @@ def build_steps(route: dict[str, Any], registry: dict[str, Any], validation: dic
 
 def build_plan(route: dict[str, Any]) -> dict[str, Any]:
     stage_policy = load_json("stage_policy.json")
-    registry = load_json("script_registry.json")
+    script_registry = load_json("script_registry.json")
+    execution_registry = load_json("execution_registry.json")
     validation = load_json("validation_policy.json")
     policy = stage_policy["policies"][route["intent"]]
 
@@ -210,7 +211,7 @@ def build_plan(route: dict[str, Any]) -> dict[str, Any]:
             "editor_entry": route.get("editor_entry"),
             "baseline": route.get("baseline"),
         },
-        "steps": [] if blocked_reasons else build_steps(route, registry, validation),
+        "steps": [] if blocked_reasons else build_steps(route, script_registry, execution_registry, validation),
     }
     return plan
 

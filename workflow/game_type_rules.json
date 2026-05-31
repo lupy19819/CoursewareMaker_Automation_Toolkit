@@ -1,0 +1,105 @@
+{
+  "version": "2026-05-31",
+  "description": "Deterministic game family and subtype routing. Match subtype keywords first, then fall back to family-level keywords.",
+  "families": [
+    {
+      "game_family": "yundong_pk",
+      "display_name": "运动PK",
+      "data_shape": "custom_game",
+      "game_type": 2,
+      "editor_entry": "customEditor",
+      "subtypes": [
+        {
+          "game_subtype": "run",
+          "display_name": "赛跑",
+          "keywords": ["赛跑", "跑酷赛跑", "跑步"],
+          "baseline": "templates/detail_jsons/run_detail.json"
+        },
+        {
+          "game_subtype": "swim",
+          "display_name": "游泳",
+          "keywords": ["游泳"],
+          "baseline": "templates/detail_jsons/swim_detail.json"
+        },
+        {
+          "game_subtype": "racecar",
+          "display_name": "赛车",
+          "keywords": ["赛车"],
+          "baseline": "templates/detail_jsons/racecar_detail.json"
+        }
+      ]
+    },
+    {
+      "game_family": "template_game",
+      "display_name": "模板游戏",
+      "data_shape": "game",
+      "game_type": 1,
+      "editor_entry": "editor",
+      "subtypes": [
+        {
+          "game_subtype": "monster",
+          "display_name": "贪吃小怪兽",
+          "keywords": ["贪吃小怪兽", "贪吃"],
+          "baseline": "reference_configs/monster/贪吃_reference_clean.json"
+        },
+        {
+          "game_subtype": "fanboat",
+          "display_name": "阅读小帆船",
+          "keywords": ["阅读小帆船", "小帆船"],
+          "baseline": "reference_configs/reading/fanboat_configs_all/index.json"
+        },
+        {
+          "game_subtype": "train",
+          "display_name": "阅读小火车",
+          "keywords": ["阅读小火车", "小火车"],
+          "baseline": "reference_configs/reading/train_configs_all/index.json"
+        },
+        {
+          "game_subtype": "road_adventure",
+          "display_name": "公路大冒险",
+          "keywords": ["公路大冒险"],
+          "baseline": "reference_configs/road_adventure_ref.json"
+        },
+        {
+          "game_subtype": "spelling",
+          "display_name": "单词拼拼乐",
+          "keywords": ["单词拼拼乐", "spelling"],
+          "baseline": "reference_configs/spelling_ref_new.json"
+        },
+        {
+          "game_subtype": "magic_spelling",
+          "display_name": "魔法拼拼乐",
+          "keywords": ["魔法拼拼乐"],
+          "baseline": "reference_configs/mofappl_configs"
+        },
+        {
+          "game_subtype": "bridge",
+          "display_name": "过桥大冒险",
+          "keywords": ["过桥大冒险"],
+          "baseline": "reference_configs/guoqiao_ref.json"
+        },
+        {
+          "game_subtype": "amusement_park",
+          "display_name": "开心游乐园",
+          "keywords": ["开心游乐园"],
+          "baseline": "reference_configs/kaixin_autumn8_starter_ref.json"
+        }
+      ]
+    },
+    {
+      "game_family": "standard_component",
+      "display_name": "标准组件化题",
+      "data_shape": "game",
+      "game_type": 1,
+      "editor_entry": "editor",
+      "subtypes": [
+        {
+          "game_subtype": "standard_component",
+          "display_name": "标准组件化",
+          "keywords": ["标准组件化", "标准选择题", "标准填空", "标准拖拽"],
+          "baseline": "standard_question_toolkit/data/courseware_workflow_rules.json"
+        }
+      ]
+    }
+  ]
+}
