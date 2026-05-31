@@ -79,9 +79,9 @@ python3 workflow/workflow_executor.py \
 0. `scripts/check_coursewaremaker_browser.js` 检查 CDP 浏览器和 `GAMEMAKER_TOKEN`；失败时输出 `coursewaremaker.browser_preflight.v1` 报告，未登录时附带登录二维码截图路径。
 1. `workflow_router.py` / `workflow_planner.py` 锁定意图、游戏类型、Yach doc id、sheet、游戏名。
 2. `scripts/fetch_yach_sheet.py` 导出在线表格，或使用 `--xlsx` 指定的本地 Excel。
-3. Excel 输入使用 `scripts/resolve_sheet_resources.py`，JSON 输入使用 `scripts/resolve_input_resources.py`，并按 `workflow/game_input_schemas.json` 中每个游戏的资源字段解析当前任务引用的资源。
+3. Excel 输入使用 `scripts/resolve_sheet_resources.py`，JSON 输入使用 `scripts/resolve_input_resources.py`，并按 `workflow/game_input_schemas.json` 中每个游戏的资源字段解析当前任务引用的资源；运动PK生成必须使用该步骤输出的 `resources.filtered.json`，不能回退到设备本地旧版全量资源表。
 4. 按 `game_family/game_subtype` 从 `execution_registry.json` 选择固定生成脚本和参数。
-5. 执行专项校验或生成脚本内置校验；模板类游戏统一补跑 `scripts/validate_template_game_config.py`，贪吃小怪兽仍使用更强的 `scripts/validate_monster_config.py`。
+5. 执行专项校验或生成脚本内置校验；运动PK校验必须传入 build-meta，检查题目音频、题干图、选项图和正确项是否真的写入配置；模板类游戏统一补跑 `scripts/validate_template_game_config.py`，贪吃小怪兽仍使用更强的 `scripts/validate_monster_config.py`。
 6. 新建任务用 `scripts/create_game_auto.js` 新建游戏。
 7. 已有游戏导入任务用 `scripts/save_game_config_via_cdp.js` 统一保存；执行器不再要求 AI 自行拼导入命令。
 8. 返修任务保存前必须执行 `scripts/validate_patch_scope.py`，需要 `--before-config` 和至少一个 `--allow-patch-prefix`。
@@ -233,5 +233,5 @@ node scripts/save_game_config_via_cdp.js "$GAME_ID" "配置.json"
 - `scripts/save_game_config_via_cdp.js` - CDP 浏览器通道更新已有游戏配置；使用 `PUT + credentials: include`，保留完整元信息。
 - `scripts/upload_game_config.py` - API 直传通道更新已有游戏配置；需 token/cookie，payload 结构与 CDP 脚本一致。
 - `scripts/build_yundong_pk_config.py` - 生成运动PK配置。
-- `scripts/validate_yundong_pk_config.py` - 校验运动PK配置结构。
+- `scripts/validate_yundong_pk_config.py` - 校验运动PK配置结构；带 `--meta` 时校验资源 URL 和正确项写入结果。
 - `scripts/publish_game_auto.js` - 发布游戏。

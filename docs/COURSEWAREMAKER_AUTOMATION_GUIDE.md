@@ -585,6 +585,8 @@ node D:/codexProject/batch_publish_all_games.js
 **与通用流程的区别**：
 - 使用 `custom_game` 数据结构，不使用组件化 `game` 结构。
 - `build_yundong_pk_config.py` 按赛跑/游泳/赛车拆成三套皮肤 baseline，读取 `courseware_workflow_rules.json > yundong_pk_skins`。
+- `workflow_executor.py` 会先用 `resolve_sheet_resources.py` 生成当前 sheet 专用的 `resources.filtered.json`，运动PK生成脚本必须读取这个 filtered 文件，避免不同设备上的旧资源表导致题目音频/图片 URL 未替换。
+- `validate_yundong_pk_config.py` 在工作流中必须带 `--meta <build-meta.json>`，用于检查 `btnAudio/titleAuido/题干 icon/选项 icon/switch` 是否与 build-meta 记录的本次资源解析结果一致。
 - 游泳皮肤会额外读取 `yundong_pk_skins.swim.option_state_urls`，并把所有关卡、所有选项的 `bgOptionNormal / bgOptionCorrect / bgOptionWrong` 统一覆盖为该规则中的 URL。
 - 新建时必须使用 `game_type: 2`，并打开 `customEditor`；导入保存使用 `PUT + credentials: include` 更新原 `game_id`。
 

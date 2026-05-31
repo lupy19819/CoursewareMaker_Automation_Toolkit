@@ -67,22 +67,22 @@
         "input_format": "xlsx",
         "requires_sheet": true,
         "supports_resource_filter": "sheet",
-        "command": ["python", "scripts/build_yundong_pk_config.py", "{sheet}", "{template}", "{xlsx}"],
-        "validator": ["python", "scripts/validate_yundong_pk_config.py", "{config}", "赛跑"]
+        "command": ["python", "scripts/build_yundong_pk_config.py", "{sheet}", "{template}", "{xlsx}", "--resources", "{filtered_resources}"],
+        "validator": ["python", "scripts/validate_yundong_pk_config.py", "{config}", "赛跑", "--meta", "{meta}"]
       },
       "swim": {
         "input_format": "xlsx",
         "requires_sheet": true,
         "supports_resource_filter": "sheet",
-        "command": ["python", "scripts/build_yundong_pk_config.py", "{sheet}", "{template}", "{xlsx}"],
-        "validator": ["python", "scripts/validate_yundong_pk_config.py", "{config}", "游泳"]
+        "command": ["python", "scripts/build_yundong_pk_config.py", "{sheet}", "{template}", "{xlsx}", "--resources", "{filtered_resources}"],
+        "validator": ["python", "scripts/validate_yundong_pk_config.py", "{config}", "游泳", "--meta", "{meta}"]
       },
       "racecar": {
         "input_format": "xlsx",
         "requires_sheet": true,
         "supports_resource_filter": "sheet",
-        "command": ["python", "scripts/build_yundong_pk_config.py", "{sheet}", "{template}", "{xlsx}"],
-        "validator": ["python", "scripts/validate_yundong_pk_config.py", "{config}", "赛车"]
+        "command": ["python", "scripts/build_yundong_pk_config.py", "{sheet}", "{template}", "{xlsx}", "--resources", "{filtered_resources}"],
+        "validator": ["python", "scripts/validate_yundong_pk_config.py", "{config}", "赛车", "--meta", "{meta}"]
       }
     },
     "standard_component": {

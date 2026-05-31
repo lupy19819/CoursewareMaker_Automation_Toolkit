@@ -54,7 +54,7 @@
       "required_shape": "custom_game",
       "main_workflow_layers": ["rules_validator", "reference_invariants", "fixture_regression", "roundtrip_compare", "preview"],
       "validators": ["scripts/validate_yundong_pk_config.py", "scripts/validate_config.js"],
-      "rules_validator": ["scripts/validate_yundong_pk_config.py <config.json> <赛跑|游泳|赛车>", "node scripts/validate_config.js --file <config.json>"],
+      "rules_validator": ["scripts/validate_yundong_pk_config.py <config.json> <赛跑|游泳|赛车> --meta <build-meta.json>", "node scripts/validate_config.js --file <config.json>"],
       "reference_invariants": ["reference_configs/yundong_pk/<赛跑|游泳|赛车>_reference.json", "templates/detail_jsons/<run|swim|racecar>_detail.json"],
       "fixture_regression": {
         "required": false,

@@ -2,6 +2,7 @@ import json
 import os
 import re
 import sys
+import argparse
 from copy import deepcopy
 from pathlib import Path
 
@@ -75,8 +76,12 @@ def load_questions(xlsx_path: Path, sheet_name: str) -> list[dict]:
     return questions
 
 
-def load_resource_rows() -> list[dict]:
-    return json.loads(RESOURCE_JSON.read_text(encoding="utf-8"))["rows"]
+def load_resource_rows(path: Path = RESOURCE_JSON) -> list[dict]:
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    rows = raw.get("rows", raw) if isinstance(raw, dict) else raw
+    if not isinstance(rows, list):
+        raise ValueError(f"Resource JSON must be a list or contain rows[]: {path}")
+    return rows
 
 
 def load_resource_lookup(rows: list[dict]) -> dict[str, dict]:
@@ -219,11 +224,13 @@ def update_topic(topic: dict, question: dict, resource_lookup: dict[str, dict], 
     title_res["titleAuido"] = audio_res["url"]
 
     stem_img_name = question.get("stem_img_name")
+    stem_img_url = ""
     if stem_img_name:
         stem_img_res = resource_lookup.get(stem_img_name)
         if not stem_img_res:
             raise KeyError(f"Missing stem image resource: {stem_img_name}")
-        title_res["icon"] = stem_img_res["url"]
+        stem_img_url = stem_img_res["url"]
+        title_res["icon"] = stem_img_url
     else:
         title_res["icon"] = ""
 
@@ -236,13 +243,16 @@ def update_topic(topic: dict, question: dict, resource_lookup: dict[str, dict], 
             title_res["options"].append(deepcopy(template_option))
 
     correct_option = None
+    option_meta = []
     for index, option in enumerate(question["options"]):
         item = title_res["options"][index]["item"]
         option_img_name = option.get("option_img_name")
         option_text = (option.get("option_text") or "").strip()
+        option_img_url = ""
         if option_img_name:
             option_img_res = resolve_resource(option_img_name, "image", resource_lookup, resource_rows)
-            item["icon"] = option_img_res["url"]
+            option_img_url = option_img_res["url"]
+            item["icon"] = option_img_url
             if isinstance(item.get("opstionText"), dict):
                 item["opstionText"]["MLabel"] = ""
         else:
@@ -254,23 +264,42 @@ def update_topic(topic: dict, question: dict, resource_lookup: dict[str, dict], 
         item["switch"] = bool(option["is_correct"])
         if option["is_correct"]:
             correct_option = option["option_no"]
+        option_meta.append(
+            {
+                "option_no": option["option_no"],
+                "option_img_name": option_img_name,
+                "option_img_url": option_img_url,
+                "option_text": option_text,
+                "is_correct": bool(option["is_correct"]),
+            }
+        )
 
     return {
         "question_no": question["question_no"],
         "audio_name": question["audio_name"],
         "audio_url": audio_res["url"],
+        "stem_img_name": stem_img_name,
+        "stem_img_url": stem_img_url,
         "correct_option": correct_option,
         "option_type": "image" if question["options"][0].get("option_img_name") else "text",
+        "options": option_meta,
     }
 
 
-def main() -> None:
-    if len(sys.argv) < 3:
-        raise SystemExit("Usage: python build_yundong_pk_config.py <sheet_name> <game_detail_json> [question_xlsx]")
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Build yundong PK configs for run/swim/racecar sheets.")
+    parser.add_argument("sheet_name")
+    parser.add_argument("game_detail_json", type=Path)
+    parser.add_argument("question_xlsx", nargs="?", type=Path, default=QUESTION_XLSX)
+    parser.add_argument("--resources", type=Path, default=RESOURCE_JSON, help="Resource JSON list or {rows: []}; workflow passes filtered resources here")
+    return parser.parse_args()
 
-    sheet_name = sys.argv[1]
-    game_detail_json = Path(sys.argv[2])
-    question_xlsx = Path(sys.argv[3]) if len(sys.argv) > 3 else QUESTION_XLSX
+
+def main() -> None:
+    args = parse_args()
+    sheet_name = args.sheet_name
+    game_detail_json = args.game_detail_json
+    question_xlsx = args.question_xlsx
 
     output_json = ROOT / f"{sheet_name}.config.json"
     output_meta = ROOT / f"{sheet_name}.build-meta.json"
@@ -282,7 +311,7 @@ def main() -> None:
     option_state_urls = get_yundong_option_state_urls(subtype)
     skeleton_result, config = load_template_from_game_detail(skin_baseline)
 
-    resource_rows = load_resource_rows()
+    resource_rows = load_resource_rows(args.resources)
     resource_lookup = load_resource_lookup(resource_rows)
 
     total_levels = len(questions)
@@ -294,6 +323,7 @@ def main() -> None:
         "subtype": subtype,
         "skin_baseline": str(skin_baseline),
         "skeleton_source": skeleton_result["game_name"],
+        "resources_path": str(args.resources),
         "option_state_urls": option_state_urls,
         "question_count": total_levels,
         "levels": [],

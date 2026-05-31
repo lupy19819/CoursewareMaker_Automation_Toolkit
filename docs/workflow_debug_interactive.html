@@ -576,7 +576,7 @@
         title: "5 配置校验",
         summary: "保存前闸门。先按 game_family 分流，失败先修生成脚本、资源映射、参考配置或 baseline。",
         rules: [
-          "运动PK：可用 validate_config.js 的 custom_game 分支，并可再跑 validate_yundong_pk_config.py。",
+          "运动PK：必须跑 validate_yundong_pk_config.py --meta <build-meta.json>，检查结构、题目音频、题干图、选项图和正确项写入；可再跑 validate_config.js 的 custom_game 分支做高级诊断。",
           "标准组件化题：统一执行器当前只接受已有 game[] 配置或 CoursewareMaker detail wrapper，主流程使用 validate_standard_component_config.py 做稳定结构校验；锁定具体皮肤 baseline 后再用 validate_config.js 做高级诊断。",
           "模板游戏：不能直接套标准组件化 baseline；必须按具体模板做专项规则校验、validate_template_game_config.py、参考配置不变量、关卡级 profile、保存后回读和预览。",
           "执行入口先跑 check_coursewaremaker_browser.js，确认可监听浏览器和 CoursewareMaker 登录态；未登录时打开登录页并保存二维码截图。",
@@ -651,7 +651,7 @@
         title: "A1 赛跑",
         summary: "运动PK实际类型之一，命中关键字“赛跑”。使用赛跑皮肤 baseline，根结构保持 custom_game。",
         rules: ["baseline：templates/detail_jsons/run_detail.json。", "创建参数继承运动PK规则：game_type=2，customEditor。", "任务清单中锁定 subtype=run，生成阶段不再重新判断。"],
-        params: ["目的：把 Excel 中的赛跑题目批量填入运动PK custom_game 骨架，输出可导入的赛跑配置。", "调用：python3 scripts/build_yundong_pk_config.py <sheet_name> <game_detail_json> [question_xlsx]。", "任务清单锁定：subtype=run、baseline_json_path=templates/detail_jsons/run_detail.json、game_type=2、editor=customEditor。", "输入题目：Excel sheet，列包含题号、题目音频名、题干图片名、选项序号、选项图片名、选项文字、正确项标记。", "输入资源：resources/latest_resources.json；脚本按资源 name 查 URL，缺精确命中时会按后缀和分类做候选匹配。", "输入骨架：run_detail.json 提供 common.custom.additional_environment、custom_game 题目样式、选项三态底图、correctSpine。", "处理步骤：读取题目→推断 subtype→加载 run baseline→裁剪 custom_game 关卡数→逐关替换音频/题干图/选项图或选项文字→写入正确项 switch。", "字体规则：文字选项根据长度自动降低 fontSize，避免长文本溢出。", "输出：<sheet_name>.config.json 和 <sheet_name>.build-meta.json；meta 记录每关音频 URL、正确项、选项类型和 baseline 来源。"],
+        params: ["目的：把 Excel 中的赛跑题目批量填入运动PK custom_game 骨架，输出可导入的赛跑配置。", "调用：python3 scripts/build_yundong_pk_config.py <sheet_name> <game_detail_json> [question_xlsx] --resources <resources.filtered.json>。", "任务清单锁定：subtype=run、baseline_json_path=templates/detail_jsons/run_detail.json、game_type=2、editor=customEditor。", "输入题目：Excel sheet，列包含题号、题目音频名、题干图片名、选项序号、选项图片名、选项文字、正确项标记。", "输入资源：必须使用 resolve_sheet_resources.py 为当前 sheet 导出的 resources.filtered.json，避免跨设备旧资源表导致 URL 未替换。", "输入骨架：run_detail.json 提供 common.custom.additional_environment、custom_game 题目样式、选项三态底图、correctSpine。", "处理步骤：读取题目→推断 subtype→加载 run baseline→裁剪 custom_game 关卡数→逐关替换音频/题干图/选项图或选项文字→写入正确项 switch。", "字体规则：文字选项根据长度自动降低 fontSize，避免长文本溢出。", "输出：<sheet_name>.config.json 和 <sheet_name>.build-meta.json；meta 记录每关音频 URL、题干图 URL、选项 URL、正确项、选项类型和 baseline 来源。", "校验：validate_yundong_pk_config.py 必须带 --meta，确认 meta 中的资源 URL 已实际写入配置。"],
         scripts: [["scripts/build_yundong_pk_config.py", "按 run baseline 生成"], ["scripts/validate_yundong_pk_config.py", "按赛跑专项校验"]],
         faults: ["误用游泳/赛车 baseline 会导致场景资源和角色资源不匹配。"]
       },

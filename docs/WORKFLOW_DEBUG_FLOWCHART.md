@@ -244,10 +244,10 @@ flowchart TD
 | 意图判定 | 用户原始消息、上下文、是否有 `game_id` 或具体游戏名 | 当前应进入的工作流环节 | 先跑确定性 router；反馈/修改和已有目标游戏导入都不得触发新建；router/planner blocked 时必须停下补问 | `workflow/workflow_router.py`、`workflow/intent_rules.json`、`workflow/stage_policy.json` | AI 自由判断导致把返修反馈误判成新任务 |
 | 目标游戏解析 | `game_id`、游戏名、上下文任务单 | 唯一目标 `game_id` 和游戏详情 | `game_id` 优先；无 `game_id` 时按游戏名精确查询；同名/多结果必须确认；解析后回读 `game_name/game_type/configuration` | 游戏详情 GET、游戏列表/搜索接口、回读脚本 | 同名游戏误选、用最新创建 ID 代替用户指定名称 |
 | 环境准备 | Chrome/Edge 登录态、CDP 端口 | 可读取 token/cookie 的浏览器会话 | CDP 端口通常为 `9222` 或 `9223`；必须登录 CoursewareMaker；任务入口先跑浏览器自检 | `scripts/check_coursewaremaker_browser.js` / `docs/check_environment.sh` | 脚本取不到 token、浏览器未开调试端口；未登录时输出二维码登录页截图 |
-| 素材确认 | 本地素材、资源表、已有 URL、资源 list | 可写入配置的素材 URL 和同名确认记录 | 上传前先查同名资源；同名时先问提需用户使用现有资源还是改名上传；上传后确认真实 URL；资源 list 必须保存在 git 项目内并持续合并 | `resources/latest_resources.json`、`courseware_bulk_upload_assets.mjs`、`scripts/sync_courseware_resources.py` | 同名资源误复用、未改名上传导致混淆、URL 缺失、使用项目外旧资源表 |
+| 素材确认 | 本地素材、资源表、已有 URL、资源 list | 可写入配置的素材 URL 和同名确认记录 | 上传前先查同名资源；同名时先问提需用户使用现有资源还是改名上传；上传后确认真实 URL；资源 list 必须保存在 git 项目内并持续合并；运动PK生成必须使用 `resources.filtered.json` | `resources/latest_resources.json`、`courseware_bulk_upload_assets.mjs`、`scripts/sync_courseware_resources.py`、`scripts/resolve_sheet_resources.py` | 同名资源误复用、未改名上传导致混淆、URL 缺失、使用项目外旧资源表、生成器未使用 filtered resources |
 | 生成任务清单 | router 输出、素材 URL 映射、题目清单 | 每个游戏一张任务单或 blocked 原因 | 锁定 game_family、关键字、template/baseline、生成脚本、输出路径、game_type、编辑器入口；不生成配置 | `workflow/workflow_planner.py`、`workflow/script_registry.json` | 多游戏混在同一上下文、复用上一条任务状态 |
 | 配置生成 | 当前任务单、题目表、参考配置、资源 URL | 本地 `.config.json` + build-meta | 只按任务清单执行，不重新判断类型；复制替换型不重排组件；模板固定资源可继承，题目相关字段必须来自输入 | 各 `build_*` / `generate_*` 脚本 | 生成阶段重新猜类型、用错 baseline、题型识别错、资源映射错、题目字段仍写死在脚本常量 |
-| 配置校验 | 本地配置 JSON、当前任务单 | 分层校验报告 | 主工作流按 `validation_policy.json` 调度：规则脚本校验为主，参考配置不变量和关卡级 profile 对比为辅，案例回归用于防止脚本退化；模板游戏统一跑 `validate_template_game_config.py`，贪吃小怪兽/运动PK跑更强专项 validator；保存后统一回读比对和预览 | `workflow/workflow_planner.py`、`workflow/validation_policy.json`、`workflow/game_input_schemas.json`、各专项 validator | 根结构不对、皮肤不匹配、缺组件、状态图错、模板被误判成标准拖拽题、只做案例 diff 没跑规则 |
+| 配置校验 | 本地配置 JSON、当前任务单、build-meta | 分层校验报告 | 主工作流按 `validation_policy.json` 调度：规则脚本校验为主，参考配置不变量和关卡级 profile 对比为辅，案例回归用于防止脚本退化；运动PK校验必须带 build-meta，对比题目音频、题干图、选项图和正确项是否实际写入；模板游戏统一跑 `validate_template_game_config.py`，贪吃小怪兽/运动PK跑更强专项 validator；保存后统一回读比对和预览 | `workflow/workflow_planner.py`、`workflow/validation_policy.json`、`workflow/game_input_schemas.json`、`scripts/validate_yundong_pk_config.py --meta`、各专项 validator | 根结构不对、皮肤不匹配、缺组件、状态图错、题目资源 URL 未写入、模板被误判成标准拖拽题、只做案例 diff 没跑规则 |
 | 新建游戏 | 游戏名、模板 ID、可选初始配置 | `game_id` | 运动PK模板必须 `game_type=2`；普通组件化 `game_type=1` | `scripts/create_game_auto.js` | 运动PK被建成普通游戏、入口 URL 错 |
 | 导入保存 | 唯一目标 `game_id`、配置 JSON | 线上保存成功 | 执行器已接管已有游戏导入分支；当前自动保存要求显式 `game_id`，游戏名解析必须先得到唯一 `game_id` 后再保存；保存语义：GET 完整元信息，只替换 `configuration`，保留/补齐 `components: []`，再 `PUT /beibo/game/config/game`；`configuration` 必须是对象，不是字符串 | `workflow/workflow_executor.py`、`scripts/save_game_config_via_cdp.js`、`scripts/upload_game_config.py` | POST 被当成另存、游戏名重复、双重编码、cookie 缺失 |
 | 回读比对 | 线上游戏详情、本地配置 | 比对结果 | GET 回读后比对关卡数、根结构、关键组件、题目字段 | 保存脚本内置比对或临时比对脚本 | API 成功但配置未真正写入、引用模式导致只读 |
@@ -424,14 +424,14 @@ flowchart LR
 | `scripts/upload_game_config.py` | API 直传通道保存配置，备用/批处理 | token/cookie、完整 meta、`components: []`、`configuration` 是否对象 |
 | `standard_question_toolkit/scripts/validate_standard_component_config.py` | 标准组件化主流程校验 | `game[]`、`components[]`、`component_id`、`component_data`、基础 state 结构 |
 | `scripts/validate_config.js` | 运动PK和标准组件化高级诊断 | 皮肤、组件互斥、状态资源、布局常量；标准组件化需先锁定稳定 baseline，不要直接用于模板游戏 |
-| `scripts/validate_yundong_pk_config.py` | 运动PK专项校验 | 皮肤 baseline、`custom_game`、题目字段 |
+| `scripts/validate_yundong_pk_config.py` | 运动PK专项校验 | 皮肤 baseline、`custom_game`；带 `--meta` 时校验题目音频、题干图、选项图和正确项写入结果 |
 | `scripts/validate_monster_config.py` | 贪吃小怪兽专项校验 | 题干音频、点击选择、唯一正确项、底图节点 |
 | `scripts/validate_template_game_config.py` | 模板游戏通用生成后规则校验 | `game[]`、输入 schema、选项数、唯一正确项、拖拽 itemList、音频/图片存在 |
 | `scripts/build_reference_level_index.py` | 生成关卡级参考库 | 从 `reference_configs/` 拆出每关 level JSON，生成 `reference_configs/level_references/index.json` profile |
 | `scripts/check_coursewaremaker_browser.js` | 通用浏览器登录态自检 | 检查 CDP 浏览器和 CoursewareMaker 登录态；未登录时打开登录页并保存二维码截图 |
 | `workflow/audit_workflow.py` | 工作流静态审计 | adapter、生成脚本、模板、validator、资源 list、fixtures |
 | `workflow/game_input_schemas.json` | 每游戏确定性输入契约 | 必填字段、资源字段、固定模板资源与动态题目字段边界 |
-| `scripts/build_yundong_pk_config.py` | 生成运动PK配置 | Sheet 识别、run/swim/racecar baseline、资源映射；游泳按 rules 统一三态选项底图 |
+| `scripts/build_yundong_pk_config.py` | 生成运动PK配置 | Sheet 识别、run/swim/racecar baseline、读取 filtered resources、输出资源写入 build-meta；游泳按 rules 统一三态选项底图 |
 | `scripts/build_sj6_monster_config.py` | 生成贪吃小怪兽配置 | 题型分类、三态选项、反馈资源 |
 | `scripts/build_reading_config.py` | 生成阅读小帆船/小火车配置 | `--type fanboat/train`、tag 规则、参考配置索引 |
 | `scripts/generate_spelling_config.py` | 生成单词拼拼乐配置 | slot/space/fixed 顺序、拖拽物、`double_encoded=false` |
