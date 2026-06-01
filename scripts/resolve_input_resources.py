@@ -7,6 +7,15 @@ names/URLs used by the current task so the workflow can block on missing or
 duplicate task resources without depending on model judgment. When
 --resolved-input is supplied, it also writes a copy of the input with schema
 resource-name fields materialized to real URLs for generators to consume.
+
+Example:
+    python3 scripts/resolve_input_resources.py \
+      --input validation_fixtures/template_game/spelling/resource_name_input.json \
+      --resources validation_fixtures/template_game/spelling/resource_name_resources.json \
+      --manifest /tmp/spelling_resources.manifest.json \
+      --resolved-input /tmp/spelling_resolved_input.json \
+      --schema-family template_game \
+      --schema-subtype spelling
 """
 
 from __future__ import annotations
@@ -28,6 +37,25 @@ RESOURCE_KEY_RE = re.compile(r"(audio|image|img|sprite|scene|sound|url|resource)
 
 class ResolveError(RuntimeError):
     pass
+
+
+def same_path(left: Path | None, right: Path | None) -> bool:
+    if left is None or right is None:
+        return False
+    return left.expanduser().resolve(strict=False) == right.expanduser().resolve(strict=False)
+
+
+def validate_output_paths(args: argparse.Namespace) -> None:
+    checks = [
+        (args.manifest, "--manifest", args.input, "--input"),
+        (args.manifest, "--manifest", args.resources, "--resources"),
+        (args.resolved_input, "--resolved-input", args.input, "--input"),
+        (args.resolved_input, "--resolved-input", args.resources, "--resources"),
+        (args.manifest, "--manifest", args.resolved_input, "--resolved-input"),
+    ]
+    for output_path, output_name, input_path, input_name in checks:
+        if same_path(output_path, input_path):
+            raise ResolveError(f"{output_name} output path must not overwrite {input_name}: {output_path}")
 
 
 def clean(value: Any) -> str | None:
@@ -221,17 +249,21 @@ def materialize_resource_value(
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--input", type=Path, required=True)
-    parser.add_argument("--resources", type=Path, default=DEFAULT_RESOURCES)
-    parser.add_argument("--manifest", type=Path, required=True)
-    parser.add_argument("--resolved-input", type=Path)
+    parser = argparse.ArgumentParser(
+        description=__doc__,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    parser.add_argument("--input", type=Path, required=True, help="Input dynamic question JSON.")
+    parser.add_argument("--resources", type=Path, default=DEFAULT_RESOURCES, help="Input resource table JSON.")
+    parser.add_argument("--manifest", type=Path, required=True, help="Output resource preflight report JSON.")
+    parser.add_argument("--resolved-input", type=Path, help="Output JSON with resource names materialized to URLs.")
     parser.add_argument("--allow-duplicates", action="store_true")
     parser.add_argument("--schema-family")
     parser.add_argument("--schema-subtype")
     parser.add_argument("--schema-file", type=Path, default=DEFAULT_SCHEMAS)
     args = parser.parse_args()
 
+    validate_output_paths(args)
     if not args.input.exists():
         raise ResolveError(f"Input JSON not found: {args.input}")
     payload = json.loads(args.input.read_text(encoding="utf-8"))
