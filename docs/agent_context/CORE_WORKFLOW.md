@@ -7,6 +7,8 @@ repository reads.
 When locating scripts, check `docs/SCRIPT_INDEX.md` first, then open only the
 target script.
 
+Kimi production usage follows `docs/agent_context/KIMI.md`.
+
 ## 1. Project Positioning
 
 CoursewareMaker_Automation_Toolkit automates CoursewareMaker game production:

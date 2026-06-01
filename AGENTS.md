@@ -33,3 +33,5 @@ python3 workflow/workflow_executor.py -m "<message>"
 
 For implementation or documentation tasks, first identify the task type, then
 follow the minimal read scope in `docs/agent_context/CORE_WORKFLOW.md`.
+
+Kimi users should see `.kimi/AGENTS.md` and `docs/agent_context/KIMI.md`.
