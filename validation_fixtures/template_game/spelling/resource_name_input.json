@@ -1,0 +1,28 @@
+{
+  "levels": [
+    {
+      "text": "fat",
+      "answer_area": [
+        {
+          "type": "slot",
+          "content": "f"
+        },
+        {
+          "type": "slot",
+          "content": "a"
+        },
+        {
+          "type": "slot",
+          "content": "t"
+        }
+      ],
+      "items": [
+        "t",
+        "a",
+        "f"
+      ],
+      "word_audio_url": "fixture_spelling_word_audio",
+      "word_image_url": "fixture_spelling_word_image"
+    }
+  ]
+}

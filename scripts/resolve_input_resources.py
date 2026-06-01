@@ -2,9 +2,11 @@
 """Resolve resource-like values referenced by a dynamic JSON input file.
 
 This is a conservative preflight helper for template-game generators whose
-question data is JSON rather than Excel. It does not rewrite the input. It only
-reports resource names/URLs used by the current task so the workflow can block
-on missing or duplicate task resources without depending on model judgment.
+question data is JSON rather than Excel. By default it reports resource
+names/URLs used by the current task so the workflow can block on missing or
+duplicate task resources without depending on model judgment. When
+--resolved-input is supplied, it also writes a copy of the input with schema
+resource-name fields materialized to real URLs for generators to consume.
 """
 
 from __future__ import annotations
@@ -88,14 +90,19 @@ def walk(value: Any, key_path: str = "") -> list[dict[str, str]]:
 
 
 def schema_resource_keys(schema_path: Path, family: str | None, subtype: str | None) -> set[str]:
+    return set(schema_resource_key_categories(schema_path, family, subtype))
+
+
+def schema_resource_key_categories(schema_path: Path, family: str | None, subtype: str | None) -> dict[str, str]:
     if not family or not subtype:
-        return set()
+        return {}
     schemas = json.loads(schema_path.read_text(encoding="utf-8"))
     contract = schemas.get(family, {}).get(subtype, {})
     fields = contract.get("resource_fields", {})
-    keys: set[str] = set()
-    for values in fields.values():
-        keys.update(str(item) for item in values)
+    keys: dict[str, str] = {}
+    for category, values in fields.items():
+        for item in values:
+            keys[str(item)] = str(category)
     return keys
 
 
@@ -134,11 +141,91 @@ def collect_strings(value: Any, key_path: str) -> list[dict[str, str]]:
     return []
 
 
+def row_url(row: dict[str, Any]) -> str | None:
+    return clean(row.get("url") or row.get("URL") or row.get("resource_url"))
+
+
+def expected_category_for_path(path: str, resource_key_categories: dict[str, str]) -> str | None:
+    normalized = path.replace("]", "")
+    parts = re.split(r"[.\[]+", normalized)
+    for part in reversed([p for p in parts if p]):
+        category = resource_key_categories.get(part)
+        if category and category != "url":
+            return category
+    return None
+
+
+def resolve_string(
+    value: str,
+    key_path: str,
+    grouped: dict[str, list[dict[str, Any]]],
+    resource_key_categories: dict[str, str],
+) -> str:
+    string = clean(value)
+    if not string or URL_RE.search(string):
+        return value
+    rows = grouped.get(string)
+    if not rows:
+        return value
+    expected = expected_category_for_path(key_path, resource_key_categories) or infer_category(key_path, string)
+    if expected:
+        matching_rows = [row for row in rows if normalize_category(row) in {"", expected}]
+        if matching_rows:
+            rows = matching_rows
+    url = row_url(rows[-1])
+    return url or value
+
+
+def materialize_schema_resources(
+    value: Any,
+    resource_key_categories: dict[str, str],
+    grouped: dict[str, list[dict[str, Any]]],
+    key_path: str = "",
+) -> Any:
+    if isinstance(value, dict):
+        resolved: dict[str, Any] = {}
+        for key, child in value.items():
+            next_path = f"{key_path}.{key}" if key_path else str(key)
+            if str(key) in resource_key_categories:
+                resolved[key] = materialize_resource_value(child, resource_key_categories, grouped, next_path)
+            else:
+                resolved[key] = materialize_schema_resources(child, resource_key_categories, grouped, next_path)
+        return resolved
+    if isinstance(value, list):
+        return [
+            materialize_schema_resources(child, resource_key_categories, grouped, f"{key_path}[{index}]")
+            for index, child in enumerate(value)
+        ]
+    return value
+
+
+def materialize_resource_value(
+    value: Any,
+    resource_key_categories: dict[str, str],
+    grouped: dict[str, list[dict[str, Any]]],
+    key_path: str,
+) -> Any:
+    if isinstance(value, str):
+        return resolve_string(value, key_path, grouped, resource_key_categories)
+    if isinstance(value, list):
+        return [
+            materialize_resource_value(child, resource_key_categories, grouped, f"{key_path}[{index}]")
+            for index, child in enumerate(value)
+        ]
+    if isinstance(value, dict):
+        return {
+            key: materialize_resource_value(child, resource_key_categories, grouped, f"{key_path}.{key}")
+            for key, child in value.items()
+        }
+    return value
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--input", type=Path, required=True)
     parser.add_argument("--resources", type=Path, default=DEFAULT_RESOURCES)
     parser.add_argument("--manifest", type=Path, required=True)
+    parser.add_argument("--resolved-input", type=Path)
     parser.add_argument("--allow-duplicates", action="store_true")
     parser.add_argument("--schema-family")
     parser.add_argument("--schema-subtype")
@@ -148,7 +235,8 @@ def main() -> int:
     if not args.input.exists():
         raise ResolveError(f"Input JSON not found: {args.input}")
     payload = json.loads(args.input.read_text(encoding="utf-8"))
-    resource_keys = schema_resource_keys(args.schema_file, args.schema_family, args.schema_subtype)
+    resource_key_categories = schema_resource_key_categories(args.schema_file, args.schema_family, args.schema_subtype)
+    resource_keys = set(resource_key_categories)
     refs = walk_schema(payload, resource_keys) if resource_keys else walk(payload)
     rows = load_rows(args.resources)
     grouped: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -174,6 +262,7 @@ def main() -> int:
         "schema": "coursewaremaker.resource_manifest.v1",
         "input": str(args.input),
         "resource_file": str(args.resources),
+        "resolved_input": str(args.resolved_input) if args.resolved_input else "",
         "referenced_count": len(refs),
         "named_count": len(named_refs),
         "url_count": len(urls),
@@ -192,6 +281,12 @@ def main() -> int:
         raise ResolveError("Resource category mismatches found")
     if duplicates and not args.allow_duplicates:
         raise ResolveError("Duplicate resources used by this input: " + ", ".join(sorted(duplicates)))
+    if args.resolved_input:
+        if not resource_key_categories:
+            raise ResolveError("--resolved-input requires --schema-family and --schema-subtype with resource_fields")
+        resolved_payload = materialize_schema_resources(payload, resource_key_categories, grouped)
+        args.resolved_input.parent.mkdir(parents=True, exist_ok=True)
+        args.resolved_input.write_text(json.dumps(resolved_payload, ensure_ascii=False, indent=2), encoding="utf-8")
     return 0
 
 

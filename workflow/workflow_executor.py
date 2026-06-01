@@ -228,6 +228,7 @@ def preflight_resources(input_path: Path, route_result: dict[str, Any], adapter:
         )
         return {"filtered_resources": str(filtered), "resource_manifest": str(manifest)}
     if support == "json_manifest":
+        resolved_input = out_dir / "resolved_input.json"
         run(
             [
                 sys.executable,
@@ -238,19 +239,22 @@ def preflight_resources(input_path: Path, route_result: dict[str, Any], adapter:
                 str(args.resources),
                 "--manifest",
                 str(manifest),
+                "--resolved-input",
+                str(resolved_input),
                 "--schema-family",
                 str(route_result.get("game_family") or ""),
                 "--schema-subtype",
                 str(route_result.get("game_subtype") or ""),
             ]
         )
-        return {"filtered_resources": "", "resource_manifest": str(manifest)}
+        return {"filtered_resources": "", "resource_manifest": str(manifest), "resolved_input": str(resolved_input)}
     return {"filtered_resources": "", "resource_manifest": ""}
 
 
 def generate_config(route_result: dict[str, Any], args: argparse.Namespace, out_dir: Path, adapter: dict[str, Any]) -> dict[str, str]:
     input_path, _ = choose_input(route_result, adapter, args, out_dir)
     resources = preflight_resources(input_path, route_result, adapter, args, out_dir)
+    generator_input_path = Path(resources.get("resolved_input") or input_path)
     game_name = args.game_name or route_result.get("game_name") or route_result.get("game_subtype") or "courseware"
     config_path = out_dir / f"{safe_name(game_name)}.config.json"
     meta_path = out_dir / f"{safe_name(game_name)}.build-meta.json"
@@ -266,8 +270,8 @@ def generate_config(route_result: dict[str, Any], args: argparse.Namespace, out_
         raise ExecutorError(f"Template/reference config not found: {template}")
 
     values = {
-        "input": str(input_path),
-        "xlsx": str(input_path),
+        "input": str(generator_input_path),
+        "xlsx": str(generator_input_path),
         "sheet": sheet,
         "template": str(template),
         "config": str(config_path),
@@ -293,6 +297,7 @@ def generate_config(route_result: dict[str, Any], args: argparse.Namespace, out_
 
     return {
         "input_path": str(input_path),
+        "generator_input_path": str(generator_input_path),
         "config_path": str(config_path),
         "meta_path": str(meta_path) if meta_path.exists() else "",
         **resources,

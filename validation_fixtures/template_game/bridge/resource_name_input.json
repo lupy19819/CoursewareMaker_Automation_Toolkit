@@ -1,0 +1,31 @@
+{
+  "levels": [
+    {
+      "sentence": "Kuan enjoys riding bikes.",
+      "quiz_img": "fixture_bridge_quiz_image",
+      "audio": "fixture_bridge_prompt_audio",
+      "parts": [
+        {
+          "type": "fixed",
+          "text": "Kuan"
+        },
+        {
+          "type": "drag",
+          "text": "enjoys"
+        },
+        {
+          "type": "fixed",
+          "text": "riding"
+        },
+        {
+          "type": "fixed",
+          "text": "bikes."
+        }
+      ],
+      "options": [
+        "enjoy",
+        "enjoys"
+      ]
+    }
+  ]
+}

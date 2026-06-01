@@ -25,6 +25,7 @@ OLD_REF   = os.path.join(TOOLKIT, 'output/guoqiao_configs/87ddb0a3-ea04-11f0-916
 OUT_DIR   = os.path.join(TOOLKIT, 'output/guoqiao_shu2')
 DEFAULT_REF_PATH = '/tmp/guoqiao_ref_clean.json'   # 上传的新参考配置
 DEFAULT_OUT_FILE = os.path.join(OUT_DIR, 'guoqiao_shu2.json')
+FALLBACK_AUDIO_REF = os.path.join(TOOLKIT, 'reference_configs', 'guoqiao_autumn14_ref.json')
 parser = argparse.ArgumentParser(description='过桥大冒险配置生成脚本')
 parser.add_argument('--input', help='动态题目 JSON。题目图片/音频/句子/选项必须从这里读取')
 parser.add_argument('--template', default=DEFAULT_REF_PATH, help='模板/参考配置 JSON')
@@ -207,13 +208,22 @@ with open(REF_PATH) as f:
 
 ref_lvl0 = ref['game'][0]['components']   # 参考关卡0（5槽）的组件列表
 
+
+def fallback_comp(name):
+    """Audio prompt components are absent from some bridge references."""
+    if not os.path.exists(FALLBACK_AUDIO_REF):
+        return None
+    with open(FALLBACK_AUDIO_REF, encoding='utf-8') as f:
+        fallback_ref = json.load(f)
+    return get_comp(fallback_ref['game'][0]['components'], name)
+
 # 获取固定骨架组件的模板
 tmpl_bg          = get_comp(ref_lvl0, '背景')
 tmpl_quiz_img    = get_comp(ref_lvl0, '题目配图')
 tmpl_level_num   = get_comp(ref_lvl0, '关卡数组件')
-tmpl_speaker     = get_comp(ref_lvl0, '喇叭低层级')
+tmpl_speaker     = get_comp(ref_lvl0, '喇叭低层级') or fallback_comp('喇叭低层级')
 tmpl_deer        = get_comp(ref_lvl0, '小鹿开车')
-tmpl_click       = get_comp(ref_lvl0, '点击选择')
+tmpl_click       = get_comp(ref_lvl0, '点击选择') or fallback_comp('点击选择')
 tmpl_juhao       = get_comp(ref_lvl0, '句号')
 tmpl_jiedian     = get_comp(ref_lvl0, '节点')
 
@@ -336,6 +346,22 @@ def make_option(name, x, w, text, tag, zidx=10, font_size=None):
                 st['source']['MLabel']['fontSize'] = font_size
     return c
 
+
+def set_prompt_audio(comp, audio_url):
+    """Write the per-level prompt audio to the click-to-play state."""
+    states = comp['component_data'].get('states', [])
+    preferred = [
+        st for st in states
+        if st.get('label') == '播放' and 'MAudio' in st.get('source', {})
+    ]
+    fallback = [
+        st for st in states
+        if 'MAudio' in st.get('source', {}) and st.get('state') not in {'level_correct', 'level_wrong'}
+    ]
+    targets = preferred or fallback[:1]
+    for st in targets:
+        st['source']['MAudio']['value'] = audio_url
+
 # ──────────────────────────────────────────────
 # 关卡构建
 # ──────────────────────────────────────────────
@@ -427,10 +453,15 @@ def build_level(lvl_data, level_idx, total_levels):
     def clone_fixed(tmpl, new_name=None):
         if tmpl is None:
             return None
+        old_id = tmpl['component_data'].get('id')
         c = copy.deepcopy(tmpl)
-        c['component_data']['id'] = new_uuid()
+        new_id = new_uuid()
+        c['component_data']['id'] = new_id
         if new_name:
             c['component_data']['name'] = new_name
+        for ev in c['component_data'].get('event', {}).get('value', []):
+            if old_id and ev.get('source') == old_id:
+                ev['source'] = new_id
         return c
 
     bg_c      = clone_fixed(tmpl_bg)
@@ -463,9 +494,7 @@ def build_level(lvl_data, level_idx, total_levels):
 
     # 更新点击选择音频
     if click_c and audio_url:
-        for st in click_c['component_data']['states']:
-            if 'MAudio' in st.get('source', {}):
-                st['source']['MAudio']['value'] = audio_url
+        set_prompt_audio(click_c, audio_url)
 
     # 7. 拼装组件列表（顺序：背景 → 题目配图 → 关卡数 → 喇叭 → 小鹿 → 点击选择
     #                   → 拖拽放置区 → 桥墩（fixed） → 砖块掉落 → 句号 → 节点 → 选项）

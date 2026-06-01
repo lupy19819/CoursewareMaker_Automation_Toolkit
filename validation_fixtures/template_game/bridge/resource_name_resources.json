@@ -1,0 +1,12 @@
+[
+  {
+    "name": "fixture_bridge_quiz_image",
+    "category": "image",
+    "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/image/test/fixture_bridge_quiz_image.png"
+  },
+  {
+    "name": "fixture_bridge_prompt_audio",
+    "category": "audio",
+    "url": "https://courseware-maker-1252161091.cos.ap-beijing.myqcloud.com/assets/audio/test/fixture_bridge_prompt_audio.mp3"
+  }
+]
