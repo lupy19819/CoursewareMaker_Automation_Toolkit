@@ -8,6 +8,8 @@ When locating scripts, check `docs/SCRIPT_INDEX.md` first, then open only the
 target script.
 
 Kimi production usage follows `docs/agent_context/KIMI.md`.
+Claude Code users should start from `CLAUDE.md` and use
+`docs/agent_context/CLAUDE_CODE.md` for Claude-specific behavior.
 
 ## 1. Project Positioning
 
