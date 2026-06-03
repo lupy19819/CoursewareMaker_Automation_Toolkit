@@ -18,6 +18,12 @@ token: read detailed docs only when the task requires them.
 - Do not bypass `workflow/workflow_guard.py`.
 - Do not treat model judgment as a substitute for workflow registry facts.
 - Use `workflow/` Python scripts and JSON registries as deterministic facts.
+- Before naming intent, `game_family`, `game_subtype`, stage, or blocked
+  status, run `workflow/workflow_router.py` and use its actual output.
+- Do not infer route fields from Chinese names, filenames, reference config
+  names, or directory names.
+- If a task may be blocked, run `workflow/workflow_planner.py` with router
+  output before claiming the block reason; do not fabricate blocked JSON.
 - Use validators and audit results to judge config correctness.
 - If router, planner, guard, executor, or validators block, explain the reason
   and ask for missing fields instead of inventing a path.

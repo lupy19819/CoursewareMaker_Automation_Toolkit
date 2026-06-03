@@ -28,6 +28,14 @@ Use these as facts:
 Do not use memory, old notes, generated outputs, or broad repository
 impressions as workflow facts.
 
+Router output is authoritative for `intent`, `game_family`, `game_subtype`,
+stage, and route ambiguity. Do not infer these fields from Chinese names,
+filenames, reference config names, or directory names.
+
+Planner output is authoritative for blocked status and blocked reasons. Claude
+Code may explain router and planner outputs, but must not invent route fields
+or blocked results.
+
 ## Standard Flow
 
 For production tasks, use the deterministic chain:
